@@ -1,8 +1,17 @@
 ---
 title: Introduction to the Command Line Interface
-permalink: /os_labs/lab1_introduction
+permalink: /os_labs/overview
 key: labs-cli
 license: false
+layout: article
+nav_key: os_labs
+sidebar:
+  nav: os_labs
+license: true
+aside:
+  toc: true
+show_edit_on_github: false
+show_date: false
 ---
 # Overview
 
