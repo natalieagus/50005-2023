@@ -1,0 +1,76 @@
+---
+layout: page
+type: article
+---
+
+{%- include snippets/assign.html
+  target = site.data.variables.default.page.sharing
+  source0=layout.sharing source1=page.sharing -%}
+{%- assign _sharing = __return -%}
+
+<div class="layout--article">
+  {%- include article/top/custom.html -%}
+
+  <div class="article__content" itemprop="articleBody">{{ content }}</div>
+
+  {%- if _sharing -%}
+    <section class="article__sharing d-print-none">{%- include sharing.html -%}</section>
+  {%- endif -%}
+
+  <div class="d-print-none">
+    {%- include article-footer.html -%}
+    {%- include article-section-navigator.html -%}
+  </div>
+
+</div>
+
+<script>
+  {%- include scripts/article.js -%}
+</script>
+
+<script>
+  contentAnswers = document.getElementsByClassName("content_answer")
+  var i;
+
+  for (i = 0; i < contentAnswers.length; i++){
+    stringval = contentAnswers[i].innerHTML
+    console.log(stringval)
+    stringval = stringval.replace(/\*{1,2}(.*?)\*{1,2}/g, '<strong>$1</strong>')
+    stringval = stringval.replace(/`(.*?)`/g, '<code>$1</code>');
+    console.log(stringval)
+    contentAnswers[i].innerHTML = stringval
+
+  }
+</script>
+<script>
+  contentAnswers = document.getElementsByClassName("custom_box")
+  var i;
+
+  for (i = 0; i < contentAnswers.length; i++){
+    stringval = contentAnswers[i].innerHTML
+    console.log(stringval)
+    stringval = stringval.replace(/\*{1,2}(.*?)\*{1,2}/g, '<strong>$1</strong>')
+    stringval = stringval.replace(/`(.*?)`/g, '<code>$1</code>');
+    console.log(stringval)
+    contentAnswers[i].innerHTML = stringval
+
+  }
+</script>
+
+<script>
+  var coll = document.getElementsByClassName("collapsible");
+  var i;
+  
+  for (i = 0; i < coll.length; i++) {
+    coll[i].addEventListener("click", function() {
+      this.classList.toggle("active");
+      var content_answer = this.nextElementSibling;
+      if (content_answer.style.display === "block") {
+        content_answer.style.display = "none";
+      } else {
+        content_answer.style.display = "block";
+        // this.style.background = "#e6d4ff"
+      }
+    });
+  }
+  </script>

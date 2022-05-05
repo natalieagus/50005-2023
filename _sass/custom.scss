@@ -1,0 +1,131 @@
+/* start custom scss snippet */
+
+.center_full {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+.center_seventy {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 70%;
+}
+.center_fifty {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+  
+  .blueborder {
+    border-style: solid;
+    border-color: #287ec7;
+    padding: 10px;
+    line-height: 1.8;
+    color: black;
+  }
+
+.redborder {
+  border-style: solid;
+  border-color: #ff0000;
+  padding: 10px;
+  line-height: 1.8;
+}
+
+.greenbox {
+  background-color: #cfc;
+  padding: 10px;
+  border: 1px solid green;
+  line-height: 1.8;
+  color: black;
+}
+
+.orangebox {
+  background-color: #ffe4b5;
+  padding: 10px;
+  border: 1px solid #ff8c00;
+  line-height: 1.8;
+  color: black;
+}
+
+.redbox {
+  background-color: #ffe4e1;
+  border: 1px solid #fa8072;
+  display: block;
+  padding: 10px;
+  line-height: 1.8;
+  color: black;
+}
+
+.bluebox {
+  background-color: #f0f8ff;
+  border: 1px solid #87cefa;
+  display: block;
+  padding: 10px;
+  color: black;
+  line-height: 1.8;
+}
+
+.yellowbox {
+  background-color: #fff7aa;
+  display: block;
+  padding: 10px;
+  line-height: 1.8;
+  color: black;
+}
+
+.redtext {
+  color: red;
+}
+
+.bluetext {
+  color: blue;
+}
+
+.orangetext {
+  color: #ff791a;
+}
+
+.greentext {
+  color: green;
+}
+
+.collapsible_code {
+  font-size: 0.9em;
+}
+
+
+/* Style the button that is used to open and close the collapsible content */
+.collapsible {
+  background-color: #e6d4ff;
+  color: #444;
+  cursor: pointer;
+  padding: 5px;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 0.9em;
+  font-weight: bold;
+  line-height: 20pt;
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+//   .active,
+.collapsible.active, .collapsible:hover, collapsible:focus {
+  background-color: #ae75fd;
+}
+
+
+/* Style the collapsible content. Note: hidden by default */
+.content_answer {
+  padding: 0 10px;
+  display: none;
+  overflow: hidden;
+  color: #444;
+  background-color: #e6d4ff;
+  font-size: 0.9em;
+}
+
+/* end custom scss snippet */
