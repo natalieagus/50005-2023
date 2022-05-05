@@ -207,6 +207,7 @@ defaults:
         toc: true
       show_edit_on_github: false
       show_date: false
+
 collections:
   assignments:
     output: true
