@@ -35,7 +35,7 @@ This subject teaches the basics of OS, in specific we use POSIX compliant OS onl
 If you’re not sure what POSIX-compliant OS means, download [Ubuntu 22.04](https://ubuntu.com/download/desktop) and install it using any of the methods below:
 * **Virtual Machine:** [VirtualBox](https://www.virtualbox.org), or VMWare Fusion. Be autonomous and watch some youtube guides online, there’s plenty of guides!
 * Enable [dual-boot](https://www.xda-developers.com/dual-boot-windows-11-linux/), or
-* Use cloud services (AWS EC2 + Cloud9, etc). R[efer to inhouse guide on how to setup EC2 with Cloud9 here](https://hackmd.io/6U8U5dYrSU2Ny-jBatAKiw).  Although it is free, you still need a credit card to guarantee it. 
+* Use cloud services (AWS EC2 + Cloud9, etc). [Refer to inhouse guide on how to setup EC2 with Cloud9 here](https://hackmd.io/6U8U5dYrSU2Ny-jBatAKiw).  Although it is free, you still need a credit card to guarantee it. 
 * Using [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install) that comes by default in your Windows OS. WSL is not recommended, but if you insist, then you should be OK 80-90% of the time. You’re on your own though. 
 
 

@@ -18,7 +18,7 @@ show_date: false
 The CLI accepts **commands** (the **first** word, e.g. ps, that you type into the CLI is the command), **entered line by line** and it will be executed **sequentially**. There are two types of commands in general, commands **with** and **without** options or arguments.
 
 # Basic Commands
-## Commands Without Options or Arguments
+## Without Options
 ### Task 2
 `TASK 2:`{:.info} Try the following basic commands in sequence `date`, `cal`, `pwd`, `who`, `clear`:
 1. E.g: date and press enter. You should see today’s date given to you, for example:
@@ -34,7 +34,7 @@ bash-3.2$
    * You can use `man <command>` and press `q` to quit anytime. 
 
 
-## Commands With Options or Arguments
+## With Options
 The commands you have typed above are those that **do not** require options or more arguments (although they do accept these too). Some commands require more input arguments.
 
 For example, the command ps shows the list of processes for the current shell, while `ps -x` shows all processes that are owned by the current user even when it doesn’t have a **controlling terminal**. 
@@ -123,3 +123,62 @@ Another way of providing context is through something called **environment** **v
 In the example below, the environment variable `$MESSAGE1` initially did not exist. After we `export` it, we can now print the environment variable `$MESSAGE1`. 
 
 <img src="/50005/assets/images/lab1/4.png"  class="center_seventy"/>
+
+## $PATH Variable
+One of the most important environment variables you’ll work with on the command line is <span style="color:red;"><b>$PATH</b></span>. 
+* This is the key to how our shell **knows** which file to execute for commands like cd or echo or other built-in or installed programs. 
+* The PATH variable provides the <span style="color:red;"><b>additional context</b></span> that the command line needs to figure out where that particular file is in the system.
+* Hence, if you have installed an app (e.g: Telegram) and tried to execute the binary from the command line and met with the error `command not found`, it simply means you haven’t added the path where that binary is to the `$PATH` environment variable. 
+
+For example,  you can add the **binary** of the **Telegram** app onto the `$PATH` using the command `export`, and now you can simply execute it from anywhere (a new Telegram window is opened on the second Telegram command):
+
+<img src="/50005/assets/images/lab1/5.png"  class="center_seventy"/>
+
+### Task 6
+`TASK 6:`{:.info} Examine the value for `$PATH` in your system.
+
+Open that folder (from your Desktop GUI) and navigate to that path. **You may need to enable viewing of hidden files.** If you are using WSL, you need to cd to this path as there’s no GUI. The screenshot below shows the content of `/bin/` directory where some default system programs like `ps, date, pwd, echo,` etc reside:
+
+<img src="/50005/assets/images/lab1/6.png"  class="center_seventy"/>
+
+# Configuring a Terminal Session
+The command `export` that modifies the environment variable is only valid for <span style="color:red;"><b>this</b></span> session. For instance, the Telegram command above will not work anymore if a user opens a new Terminal session (need to `export` again). 
+
+To avoid this hassle, there exists a setup script (unique to each shell) that is run whenever a new session starts. This script is typically placed in the user's `home` directory. For instance, `.bashrc` (yes, with this exact name) is a Bash shell script that Bash runs whenever it is started interactively. For Z-shell, this script is called `.zshrc`. 
+
+**In short, it initialises an interactive shell session**. You can put **any command** that you could type at the command prompt in that file. It works by being run each time you open up a new terminal, window or pane.
+
+### Task 7 
+`TASK 7:`{:.info} Adding *Desktop* to your `$PATH` environment variable **permanently**.
+* Go to your home directory: `cd $HOME`
+* Create a new file called .bashrc: `touch .bashrc`
+* Open the file with any text editor, eg: `nano .bashrc`
+* Type: `PATH="$HOME/Desktop:$PATH" `
+* Save the file by pressing <span style="color:red;"><b>CTRL+X</b></span>, and then follow the instruction and  press `Enter`
+* Restart your session by typing `exec bash`
+* Print your `$PATH` using `echo $PATH` command and notice how **Desktop** is now part of your environment variable
+
+```java
+bash-3.2$ cd $HOME
+bash-3.2$ touch .bashrc
+bash-3.2$ nano .bashrc
+bash-3.2$ echo $PATH
+/Users/natalie_agus/Desktop:...
+bash-3.2$
+```
+
+# Common Commands
+
+### Shortcut: alias
+An `alias` lets you create a **shortcut** name for a command, file name, or any shell text. By using aliases, you save a lot of time when doing tasks you do frequently. You can see current aliases using the `alias` command:
+
+<img src="/50005/assets/images/lab1/7.png"  class="center_seventy"/>
+
+Or **create** an alias:
+* `alias name=’command’`
+* Example: `alias gst=’git status’`
+
+<img src="/50005/assets/images/lab1/8.png"  class="center_seventy"/>
+
+`alias` is particularly useful when you define them in your shell’s setup script.
+{:.info} 
