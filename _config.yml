@@ -142,71 +142,6 @@ defaults:
       show_edit_on_github: true
       show_subscribe: true
       pageview: true
-  ## os_notes
-  - scope:
-      path: "_os_notes/"
-    values:
-      layout: article
-      nav_key: os_notes
-      sidebar:
-        nav: os_notes
-      license: true
-      aside:
-        toc: true
-      show_edit_on_github: false
-      show_date: false
-  ## ns_notes
-  - scope:
-      path: "_ns_notes/"
-    values:
-      layout: article
-      nav_key: ns_notes
-      sidebar:
-        nav: ns_notes
-      license: true
-      aside:
-        toc: true
-      show_edit_on_github: false
-      show_date: false
-  ## labs
-  - scope:
-      path: "_os_labs/"
-    values:
-      layout: article
-      nav_key: os_labs
-      sidebar:
-        nav: os_labs
-      license: true
-      aside:
-        toc: true
-      show_edit_on_github: false
-      show_date: false
-  ## labs
-  - scope:
-      path: "_ns_labs/"
-    values:
-      layout: article
-      nav_key: ns_labs
-      sidebar:
-        nav: ns_labs
-      license: true
-      aside:
-        toc: true
-      show_edit_on_github: false
-      show_date: false
-  ## assignments
-  - scope:
-      path: "_assignments/"
-    values:
-      layout: article
-      nav_key: assignments
-      sidebar:
-        nav: assignments
-      license: true
-      aside:
-        toc: true
-      show_edit_on_github: false
-      show_date: false
 
 collections:
   assignments:
@@ -216,6 +151,8 @@ collections:
   ns_notes:
     output: true
   os_labs:
+    output: true
+  ns_labs:
     output: true
 ## => Plugins
 ##############################

@@ -1,299 +1,97 @@
 header:
   - title: Home
     url: /index.html
-  - title: OS Notes
-    url: /os_notes/quick-start
+  - title: OS-Notes
+    url: /os_notes/overview
     key: os_notes
-  - title: NS Notes
-    url: /ns_notes/quick-start
-    key: ns_notes
-  - title: OS Labs
-    url: /os_labs/overview
+  - title: OS-Labs
+    url: /os_labs/lab1_intro
     key: os_labs
-  - title: NS Labs
+  - title: NS-Notes
+    url: /ns_notes/overview
+    key: ns_notes
+  - title: NS-Labs
     url: /ns_labs/overview
     key: ns_labs
   - title: Assignments
-    url: /assignments/quick-start
+    url: /assignments/overview
     key: assignments
-  # - title: Samples
-  #   url: /samples.html
-  #   key: samples
-  # - title: Archive
-  #   url: /archive.html
-  # - title: About
-  #   url: /about.html
-  # - title: GitHub
-  #   url: https://github.com/kitian616/jekyll-TeXt-theme
 
 os_notes:
-  - title: Start
+  - title: Week 1
     children:
-      - title: Quick Start
-        url: /os_notes/quick-start
-      - title: Structure
-        url: /os_notes/structure
-      - title: Update from 1.x to 2.x
-        url: /os_notes/update-from-1-to-2
-  - title: Customization
-    children:
-      - title: Configuration
-        url: /os_notes/configuration
-      - title: Navigation
-        url: /os_notes/navigation
-      - title: Layouts
-        url: /os_notes/layouts
-      - title: Logo and Favicon
-        url: /os_notes/logo-and-favicon
-      - title: Authors
-        url: /os_notes/authors
-      - title: Internationalization
-        url: /os_notes/i18n
-  - title: Content
-    children:
-      - title: Writing Posts
-        url: /os_notes/writing-posts
-      - title: Additional Styles
-        url: /os_notes/additional-styles
-      - title: Extensions
-        url: /os_notes/extensions
-      - title: Markdown Enhancements
-        url: /os_notes/markdown-enhancements
-  - title: Extra
-    children:
-      - title: Spacing
-        url: /os_notes/spacing
-      - title: Grid
-        url: /os_notes/grid
-      - title: Icons
-        url: /os_notes/icons
-      - title: Image
-        url: /os_notes/image
-      - title: Button
-        url: /os_notes/button
-      - title: Item
-        url: /os_notes/item
-      - title: Card
-        url: /os_notes/card
-      - title: Hero
-        url: /os_notes/hero
-      - title: Swiper
-        url: /os_notes/swiper
-
+      - title: Overview
+        url: /os_notes/overview
+      # - title: Structure
+      #   url: /os_notes/structure
+      # - title: Update from 1.x to 2.x
+      #   url: /os_notes/update-from-1-to-2
+  # - title: Customization
+  #   children:
+  #     - title: Configuration
+  #       url: /os_notes/configuration
+  #     - title: Navigation
+  #       url: /os_notes/navigation
+  #     - title: Layouts
+  #       url: /os_notes/layouts
+  #     - title: Logo and Favicon
+  #       url: /os_notes/logo-and-favicon
+  #     - title: Authors
+  #       url: /os_notes/authors
+  #     - title: Internationalization
+  #       url: /os_notes/i18n
+  # - title: Content
+  #   children:
+  #     - title: Writing Posts
+  #       url: /os_notes/writing-posts
+  #     - title: Additional Styles
+  #       url: /os_notes/additional-styles
+  #     - title: Extensions
+  #       url: /os_notes/extensions
+  #     - title: Markdown Enhancements
+  #       url: /os_notes/markdown-enhancements
+  # - title: Extra
+  #   children:
+  #     - title: Spacing
+  #       url: /os_notes/spacing
+  #     - title: Grid
+  #       url: /os_notes/grid
+  #     - title: Icons
+  #       url: /os_notes/icons
+  #     - title: Image
+  #       url: /os_notes/image
+  #     - title: Button
+  #       url: /os_notes/button
+  #     - title: Item
+  #       url: /os_notes/item
+  #     - title: Card
+  #       url: /os_notes/card
+  #     - title: Hero
+  #       url: /os_notes/hero
+  #     - title: Swiper
+  #       url: /os_notes/swiper
 ns_notes:
-  - title: Start
+  - title: Week 1
     children:
-      - title: Quick Start
-        url: /ns_notes/quick-start
-      - title: Structure
-        url: /ns_notes/structure
-      - title: Update from 1.x to 2.x
-        url: /ns_notes/update-from-1-to-2
-  - title: Customization
-    children:
-      - title: Configuration
-        url: /ns_notes/configuration
-      - title: Navigation
-        url: /ns_notes/navigation
-      - title: Layouts
-        url: /ns_notes/layouts
-      - title: Logo and Favicon
-        url: /ns_notes/logo-and-favicon
-      - title: Authors
-        url: /ns_notes/authors
-      - title: Internationalization
-        url: /ns_notes/i18n
-  - title: Content
-    children:
-      - title: Writing Posts
-        url: /ns_notes/writing-posts
-      - title: Additional Styles
-        url: /ns_notes/additional-styles
-      - title: Extensions
-        url: /ns_notes/extensions
-      - title: Markdown Enhancements
-        url: /ns_notes/markdown-enhancements
-  - title: Extra
-    children:
-      - title: Spacing
-        url: /ns_notes/spacing
-      - title: Grid
-        url: /ns_notes/grid
-      - title: Icons
-        url: /ns_notes/icons
-      - title: Image
-        url: /ns_notes/image
-      - title: Button
-        url: /ns_notes/button
-      - title: Item
-        url: /ns_notes/item
-      - title: Card
-        url: /ns_notes/card
-      - title: Hero
-        url: /ns_notes/hero
-      - title: Swiper
-        url: /ns_notes/swiper
+      - title: Overview
+        url: /ns_notes/overview
 
 os_labs:
   - title: Lab 1
     children:
       - title: Introduction
-        url: /os_labs/overview
+        url: /os_labs/lab1_intro
       - title: CLI Basics
         url: /os_labs/lab1_clis
-  - title: Customization
-    children:
-      - title: Configuration
-        url: /os_labs/configuration
-      - title: Navigation
-        url: /os_labs/navigation
-      - title: Layouts
-        url: /os_labs/layouts
-      - title: Logo and Favicon
-        url: /os_labs/logo-and-favicon
-      - title: Authors
-        url: /os_labs/authors
-      - title: Internationalization
-        url: /os_labs/i18n
-  - title: Content
-    children:
-      - title: Writing Posts
-        url: /os_labs/writing-posts
-      - title: Additional Styles
-        url: /os_labs/additional-styles
-      - title: Extensions
-        url: /os_labs/extensions
-      - title: Markdown Enhancements
-        url: /os_labs/markdown-enhancements
-  - title: Extra
-    children:
-      - title: Spacing
-        url: /os_labs/spacing
-      - title: Grid
-        url: /os_labs/grid
-      - title: Icons
-        url: /os_labs/icons
-      - title: Image
-        url: /os_labs/image
-      - title: Button
-        url: /os_labs/button
-      - title: Item
-        url: /os_labs/item
-      - title: Card
-        url: /os_labs/card
-      - title: Hero
-        url: /os_labs/hero
-      - title: Swiper
-        url: /os_labs/swiper
 
 ns_labs:
   - title: Lab 1
     children:
-      - title: Introduction
-        url: /os_labs/overview
-      - title: CLI Syntax
-        url: /ns_labs/lab1_clis
-      - title: Path and CWD
-        url: /ns_labs/lab1_path
-  - title: Customization
-    children:
-      - title: Configuration
-        url: /ns_labs/configuration
-      - title: Navigation
-        url: /ns_labs/navigation
-      - title: Layouts
-        url: /ns_labs/layouts
-      - title: Logo and Favicon
-        url: /ns_labs/logo-and-favicon
-      - title: Authors
-        url: /ns_labs/authors
-      - title: Internationalization
-        url: /ns_labs/i18n
-  - title: Content
-    children:
-      - title: Writing Posts
-        url: /ns_labs/writing-posts
-      - title: Additional Styles
-        url: /ns_labs/additional-styles
-      - title: Extensions
-        url: /ns_labs/extensions
-      - title: Markdown Enhancements
-        url: /ns_labs/markdown-enhancements
-  - title: Extra
-    children:
-      - title: Spacing
-        url: /ns_labs/spacing
-      - title: Grid
-        url: /ns_labs/grid
-      - title: Icons
-        url: /ns_labs/icons
-      - title: Image
-        url: /ns_labs/image
-      - title: Button
-        url: /ns_labs/button
-      - title: Item
-        url: /ns_labs/item
-      - title: Card
-        url: /ns_labs/card
-      - title: Hero
-        url: /ns_labs/hero
-      - title: Swiper
-        url: /ns_labs/swiper
+      - title: Overview
+        url: /ns_labs/overview
 
 assignments:
-  - title: Start
+  - title: PA1 - Shell
     children:
-      - title: Quick Start
-        url: /assignments/quick-start
-      - title: Structure
-        url: /assignments/structure
-      - title: Update from 1.x to 2.x
-        url: /assignments/update-from-1-to-2
-  - title: Customization
-    children:
-      - title: Configuration
-        url: /assignments/configuration
-      - title: Navigation
-        url: /assignments/navigation
-      - title: Layouts
-        url: /assignments/layouts
-      - title: Logo and Favicon
-        url: /assignments/logo-and-favicon
-      - title: Authors
-        url: /assignments/authors
-      - title: Internationalization
-        url: /assignments/i18n
-  - title: Content
-    children:
-      - title: Writing Posts
-        url: /assignments/writing-posts
-      - title: Additional Styles
-        url: /assignments/additional-styles
-      - title: Extensions
-        url: /assignments/extensions
-      - title: Markdown Enhancements
-        url: /assignments/markdown-enhancements
-  - title: Extra
-    children:
-      - title: Spacing
-        url: /assignments/spacing
-      - title: Grid
-        url: /assignments/grid
-      - title: Icons
-        url: /assignments/icons
-      - title: Image
-        url: /assignments/image
-      - title: Button
-        url: /assignments/button
-      - title: Item
-        url: /assignments/item
-      - title: Card
-        url: /assignments/card
-      - title: Hero
-        url: /assignments/hero
-      - title: Swiper
-        url: /assignments/swiper
-  - title: Languages
-    children:
-      - title: 中文
-        url: /docs/zh/quick-start
+      - title: Overview
+        url: /assignments/overview

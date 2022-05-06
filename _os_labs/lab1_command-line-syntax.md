@@ -1,13 +1,13 @@
 ---
 title: Introduction to CLI
-permalink: /os_labs/lab1_clis
-key: labs-cli
+permalink: /os_labs/lab1_cls
+key: labs-cls
 license: false
 layout: article
 nav_key: os_labs
 sidebar:
   nav: os_labs
-license: true
+license: false
 aside:
   toc: true
 show_edit_on_github: false
