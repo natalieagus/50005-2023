@@ -82,7 +82,7 @@ os_labs:
       - title: Introduction
         url: /os_labs/lab1_intro
       - title: CLI Basics
-        url: /os_labs/lab1_clis
+        url: /os_labs/lab1_cls
 
 ns_labs:
   - title: Lab 1
