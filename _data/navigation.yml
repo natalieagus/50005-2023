@@ -7,12 +7,12 @@ header:
   - title: OS-Labs
     url: /os_labs/lab1_intro
     key: os_labs
-  - title: NS-Notes
-    url: /ns_notes/overview
-    key: ns_notes
-  - title: NS-Labs
-    url: /ns_labs/overview
-    key: ns_labs
+  # - title: NS-Notes
+  #   url: /ns_notes/overview
+  #   key: ns_notes
+  # - title: NS-Labs
+  #   url: /ns_labs/overview
+  #   key: ns_labs
   - title: Assignments
     url: /assignments/overview
     key: assignments
