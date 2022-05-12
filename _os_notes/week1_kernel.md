@@ -140,7 +140,7 @@ The I/O operation simply means:
 1. Output: <span style="color:#f77729;"><b>Move</b></span> data from the RAM to the device controller’s buffer, or 
 2. Input: <span style="color:#f77729;"><b>From</b></span> the device controller’s buffer to the RAM. 
 
-Since the device controller and our CPU are <span style="color:#f7007f;"><b>asynchronous</b></span> (can operate independently, in parallel), we need **to devise a way **to** <span style="color:#f7007f;"><b>coordinate</b></span> between servicing I/O requests and executing other user programs. This <span style="color:#f77729;"><b>I/O handling</b></span> issue is handled by our OS Kernel (read along to understand *how*).
+Since the device controller and our CPU are <span style="color:#f7007f;"><b>asynchronous</b></span> (can operate independently, in parallel), we need to devise a way to <span style="color:#f7007f;"><b>coordinate</b></span> between servicing I/O requests and executing other user programs. This <span style="color:#f77729;"><b>I/O handling</b></span> issue is handled by our OS Kernel (read along to understand *how*).
 
 
 # Roles of an Operating System Kernel {#roles-of-an-operating-system-kernel}
@@ -148,8 +148,6 @@ Since the device controller and our CPU are <span style="color:#f7007f;"><b>asyn
 There are several purposes of an operating system: as a <span style="color:#f77729;"><b>resource</b></span> allocator, <span style="color:#f77729;"><b>controls</b></span> program execution, and guarantees <span style="color:#f77729;"><b>security</b></span> in the computer system. The next few notes will touch on each of these topics.
 
 
-<!-- Footnotes themselves at the bottom. -->
-## Notes
 
 [^1]:
     Firmware is not equivalent to BIOS, but unfortunately some resources and PC manufacturers might just use them interchangeably. Firmware  generally refers to software stored on the motherboard (of any devices like computers, routers, switches,etc), containing basic settings of the device at startup. Some firmwares are upgradable, while some are Read-Only. BIOS is a term generally used specifically to refer to computer’s motherboard firmware in older computers. Modern computers use other Firmwares such as UEFI, also stored on chips on the motherboard. Note that UEFI / BIOS don’t form the entirety of a motherboard’s firmware.

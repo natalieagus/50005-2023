@@ -219,8 +219,6 @@ There are two types of clustering:
 1. <span style="color:#f77729;"><b>Asymmetric</b></span>: has one machine in hot-standby mode. There’s a master machine that runs the system, while the others are configured as slaves that receive tasks from the master. The master system does the basic input and output requests.
 2. <span style="color:#f77729;"><b>Symmetric</b></span>: multiple machines (nodes) running applications, they are monitoring one another, requires complex algorithms to maintain data integrity. 
 
-## Notes
-
 
 [^5]:
     Interrupt-driven I/O is fine for moving small amounts of data but can produce high overhead when used for bulk data movement such as disk I/O. To solve this problem, direct memory access (DMA) is used. After setting up buffers, pointers, and counters for the I/O device, the device controller transfers an entire block of data directly to or from its own buffer storage to memory, with no intervention by the CPU.
