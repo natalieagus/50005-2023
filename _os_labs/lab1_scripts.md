@@ -14,7 +14,7 @@ show_date: false
 ---
 
 Now that we have learned *how* to execute some commands, it is natural to **question** *why* we need to use the command line. What can you do here with CLI that you cannot do through your common graphical user interface? 
-* Well, it **depends** on your <span style="color:red;"><b>purpose</b></span>. There’s a lot of debate on that, some might say that CLI allows you to do tasks **fast**, but that depends: depends on how **well versed you are** in using the CLI. 
+* Well, it **depends** on your <span style="color:#f7007f;"><b>purpose</b></span>. There’s a lot of debate on that, some might say that CLI allows you to do tasks **fast**, but that depends: depends on how **well versed you are** in using the CLI. 
 * If you are just a basic user, i.e: browse, watch your favorite tv series, edit photos, or text your friends then chances are you don’t need to use the command line. 
 * *If you’re a computer science graduate who intends to work in the field then CLI is probably your new best friend. *
 
@@ -23,7 +23,7 @@ The most common use of the command line is ”system administration” or, basic
 
 This includes **installing** and **configuring** software, **monitoring** computer resources (manage logs, setup cron jobs, daemons), **setting** up web servers (renaming or modifying thousands of files), and **automating** processes (setup databases / servers) on many hosts. 
 
-Obviously these tasks are <span style="color:red;"><b>repetitive</b></span> and <span style="color:red;"><b>tedious</b></span> such that it is impossible to be done manually or one by one via the GUI.
+Obviously these tasks are <span style="color:#f7007f;"><b>repetitive</b></span> and <span style="color:#f7007f;"><b>tedious</b></span> such that it is impossible to be done manually or one by one via the GUI.
 
 ## Shell Scripting
 
@@ -156,7 +156,7 @@ You should see the following output on your terminal as a result of `make prog2`
 Now open `binary.c` in the `nano` and add another instruction in it, eg a `printf` function at the end:
 <img src="/50005/assets/images/lab1/23.png"  class="center_fifty"/>
 
-When you try to `make prog2` again, the output shows that we only compile files concerning `binary.c` and <span style="color:red;"><b>not all files are recompiled</b></span>. Scroll down to the end of the makefile, and notice there’s **implicit** rules there to determine dependencies. 
+When you try to `make prog2` again, the output shows that we only compile files concerning `binary.c` and <span style="color:#f7007f;"><b>not all files are recompiled</b></span>. Scroll down to the end of the makefile, and notice there’s **implicit** rules there to determine dependencies. 
 
 <img src="/50005/assets/images/lab1/24.png"  class="center_fifty"/>
 

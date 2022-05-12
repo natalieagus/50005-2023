@@ -120,9 +120,9 @@ In the example below, the environment variable `$MESSAGE1` initially did not exi
 <img src="/50005/assets/images/lab1/4.png"  class="center_seventy"/>
 
 ## $PATH Variable
-One of the most important environment variables you’ll work with on the command line is <span style="color:red;"><b>$PATH</b></span>. 
+One of the most important environment variables you’ll work with on the command line is <span style="color:#f7007f;"><b>$PATH</b></span>. 
 * This is the key to how our shell **knows** which file to execute for commands like cd or echo or other built-in or installed programs. 
-* The PATH variable provides the <span style="color:red;"><b>additional context</b></span> that the command line needs to figure out where that particular file is in the system.
+* The PATH variable provides the <span style="color:#f7007f;"><b>additional context</b></span> that the command line needs to figure out where that particular file is in the system.
 * Hence, if you have installed an app (e.g: Telegram) and tried to execute the binary from the command line and met with the error `command not found`, it simply means you haven’t added the path where that binary is to the `$PATH` environment variable. 
 
 For example,  you can add the **binary** of the **Telegram** app onto the `$PATH` using the command `export`, and now you can simply execute it from anywhere (a new Telegram window is opened on the second Telegram command):
@@ -137,7 +137,7 @@ Open that folder (from your Desktop GUI) and navigate to that path. **You may ne
 <img src="/50005/assets/images/lab1/6.png"  class="center_seventy"/>
 
 # Configuring a Terminal Session
-The command `export` that modifies the environment variable is only valid for <span style="color:red;"><b>this</b></span> session. For instance, the Telegram command above will not work anymore if a user opens a new Terminal session (need to `export` again). 
+The command `export` that modifies the environment variable is only valid for <span style="color:#f7007f;"><b>this</b></span> session. For instance, the Telegram command above will not work anymore if a user opens a new Terminal session (need to `export` again). 
 
 To avoid this hassle, there exists a setup script (unique to each shell) that is run whenever a new session starts. This script is typically placed in the user's `home` directory. For instance, `.bashrc` (yes, with this exact name) is a Bash shell script that Bash runs whenever it is started interactively. For Z-shell, this script is called `.zshrc`. 
 
@@ -149,7 +149,7 @@ To avoid this hassle, there exists a setup script (unique to each shell) that is
 * Create a new file called .bashrc: `touch .bashrc`
 * Open the file with any text editor, eg: `nano .bashrc`
 * Type: `PATH="$HOME/Desktop:$PATH" `
-* Save the file by pressing <span style="color:red;"><b>CTRL+X</b></span>, and then follow the instruction and  press `Enter`
+* Save the file by pressing <span style="color:#f7007f;"><b>CTRL+X</b></span>, and then follow the instruction and  press `Enter`
 * Restart your session by typing `exec bash`
 * Print your `$PATH` using `echo $PATH` command and notice how **Desktop** is now part of your environment variable
 
@@ -238,7 +238,7 @@ Creates a directory (folder).
 
 `rmdir <dirname>, rm -r <dirname>`
 {:.warning}
-Deletes an **empty** directory, and the latter removes a directory that contains files. <span style="color:red;"><b>Be careful!</b></span> Deleting things from the command line doesn’t allow you to retrieve it back. <span style="color:red;"><b>Unlike deleting from the GUI, it won't be found in the trash</b></span>.
+Deletes an **empty** directory, and the latter removes a directory that contains files. <span style="color:#f7007f;"><b>Be careful!</b></span> Deleting things from the command line doesn’t allow you to retrieve it back. <span style="color:#f7007f;"><b>Unlike deleting from the GUI, it won't be found in the trash</b></span>.
 
 `touch <newfilename.format>`
 {:.warning}
@@ -270,18 +270,18 @@ Command-line text editor provides a handy way to manipulate text files in termin
 You can open any created text file using the command:
 * `nano <path/to/filename>`
 * Then you can start typing as per normal
-* Press <span style="color:red;"><b>Ctrl + X</b></span> to exit, and then **Enter** to save 
+* Press <span style="color:#f7007f;"><b>Ctrl + X</b></span> to exit, and then **Enter** to save 
 * You can press **Ctrl + G** as well to bring up the shortcut menu anytime during editing
 <img src="/50005/assets/images/lab1/9.png"  class="center_seventy"/>
 * After saving, you can check back the content of the file using the command `cat <path/to/filename>`
 
 ## Standard Streams
-Standard streams are **input** **and** output communication channels between a <span style="color:red;"><b>running process</b></span> and its <span style="color:red;"><b>environment</b></span> when it begins execution. They are **streams** of data that travel from where a program was **executed**, to the places where the program is **processed** and then back again to where the program was **executed**. 
+Standard streams are **input** **and** output communication channels between a <span style="color:#f7007f;"><b>running process</b></span> and its <span style="color:#f7007f;"><b>environment</b></span> when it begins execution. They are **streams** of data that travel from where a program was **executed**, to the places where the program is **processed** and then back again to where the program was **executed**. 
 
 The three input/output (I/O) connections are called standard input (stdin), standard output (stdout) and standard error (stderr). 
 {:.info}
 
-Streams are usually connected to the **terminal** in which they are executed. By default, `stdin` is connected to your **keyboard**, and `stdout + stderr` are directed to your **terminal**. You might be wondering how your keyboard and display then is shared among so many processes? The details require Streams in Linux are treated as though they were files (**Week 6 Material**). E.g: you can **read** text from a file, and you can **write** text into a file. <span style="color:red;"><b>Both of these actions involve streams of data</b></span>.
+Streams are usually connected to the **terminal** in which they are executed. By default, `stdin` is connected to your **keyboard**, and `stdout + stderr` are directed to your **terminal**. You might be wondering how your keyboard and display then is shared among so many processes? The details require Streams in Linux are treated as though they were files (**Week 6 Material**). E.g: you can **read** text from a file, and you can **write** text into a file. <span style="color:#f7007f;"><b>Both of these actions involve streams of data</b></span>.
 
 When you run a python script, e.g: `python3 playground.py`,
 
@@ -318,7 +318,7 @@ What is the output that you see? Similar to stdout, stderr is printed directly t
 ### Stream Redirection
 `stdin`, `stdout`, and `stderr` for every process is symbolized with [file descriptor](https://en.wikipedia.org/wiki/File_descriptor) `0`, `1`, and `2` respectively. Each file associated with a process is allocated a unique number to identify it, this number is called the **file descriptor**. 
 
-We can <span style="color:red;"><b>redirect</b></span> stdin using the `< `operator, stdout using the `>` operator, and stderr using the `2>` operator. 
+We can <span style="color:#f7007f;"><b>redirect</b></span> stdin using the `< `operator, stdout using the `>` operator, and stderr using the `2>` operator. 
 * If we do `<command> > <filename>`, it means we are **redirecting** the `stdout` of `<command>` to the file `<filename>`. That means, we will write whatever that was printed out by the process `<command>` to the file with `<filename>`. 
 * If we do `<command> < <filename>`, it means that we are **redirecting** the `stdin` of `<command>`, e.g: use the **content** of filename as an **input** to command. This is particularly useful for commands that only take in input streams, and are unable to read the content of a file given a filename. 
 
@@ -349,7 +349,7 @@ Perhaps the screenshot below might help you for steps 1-7 above.
 
 ## Pipe
 
-Pipe is a command in Linux that lets you use **two** or **more** commands such that <span style="color:red;"><b>output</b></span> of one command serves as <span style="color:red;"><b>input</b></span> to the next. 
+Pipe is a command in Linux that lets you use **two** or **more** commands such that <span style="color:#f7007f;"><b>output</b></span> of one command serves as <span style="color:#f7007f;"><b>input</b></span> to the next. 
 
 It may sound similar to stream redirection, but the general rule of thumb is that if you're connecting the output of a command to the input of another command, use a pipe, denoted as `|` symbol. If you are outputting to or from a file use the redirect.
 {:.info}

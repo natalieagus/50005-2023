@@ -2,7 +2,7 @@ header:
   - title: Home
     url: /index.html
   - title: OS-Notes
-    url: /os_notes/overview
+    url: /os_notes/week1_intro
     key: os_notes
   - title: OS-Labs
     url: /os_labs/lab1_intro
@@ -20,56 +20,15 @@ header:
 os_notes:
   - title: Week 1
     children:
-      - title: Overview
-        url: /os_notes/overview
-      # - title: Structure
-      #   url: /os_notes/structure
-      # - title: Update from 1.x to 2.x
-      #   url: /os_notes/update-from-1-to-2
-  # - title: Customization
-  #   children:
-  #     - title: Configuration
-  #       url: /os_notes/configuration
-  #     - title: Navigation
-  #       url: /os_notes/navigation
-  #     - title: Layouts
-  #       url: /os_notes/layouts
-  #     - title: Logo and Favicon
-  #       url: /os_notes/logo-and-favicon
-  #     - title: Authors
-  #       url: /os_notes/authors
-  #     - title: Internationalization
-  #       url: /os_notes/i18n
-  # - title: Content
-  #   children:
-  #     - title: Writing Posts
-  #       url: /os_notes/writing-posts
-  #     - title: Additional Styles
-  #       url: /os_notes/additional-styles
-  #     - title: Extensions
-  #       url: /os_notes/extensions
-  #     - title: Markdown Enhancements
-  #       url: /os_notes/markdown-enhancements
-  # - title: Extra
-  #   children:
-  #     - title: Spacing
-  #       url: /os_notes/spacing
-  #     - title: Grid
-  #       url: /os_notes/grid
-  #     - title: Icons
-  #       url: /os_notes/icons
-  #     - title: Image
-  #       url: /os_notes/image
-  #     - title: Button
-  #       url: /os_notes/button
-  #     - title: Item
-  #       url: /os_notes/item
-  #     - title: Card
-  #       url: /os_notes/card
-  #     - title: Hero
-  #       url: /os_notes/hero
-  #     - title: Swiper
-  #       url: /os_notes/swiper
+      - title: Introduction to OS
+        url: /os_notes/week1_intro
+      - title: The Kernel
+        url: /os_notes/week1_kernel
+      - title: Resource Allocator and Coordinator
+        url: /os_notes/week1_resource
+      - title: Memory and Process Management
+        url: /os_notes/week1_mpm
+
 ns_notes:
   - title: Week 1
     children:

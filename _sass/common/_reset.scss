@@ -81,7 +81,7 @@ strong {
 
 h1 {
   font-size: map-get($base, font-size-h1);
-  color: $text-color-d;
+  color: rgba($text-color-function, 1.0);
   @include media-breakpoint-down(md) {
     font-size: map-get($base, font-size-h1-sm);
   }
@@ -89,7 +89,7 @@ h1 {
 
 h2 {
   font-size: map-get($base, font-size-h2);
-  color: $text-color-d;
+  color: rgba($text-color-function, 1.0);
   @include media-breakpoint-down(md) {
     font-size: map-get($base, font-size-h2-sm);
   }
@@ -97,7 +97,7 @@ h2 {
 
 h3 {
   font-size: map-get($base, font-size-h3);
-  color: $text-color-d;
+  color: rgba($text-color-function, 1.0);;
   @include media-breakpoint-down(md) {
     font-size: map-get($base, font-size-h3-sm);
   }
@@ -105,7 +105,7 @@ h3 {
 
 h4 {
   font-size: map-get($base, font-size-h4);
-  color: $text-color;
+  color: rgba($text-color-function, 1.0);;
   @include media-breakpoint-down(md) {
     font-size: map-get($base, font-size-h4-sm);
   }

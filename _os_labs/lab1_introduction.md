@@ -29,16 +29,14 @@ A **shell** is one of these user applications that acts as an interface to allow
 You would need to install any POSIX-compliant OS before coming to this lab. The guide is provided in our course handout. 
 {:.warning}
 
-The total marks for this lab is **15**.
-
-# Submission
-
-[TBC]
-
-
 In order for us to be able to use CLI, we need to be familiar with their **commands** and their calling **syntax**. In particular, we are concerned with **UNIX-type shells** (POSIX is an IEEE standard that acts as a standard UNIX version) in this course. 
 * **Open** your terminal/command line window. 
 * The terminal window in front of you contains a `shell`, which enables you to use commands to access OS services.
+
+
+# Submission
+The total marks for this lab is **20**. Please answer the questionnaire provided on eDimension Week 1. You are to score any **20 points** for this lab.  
+
 
 # Task 1
 `TASK 1:`{:.info} To find your current shell, type the command: `ps -p $$`

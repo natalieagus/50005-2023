@@ -1,6 +1,6 @@
 @mixin link-colors($clr, $hover-clr: default, $active-clr: default, $focus-clr: null, $theme: default, $ignore-path: false) {
   @include plain() {
-    text-decoration: none;
+    text-decoration: underline;
   }
   @include hover() {
     text-decoration: underline;
