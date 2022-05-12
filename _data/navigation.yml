@@ -28,10 +28,10 @@ os_notes:
         url: /os_notes/week1_resource
       - title: Memory and Process Management
         url: /os_notes/week1_mpm
-  - title: Week 2
-    children:
-      - title: OS Services and UI
-        url: /os_notes/week2_serviceui
+  # - title: Week 2
+  #   children:
+  #     - title: OS Services and UI
+  #       url: /os_notes/week2_serviceui
 
 ns_notes:
   - title: Week 1
