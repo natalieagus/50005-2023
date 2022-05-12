@@ -48,12 +48,9 @@ Data transfer from disk to memory and vice versa is usually controlled by the **
 Recall that the Kernel is responsible to program and set up the cache and MMU hardware, and manage the entire virtual memory. Kernel memory management routines are <span style="color:#f77729;"><b>triggered</b></span> when processes running in user mode encounter <span style="color:#f77729;"><b>page-fault</b></span> related interrupts. Careful <span style="color:#f7007f;"><b>selection</b></span> of the page size and of a replacement policy can result in a greatly increased performance. 
 
 
-Given a cache <span style="color:#f77729;"><b>hit</b></span> ratio $$\alpha$$, cache <span style="color:#f77729;"><b>miss</b></span> access time $$\epsilon$$, and cache <span style="color:#f77729;"><b>hit</b></span> access time $$\tau$$, we can compute the cache <span style="color:#f7007f;"><b>effective access time as</b></span>:
+Given a cache <span style="color:#f77729;"><b>hit</b></span> ratio $\alpha$, cache <span style="color:#f77729;"><b>miss</b></span> access time $\epsilon$, and cache <span style="color:#f77729;"><b>hit</b></span> access time $\tau$, we can compute the cache <span style="color:#f7007f;"><b>effective access time as</b></span>:
 
-$$\nonumber\alpha \tau + (1-\alpha) \times \epsilon$$
-
-
-
+$$\alpha \tau + (1-\alpha) \times \epsilon$$
 
 
 # Process Management  {#process-management-to-support-multiprogramming-and-time-sharing-feature}

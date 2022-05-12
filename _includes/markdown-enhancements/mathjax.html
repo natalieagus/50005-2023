@@ -6,12 +6,17 @@
 {%- assign _mathjax_autoNumber = __return -%}
 
 <script type="text/x-mathjax-config">
-	var _config = { tex2jax: {
-		inlineMath: [['$','$'], ['\\(','\\)']]
-	}};
-	{%- if _mathjax_autoNumber == true -%}
-		_config.TeX = { equationNumbers: { autoNumber: "all" } };
-	{%- endif -%}
-	MathJax.Hub.Config(_config);
+	MathJax.Hub.Config({
+		tex2jax: {
+			inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+			processEscapes: true
+		  }
+	});
+	MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+		  alert("Math Processing Error: "+message[1]);
+		});
+	MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+		  alert("Math Processing Error: "+message[1]);
+		});
 </script>
-<script type="text/javascript" src="{{ _sources.mathjax }}" async></script>
+<script type="text/javascript"  async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
