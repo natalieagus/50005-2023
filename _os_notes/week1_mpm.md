@@ -37,7 +37,7 @@ Recall from 50.002 that the CPU always operates on virtual addresses (commonly <
 
 ## Cache Performance
 
-<span style="color:#f7007f;"><b>Caching</b></span> is an important principle of computer systems. We perform the <span style="color:#f77729;"><b>caching algorithm</b></span> each time the CPU needs to execute a new piece of instruction or fetch new data** from the main memory. Remember that cache is a <span style="color:#f7007f;"><b>hardware</b></span>, built in as part of the CPU itself in modern computers as shown in the figure below:
+<span style="color:#f7007f;"><b>Caching</b></span> is an important principle of computer systems. We perform the <span style="color:#f77729;"><b>caching algorithm</b></span> each time the CPU needs to execute a new piece of instruction or fetch new data from the main memory. Remember that cache is a <span style="color:#f7007f;"><b>hardware</b></span>, built in as part of the CPU itself in modern computers as shown in the figure below:
 
 <img src="/50005/assets/images/week1/14.png"  class="center_seventy"/>
 

@@ -37,11 +37,11 @@ This forces the CPU to **transfer** control to the **interrupt handler**. This s
 
 Interrupt-driven system may use a <span style="color:#f77729;"><b>vectored interrupt system</b></span>: the interrupt signal that **INCLUDES** the identity of the device sending the interrupt signal, hence allowing the kernel to know exactly which interrupt service routine to execute[^2]. This is more <span style="color:#f7007f;"><b>complex</b></span> to implement, but more <span style="color:#f77729;"><b>useful</b></span> when there are sparse I/O requests.
 
-In simpler words, this interrupt mechanism accepts an **address**, which is usually one of a small set of numbers for an offset into a table called the **interrupt vector.** This table holds the addresses of routines prepared to process specific interrupts.
+This interrupt mechanism accepts an **address**, which is usually one of a small set of numbers for an offset into a table called the **interrupt vector.** This table holds the addresses of routines prepared to process specific interrupts.
 {:.info}
 
 ## Polled Interrupt System
-An alternative is to use a <span style="color:#f77729;"><b>polled intterupt system</b></span>: 
+An alternative is to use a <span style="color:#f77729;"><b>polled interrupt system</b></span>: 
 * The interrupted program enters a general interrupt polling routine <span style="color:#f7007f;"><b>protocol</b></span>, where CPU <span style="color:#f7007f;"><b>scans</b></span> (polls) devices to determine which device made a service request. 
 * Unlike vectored interrupt, there’s no such _interrupt_ signal that includes the identity of the device sending the interrupt signal. 
 * In the polled system, the kernel must send a signal out to each controller to **determine** if any device made a service request <span style="color:#f7007f;"><b>periodically, or at any fixed interval</b></span>. 
@@ -79,10 +79,10 @@ Upon the presence of external events, e.g: mouse `CLICK()`, the device <strong>r
 When I/O transfer is complete, this triggers <span style="color:#f7007f;"><b>step 2</b></span>: the device controller makes an <strong>interrupt request</strong> to signal that a <em>transfer is done (and data needs to be fetched)</em>. 
 * The simplest way for the device controller to raise an interrupt is by asserting a signal on the interrupt request line (this is why we define I/O interrupts as hardware generated)
 
-The interrupt request line is sensed by the CPU at the beginning of each instruciton execution, and when there’s an interrupt, the execution of the <strong>current user program is interrupted.</strong>
+The interrupt request line is sensed by the CPU at the beginning of each instruction execution, and when there’s an interrupt, the execution of the <strong>current user program is interrupted.</strong>
 * Its states are <span style="color:#f7007f;"><b>saved</b></span>[^3] by the entry-point of the interrupt handler, 
 * Then, this handler determines the <span style="color:#f7007f;"><b>source</b></span> of the interrupt (be it via Vectored or Polling interrupt) and performs the necessary processing. 
-* This triggers <span style="color:#f7007f;"><b>step 3</b></span>: the CPU executes the proper I/O service routine to transfer** the data from the local device controller buffer** to the **physical memory**.
+* This triggers <span style="color:#f7007f;"><b>step 3</b></span>: the CPU executes the proper I/O service routine to transfer the data <span style="color:#f77729;"><b>from</b></span> the local device controller buffer <span style="color:#f77729;"><b>to</b></span> the physical memory.
 
 After the I/O request is serviced, the handler:
 1. <span style="color:#f77729;"><b>Clears</b></span> the interrupt request line, 
@@ -92,7 +92,7 @@ After the I/O request is serviced, the handler:
 
 Two things may happen from here after we have stored the new input to the RAM: 
 1. If there’s no application that’s currently waiting for this input, then it might be temporarily stored somewhere in kernel space first.
-2. If there is **any application** that is waiting (blocked, like Python`s `input()`) for this input (e.g: mouse click), that process will be labelled as <span style="color:#f77729;"><b>ready</b></span>. For example, if the application is blocked  upon waiting for this new input, then the_ system call returns. **We will learn more about this in Week 3.**
+2. If there is **any application** that is waiting (blocked, like Python's `input()`) for this input (e.g: mouse click), that process will be labelled as <span style="color:#f77729;"><b>ready</b></span>. For example, if the application is blocked  upon waiting for this new input, then the_ system call returns. **We will learn more about this in Week 3.**
 {:.info}
 
 
@@ -156,7 +156,7 @@ When I/O transfer is <span style="color:#f7007f;"><b>complete</b></span>, the de
 
 Note:
 1. SVC <span style="color:#f77729;"><b>delay</b></span> and IRQ <span style="color:#f77729;"><b>delay</b></span>: time elapsed between when the request is invoked until when the request is first executed by the CPU. 
-2. Before the user program is resumed, its state must be <span style="color:#f77729;"><b>restored</b></span>. Saving of state during the switch between User to Kernel mode is implied although it is notn drawn.
+2. Before the user program is resumed, its state must be <span style="color:#f77729;"><b>restored</b></span>. Saving of state during the switch between User to Kernel mode is implied although it is not drawn.
 
 # Reentrancy 
 

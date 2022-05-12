@@ -1,4 +1,26 @@
 /* start custom scss snippet */
+.btnScrollToTop {       
+  opacity: 0;   
+  width: 40px;
+  height: 40px;
+  color: $text-color-function;
+  background-color: $main-color-1;
+  position: fixed;
+  bottom: 5%;
+  right: 5%;    
+  border-radius: 50%; 
+  font: bold 20px monospace;       
+  transition: opacity 0.5s, transform 0.5s;
+}
+
+.btnScrollToTop.show {      
+  opacity: 1;  
+  transition: opacity 1s, transform 1s;     
+}
+
+.btnScrollToTop:active {
+  background-color: #444;
+}
 
 .center_full {
     display: block;
