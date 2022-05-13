@@ -117,7 +117,7 @@ For example:
 
 In the example below, the environment variable `$MESSAGE1` initially did not exist. After we `export` it, we can now print the environment variable `$MESSAGE1`. 
 
-<img src="/50005/assets/images/lab1/4.png"  class="center_seventy"/>
+<img src="/50005/assets/images/lab1/4.png"  class="center_fifty"/>
 
 ## $PATH Variable
 One of the most important environment variables you’ll work with on the command line is <span style="color:#f7007f;"><b>$PATH</b></span>. 

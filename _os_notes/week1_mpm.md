@@ -178,7 +178,7 @@ Multiprocessor systems have three main advantages:
 
 
 ## Symmetric Architecture
-There are different architectures for multiprocessor system, such as a <span style="color:#f77729;"><b>symmetric</b></span> architecture — we have multiple CPU chips in a computer system  (_screenshot taken from SGG book_):
+There are different architectures for multiprocessor system, such as a <span style="color:#f77729;"><b>symmetric</b></span> architecture — we have multiple CPU chips in a computer system:
 
 <img src="/50005/assets/images/week1/15.png"  class="center_fifty"/>
 
@@ -190,9 +190,9 @@ Notice that each processor has its own set of registers, as well as a private or
 3. Ensure cache coherency: if a process supports multicore, makes sure that the data integrity spread among many cache is maintained.
 
 ## Multi-Core Architecture
-Another example of a symmetric architecture is to have **multiple cores on the <span style="color:#f77729;"><b>same</b></span> chip** as shown in the figure below (_screenshot taken from SGG book_, a dual core chip example):
+Another example of a symmetric architecture is to have **multiple cores on the <span style="color:#f77729;"><b>same</b></span> chip** as shown in the figure below:
 
-<img src="/50005/assets/images/week1/16.png"  class="center_fifty"/>
+<img src="/50005/assets/images/week1/16.png"  class="center_fourty"/>
 
 This carries an advantage that on-chip communication is <span style="color:#f77729;"><b>faster</b></span> than across chip communication. However it requires  a more delicate hardware design to place multiple cores on the same chip. 
 
