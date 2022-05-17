@@ -206,7 +206,7 @@ Shows the **list of processes** in the system.
 Make a file **executable**. However, firstly, you need to declare in your script **which interpreter** to use. 
    * You state the path to this interpreter as the **first line** in your file
    * This is called a **shebang**. 
-     * In Unix-like operating systems, the shebang line provides the **path** to an executable program (e.g. `bash`, `python`) that can interpret the following lines as executable instructions, allowing the user to** run the text file as an executable program** by typing the name of the file directly in the shell **provided the execute permission bit is set**.
+     * In Unix-like operating systems, the shebang line provides the **path** to an executable program (e.g. `bash`, `python`) that can interpret the following lines as executable instructions, allowing the user to **run the text file as an executable program** by typing the name of the file directly in the shell **provided the execute permission bit is set**.
    * For instance, if this file is a shell script, it should be `#!/bin/sh` or `#!/bin/bash`. If it is a python script, the interpreter should be something like `#!/usr/bin/env python` 
 
 `df <options>...`
@@ -367,6 +367,9 @@ The curl command allows us to transfer data (download, upload) online. For insta
 
 `curl -o GPL-3 https://www.gnu.org/licenses/gpl-3.0.txt`
 * The `-o` option: Write output to `<filename>` instead of `stdout`
+
+If you don't have it, install it using `sudo apt install curl`. 
+{:.warning}
 
 ## Output Filtering
 One last handy tool to learn is output **filtering**. The [`grep` or `awk`](https://techviewleo.com/awk-vs-grep-vs-sed-commands-in-linux/) command will scan the document for the desired information and present the result in a format you want. The command grep also accepts [regex](https://regexr.com) to search for more complex patterns. 
