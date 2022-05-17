@@ -137,8 +137,8 @@ I/O operation happens when there’s transfer of data between the local memory b
 {:.info}
 
 The I/O operation simply means:
-1. Output: <span style="color:#f77729;"><b>Move</b></span> data from the RAM to the device controller’s buffer, or 
-2. Input: <span style="color:#f77729;"><b>From</b></span> the device controller’s buffer to the RAM. 
+1. Output: <span style="color:#f77729;"><b>Move</b></span> data from the device controller's buffer to the output device, or 
+2. Input: <span style="color:#f77729;"><b>From</b></span> the input device to the device controller’s buffer. 
 
 Since the device controller and our CPU are <span style="color:#f7007f;"><b>asynchronous</b></span> (can operate independently, in parallel), we need to devise a way to <span style="color:#f7007f;"><b>coordinate</b></span> between servicing I/O requests and executing other user programs. This <span style="color:#f77729;"><b>I/O handling</b></span> issue is handled by our OS Kernel (read along to understand *how*).
 
