@@ -77,6 +77,12 @@ We can also compile and run programs from the **command** line, provided that yo
 ### Task 10 
 `TASK 10:`{:.info} To demonstrate this idea, download this starter code: `git clone https://github.com/natalieagus/makeFileDemo.git`
 
+We require you to have `gcc` for this task. If your OS doesn't have it, you can install it with (Ubuntu): 
+```
+sudo apt update
+sudo apt install build-essential
+```
+
 Read all the `.c` and `.h` files and get an understanding of what each file is supposed to do. To **compile** the files and **run** the executable:
 1. Navigate to this directory and type the command: `gcc -o prog.o main.c hello.c factorial.c binary.c `
 2. And then execute by typing `./prog.o`
