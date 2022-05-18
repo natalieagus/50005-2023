@@ -16,7 +16,7 @@ show_date: false
 Now that we have learned *how* to execute some commands, it is natural to **question** *why* we need to use the command line. What can you do here with CLI that you cannot do through your common graphical user interface? 
 * Well, it **depends** on your <span style="color:#f7007f;"><b>purpose</b></span>. There’s a lot of debate on that, some might say that CLI allows you to do tasks **fast**, but that depends: depends on how **well versed you are** in using the CLI. 
 * If you are just a basic user, i.e: browse, watch your favorite tv series, edit photos, or text your friends then chances are you don’t need to use the command line. 
-* *If you’re a computer science graduate who intends to work in the field then CLI is probably your new best friend. *
+* *If you’re a computer science graduate who intends to work in the field then CLI is probably your new best friend.*
 
 
 The most common use of the command line is ”system administration” or, basically, **managing** computers and servers. 
