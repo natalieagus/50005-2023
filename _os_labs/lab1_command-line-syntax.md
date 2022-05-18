@@ -383,6 +383,7 @@ A filter takes input from one command, does some processing, and gives output.
 2. Now search for a string inside a file using the commands:
   * `grep "<string>” <path/to/file>`
   * For example: `grep “GNU” GPL-3` prints every line containing “GNU” word. 
+  * Some shells don't require the quotation marks for single-word search, so you can try `grep GNU GPL-3` as well.
 <img src="/50005/assets/images/lab1/17.png"  class="center_seventy"/>
 
 Here are the common grep options to try:
