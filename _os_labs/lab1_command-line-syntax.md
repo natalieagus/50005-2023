@@ -341,7 +341,7 @@ usage: 	tr [-Ccsu] string1 string2
 5. So based on your observation, can you deduce what is the difference between these two commands:
    1. `tr "[a-z]" "[A-Z]" < test.txt`
    2. `tr "[a-z]" "[A-Z]" test.txt`
-6. Now what if we want to store the capitalized content to another file? Try: tr "[a-z]" "[A-Z]" < test.txt > new_test.txt. You should find that “HELLO, HAVE A GOOD DAY TODAY!” exists within `new_test.txt`, since we **redirect** `stdout` to create this new file.
+6. Now what if we want to store the capitalized content to another file? Try: `tr "[a-z]" "[A-Z]" < test.txt > new_test.txt`. You should find that “HELLO, HAVE A GOOD DAY TODAY!” exists within `new_test.txt`, since we **redirect** `stdout` to create this new file.
 7. What if we want to write back to `test.txt`? What can you deduce from the output? 
 
 Perhaps the screenshot below might help you for steps 1-7 above. 
