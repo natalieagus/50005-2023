@@ -166,6 +166,23 @@ You will learn more about this in Week 6 and during Lab 2. During Lab 2, you wil
 
 Finally, the Kernel also provides <span style="color:#f7007f;"><b>defensive security measures</b></span> for the computer system: protecting itself against internal and external attacks via firewalls, encryption, etc. There’s a huge range of security issues when a computer is connected in a network, some of them include denial-of-service, worms, viruses, identity theft, theft of service. You will learn more about this in Week 10. 
 
+# Summary
+We have learned that the Operating System is a software that acts as an <span style="color:#f77729;"><b>intermediary</b></span> between a user of a computer and the computer hardware. It is comprised of the Kernel, system programs, and user programs. Each OS is shipped with different flavours of these programs, depending on its design. 
+
+In general, an operating system is made with the following goals in mind: 
+ * <span style="color:#f77729;"><b>Execute</b></span> user programs and make solving user problems easier 
+ * Make the computer system <span style="color:#f77729;"><b>convenient</b></span> to use
+ * Use the computer hardware in an <span style="color:#f77729;"><b>efficient</b></span> manner
+
+It is a huge piece of software, and usually are divided into separate subsystems based on their roles:
+1. Process Management
+2. Resource Allocator and Coordinator
+3. Memory and Storage Management
+4. I/O Management, 
+   
+... and many others. There's too many to count since modern OSes kept getting expanded to improve user experience. 
+
+The <span style="color:#f77729;"><b>Kernel</b></span> is the heart of the OS, the central part of it that holds important pieces of instructions that support the roles stated above in the bare minimum. In the next chapter, we will learn how to <span style="color:#f77729;"><b>access</b></span> crucial OS Kernel services.
 
 # Appendix 1: Multiprocessor System {#multiprocessor-system}
 
