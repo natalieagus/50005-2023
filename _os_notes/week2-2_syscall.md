@@ -210,6 +210,8 @@ ld -macosx_version_min 12.0.0 -o hello_world hello_world.o -lSystem -syslibroot 
 ./hello_world
 ```
 
+From the three examples above, it is obvious that system call numbers are <span style="color:#f7007f;"><b>hardware dependent</b></span>. Note that the <span style="color:#f77729;"><b>registers used</b></span> are also machine specific. In x86-64 architecture, `rax` stands for the register to pass the system call id, `rdi` stands  the register that should contain file descriptor (1 for `stdout` in your terminal), etc. In M1 architecture, the equivalent to `rax` is `X16`, and `rdi` is `X0`.  
+
 #### Hello World in C
 In contrast, here's an implementation in C, short and sweet. 
 ```c
@@ -221,7 +223,6 @@ int main() {
    return 0;
 }
 ```
-
 Compilation and execution:
 ```bash
 gcc -o hello_world hello_world.c
@@ -236,581 +237,180 @@ print('Hello, world!')
 
 Execution: `python hello_world.py`
 
-As you can see, the C program can be compiled for either OS. The C system call <span style="color:#f77729;"><b>interface</b></span> then invokes the intended system call in the operating-system kernel by <span style="color:#f77729;"><b>trapping</b></span> itself and invoking the trap handler (runs in kernel mode from now onwards):
-  1. The trap handler first <span style="color:#f77729;"><b>saves</b></span> the states of the process and examines the system call index left in a certain register.
+As you can see, the C program can be compiled for either OS, and so is the python program. The C system call <span style="color:#f77729;"><b>interface</b></span> then invokes the intended system call in the operating-system kernel by <span style="color:#f77729;"><b>trapping</b></span> itself and invoking the trap handler (runs in kernel mode from now onwards):
+  1. The trap handler first <span style="color:#f77729;"><b>saves</b></span> the states of the process[^8] and examines the system call index left in a certain register.
   2. It then refers to the standard system call table and <span style="color:#f77729;"><b>dispatches</b></span> the system service request accordingly, i.e: <span style="color:#f77729;"><b>branches</b></span> onto the address in the Kernel space that implements the system call service routine of the system call with that index and executes it.
 
 
-When the system call service routine returns to the trap handler, the program execution can be <span style="color:#f77729;"><b>resumed</b></span>. If the system call does not return yet (e.g: block system call like `input()`), then the scheduler may be called to schedule another process, while this process is put to wait until the requested service is available. 
+When the system call service routine <span style="color:#f77729;"><b>returns</b></span> to the trap handler, the program execution can be <span style="color:#f77729;"><b>resumed</b></span>. If the system call does not return yet (e.g: block system call like `input()`), then the scheduler may be called to schedule another process, while this process is put to wait until the requested service is available. 
 
-Remember that system call numbers are <span style="color:#f77729;"><b>HARDWARE DEPENDENT</b></span>, as shown in the two sources above (Linux vs FreeBSD). It varies from systems to systems. The relationship between application program, API, System call interface, and the kernel is shown below (_image screenshot from SGG book)_: 
+
+
+
+The relationship between application program, API, System call interface, and the kernel is shown below (_image screenshot from SGG book)_: 
 
 <img src="/50005/assets/images/week2/5.png"  class="center_seventy"/>
 
 
-<p id="gdcalert9" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image9.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert10">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-
-![alt_text](images/image9.png "image_tooltip")
-
-
-Example: making system call in C using API vs directly using assembly to print to screen 
-
-
-
-<p id="gdcalert10" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image10.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert11">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-
-![alt_text](images/image10.png "image_tooltip")
-
-
-Typically we will do the above to print a simple hello, world!
-
-
-
-<p id="gdcalert11" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image11.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert12">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-
-![alt_text](images/image11.png "image_tooltip")
-
-
-We can also do the same thing by using `write`. In fact, `write` is implemented within `printf` in C standard library as shown in the figure [earlier](#system-calls-through-api). For obvious reasons,  `printf` is more convenient because we don’t have to care about arguments like “1” and “14” and having to read the manual page for your hardware to find out what these mean inside `write`. 
-
-But realise <code>write</code> here is just another C function call, not a system call. The figure in the previous page simply shows that a system call will be made within function <code>write.</code>
-
-`write` is actually a convenient and more human-friendly wrapper around the system call `SYS_write`, and its implementation varies depending on the OS. The program above works on Linux and on macOS for this reason. 
-
-Many wrappers in APIs are named after the system call itself, just like <code>write</code> here that’s meant to invoke<code> system call write.</code> This is the reason why many will not know whether they are making a direct system call or simply using the API to make a system call. 
-
-
-
-<p id="gdcalert12" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image12.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert13">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-
-![alt_text](images/image12.png "image_tooltip")
-
-
-`write` is implemented by invoking another function called `syscall`[^8]. So we can do the same thing by calling `syscall` instead and passing the appropriate parameters. `SYS_write` here is actually the `id` of the system call that performs this write-to-console operation.
-
-How is `syscall` implemented? `main` function puts its arguments in the right registers for the system call, and branch to `syscall` which is essentially composed of a bunch of assembly instruction:
-
-You can completely make the system call for printing purposes directly using _C-inline assembly_. It is first done by putting the right arguments to the registers such as: `rax` -- the register to pass the system call id, `rdi` --  the register that should contain file descriptor (1 for `stdout` in your terminal), etc. Note that these registers are machine specific. These commands will only work on 64-bit Linux distro running on x86_64 architecture at the time of this writing. _It will compile on Mac systems but will not do anything since the registers are not correct for its hardware._
-
-
-
-<p id="gdcalert13" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image13.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert14">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-
-![alt_text](images/image13.png "image_tooltip")
-
-
-
-
-The same print instruction on the Apple M1 chip (ARM-based) is as follows. You don’t have to learn them obviously, but we just want to show you that assembly language is _machine specific_:
-
-
-```
-.global _start             // Provide program starting address to linker
-.align 2
-
-// Setup the parameters to print hello world
-// and then call Linux to do it.
-
-_start: mov X0, #1     // 1 = StdOut
-       adr X1, helloworld // string to print
-       mov X2, #13     // length of our string
-       mov X16, #4     // MacOS write system call
-       svc 0     // Call linux to output the string
-
-// Setup the parameters to exit the program
-// and then call Linux to do it.
-
-       mov     X0, #0      // Use 0 return code
-       mov     X16, #1     // Service command code 1 terminates this program
-       svc     0           // Call MacOS to terminate the program
-
-helloworld:      .ascii  "hello, world!\n"
+Notice that `printf` is just a C function that will eventually calls the `write` C function, and will eventually invoke the `write` systemcall. We can also do the same thing by using `write` C function:
+```c
+// hello_world.c
+#include <unistd.h>
+int main()
+{
+    // write(fd, char*, #bytes)
+    write(1, "hello, world!\n", 14);
+    return 0;
+}
 ```
 
+For obvious reasons,  `printf` is more convenient because we don’t have to care about arguments like “1” (file descriptor for stout) and “14” (bytes in the printed string) and having to read the manual page for your hardware to find out what these mean inside `write`. 
 
+`write` is actually a convenient and more human-friendly <span style="color:#f77729;"><b>wrapper</b></span> around the another C function: `syscall`. It utilises the symbol `SYS_write` to indicate the system call number which value varies depending on the OS. 
+```c
+#include <unistd.h>
+#include <sys/syscall.h>
 
-Making the system calls **directly** in the application code is possible, but more complicated and may require embedded assembly code to be used (in C and C++) as well as knowledge of the low-level binary **interface** for the system call operation, which may be subject to **change over time** and thus not be part of the application binary interface; the API is meant to abstract this away.
+int main()
+{
+    // write(fd, char*, #bytes)
+    syscall(SYS_write, 1, "hello, world!\n", 14);
+    return 0;
+}
+```
+
+Many wrappers in APIs are named after the system call itself, just like `write` or `syscall` that’s meant to invoke the actual WRITE system call and invoke the `syscall` routine. 
+In summary, making  system calls <span style="color:#f77729;"><b>directly</b></span> in the application code is possible, but more complicated and may require embedded assembly code to be used (in C and C++) as well as knowledge of the low-level binary interface for the system call operation, which may be subject to <span style="color:#f77729;"><b>change</b></span> over time and thus not be part of the application binary interface; <span style="color:#f7007f;"><b>the API is meant to abstract this away</b></span>.
 {:.warning}
 
-To see more examples about _direct _system calls, you can find out more about Linux[^6] system calls in [http://man7.org/linux/man-pages/man2/syscalls.2.html](http://man7.org/linux/man-pages/man2/syscalls.2.html) 
+
+You can find out more about Linux[^6] system calls <span style="color:#f77729;"><b>API</b></span> (implemented in C) [here](http://man7.org/linux/man-pages/man2/syscalls.2.html) 
 
 
-## System Call Parameter Passing {#system-call-parameter-passing}
+### Parameter Passing {#system-call-parameter-passing}
 
-System call service routines are just like common functions, implemented in the kernel space. They require parameters to run. For example, if we request a `write`, one of the most obvious parameters required are the strings to write.  
+System call service <span style="color:#f77729;"><b>routines</b></span> are just like common functions, implemented in the kernel space. <span style="color:#f77729;"><b>We will do a little exercise with BSim soon to understand better.</b></span> They require <span style="color:#f77729;"><b>parameters</b></span> to run. For example, if we request a `write`, one of the most obvious parameters required are the bytes to write.  
 
-There are three general ways to pass the parameters required for system calls to the OS Kernel:
+There are three general ways to pass the parameters required for system calls to the OS Kernel.
 
+#### Registers
+Pass parameters in <span style="color:#f77729;"><b>registers</b></span>:
+ * For the example of `write` system call, Kernel examines certain special registers for bytes to print 
+ * Pros: Simple and <span style="color:#f77729;"><b>fast</b></span> access
+ * Cons: There might be <span style="color:#f77729;"><b>more</b></span> parameters than registers
 
+#### Stack
+Push parameters to the program <span style="color:#f77729;"><b>stack</b></span>:
+  * Pushed to the stack by process running in user mode, then invoke `syscall`
+  * In kernel mode, <span style="color:#f77729;"><b>pops</b></span> the arguments from the calling program’s stack
 
-1. Pass parameters in registers:
-    * For the example of `write` system call, Kernel examines certain special registers for characters to print 
-    * Pros: Simple and fast access
-    * Cons: There might be more parameters than registers
-2. Push parameters to the program stack:
-    * Pushed to the stack by process running in user mode, then invoke` syscall(i)`
-    * In kernel mode, pops the arguments from the program’s stack
-3. Pass parameters that are stored in a _block_ or _table_ in RAM and pass the pointer through registers, to be read by the system call routine:
-    * As illustrated below, `x` represents the address of the parameters for the system call. 
-    * When system call `y` is made, the kernel examines certain registers, in this example is `R0` to obtain the address to the parameter
-    * Given an address, Kernel can find the parameter for the system call in the RAM 
+#### Block or Table 
+Pass parameters that are stored in a persistent contiguous location (<span style="color:#f77729;"><b>table</b></span> or <span style="color:#f77729;"><b>block</b></span>) in the RAM (this is a <span style="color:#f77729;"><b>different</b></span> location from stack!) and pass the <span style="color:#f77729;"><b>pointer</b></span> (address) through registers, to be read by the system call routine:
+  * As illustrated below, `x` represents the <span style="color:#f77729;"><b>address</b></span> of the parameters for the system call. 
+  * When system call `id` (e.g: `write`) is made, the kernel examines certain registers, in this example is `rsi` to obtain the address to the parameter (the bytes to write to `stdout`)
+  * Given the <span style="color:#f77729;"><b>pointer</b></span>, Kernel can find the parameter for the system call in the RAM, as illustrated below:
 
-
-
-
-## Types of System Calls {#types-of-system-calls}
-
-In general, each OS will provide a list of system calls that can be made. System calls can be grouped (but not limited to) roughly into six major categories: 
+<img src="/50005/assets/images/week2/6.png"  class="center_seventy"/>
 
 
+# Types of System Calls {#types-of-system-calls}
 
-1. Process control: end, abort, load, execute, create and terminate processes, get and set process attributes, wait for time, wait for event, signal event, allocate, and free memory
-2. File manipulation: create, delete, rename, open, close, read, write, and reposition files, get, and set file attributes
-3. Device manipulation: request and release device, read from, write to, and reposition device, get and set device attributes, logically attach or detach devices
-4. Information maintenance: get or set time and date, get or set system data, get or set process, file, or device attributes
-5. Communications: create and delete pipes, send or receive packets through network, transfer status information, attach or detach remote devices, etc
-6. Protection: set network encryption, protocol
+In general, each OS will provide a <span style="color:#f77729;"><b>list</b></span> of system calls that it supports. System calls can be grouped (but not limited to) roughly into six major categories: 
+1. <span style="color:#f7007f;"><b>Process control</b></span>: end, abort, load, execute, create and terminate processes, get and set process attributes, wait for time, wait for event, signal event, allocate, and free memory
+2. <span style="color:#f7007f;"><b>File manipulation</b></span>: create, delete, rename, open, close, read, write, and reposition files, get, and set file attributes
+3. <span style="color:#f7007f;"><b>Device manipulation</b></span>: request and release device, read from, write to, and reposition device, get and set device attributes, logically attach or detach devices
+4. <span style="color:#f7007f;"><b>Information maintenance</b></span>: get or set time and date, get or set system data, get or set process, file, or device attributes
+5. <span style="color:#f7007f;"><b>Communication</b></span>: create and delete pipes, send or receive packets through network, transfer status information, attach or detach remote devices, etc
+6. <span style="color:#f7007f;"><b>Protection</b></span>: set network encryption, protocol
 
-If you are curious about Linux-specific system calls, you can find the list [here](http://asm.sourceforge.net/syscall.html). 
-
-The screenshot below shows several examples of Windows and UNIX API functions that perform system calls  (_image screenshot from SGG book)_: 
-
-
-### Process Control {#process-control}
-
-In this section we choose to explain one particular type of system calls: process control with a little bit more depth. 
+If you are curious about Linux-specific system call types, you can find the list [here](http://asm.sourceforge.net/syscall.html). 
 
 
+## Process Control {#process-control}
 
-1. System calls to end or abort a program:
+In this section we choose to explain one particular type of system calls: <span style="color:#f7007f;"><b>process control</b></span> with a little bit more depth.
 
-    A running process can either terminate normally (end) or abruptly (abort). 
+### Process Abort
 
+A running process can either <span style="color:#f77729;"><b>terminate</b></span> <span style="color:#f7007f;"><b>normally</b></span> (end) or <span style="color:#f7007f;"><b>abruptly</b></span> (abort). In either case, system call to <span style="color:#f77729;"><b>abort</b></span> a process is made. 
 
-    If a system call is made to terminate the currently running program abnormally, or if the program runs into a problem and causes an error trap, a dump of memory is sometimes taken and an error message generated. The dump is written to disk and may be examined by a debugger -- a type of system program. It is assumed that the user will issue an appropriate command to respond to any error. 
+If a system call is made to terminate the currently running program <span style="color:#f77729;"><b>abnormally</b></span>, or if the program runs into a problem and causes an error <span style="color:#f77729;"><b>trap</b></span>, a dump of memory (called [`core dump`](https://en.wikipedia.org/wiki/Core_dump)) is sometimes taken and an error message generated. 
 
-2. System calls to load and execute another program and to support process communication:
-* It is possible for a process to call upon the execution of another process, such as creating background processes, etc. 
-* Having created new jobs or processes, we may need to wait for them to finish their execution. 
+It consists of the recorded state of the program memory at that specific time when the program <span style="color:#f77729;"><b>crashed</b></span>. The dump is written to disk and may be examined by a debugger; a type of system program. It is assumed that the user will issue an appropriate command to respond to any error. 
+
+### Process Load and Execute
+Loading and executing a new process in the system require system calls. It is possible for a process to call upon the execution of another process, such as creating background processes, etc.
+* For instance the <span style="color:#f77729;"><b>shell</b></span> creates a new process whenever it receives a new command, and requests to execute that command in the <span style="color:#f77729;"><b>new process</b></span> (next chapter)
+
+### Process Communication
+Having created new jobs or processes, we may need to <span style="color:#f77729;"><b>wait</b></span> for them to <span style="color:#f77729;"><b>finish</b></span> their execution, e.g: the shell only gives the next prompt after the previous command has completed its execution.
 * We may want to wait for a certain amount of time to pass `(wait time)`; more probably, we will want to wait for a specific event to occur` (wait event)`. 
 * The jobs or processes should then signal when that event has occurred `(signal event)`. 
-* Quite often, two or more processes share data and multiple processes need to communicate. All these features to `wait, signal event`, and communicate are done by making system calls. 
-
-There are so many facets of and variations in process and job control that we need to clarify using examples:
-
+* Also,  sometimes two or more processes <span style="color:#f77729;"><b>share</b></span> data and multiple processes need to <span style="color:#f77729;"><b>communicate</b></span> (e.g: a web server communicating with the  database server).
+* All these features to `wait, signal event`, and other means of process <span style="color:#f77729;"><b>communication</b></span> are done by making system calls since each process is run in <span style="color:#f77729;"><b>isolation</b></span> by default, operating on <span style="color:#f77729;"><b>virtual addresses</b></span>.
 
 
-1. Single-tasking system (e.g: MS-DOS,  _image screenshot from SGG book_): 
-* The MS-DOS operating system is an example of a single-tasking system. 
-* It has a command interpreter  (recall: part of [OS interface](#operating-system-user-interface)) that is invoked when the computer is started as shown in the figure above, labeled as (a). 
-* Upon opening a new program, it loads the program into memory, writing over most of itself (note the shrinking portion of command interpreter codebase) to give the program as much memory as possible as shown in (b) above. 
-* Next, it sets the instruction pointer to the first instruction of the program. 
-    * The program then runs, and either an error causes a trap, or the program executes a system call to terminate. 
-    * In either case, the error code is saved in the system memory for later use. 
-* Following this action, the small portion of the command interpreter that was not overwritten resumes execution:
-    * Its first task is to reload the rest of the command interpreter from disk. 
-    * Then the command interpreter makes the previous error code available to the user or to the next program.
-    * It stands by for more input command from the user.
-2. Multi-tasking system (e.g:  FreeBSD,  _image screenshot from SGG book_) 
+### Examples
+There are so many facets of and variations in process and job control that we need to clarify using examples: MS-DOS and FreeBSD.
 
-    The FreeBSD operating system is a multi-tasking OS that is able to create and manage multiple processes at a time:
+<img src="/50005/assets/images/week2/7.png"  class="center_seventy"/>
 
-* When a user logs on to the system, the shell of the user’s choice is run. 
+#### Single-tasking System
+An example of a single-tasking system is MS-DOS, shown in the figure on the left.
+
+* It has a simple command <span style="color:#f77729;"><b>interpreter</b></span>  (that is invoked when the computer is started as shown in the figure above, labeled as (a)). 
+* Upon opening a new program, it <span style="color:#f77729;"><b>loads</b></span> the program into memory, <span style="color:#f77729;"><b>writing over most of itself</b></span> (note the shrinking portion of command interpreter codebase) to give the program<span style="color:#f77729;"><b> as much memory as possible </b></span>as shown in (b) above. 
+
+Next, it sets the <span style="color:#f77729;"><b>instruction pointer</b></span> to the first instruction of the program. 
+  * The program then runs, and either an <span style="color:#f77729;"><b>error</b></span> causes a <span style="color:#f77729;"><b>trap</b></span>, or the program executes a system call to <span style="color:#f77729;"><b>terminate</b></span>. 
+  * In either case, the error code is saved in the system memory for later use. 
+
+Following this action, the <span style="color:#f77729;"><b>small</b></span> portion of the command interpreter that was not overwritten resumes execution:
+  * Its first task is to reload the rest of the command interpreter from disk. 
+  * Then the command interpreter makes the previous error code available to the user or to the next program.
+  * It stands by for more input command from the user.
+
+
+#### Multi-tasking system 
+An example of a multi-tasking system is FreeBSD. The FreeBSD operating system is a <span style="color:#f77729;"><b>multi-tasking</b></span> OS that is able to create and manage multiple processes at a time:
+* When a user logs on to the system, the <span style="color:#f77729;"><b>shell</b></span> (command interpreter) of the user’s choice is run. 
 * This shell is similar to the MS-DOS shell in that it accepts commands and executes programs that the user requests. 
-* However, since FreeBSD is a multitasking system, the command interpreter may continue running while another program is executed: 
+* However, since FreeBSD is a multitasking system, the command interpreter may <span style="color:#f77729;"><b>continue running</b></span> while another program is executed: 
     * The possible state of a RAM with FreeBSD OS is as shown in the figure above  
-    * To start a new process, the shell executes a` fork()` system call. 
+    * To <span style="color:#f77729;"><b>start</b></span> a new process, the shell executes a `fork()` system call. 
     * Then, the selected program is loaded into memory via an `exec()`[^9] system call, and the program is executed normally until it executes `exit() `system call to end normally or `abort` system call. 
+* Depending on the way the command was issued, the shell then either <span style="color:#f77729;"><b>waits</b></span> for the process to finish or runs the process “in the background.” 
+    * In the latter case, the shell immediately requests another command.
+* The kernel is responsible to ensure that <span style="color:#f77729;"><b>context switching</b></span> is properly done (and <span style="color:#f77729;"><b>timesharing</b></span> as well if enabled).
+
+To run a command in the background, add the ampersand symbol (`&`) at the end of the command:
+```bash
+command &
+```
 
-
-* Depending on the way the command was issued, the shell then either waits for the process to finish or runs the process “in the background.” 
-    * In the latter case, the shell immediately requests_ another command. _
-
-
-# 
-
-
-# System Programs {#system-programs}
-
-Apart from the Kernel and the user interface (GUI and/or CLI), a modern operating system also comes with system programs. Most users’ view of an operating system is defined by the system programs, not the actual system calls _because they are actually hidden from us (through API)_. 
-
-System programs, also known as system utilities, provide a convenient environment for program development and execution:
-
-
-
-1. They are basic tools used by many users for common low-level activities. 
-2. It runs on user mode, just like any other user-level applications. When it requires kernel services, they make system calls just like any other user programs.
-3. These tools are very generic, thus can be considered as part of the “system” instead of individual user apps that we typically install
-4. _Note that sometimes system programs and system calls have the same name, but they are nowhere the same. For example: _
-    1. `write` as a command that can be typed on the terminal (type `man write `to find out what these arguments are.)[^10]
-
-
-    2. `write` system call as we have seen [above](#system-call-implementation)
-
-Like system calls, they can also be divided into the following categories:
-
-
-
-* File management:
-    *  These programs create, delete, copy, rename, print, dump, list, and generally manipulate files and directories. 
-    * For example: _all commands that you can enter in CLI that involves file management in UNIX systems is actually the name of system programs _
-* Status information:
-    * Some programs simply ask the system for the date, time, amount of available memory or disk space, number of users, or similar status information. 
-    * Others are more complex, providing detailed performance, logging, and debugging information. 
-    * Typically, these programs format and print the output to the terminal or other output devices or files or display it in a window of the GUI. Some systems also support a registry, which is used to store and retrieve configuration information.
-* File modification:
-    * Several text editors may be available to create and modify the content of files stored on disk or other storage devices. 
-    * There may also be special commands to search the contents of files or perform transformations of the text.
-* Programming-language support:
-    * Compilers, assemblers, debuggers, and interpreters for common programming languages (such as C, C++, Java, and PERL) are often provided with the operating system or available as a separate download.
-* Program loading and execution:
-    *  Once a program is assembled or compiled, it must be loaded into memory to be executed. 
-    * The system may provide absolute loaders, relocatable loaders, linkage editors, and overlay loaders. 
-    * Runtime debugging systems for either higher-level languages or machine language are needed as well.
-* Communications: 
-    * These programs provide the mechanism for creating virtual connections among processes, users, and computer systems. 
-    * They allow users to send messages to one another’s screens, to browse Web pages, to send e-mail messages, to log in remotely, or to transfer files from one machine to another.
-    * _For example: ssh, pipe_
-
-        _ _
-
-* Background services:
-    * All general-purpose systems have methods for launching certain system-program processes at boot time (upon startup): network-related system programs, some device drivers (although there are drivers that run in kernel mode, these are _not _system programs), etc  
-    * Constantly running system-program processes are known as services, subsystems, or daemons. One example is the network daemon:
-        * A system needed a service to listen for network connections in order to connect those requests to the correct processes. 
-    * Other daemon examples include:  
-        * The <code><em>init </em></code>process (systemd in Linux, launchd in macOS)
-        * Process schedulers that start processes according to a specified schedule, 
-        * System error monitoring services, 
-        * Print servers, network services, etc
-    * Typical systems have dozens of daemons. In addition, operating systems that run important activities in user mode rather than in kernel mode may use daemons to run these activities.
-
-
-# 
-
-
-# Application Programs {#application-programs}
-
-Along with system programs, most operating systems are supplied with programs that are useful in solving common problems or performing common operations. Such application programs include Web browsers, word processors and text formatters, spreadsheets, database systems, compilers, plotting and statistical-analysis.packages, and games.
-
-The table below summarises the differences between system programs and application programs (user programs)
-
-
-
-<p id="gdcalert14" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image14.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert15">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-
-![alt_text](images/image14.png "image_tooltip")
-
-
-The view of the operating system seen by most users is defined by the application and system programs, rather than by the actual system calls. For example, when a user’s computer is running the Mac operating system, the user might see the GUI, featuring a mouse-and-windows interface. 
-
-
-# 
-
-
-# OS Design and Implementation {#os-design-and-implementation}
-
-There’s no known ultimate solution when it comes to OS design. Internal structures of known operating systems can vary widely. 
-
-When one design an OS, it might be helpful to consider a few known things:
-
-
-
-1. Start by defining goals:
-    1. User goals: OS should be convenient to use, easy to learn, reliable, safe, fast
-    2. System goals: The system should be easy to design, implement, and maintain; and it should be flexible, reliable, error free, and efficient. 
-2. Know the difference between policy and mechanism and separate them:
-    3. Policy: determines what will be done
-    4. Mechanism: determines how to do something
-    5. The separation of policy and mechanism is important for flexibility:
-        * Policies are likely to change across places or over time. 
-        * In the worst case, each change in policy would require a change in the underlying mechanism. 
-        * A general mechanism insensitive to changes in policy would be more desirable. A change in policy would then require _redefinition of only certain parameters of the system_. 
-    6. For example: a mechanism for giving priority to certain types of programs over others. If the mechanism is properly separated from policy, it can be used either to
-        * Support a policy decision that I/O-intensive programs should have priority over CPU-intensive ones 
-        * Or support the opposite policy whenever appropriate.
-
-Once an operating system is designed, it must be implemented. Because operating systems are _collections of many programs: kernel, system programs, interface, etc_, written by many people over a long period of time, it is difficult to make general statements about how they are implemented[^11].
-
-
-## Example of OS structures {#example-of-os-structures}
-
-
-### Monolithic Structure {#monolithic-structure}
-
-A monolithic kernel is an operating system architecture where the entire operating system is working in kernel space. 
-
-<span style="text-decoration:underline;">Without dual mode (simple):</span>
-
-The figure below[^12] shows the structure of _MS-DOS,_ one of the simplest OS made in the early years:
-
-
-
-* The interfaces and levels of functionality are not well separated (all programs can access the hardware) - i.e: at the time, MS-DOS was written for the Intel 8088 architecture, which has no mode bit and therefore no dual mode. 
-* For instance, application programs are able to access the basic I/O routines to write directly to the display and disk drives.
-* Such freedom leaves MS-DOS vulnerable to errant (or malicious) programs, causing entire system crashes when user programs fail.
-
-
-
-<span style="text-decoration:underline;">With dual mode:</span>
-
-The early UNIX OS was also simple in its form as shown below. In a way, it is layered to a minimal extent with very simple structuring. 
-
-
-
-<p id="gdcalert15" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image15.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert16">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-
-![alt_text](images/image15.png "image_tooltip")
-
-
-The kernel provides file system management, CPU scheduling, memory management, and other operating-system functions through system calls. 
-
-Taken in sum, that is an enormous amount of functionality to be combined into one level.
-
-Pros:  _distinct performance advantage _because_ _there is very little overhead in the system call interface or in communication within the kernel. 
-
-Cons:  _difficult to implement and maintain. _
-
-Other examples: BSD, Solaris
-
-
-### 
-
-
-### Layered Approach {#layered-approach}
-
-The operating system is broken into a many number of layers (levels). The bottom layer (layer 0) is the hardware; the highest (layer N) is the user interface. 
-
-Figure below shows a layered approach (layer names for illustration purposes). The programs in layer N rely on services ONLY from the layer below it.
-
-
-
-<p id="gdcalert16" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image16.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert17">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-
-![alt_text](images/image16.png "image_tooltip")
-
-
-Pros: 
-
-
-
-* Simple to construct and debug
-* Each layer is implemented only with operations provided by lower-level layers.
-* A layer does not need to know how these operations are implemented; it needs to know only what these operations do. 
-* This abstracts and hides the existence of certain data structures, operations, and hardware from higher-level layers.
-
- 
-
-Cons:
-
-
-
-* Appropriately defining the various layers, and careful planning is necessary.
-    * If we are met with bugs in our program, we debug our program and not our compiler
-    * We mostly assume that the layers beneath us are already _made correct_
-    * Sometimes, this assumption is not always true and difficult to maintain with the growing size of the OS. Some OS is shipped with bugs on its lower layers that are very difficult for users to debug. 
-    * Patches and updates are periodically given to fix these bugs. 
-* They tend to be less efficient than other types. 
-    * For instance, when a process running in user mode executes an I/O operation, it executes a system call that is trapped to the I/O layer, which calls the memory-management layer, which in turn calls the CPU-scheduling layer, which is then passed to the hardware. 
-    * At each layer, the parameters may be modified, data may need to be passed, and so on.
-    * Each layer adds overhead to the system call. 
-    * The net result is a system call that takes longer than does one on a non layered system.
-
-Example: Windows NT (the later version is actually a _hybrid_ OS, combining between layered and monolithic aspects and benefits)[^13]
-
-
-### 
-
-<p id="gdcalert17" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image17.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert18">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-
-![alt_text](images/image17.png "image_tooltip")
-
-
-
-### 
-
-
-### Microkernel structures {#microkernel-structures}
-
-Microkernel is a very small kernel that provides minimal process and memory management, in addition to a communication facility.
-
-This method structures the operating system by removing all nonessential components from the kernel and implementing them as system and user-level programs. The result is a _smaller kernel_ that does only tasks pertaining to:
-
-
-
-1. IPC,
-2. Memory Management,
-3. Scheduling
-
-Example: if the client program wishes to access a file, it must interact with the file server. The client program and service never interact directly. Rather, they communicate indirectly by exchanging messages with the microkernel as illustrated below:
-
-
-
-<p id="gdcalert18" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image18.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert19">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-
-![alt_text](images/image18.png "image_tooltip")
-
-
-Pros: extending the operating system easier. All new services are added to user space and consequently do not require modification of the kernel. 
-
-Cons: suffer in performance  increased system-function overhead due to frequent requirement in performing context switch. 
-
-Example: Mach, Windows NT (first release was a microkernel).
-
-
-### 
-
-
-### Hybrid Approach {#hybrid-approach}
-
-Hybrid kernels attempt to combine between microkernel and monolithic kernel aspects and benefits. 
-
-Example:
-
-macOS is partly based on microkernel + monolithic approach  _(image taken from SGG)_:
-
-
-
-1. Mach provides: IPC, scheduling, memory management
-2. BSD provides: CLI, file system management, networking support, POSIX APIs implementations
-
-
-
-<p id="gdcalert19" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image19.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert20">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-
-![alt_text](images/image19.png "image_tooltip")
-
-
-
-### 
-
-
-### Java Operating System (JX) {#java-operating-system-jx}
-
-The JX OS is written almost entirely in Java. Such a system, known as a language-based extensible system, and runs in a single address space (no virtualisation, no MMU), as such it will face difficulties in maintaining memory protection that is usually supported by hardwares in typical OS.
-
-
-
-<p id="gdcalert20" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image20.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert21">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-
-![alt_text](images/image20.png "image_tooltip")
-
-
-_Language-based systems instead rely on type-safety_[^14]_ features of the language. As a result, language-based systems are desirable on small hardware devices, which may lack hardware features that provide memory protection._
-
-Since Java is a type-safe language, JX is able to provide isolation between running Java applications without hardware memory protection. This is called _language based protection, _where system calls and IPC in JX does not  require an address-space switch. In short, JX runs in a single address space.  
-
- \
-
-
-The architecture of the JX system is illustrated below (simplified representation[^15]):
-
-
-
-* JX organizes its system according to domains. 
-
-
-
-<p id="gdcalert21" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image21.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert22">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-
-![alt_text](images/image21.png "image_tooltip")
-
-
-
-
-* Each domain represents an independent JVM (Java Virtual Machine):
-    * JVM is an abstract virtual machine that can run on any OS
-    * There’s one instance of JVM per Java application
-    * JVM provides portable execution environment for Java-based apps
-    * It maintains a heap used for allocating memory during object creation and threads within itself, as well as for garbage collection. 
-
-
-
-<p id="gdcalert22" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image22.jpg). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert23">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-
-![alt_text](images/image22.jpg "image_tooltip")
-
-
-
-
-* Domain zero is a microkernel responsible for_ low-level details_, such as system initialization and saving and restoring the state of the CPU. 
-    * Domain zero is written in C and assembly language; all other domains are written entirely in Java. 
-    * Communication between domains occurs through a specific mechanism called _portals_
-* Protection within and between domains relies on the type safety of the Java language. However, since domain zero is not written in Java, it must be considered trusted. 
-
-
-## Summary {#summary}
-
-The figure below shows the summary of various OS structures. 
-
-
-
-<p id="gdcalert23" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image23.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert24">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-
-![alt_text](images/image23.png "image_tooltip")
-
-
-For layered architecture, note that the only difference is that programs at level N relies ONLY on services provided by programs at one level below it. 
 
 
 [^2]:
      Image taken from https://notes.shichao.io/tlpi/ch6/
 
 [^3]:
-     A library is a chunk of code that _implements an API_. An API (application programming interface) is a term that refers to the functions/methods in a library that you can call to perform the task on your behalf (without you actually having to implement the code). As its name said, an API for a particular library, is the _interface _to the library. The same API can be implemented by different libraries (implementation). The underlying libraries can be updated, etc without changing the API and hence not _breaking _other code that utilizes the API.
+     A library is a chunk of code that implements an API. An API (application programming interface) is a term that refers to the functions/methods in a library that you can call to perform the task on your behalf (without you actually having to implement the code). As its name said, an API for a particular library, is the interface to the library. The same API can be implemented by different libraries (implementation). The underlying libraries can be updated, etc without changing the API and hence not breaking other code that utilizes the API.
 
 [^4]:
-
      Actual system calls can often be more detailed and difficult to work with than the API available to an application programmer.
 
 [^5]:
-
      An application programmer designing a program using an API can expect her program to compile and run on any system that supports the same API (although in reality, architectural differences often make this more difficult than it may appear)
 
 [^6]:
      Linux is a Unix clone written from scratch by Linus Torvalds with assistance from a loosely-knit team of hackers across the Net. It aims towards POSIX compliance.
 
 [^7]:
-
-    [https://docs.microsoft.com/en-gb/windows/win32/api/winbase/nf-winbase-copyfile?redirectedfrom=MSDN](https://docs.microsoft.com/en-gb/windows/win32/api/winbase/nf-winbase-copyfile?redirectedfrom=MSDN)
+    [Refer to this document](https://docs.microsoft.com/en-gb/windows/win32/api/winbase/nf-winbase-copyfile?redirectedfrom=MSDN)
 
 [^8]:
-     From the documentation: _ syscall() is a small library function that invokes the system call whose assembly language interface has the specified number with the specified arguments. syscall() in Linux saves CPU registers before making the system call, restores the registers upon return from the system call, and stores any error code returned by the system call in [errno(3)](https://manpages.debian.org/unstable/manpages-dev/errno.3.en.html) if an error occurs._
+     From the documentation: `syscall()` is a small library function that invokes the system call whose assembly language interface has the specified number with the specified arguments. `syscall()` in Linux saves CPU registers before making the system call, restores the registers upon return from the system call, and stores any error code returned by the system call in [errno(3)](https://manpages.debian.org/unstable/manpages-dev/errno.3.en.html) if an error occurs.
 
 [^9]:
 
      We will learn about these system calls in the latter weeks and in lab
-
-[^10]:
-
-      `tty` itself is a command in Unix and Unix-like operating systems to print the file name of the terminal connected to standard input. If you open multiple terminal windows in your UNIX-based system and type `tty` on each of them, you will be returned with different ids. You may use write to communicate across terminal windows
-
-[^11]:
-     Early operating systems were written in assembly language. Now, although some operating systems are still written in assembly language, most are written in a higher-level language such as C or an even higher-level language such as C++. Actually, an operating system can be written in more than one language: (1) The lowest levels of the kernel might be assembly language, and then (2) higher-level routines might be in C, and finally (3) system programs might be in C or C++, in interpreted scripting languages like PERL or Python, or in shell scripts. In fact, a given Linux distribution probably includes programs written in all of those languages.
-
-[^12]:
-     _image screenshot from SGG book_
-
-[^13]:
-     Figure taken from Wikipedia
-
-[^14]:
-    The Java language is designed to enforce type safety. This means that programs are prevented from accessing memory in inappropriate ways. Every section of memory is part of some Java object that belongs to some class. For example, a calendar-management applet might use classes like Date, Appointment, Alarm, and GroupCalendar. Each class defines both a set of objects and operations to be performed on the objects of that class (explanation taken from Securing Java (ISBN: 047131952X), section 10)
-
-[^15]:
-     Image taken from https://webmobtuts.com/news-events/what-is-the-jvm-introducing-the-java-virtual-machine/
