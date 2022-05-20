@@ -18,7 +18,7 @@ header:
     key: assignments
 
 os_notes:
-  - title: Week 1
+  - title: Basics of OS
     children:
       - title: Introduction to OS
         url: /os_notes/week1_intro
@@ -28,7 +28,7 @@ os_notes:
         url: /os_notes/week1_resource
       - title: Memory and Process Management
         url: /os_notes/week1_mpm
-  - title: Week 2
+  - title: OS Structure
     children:
       - title: OS Services and UI
         url: /os_notes/week2_serviceui
