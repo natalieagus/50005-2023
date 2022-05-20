@@ -59,84 +59,193 @@ The kernel virtual address area (`vmalloc`) is used for <span style="color:#f777
 
 # System Calls via API {#system-calls-through-api}
 
-One of the most common ways to make system calls is through an API (Application Programming Interface). We can write a program in a particular language and conveniently perform several system calls through the provided APIs supported by the chosen language as needed.
+One of the most common ways to make system calls is through an <span style="color:#f7007f;"><b>API</b></span> (Application Programming Interface). We can write a program in a particular language and conveniently perform several system calls through the provided APIs supported by the chosen language as needed.
 
-About API: API is an interface that provides a way to interact with the underlying library[^3] that makes the system calls, often named the same as the system calls they invoke. It specifies: 
+API is an <span style="color:#f77729;"><b>interface</b></span> that provides a way to interact with the underlying library[^3] that makes the system calls, often <span style="color:#f77729;"><b>named the same</b></span> as the system calls they invoke. 
+{:.warning}
 
-
-
+An API specifies:
 * a set of functions that are available to an application programmer
 * the parameters that are passed to each function and 
 * the return values the programmer can expect
 
 3 most common APIs available:
-
-
-
-1. Win32 API for Windows systems -- written in C++
-2. POSIX API for POSIX-based system (all versions of UNIX) -- mostly written in C. You can find the functions supported by the API here  [https://pubs.opengroup.org/onlinepubs/9699919799/](https://pubs.opengroup.org/onlinepubs/9699919799/)
+1. Win32 API for Windows systems written in C++
+2. POSIX API for POSIX-based system (all versions of UNIX); mostly written in C. You can find the functions supported by the API here  [https://pubs.opengroup.org/onlinepubs/9699919799/](https://pubs.opengroup.org/onlinepubs/9699919799/)
 3. Java API for programs running on Java Virtual Machine (JVM)
 
-Behind the scenes, the functions that make up an API invoke the actual system calls on behalf of the application programmer.
+Behind the scenes, the **functions** that make up an API invoke the **actual** system calls on behalf of the application programmer.
+
+<img src="/50005/assets/images/week2/2.png"  class="center_seventy"/>
 
 
-
-Benefits of APIs:
-
-
-
-* It adds another layer of abstraction hence simplifies the process of application development[^4]
+Benefits of using an API to make system calls:
+* It adds another layer of **abstraction** hence simplifies the process of application development[^4]
+* Supports program **portability**[^5]
 
 
-* Supports program portability[^5]
-_Note: Making the system call directly in the application code is possible, but more complicated and may require embedded assembly code to be used (in C and C++) as well as knowledge of the low-level binary interface for the system call operation, which may be subject to change over time and thus not be part of the application binary interface; the API is meant to abstract this away. _
+### Example: printf() 
 
-To see more examples about _direct _system calls, you can find out more about Linux[^6] system calls in [http://man7.org/linux/man-pages/man2/syscalls.2.html](http://man7.org/linux/man-pages/man2/syscalls.2.html) 
+We always conveniently call `printf()` whenever we want to display our output to the console in C. `printf` itself is a POSIX system call <span style="color:#f77729;"><b>API</b></span>. 
+* This function requires kernel service as it involves access to hardware: output display. 
+* The function `printf`  is actually making several other function calls to prepare the resources or requirements for this system call **and** finally make the actual system call that invokes the kernel’s help to display the output to the display. 
 
-Example: 
+<img src="/50005/assets/images/week2/3.png"  class="center_fifty"/>
 
+The full implementation of `printf` in Mach OS can be found [here](https://opensource.apple.com/source/xnu/xnu-201/osfmk/kern/printf.c.auto.html). It calls other functions like `putc` and eventually `write` function that makes the system call to  `stdout` file descriptor. 
 
+### Example: CopyFile()
 
-1. We always conveniently call` printf()` whenever we want to display our output to the console. `printf ` itself is a system call API. This function requires kernel service as it involves access to hardware, in particular the display unit. The function `printf`  is actually making several other function calls to _prepare the resources / requirements for this system call _and finally make the _actual_ system call` `that invokes the kernel’s help to display the output to the display. 
+We also always conveniently copy one file into another location (be it programmatically or through the GUI). In Windows OS, this is supported by the `CopyFile`[^7] function (Win32 API):
+```
+CopyFile(szFilePath.c_str(), szCopyPath.c_str(), FALSE );
+```
+The complete documentation can be found [here](https://docs.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-copyfile). The instruction sequence that is made by this `CopyFile` function to complete the entire copy operation is actually pretty lengthy, involving **multiple** system calls. In `CopyFile` case alone, multiple system calls are made for writing to file, opening files, obtaining file name, reading from file, termination, etc (image below taken from SGG book)
 
+<img src="/50005/assets/images/week2/4.png"  class="center_seventy"/>
 
-
-<p id="gdcalert7" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image7.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert8">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-
-![alt_text](images/image7.png "image_tooltip")
-
-
-
-
-2. We also always conveniently copy one file into another location (be it programmatically or through the GUI). In Win32 API, this is supported by the `CopyFile`[^7] function. The _actual _instruction sequence that is made by the function to complete the entire copy operation is actually pretty lengthy, involving multiple system calls (in this case alone system calls are made for writing to screen, opening files, obtaining file name, reading from file, termination, etc) - _image screenshot from SGG book._
-
-
-<p id="gdcalert8" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image8.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert9">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-
-![alt_text](images/image8.png "image_tooltip")
-
+The actual implementation details (source code) of OS functions like `CopyFile` are intentionally not documented and can be changed at any time. The API however is well documented and conformed to so others who rely on it will not have their programs broken due to internal OS updates. 
+{:.warning}
 
 
 ## System Call Implementation {#system-call-implementation}
 
-An API helps users make appropriate system calls by providing convenient wrapper functions. Here’s the sequence of what happens in the nutshell after we invoke API functions involving system calls:
+An API helps users make appropriate system calls by providing convenient wrapper functions. More often than not, we don't need to know its detailed implementation as the API already provides convenient <span style="color:#f77729;"><b>abstraction</b></span>.
+
+For most programming languages, the <span style="color:#f77729;"><b>run-time support system</b></span> (a set of functions built into libraries included with a compiler) provides a system call <span style="color:#f77729;"><b>interface</b></span> that serves as the link to system calls made available by the operating system. The system-call <span style="color:#f77729;"><b>interface</b></span> intercepts function calls in the API and invokes the necessary system calls within the operating system. 
+
+### System Call Number
+Typically, a <span style="color:#f77729;"><b>number</b></span> is associated with each system call, and the system-call interface maintains a table indexed according to these numbers. For example, Linux system call tables and its associated numbers can be found [here](https://github.com/torvalds/linux/blob/master/arch/x86/entry/syscalls/syscall_64.tbl) and FreeBSD Kernel System call table can be found [here](https://opensource.apple.com/source/xnu/xnu-1504.3.12/bsd/kern/syscalls.master). 
 
 
+To further understand the points above, let's see a sample assembly file to print `Hello World` to console. 
 
-1. For most programming languages, the run-time support system (a set of functions built into libraries included with a compiler) provides a system call interface that serves as the link to system calls made available by the operating system. 
-2. The system-call interface intercepts function calls in the API and invokes the necessary system calls within the operating system. 
-3. Typically, a number is associated with each system call, and the system-call interface maintains a table indexed according to these numbers. For example, Linux system call tables and its associated numbers can be found here: [https://github.com/torvalds/linux/blob/master/arch/x86/entry/syscalls/syscall_64.tbl](https://github.com/torvalds/linux/blob/master/arch/x86/entry/syscalls/syscall_64.tbl)
-4. The system call interface then invokes the intended system call in the operating-system kernel by interrupting itself and invoking the trap handler (runs in kernel mode from now onwards):
-    1. Then for example, the trap handler saves the states of the process and examines the system call index left in a certain register.
-    2. It then refers to the standard system call table and dispatches the system service request accordingly, i.e: branches onto the address in the Kernel space that implements the system call service routine of the system call with that index and executes it.
-5. If the system call service routine returns to the trap handler, the program execution can be resumed. If the system call does not return, then the scheduler may be called to schedule another process, while this process is put to wait. 
+#### Hello World in Assembly (Linux, x86-64)
 
-In a nutshell, the function calls within the API reach the system call, the execution of the user application is temporarily suspended, since a system call is essentially a software interrupt. 
+```armasm
+; hello_world.s
+global _start
 
-Note that the system call ids are HARDWARE DEPENDENT. It varies from systems to systems that utilise different hardwares. The relationship between application program, API, System call interface, and the kernel is shown below (_image screenshot from SGG book)_: 
+section .text
 
+_start:
+  mov rax, 1        ; system call number for write
+  mov rdi, 1        ;    making file handle stdout
+  mov rsi, msg      ;   passing adress of string to output
+  mov rdx, msglen   ;   number of bytes
+  syscall           ; invoking os to write
+
+  mov rax, 60       ; sys call number for exit
+  mov rdi, 0        ;   exit code 0 EXIT_SUCCESS
+  syscall           ; invoke os to exit
+
+section .rodata
+  msg: db "Hello, world!", 10
+  msglen: equ $ - msg
+```
+
+Compilation and execution:
+```bash
+nasm -f elf64 -o hello_world.o hello_world.s
+ld -o hello_world hello_world.
+./hello_world
+```
+
+#### Hello World in Assembly (macOS X, x86-64)
+
+```armasm
+; hello_world.s
+global _main
+section .text
+_main:
+  mov rax, 0x2000004 ; system call number for write
+  mov rdi, 1 ; file descriptor 1 is stdout
+  mov rsi, msg ; get string address
+  mov rdx, msg.len ; number of bytes
+  syscall ; exec syscall write
+  mov rax, 0x2000001 ; syscall number for exit
+  mov rdi, 0 ; exit code 0
+  syscall ; exit program
+section .data
+msg:    db      "Hello, world!", 10
+.len:   equ     $ - msg
+```
+
+Compilation and execution:
+```bash
+nasm -f macho64 hello_world.s
+ld -lSystem -o hello_world hello_world.o
+./hello_world
+```
+
+#### Hello World in Assembly (macOS X, M1)
+
+```armasm
+// hello_world.s
+.global _start             // Provide program starting address to linker
+.align 2
+
+// Setup the parameters to print hello world
+// and then call Linux to do it.
+_start: mov X0, #1     // 1 = StdOut
+        adr X1, helloworld // string to print
+        mov X2, #13     // length of our string
+        mov X16, #4     // MacOS write system call
+        svc 0     // Call linux to output the string
+
+// Setup the parameters to exit the program
+// and then call Linux to do it.
+
+        mov     X0, #0      // Use 0 return code
+        mov     X16, #1     // Service command code 1 terminates this program
+        svc     0           // Call MacOS to terminate the program
+
+helloworld:      .ascii  "hello, world!\n"
+```
+
+Compilation and execution:
+```bash
+as -g -o hello_world.o hello_world.s
+ld -macosx_version_min 12.0.0 -o hello_world hello_world.o -lSystem -syslibroot `xcrun -sdk macosx --show-sdk-path` -e _start -arch arm64 
+./hello_world
+```
+
+#### Hello World in C
+In contrast, here's an implementation in C, short and sweet. 
+```c
+// hello_world.c
+#include <stdio.h>
+int main() {
+   // printf() displays the string inside quotation
+   printf("Hello, World!");
+   return 0;
+}
+```
+
+Compilation and execution:
+```bash
+gcc -o hello_world hello_world.c
+./hello_world
+```
+
+Here's the implementation in Python. Even shorter and sweeter:
+```python
+# hello_world.py
+print('Hello, world!')
+```
+
+Execution: `python hello_world.py`
+
+As you can see, the C program can be compiled for either OS. The C system call <span style="color:#f77729;"><b>interface</b></span> then invokes the intended system call in the operating-system kernel by <span style="color:#f77729;"><b>trapping</b></span> itself and invoking the trap handler (runs in kernel mode from now onwards):
+  1. The trap handler first <span style="color:#f77729;"><b>saves</b></span> the states of the process and examines the system call index left in a certain register.
+  2. It then refers to the standard system call table and <span style="color:#f77729;"><b>dispatches</b></span> the system service request accordingly, i.e: <span style="color:#f77729;"><b>branches</b></span> onto the address in the Kernel space that implements the system call service routine of the system call with that index and executes it.
+
+
+When the system call service routine returns to the trap handler, the program execution can be <span style="color:#f77729;"><b>resumed</b></span>. If the system call does not return yet (e.g: block system call like `input()`), then the scheduler may be called to schedule another process, while this process is put to wait until the requested service is available. 
+
+Remember that system call numbers are <span style="color:#f77729;"><b>HARDWARE DEPENDENT</b></span>, as shown in the two sources above (Linux vs FreeBSD). It varies from systems to systems. The relationship between application program, API, System call interface, and the kernel is shown below (_image screenshot from SGG book)_: 
+
+<img src="/50005/assets/images/week2/5.png"  class="center_seventy"/>
 
 
 <p id="gdcalert9" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/image9.png). Store image on your image server and adjust path/filename/extension if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert10">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
@@ -225,7 +334,10 @@ helloworld:      .ascii  "hello, world!\n"
 
 
 
-## 
+Making the system calls **directly** in the application code is possible, but more complicated and may require embedded assembly code to be used (in C and C++) as well as knowledge of the low-level binary **interface** for the system call operation, which may be subject to **change over time** and thus not be part of the application binary interface; the API is meant to abstract this away.
+{:.warning}
+
+To see more examples about _direct _system calls, you can find out more about Linux[^6] system calls in [http://man7.org/linux/man-pages/man2/syscalls.2.html](http://man7.org/linux/man-pages/man2/syscalls.2.html) 
 
 
 ## System Call Parameter Passing {#system-call-parameter-passing}
