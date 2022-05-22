@@ -257,6 +257,7 @@ If you'd like to expand your knowledge beyond regular OS, you may have further r
 
 <img src="/50005/assets/images/week2/18.png"  class="center_seventy"/>
 
+
 ## Virtualisation
 We can run any arm or intel-based OS on arm or intel-based hardware, e.g: Dual boot. An extension to that is <span style="color:#f77729;"><b>virtualization</b></span>, where you can run any OS on any OS (typically the same architecture).
 
@@ -264,6 +265,9 @@ A <span style="color:#f77729;"><b>hypervisor</b></span> is essentially an <span 
 
 ## Containerization
 <span style="color:#f77729;"><b>Containers</b></span> allow a developer to package up an application with all of the parts it needs, such as <span style="color:#f77729;"><b>libraries</b></span> and other <span style="color:#f77729;"><b>dependencies</b></span>, and ship it all out as one package. Containers are not the same as Virtual Machines, and are generally faster to use. You can read more about the differences between the two [here](https://geekflare.com/docker-vs-virtual-machine/). 
+
+Note: "Host OS" in the picture above assumes that it is UNIX-based POSIX compliant OS. If you run Docker on Windows/Mac, it will download a Hypervisor + Guest Linux too before you can run the Docker Engine. 
+{:.warning}
 
 Example of softwares that support containerisation: [Docker](https://www.freecodecamp.org/news/docker-quick-start-video-tutorials-1dfc575522a0).
 
