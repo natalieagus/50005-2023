@@ -75,7 +75,7 @@ su root
 You will see the following <span style="color:#f7007f;"><b>new prompt</b></span>, indicating now you're logged in as `root`:
 <img src="/50005/assets/images/lab2/3.png"  class="center_seventy"/>
 
-Root user is the user with the highest (administrative) privilege. It has <span style="color:#f7007f;"><b>nothing to do with Kernel Mode</b></span>.
+Root user is the user with the highest (administrative) privilege. It has <span style="color:#f7007f;"><b>nothing to do with Kernel Mode</b></span>. Processes spawned while logged in as Root still runs on <span style="color:#f77729;"><b>User Mode</b></span>. 
 {:.warning}
 
 
