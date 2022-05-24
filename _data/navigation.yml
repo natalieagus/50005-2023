@@ -52,6 +52,14 @@ os_labs:
         url: /os_labs/lab1_cls
       - title: Scripts and Compilation
         url: /os_labs/lab1_sc
+  - title: Lab 2
+    children:
+      - title: The TOC/TOU Bug
+        url: /os_labs/lab2_intro
+      - title: Vulnerable Root Program
+        url: /os_labs/lab2_vulnerableprog
+      - title: Bug Fix
+        url: /os_labs/lab2_fix
 
 ns_labs:
   - title: Lab 1
