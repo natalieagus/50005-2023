@@ -168,9 +168,12 @@ While logged in as your original user account, try to read the file `/etc/shadow
 cat /etc/shadow
 ```
 
-You will be met with <span style="color:#f77729;"><b>permission denied</b></span> because this file can only be read by `root` user, as shown in the file details below;
+You will be met with <span style="color:#f77729;"><b>permission denied</b></span> because this file can only be read by `root` user, and other users in the <span style="color:#f77729;"><b>same group</b></span>, as shown in the file details below;
 <img src="/50005/assets/images/lab2/10.png"  class="center_seventy"/>
 
+What group does `root` belong to? What about the user account in question (ubuntu in example above)? You can find out using the command `groups`:
+
+<img src="/50005/assets/images/lab2/22.png"  class="center_seventy"/>
 
 ### Task 8 
 `TASK 8:`{:.info} Gain privilege elevation.
