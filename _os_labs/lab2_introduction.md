@@ -187,7 +187,7 @@ When prompted, type the word `password`, and then press enter.
 You will find that you can now read this file:
 <img src="/50005/assets/images/lab2/9.png"  class="center_seventy"/>
 
-The <span style="color:#f77729;"><b>reason</b></span> you can now successfully read the file `/etc/shadow` is because `rootdo` <span style="color:#f77729;"><b>has the SUID bit</b></span>. Any other program that is <span style="color:#f77729;"><b>executed</b></span> by `rootdo` will run with `root` (`rootdo` creator`) privileges and <span style="color:#f77729;"><b>not</b></span> the regular user. 
+The <span style="color:#f77729;"><b>reason</b></span> you can now successfully read the file `/etc/shadow` is because `rootdo` <span style="color:#f77729;"><b>has the SUID bit</b></span>. Any other program that is <span style="color:#f77729;"><b>executed</b></span> by `rootdo` will run with `root` (`rootdo` creator) privileges and <span style="color:#f77729;"><b>not</b></span> the regular user. 
 
 You can open `rootdo.c` inside `/lab_toctou/FilesForRoot/` to examine how it works, especially this part where it just simply checks that you have keyed in `password` and proceed to `execvp` (execute) the input command:
 ```java
