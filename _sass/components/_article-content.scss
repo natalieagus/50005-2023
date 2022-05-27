@@ -44,9 +44,10 @@
   }
   blockquote {
     padding-left: map-get($spacers, 3);
-    font-size: map-get($base, font-size-sm);
+    font-size: map-get($base, font-size);
+    background-color: rgba(#868cfc, .05);
     color: $text-color-l;
-    @include split-line(left, 4px, $border-color);
+    @include split-line(left, 4px, $main-color-1);
     p {
       margin: map-get($spacers, 2) 0;
     }

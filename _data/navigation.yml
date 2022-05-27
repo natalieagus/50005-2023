@@ -36,7 +36,16 @@ os_notes:
         url: /os_notes/week2_syscall
       - title: Structure and Design
         url: /os_notes/week2_designstructure
-
+  - title: Processes and Threads
+    children:
+      - title: Process Scheduling
+        url: /os_notes/week3_intro
+      - title: Operation on Processes
+        url: /os_notes/week3_operations
+      - title: IPC
+        url: /os_notes/week3_comms
+      - title: Threads
+        url: /os_notes/week3_threads
 ns_notes:
   - title: Week 1
     children:
