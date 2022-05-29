@@ -105,7 +105,7 @@ The output doesn't make sense as of now, but we will explain what those `hash` v
 ## Symbolic Link
 We will soon exploit this bug with <span style="color:#f77729;"><b>symbolic link</b></span>. 
 
-A <span style="color:#f77729;"><b>symbolic</b></span> link is a special kind of file that points to another file, much like a <span style="color:#f77729;"><b>shortcut</b></span> in Windows or a Macintosh alias.
+A <span style="color:#f77729;"><b>symbolic</b></span> link is a special kind of file that points to (reference) another file, much like a <span style="color:#f77729;"><b>shortcut</b></span> in Windows or a Macintosh alias. It contains a text string that is <span style="color:#f7007f;"><b>automatically interpreted</b></span> and followed by the operating system as a path to another file or directory. 
 {:.warning}
 
 ### Task 9 
