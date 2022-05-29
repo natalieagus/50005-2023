@@ -118,7 +118,7 @@ echo "good morning" > goodmorning.txt
 
 Then we can create a <span style="color:#f77729;"><b>symbolic link</b></span> using the command:
 ```console
-ls -s <source> <symlink>
+ln -s <source> <symlink>
 ```
 
 In this example below, we created a `goodmorning_symlink.txt` that <span style="color:#f77729;"><b>points</b></span> to the actual file `goodmorning.txt`:
