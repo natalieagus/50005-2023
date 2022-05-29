@@ -38,7 +38,7 @@ Then:
 
 ## Disable SUID 
 
-Of course another way is to <span style="color:#f77729;"><b>disable</b></span> the SUID bit of the `root_prog` altogether, however in practice sometimes this might not be ideal since there might be other parts of the program that requires execution with elevated privilege, <span style="color:#f77729;"><b>temporarily</b></span>. 
+Of course another way is to <span style="color:#f77729;"><b>disable</b></span> the SUID bit of  `vulnerable_root_prog` altogether, however in practice sometimes this might not be ideal since there might be other parts of the program that requires execution with elevated privilege, <span style="color:#f77729;"><b>temporarily</b></span>. 
 
 ### Task 13 
 `TASK 13:`{:.info} Run `exploit.sh` with `root_prog_nosuid`.
