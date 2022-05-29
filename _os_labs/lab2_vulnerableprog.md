@@ -131,7 +131,7 @@ During this <span style="color:#f77729;"><b>delay</b></span> between <span style
 1. A <span style="color:#f7007f;"><b>malicious</b></span> attacker can <span style="color:#f7007f;"><b>replace</b></span> the actual file `text.txt` into a <span style="color:#f77729;"><b>symbolic link</b></span> pointing to a protected file, e.g: `/etc/shadow`
 2. Since `fopen` only checks <span style="color:#f77729;"><b>effective</b></span> user ID, and `vulnerable_root_prog` has its `SUID` bit <span style="color:#f77729;"><b>set</b></span> (runs <span style="color:#f77729;"><b>effectively</b></span> as `root` despite being called by only normal user), the “supposedly secure” <span style="color:#f77729;"><b>rootprog</b></span> can end up allowing normal user to gain elevated privileges to <span style="color:#f77729;"><b>MODIFY</b></span> protected file like `/etc/shadow`.
 
-In the screenshot below, we created a <span style="color:#f77729;"><b>symbolic link</b></span> `userfile.txt`, to point to `/etc/shadow`, resulting in the regular user being unable to `cat userfile.txt`. 
+In the screenshot below, we created a <span style="color:#f77729;"><b>symbolic link</b></span> `userfile.txt` to point to `/etc/shadow`, resulting in the regular user being unable to `cat userfile.txt`. 
 <img src="/50005/assets/images/lab2/13.png"  class="center_seventy"/>
 
 We have written the program to create the symbolic link for you. It is inside `/User/symlink.c`. 
