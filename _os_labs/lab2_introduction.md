@@ -148,6 +148,9 @@ Notice that a <span style="color:#f77729;"><b>directory</b></span> is an <span s
 
 ## The SUID bit
 
+SUID stand for Set Owner User ID. A file with <span style="color:#f77729;"><b>SUID</b></span> set always <span style="color:#f77729;"><b>executes</b></span> as the user who <span style="color:#f7007f;"><b>owns</b></span> the file, regardless of the user passing the command.
+{:.warning}
+
 List the file permission for all files inside `Root/` directory:
 <img src="/50005/assets/images/lab2/8.png"  class="center_seventy"/>
 

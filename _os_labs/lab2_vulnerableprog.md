@@ -14,9 +14,9 @@ show_edit_on_github: false
 show_date: false
 ---
 
-Our vulnerable program is can be found in `/Root/vulnerable_root_prog`. Open `/FilesForRoot/vulnerable_root_prog.c`  to find out what it does.
+Our vulnerable program is can be found in `/Root/vulnerable_root_prog`. Open `/FilesForRoot/vulnerable_root_prog.c`  to find out what it does. 
 
-The program expects <span style="color:#f77729;"><b>two</b></span> arguments: to be stored at `char *fileName`, and `char *match`. 
+The program expects <span style="color:#f77729;"><b>two</b></span> arguments: to be stored at `char *fileName`, and `char *match`. It is a *supposedly secure* program that will allow `root` to replace `*match` string inside `*fileName` with an SHA-512 hashed password `00000`. 
 ```java
     if (argc < 3)
     {
@@ -105,7 +105,7 @@ The output doesn't make sense as of now, but we will explain what those `hash` v
 ## Symbolic Link
 We will soon exploit this bug with <span style="color:#f77729;"><b>symbolic link</b></span>. 
 
-A <span style="color:#f77729;"><b>symbolic</b></span> link is a special kind of file that points to another file, much like a <span style="color:#f77729;"><b>shortcut</b></span> in Windows or a Macintosh alias.
+A <span style="color:#f77729;"><b>symbolic</b></span> link is a special kind of file that points to (reference) another file, much like a <span style="color:#f77729;"><b>shortcut</b></span> in Windows or a Macintosh alias. It contains a text string that is <span style="color:#f7007f;"><b>automatically interpreted</b></span> and followed by the operating system as a path to another file or directory. 
 {:.warning}
 
 ### Task 9 
@@ -118,7 +118,7 @@ echo "good morning" > goodmorning.txt
 
 Then we can create a <span style="color:#f77729;"><b>symbolic link</b></span> using the command:
 ```console
-ls -s <source> <symlink>
+ln -s <source> <symlink>
 ```
 
 In this example below, we created a `goodmorning_symlink.txt` that <span style="color:#f77729;"><b>points</b></span> to the actual file `goodmorning.txt`:
@@ -131,7 +131,7 @@ During this <span style="color:#f77729;"><b>delay</b></span> between <span style
 1. A <span style="color:#f7007f;"><b>malicious</b></span> attacker can <span style="color:#f7007f;"><b>replace</b></span> the actual file `text.txt` into a <span style="color:#f77729;"><b>symbolic link</b></span> pointing to a protected file, e.g: `/etc/shadow`
 2. Since `fopen` only checks <span style="color:#f77729;"><b>effective</b></span> user ID, and `vulnerable_root_prog` has its `SUID` bit <span style="color:#f77729;"><b>set</b></span> (runs <span style="color:#f77729;"><b>effectively</b></span> as `root` despite being called by only normal user), the “supposedly secure” <span style="color:#f77729;"><b>rootprog</b></span> can end up allowing normal user to gain elevated privileges to <span style="color:#f77729;"><b>MODIFY</b></span> protected file like `/etc/shadow`.
 
-In the screenshot below, we created a <span style="color:#f77729;"><b>symbolic link</b></span> `userfile.txt`, to point to `/etc/shadow`, resulting in the regular user being unable to `cat userfile.txt`. 
+In the screenshot below, we created a <span style="color:#f77729;"><b>symbolic link</b></span> `userfile.txt` to point to `/etc/shadow`, resulting in the regular user being unable to `cat userfile.txt`. 
 <img src="/50005/assets/images/lab2/13.png"  class="center_seventy"/>
 
 We have written the program to create the symbolic link for you. It is inside `/User/symlink.c`. 
