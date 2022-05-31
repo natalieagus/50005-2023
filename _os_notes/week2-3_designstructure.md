@@ -25,7 +25,7 @@ Most users’ view of an operating system is defined by the system programs, not
 System programs, also known as system <span style="color:#f77729;"><b>utilities</b></span>, provide a convenient environment for program development and execution:
 1. They are <span style="color:#f77729;"><b>basic</b></span> tools used by many users for common low-level activities. 
 2. These tools are very <span style="color:#f77729;"><b>generic</b></span>, thus can be considered as part of the “system” instead of individual user apps that we typically install
-3. Note that sometimes system programs and system calls have the same name, but they are nowhere the same. For example: _
+3. Note that sometimes system programs and system calls have the same name, but they are nowhere the same. For example:
     1. `write` as a command that can be typed on the terminal (type `man write `to find out what these arguments are.)[^10]
     2. `write` is also a system call API and an actual system call name 
 
