@@ -3,6 +3,7 @@
     display: table;
     margin: map-get($spacers, 4) auto;
     margin-top: map-get($spacers, 5);
+    text-align: center;
     h1 {
       font-size: map-get($base, font-size-xl) * 4;
       line-height: 1;
