@@ -187,7 +187,7 @@ What group does `root` belong to? What about the user account in question (ubunt
 Now, run the following command. We assume that your <span style="color:#f77729;"><b>current working directory</b></span> is at `/lab_toctou` directory. If not, please adjust accordingly. 
 
 ```console
-../Root/rootdo cat /etc/shadow
+./Root/rootdo cat /etc/shadow
 ```
 When prompted, type the word `password`, and then press enter.
 
