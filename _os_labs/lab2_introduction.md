@@ -184,7 +184,7 @@ What group does `root` belong to? What about the user account in question (ubunt
 ### Task 8 
 `TASK 8:`{:.info} Gain privilege elevation.
 
-Now, run the following command. We assume that your <span style="color:#f77729;"><b>current working directory</b></span> is at `/lab_toctou` directory.
+Now, run the following command. We assume that your <span style="color:#f77729;"><b>current working directory</b></span> is at `/lab_toctou/User` directory.
 ```console
 ./Root/rootdo cat /etc/shadow
 ```
