@@ -129,7 +129,7 @@ One should only install drivers from <span style="color:#f77729;"><b>trusted</b>
 ## Device Controllers {#device-controllers}
 
 Device controllers are **<span style="color:#f7007f;"><b>electronic components</b></span>** inside a computer that are in charge of specific types of devices. Components that make up the **device controllers:**
-1. <span style="color:#f77729;"><b>Registers</b></span> — contains instructions that can be read by an appropriate **device driver program at the CPU **
+1. <span style="color:#f77729;"><b>Registers</b></span> — contains instructions that can be read by an appropriate **device driver program at the CPU**
 2. Local memory <span style="color:#f77729;"><b>buffer</b></span>  — contains instructions and  data that will be fetched by the CPU when executing the device driver program, and ultimately loaded onto the RAM. 
 3. A <span style="color:#f77729;"><b>simple</b></span> program to _communicate_ with the device driver
 
