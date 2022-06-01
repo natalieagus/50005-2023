@@ -71,7 +71,7 @@ An API specifies:
 
 3 most common APIs available:
 1. Win32 API for Windows systems written in C++
-2. POSIX API for POSIX-based system (all versions of UNIX); mostly written in C. You can find the functions supported by the API here  [https://pubs.opengroup.org/onlinepubs/9699919799/](https://pubs.opengroup.org/onlinepubs/9699919799/)
+2. POSIX API for POSIX-based system (all versions of UNIX); mostly written in C. You can find the functions supported by the API [here](https://pubs.opengroup.org/onlinepubs/9699919799/)
 3. Java API for programs running on Java Virtual Machine (JVM)
 
 Behind the scenes, the **functions** that make up an API invoke the **actual** system calls on behalf of the application programmer.

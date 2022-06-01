@@ -55,6 +55,9 @@ You should find that the following files are given to you:
 Now go to the `User/` directory and call `make`. You should find these files in the end.
 <img src="/50005/assets/images/lab2/2.png"  class="center_seventy"/>
 
+Do <span style="color:#f7007f;"><b>NOT</b></span> used a shared drive with your Host machine, or a shared external drive with other OS. You will NOT be able to create root files in this case. Clone the above file in /home/<user> directory instead. 
+{:.error}
+
 ## Login as Root User
 
 ### Task 1 
