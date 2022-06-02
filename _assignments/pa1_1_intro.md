@@ -178,12 +178,4 @@ You are to implement:
 * Task 1-4: the <span style="color:#f77729;"><b>fundamental</b></span> functions inside `shell.c` (Task 1-4)
 * Task 5-7: <span style="color:#f77729;"><b>three</b></span> system program: `countline` (Task 5), `summond` (Task 6), and `checkdaemon` (Task 7). 
 
-# Basics: How Shell Works
 
-The shell is expected to always prompt for user input and `execute` the system program whose name matches the command:
-1. The `main()` function in `shell.c` invokes `main_loop()`
-2. The function `main_loop()` continuously <span style="color:#f77729;"><b>loops</b></span> to:
-   * <span style="color:#f77729;"><b>Fetch</b></span> one line of user input from `stdin` using `read_line_stdin()` function
-   * Then, pass the output of `read_line_stdin()` to `tokenize_line_stdin(char *line)` for parsing and tokenising (separated by space) user input command
-   * Then, pass the output of `tokenize_line_stdin(char *line)` as the input to `process_command(char **args)`, where we <span style="color:#f77729;"><b>execute</b></span> the appropriate system program or builtin shell commands.
-Of course you need to code a way to <span style="color:#f77729;"><b>terminate</b></span> the shell, i,e: jumps out of the loop when a user type `exit` onto the terminal. This is done by calling `shell_exit` function that's already implemented for you.
