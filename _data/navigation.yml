@@ -14,7 +14,7 @@ header:
   #   url: /ns_labs/overview
   #   key: ns_labs
   - title: Assignments
-    url: /assignments/overview
+    url: /assignments/pa1_1_intro
     key: assignments
 
 os_notes:
@@ -80,4 +80,10 @@ assignments:
   - title: PA1 - Shell
     children:
       - title: Overview
-        url: /assignments/overview
+        url: /assignments/pa1_1_intro
+      - title: Shell Creation
+        url: /assignments/pa1_2_shell
+      - title: System Program
+        url: /assignments/pa1_3_sysprogs
+      - title: Daemon Processes
+        url: /assignments/pa1_4_daemons
