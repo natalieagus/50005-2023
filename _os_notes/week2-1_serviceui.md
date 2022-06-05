@@ -15,7 +15,7 @@ show_date: false
 
 
 ## Recap
-We learned about the overview of OS role in the past week. The kernel is just one part of an operating system. The entire operating system software itself is a much <span style="color:#f77729;"><b>bigger</b></span> one, and it provides various apps and functionalities to <span style="color:#f77729;"><b>help users use the computer syste</b></span>m. 
+We learned about the overview of OS role in the past week. The kernel is just one part of an operating system. The entire operating system software itself is a much <span style="color:#f77729;"><b>bigger</b></span> one, and it provides various apps and functionalities to <span style="color:#f77729;"><b>help users use the computer system</b></span>. 
 * User programs can make <span style="color:#f77729;"><b>system calls</b></span> whenever it needs to <span style="color:#f77729;"><b>elevate</b></span> its privileges and run in kernel mode to access the hardware or I/O devices. 
 
 In other words, <span style="color:#f7007f;"><b>the OS provides services for user programs</b></span>. The goal of making an operating system us to allow users to use the computer system in an easier and more efficient manner. 
