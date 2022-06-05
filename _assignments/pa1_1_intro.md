@@ -26,10 +26,42 @@ You may complete this assignment in <span style="color:#f7007f;"><b>pairs</b></s
 {:.info}
 
 ## Starter Code
+You need to run this assignment in your POSIX compliant OS.
+{:.error}
 
-Download the starter code into your preferred working directory:
+Download the starter code: 
 `git clone https://github.com/natalieagus/pa1.git`
 
+This will result in a directory called `pa1`. 
+
+### Create a Github Remote Repo
+Open your web browser in your host OS and create a <span style="color:#f7007f;"><b>PRIVATE repository</b></span> called `pa_1`. Make sure you create the `master` branch and push to this <span style="color:#f7007f;"><b>master</b></span> branch for this assignment (and not use `main`!).
+
+Then, cd to `/pa1/` that you have downloaded, and <span style="color:#f7007f;"><b>add</b></span> this project to your own <span style="color:#f7007f;"><b>private</b></span> repo:
+
+```bash
+git remote remove origin
+git remote add origin https://github.com/[your_github_username]/pa_1.git
+git push -u origin master
+```
+
+<img src="/50005/assets/images/pa1/16.png"  class="center_seventy"/>
+
+If you only have `main` branch, the third command will fail. You need to create the master branch first and switch there:
+```
+git branch master
+git checkout master
+git push -u origin master
+```
+
+From now on, just stay at `master`. You're free to create other branches but `master` is the branch which we will grade. 
+
+You will be required to make a `commit`{:.error} after each Task in this PA1. This is part of our <span style="color:#f7007f;"><b>grading</b></span> requirement. We want to see that you actually make good practices and perform periodic commits. 
+
+### Add `natalieagus-sutd` as collaborator
+In your pa1 repo, <span style="color:#f77729;"><b>invite</b></span> `natalieagus-sutd` as your collaborator. This is so that your repo can remain private and and we can pull your submissions for grading when it is due.  
+
+### pa1 Files
 You should have the following files:
 ```cpp
 pa1/
@@ -146,58 +178,4 @@ You are to implement:
 * Task 1-4: the <span style="color:#f77729;"><b>fundamental</b></span> functions inside `shell.c` (Task 1-4)
 * Task 5-7: <span style="color:#f77729;"><b>three</b></span> system program: `countline` (Task 5), `summond` (Task 6), and `checkdaemon` (Task 7). 
 
-# Basics: How Shell Works
-
-The shell is expected to always prompt for user input and `execute` the system program whose name matches the command:
-1. The `main()` function in `shell.c` invokes `main_loop()`
-2. The function `main_loop()` continuously <span style="color:#f77729;"><b>loops</b></span> to:
-   * <span style="color:#f77729;"><b>Fetch</b></span> one line of user input from `stdin` using `read_line_stdin()` function
-   * Then, pass the output of `read_line_stdin()` to `tokenize_line_stdin(char *line)` for parsing and tokenising (separated by space) user input command
-   * Then, pass the output of `tokenize_line_stdin(char *line)` as the input to `process_command(char **args)`, where we <span style="color:#f77729;"><b>execute</b></span> the appropriate system program or builtin shell commands.
-Of course you need to code a way to <span style="color:#f77729;"><b>terminate</b></span> the shell, i,e: jumps out of the loop when a user type `exit` onto the terminal. This is done by calling `shell_exit` function that's already implemented for you.
-
-## Task 1
-`TASK 1:`{:.info} Implement `read_line_stdin` in `shell.c`.
-
-Complete the following function:
-```cpp
-/**
-   Read line from stdin, return a pointer to the array containing the command string entered by the user
- */
-char *read_line_stdin(void)
-{
-  size_t buf_size = SHELL_BUFFERSIZE;           // size of the buffer
-  char *line = malloc(sizeof(char) * buf_size); // allocate memory space for the line*
-  /** TASK 1 **/
-  // read one line from stdin using getline()
-  // 1. Check that the char* returned by malloc is not NULL
-  // 2. Fetch an entire line from input stream stdin using getline() function. getline() will store user input onto the memory location allocated in (1)
-  // 3. Return the char*
-  // DO NOT PRINT ANYTHING TO THE OUTPUT
-
-  /***** BEGIN ANSWER HERE *****/
-
-  /*********************/
-
-  return line;
-}
-```
-
-You need to use `malloc` to ensure that `char *line` is still in the memory even after `read_line_stdin` returns. Read Part 6 of [C for Babies](https://docs.google.com/document/d/1hcMLXwKqblB9UtalLnbPjIHmxrdAnZaK7Haadhql9jo/edit#) if you don't know what `malloc` is. 
-
-### Test Task 1
-Comment the `main()` function in `shell.c` and replace with the following:
-```cpp
-int main(int argc, char **argv)
-{
- 
- char* line = read_line_stdin();
- printf("The fetched line is : %s \n", line);
- 
- return 0;
-}
-```
-Recompile and run. You should see that what you typed in the console will be printed back after you pressed <span style="color:#f7007f;"><b>enter</b></span>. 
-
-<img src="/50005/assets/images/pa1/3.png"  class="center_seventy"/>
 

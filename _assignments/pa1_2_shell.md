@@ -28,7 +28,7 @@ Of course you need to code a way to <span style="color:#f77729;"><b>terminate</b
 DO NOT print anything else in the console as part of your answer.
 {:.error}
 
-# Task 1
+# Task 1 (1%)
 `TASK 1:`{:.info} Implement `read_line_stdin` in `shell.c`.
 
 Complete the following function:
@@ -73,7 +73,7 @@ Recompile and run. You should see that what you typed in the console will be pri
 
 <img src="/50005/assets/images/pa1/3.png"  class="center_seventy"/>
 
-# Task 2
+# Task 2 (2%)
 `TASK 2:`{:.info} Implement `tokenize_line_stdin` in `shell.c`.
 
 Complete the following function:
@@ -145,7 +145,16 @@ Recompile and run. You should see that what you typed in the console will be pri
 
 <img src="/50005/assets/images/pa1/4.png"  class="center_seventy"/>
 
-# Task 3 
+### Commit Task 2
+Save your changes and commit the changes:
+
+```
+git add ./bin/source/shell.c    
+git commit -m "feat: Complete Task 2"
+```
+
+
+# Task 3 (1%)
 `TASK 3:`{:.info} Implement `process_command` in `shell.c`. 
 
 Complete the following function in `shell.c`:
@@ -230,7 +239,15 @@ Recompile and run. You should see that what you typed in the console will be pri
 
 <img src="/50005/assets/images/pa1/5.png"  class="center_seventy"/>
 
-## Task 4
+### Commit Task 3
+Save your changes and commit the changes:
+
+```
+git add ./bin/source/shell.c    
+git commit -m "feat: Complete Task 3"
+```
+
+## Task 4 (2%)
 `TASK 4:`{:.info} Implement `main_loop` in `shell.c`. 
 
 Complete the following function in `shell.c`:
@@ -292,6 +309,14 @@ You may use the original `main()` function given in the starter code to test. Yo
 The shell should <span style="color:#f77729;"><b>never</b></span> crash no matter what input you give (empty lines, commands without arguments, etc). It should only terminate when you type `exit`.
 {:.error}
 
+
+### Commit Task 4
+Save your changes and commit the changes:
+
+```
+git add ./bin/source/shell.c    
+git commit -m "feat: Complete Task 4"
+```
 
 
 
