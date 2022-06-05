@@ -121,7 +121,7 @@ It is easy to perhaps <span style="color:#f7007f;"><b>misunderstand</b></span> t
 
 The kernel is <span style="color:#f7007f;"><b>not</b></span> a process in itself (albeit there are kernel _threads_, which runs in kernel mode from the beginning until the end, but this is _highly specific, e.g: in Solaris OS_). 
 
-* For instance, I/O handlers are not processes. They do not have <span style="color:#f77729;"><b>context</b></span> (state of execution in registers, stack data, heap, etc) like normal processes do. * They are simply a piece of **instructions** that is written to **handle** certain events.
+* For instance, I/O handlers are not processes. They do not have <span style="color:#f77729;"><b>context</b></span> (state of execution in registers, stack data, heap, etc) like normal processes do. They are simply a piece of **instructions** that is written to **handle** certain events.
 
 
 You can think of a the kernel instead as made up of just :
