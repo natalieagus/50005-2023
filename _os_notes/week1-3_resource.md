@@ -178,7 +178,7 @@ In the example of Process 1 and 2 above, assume a scenario whereby there's a per
 * In a non-preemptive Kernel: If Process 1 does not voluntarily `yield` while it is still in the middle of its system call, then Process 2 will not be able to forcibly interrupt Process 1. 
 * In a preemptive Kernel: When Process 2 is ready, and has a higher priority than Process 1, then the scheduler may **forcibly** suspend Process 1. 
 
-A kernel can be reentrant but not preemptive: That is if each process voluntarily `yield` after some time while in the Kernel Mode, thus allowing other processes to progress and enter Kernel Mode as well. However, a kernel <span style="color:#f7007f;"><b>cannot</b></span> be preemptive and not reentrant (it doesn't make sense!). 
+A kernel can be reentrant but not preemptive: That is if each process voluntarily `yield` after some time while in the Kernel Mode, thus allowing other processes to progress and enter Kernel Mode as well. However, a kernel <span style="color:#f7007f;"><b>should not</b></span> be preemptive and not reentrant (it doesn't make sense!). 
 
 Fun fact: Linux Kernel is reentrant and preemptive.
 {:.info}
