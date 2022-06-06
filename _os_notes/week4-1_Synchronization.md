@@ -20,6 +20,9 @@ Consider the basic producer-consumer problem, where two <span style="color:#f777
 Asynchronous and concurrent: both processes or threads make progress, but we cannot assume anything about their relative speed of execution.
 {:.warning}
 
+<img src="/50005/assets/images/week4/1.png"  class="center_seventy"/>
+
+
 ### Real Life Examples
 In real life situations, a producer process produces information that is consumed by a consumer process. For example:
 * A <span style="color:#f77729;"><b>compiler</b></span> (producer) producing assembly code that is consumed by an <span style="color:#f77729;"><b>assembler</b></span> (consumer).
