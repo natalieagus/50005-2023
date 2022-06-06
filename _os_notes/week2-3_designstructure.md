@@ -195,8 +195,10 @@ For instance, if a user program wishes to access a file, it must interact with t
 <img src="/50005/assets/images/week2/12.png"  class="center_fifty"/>
 
 
-<span style="color:#f77729;"><b>Pros</b></span>: extending the operating system easier. All new services are added to user space and consequently do not require modification of the kernel. 
+<span style="color:#f77729;"><b>Pros</b></span>: extending the operating system easier. All new services are added to user space and consequently do not require modification of the kernel.
+
 <span style="color:#f77729;"><b>Cons</b></span>: suffer in performance  increased system-function overhead due to frequent requirement in performing context switch. 
+
 <span style="color:#f77729;"><b>Example</b></span>: Mach, Windows NT (first release was a microkernel).
 
 

@@ -92,7 +92,7 @@ After the I/O request is serviced, the handler:
 
 Two things may happen from here after we have stored the new input to the RAM: 
 1. If there’s no application that’s currently waiting for this input, then it might be temporarily stored somewhere in kernel space first.
-2. If there is **any application** that is waiting (blocked, like Python's `input()`) for this input (e.g: mouse click), that process will be labelled as <span style="color:#f77729;"><b>ready</b></span>. For example, if the application is blocked  upon waiting for this new input, then the_ system call returns. **We will learn more about this in Week 3.**
+2. If there is **any application** that is waiting (blocked, like Python's `input()`) for this input (e.g: mouse click), that process will be labelled as <span style="color:#f77729;"><b>ready</b></span>. For example, if the application is blocked  upon waiting for this new input, then the system call returns. **We will learn more about this in Week 3.**
 {:.info}
 
 
