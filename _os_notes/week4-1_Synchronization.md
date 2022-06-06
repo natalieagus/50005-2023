@@ -167,10 +167,4 @@ The protocol to approach a CS in general causes the process to:
 The rest of the program that is not part of the critical section  is called the <span style="color:#f77729;"><b>remainder</b></span> section.
 {:.warning}
 
-In the next few sections, we discuss several known solutions to CS problems. They are generally divided into these categories:
-* <span style="color:#f77729;"><b>Software Mutex </b></span>Algorithm (purely software only, possible only under restricted conditions, busy waits)
-* <span style="color:#f77729;"><b>Hardware</b></span> Supported <span style="color:#f77729;"><b>Spinlocks</b></span> (hardware supported, only 1 process in the CS at a time, busy waits)
-* <span style="color:#f77729;"><b>Semaphores</b></span> (does not busy wait, generalization of mutex locks -- able to protect two or more identical shared resources) 
-* <span style="color:#f77729;"><b>Conditional Variables</b></span> (does not busy wait, wakes up on condition) 
-
 
