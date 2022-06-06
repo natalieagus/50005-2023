@@ -46,6 +46,11 @@ os_notes:
         url: /os_notes/week3_comms
       - title: Threads
         url: /os_notes/week3_threads
+  - title: Synchronisation
+    children:
+      - title: The Race Condition
+        url: /os_notes/week4_synchronization
+
 ns_notes:
   - title: Week 1
     children:
