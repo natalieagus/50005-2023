@@ -100,7 +100,7 @@ The simple C program above is executed and when the execution system call `fork(
 Both have the <span style="color:#f77729;"><b>same</b></span> copy of the text (code) and resources (any opened files, etc). The parent process is <span style="color:#f77729;"><b>cloned</b></span>, resulting in the child process. They're at a <span style="color:#f77729;"><b>different</b></span> address space, executed concurrently by the system. 
 
 ### fork return value
-<code>fork()</code>returns 0 in the child process while in the parent process it returns the pid of the child (>0).</strong> 
+<code>fork()</code>returns 0 in the child process while in the parent process it returns the pid of the child (>0).
 {:.warning}
 
 We can write just <span style="color:#f77729;"><b>one instruction</b></span> for <span style="color:#f77729;"><b>both parent and child process</b></span> but each will take a different <span style="color:#f77729;"><b>branch</b></span> of the `if` clause. In the example code above:

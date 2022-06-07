@@ -50,6 +50,10 @@ os_notes:
     children:
       - title: The Race Condition
         url: /os_notes/week4_synchronization
+      - title: Solutions
+        url: /os_notes/week4_solutions
+      - title: Java Sync
+        url: /os_notes/week4_javasync
 
 ns_notes:
   - title: Week 1
