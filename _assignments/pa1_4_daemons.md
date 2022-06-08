@@ -224,7 +224,13 @@ To <span style="color:#f77729;"><b>close</b></span> all opened file descriptors,
 Finally, return to the `main` function, of which the next function `daemon_work()` is called. Our simple daemon does nothing but write some fake logs to `logfile.txt` inside `/pa1`. 
 
 ### Syslog Facility
-In practice, there exist daemon error-logging facilities. The BSD syslog facility has been widely used since `4.2BSD`. You can print these logs using `syslog()`. To try, replace the main code with the following: 
+In practice, there exist daemon error-logging facilities. The BSD syslog facility has been widely used since `4.2BSD`. You can print these logs using `syslog()`. It has already been given to you in the `main` function:
+```cpp
+    /* Open the log file */
+    openlog("summond", LOG_PID, LOG_DAEMON);
+    syslog(LOG_NOTICE, "Daemon started.");
+    closelog();
+```
 
 Depending on your machine, your syslog facility may vary. In macOS, the syslog facility is the `Console.app`. You can simply search the message or the process name that is <span style="color:#f77729;"><b>summond</b></span>. In Ubuntu, you can read `/var/log/syslog` and search the message containing `summond` with `grep`:
 
