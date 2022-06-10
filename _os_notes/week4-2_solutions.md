@@ -45,7 +45,7 @@ do{
    while (flag[j] && turn == j); // this is a while LINE
    // CRITICAL SECTION HERE
    // ...
-   flag[j] = false;
+   flag[i] = false;
    // REMAINDER SECTION HERE
    // ...
 }while(true)
