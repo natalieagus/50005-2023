@@ -92,9 +92,10 @@ char **tokenize_line_stdin(char *line)
   char *token;
 
   /** TASK 2 **/
-  // 1. Check that char ** that is returend by malloc is not NULL
+  // 1. Check that char ** that is returned by malloc is not NULL
   // 2. Tokenize the input *line using strtok() function
   // 3. Store the address to first letter of each word in the command in tokens
+  // 4. Add NULL termination in tokens so we know how many "valid" addresses there are in tokens
   // DO NOT PRINT ANYTHING TO THE OUTPUT
   /***** BEGIN ANSWER HERE *****/
 
