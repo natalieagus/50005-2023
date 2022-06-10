@@ -55,8 +55,8 @@ The algorithm above is the solution for process `Pi`.
 * In the `while`-loop, `Pi` busy waits (means <span style="color:#f77729;"><b>try</b></span> and keep <span style="color:#f77729;"><b>retrying</b></span> until succeed, thus wasting the quanta given to the process), 
 * `Pi` will be <span style="color:#f7007f;"><b>stuck</b></span> at the while-line (notice it's NOT a while-loop, there’s a semicolon at the end), for as long as `flag[j] == true` <span style="color:#f7007f;"><b>and</b></span> `turn == j`. 
 
-## Prove of Correctness
-The prove that this solution is correct, we need to show that:
+## Proof of Correctness
+The proof that this solution is correct, we need to show that:
 * <span style="color:#f77729;"><b>Mutual exclusion</b></span> is preserved.
 * The <span style="color:#f77729;"><b>progress</b></span> requirement is satisfied.
 * The <span style="color:#f77729;"><b>bounded-waiting</b></span> requirement is met.
