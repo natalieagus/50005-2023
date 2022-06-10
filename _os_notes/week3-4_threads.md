@@ -287,6 +287,7 @@ Maps <span style="color:#f77729;"><b>many</b></span> user-level threads to <span
 <span style="color:#f77729;"><b>Advantage</b></span>:
 * Thread management is done by the thread library in user space, so it is more <span style="color:#f77729;"><b>efficient</b></span> as opposed to kernel thread management. 
 * Developers may create as many threads as they want
+* Entire thread context-switching is maintained by the user-level thread library <span style="color:#f77729;"><b>entirely</b></span>
 
 <span style="color:#f77729;"><b>Disadvantage</b></span>:
 * <span style="color:#f77729;"><b>The entire process will block </b></span>if a thread makes a blocking system call since kernel isn’t aware of the presence of these user threads
@@ -296,7 +297,7 @@ Maps <span style="color:#f77729;"><b>many</b></span> user-level threads to <span
 
 ### One to One
 
-Maps <span style="color:#f77729;"><b>each</b></span> user thread to a kernel thread.
+Maps <span style="color:#f77729;"><b>each</b></span> user thread to a kernel thread. You can simply think of this as process threads to be <span style="color:#f77729;"><b>managed</b></span> entirely by the Kernel. 
 {:.warning}
 
 
@@ -307,6 +308,7 @@ Maps <span style="color:#f77729;"><b>each</b></span> user thread to a kernel thr
 <span style="color:#f77729;"><b>Disadvantage</b></span>:
 * Creating a user thread requires creating the corresponding kernel thread (a lot of <span style="color:#f77729;"><b>overhead</b></span>, system call must be made)
 * <span style="color:#f77729;"><b>Limited</b></span> amount of threads can be created to not burden the system
+* <span style="color:#f77729;"><b>May</b></span> have to involve the kernel when there is a context switch between the threads (overhead)
 
 
 The modern Linux implementation of pthreads uses a 1:1 mapping between pthread threads and kernel threads, so you will always get a kernel-level thread with `pthread_create().`
