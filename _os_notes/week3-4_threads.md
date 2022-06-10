@@ -330,7 +330,7 @@ A variation of many-to-many mapping, the <span style="color:#f77729;"><b>two-lev
 <img src="/50005/assets/images/week3/22.png"  class="center_seventy"/>
 
 
-In some systems, especially in many-to-many or two-level models, there is some way for kernel threads to communicate with kernel threads via scheduler activation, i.e: a mechanism whereby kernel can allocate more threads to the process <span style="color:#f7007f;"><b>on demand</b></span>. 
+In some systems, especially in many-to-many or two-level models, there is some way for user threads to communicate with kernel threads via scheduler activation, i.e: a mechanism whereby kernel can allocate more threads to the process <span style="color:#f7007f;"><b>on demand</b></span>. 
 {:.warning}
 
 
@@ -375,7 +375,7 @@ Given that  $\alpha$ is the <span style="color:#f77729;"><b>fraction</b></span> 
 $$\frac{1}{\alpha + \frac{1-\alpha}{N}}$$
 
 
-Ask yourself: what is the maximum speedup we can gain when $\alpha=30%$ and $N$ is $\infty$?
+Ask yourself: what is the maximum speedup we can gain when $\alpha=30$% and $N$ is $\infty$?
 {:.info}
 
 
