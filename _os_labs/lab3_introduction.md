@@ -246,7 +246,7 @@ The algorithm goes as follows:
    *  Pass these new data structures to the `safety_check` algorithm, which will return `True` (safe) or `False` (unsafe)
 
 4. If the outcome of Step(3) is:
-   * `True`: <span style="color:#f77729;"><b>UPDATE</b></span> all system states concerning Process i <span style="color:#f7007f;"><b>(Request Granted)</b></span>:
+   * `True`: <span style="color:#f77729;"><b>UPDATE</b></span> all system states concerning Process i <span style="color:#f7007f;"><b>(request granted)</b></span>:
      * `available = available - request`
      * `need[i] = need[i] - request`
      * `allocation[i] = allocation[i] + request`
