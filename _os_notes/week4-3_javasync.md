@@ -16,11 +16,11 @@ show_date: false
 ## Java Object Mutex Lock
 The Java programming language provides two basic synchronization idioms: synchronized <span style="color:#f77729;"><b>methods</b></span> and synchronized <span style="color:#f77729;"><b>statements</b></span>. 
 
-Each java <span style="color:#f77729;"><b>object</b></span> has an associated binary <span style="color:#f77729;"><b>lock</b></span>:
+Each Java <span style="color:#f77729;"><b>object</b></span> has an associated binary <span style="color:#f77729;"><b>lock</b></span>:
 * Lock is `acquired` by invoking a synchronized method/block
 * Lock is `released` by exiting a synchronized method/block
 
-With this lock, mutual exclusion is guaranteed for this object’s <span style="color:#f77729;"><b>method</b></span>: at most only one thread can be inside it at a time. 
+With this lock, mutex is guaranteed for this object’s <span style="color:#f77729;"><b>method</b></span>; at most only one thread can be inside it at any time. 
 {:.error}
 
 Threads <span style="color:#f77729;"><b>waiting</b></span> to acquire the object lock are waiting in the <span style="color:#f7007f;"><b>entry</b></span> set, status is still `blocked` and not runnable until it acquires the lock. Once the thread acquires the lock, it becomes `runnable`. 
@@ -89,15 +89,15 @@ public synchronized void doWork(int id)
    }
    // CRITICAL SECTION
    // ... 
-   turn = (turn + 1) % 5;
+   turn = (turn + 1) % N;
    notify();
 }
 ```
-Suppose `N` threads are running this `doWork` function <span style="color:#f77729;"><b>concurrently</b></span> with argument `id` varies between `0` to `N-1`, i.e: 0 for thread 0, 1 for thread 1, and so on. 
+Suppose `N` threads are running this `doWork` function <span style="color:#f77729;"><b>concurrently</b></span> with argument `id` varying between `0` to `N-1`, i.e: 0 for thread 0, 1 for thread 1, and so on. 
 
 In this example, the condition in <span style="color:#f77729;"><b>question</b></span> is that ONLY thread whose `id == turn` can execute the CS.
 
-When calling `wait()`,  the lock for mutual exclusion <span style="color:#f77729;"><b>must</b></span> be held by the caller (same as the condition variable in this section above). That's why the `wait` to the condition variable is made inside a `synchronized` method. If not, disaster might happen, for example the following execution sequence:
+When calling `wait()`,  the lock for mutual exclusion <span style="color:#f77729;"><b>must</b></span> be held by the caller (same as the conditional variable in the section above). That's why the `wait` to the conditional variable is made inside a `synchronized` method. If not, disaster might happen, for example the following execution sequence:
 * At `t=0`, 
   * Thread Y check that `turn != id_y`, and then Y is suspended. 
 * At `t=n`, 
@@ -110,7 +110,7 @@ When calling `wait()`,  the lock for mutual exclusion <span style="color:#f77729
 We can say that thread Y <span style="color:#f7007f;"><b>misses</b></span> the `notify()` from X and might `wait()` forever. We need to make sure that BETWEEN the check of `turn` and the call of `wait()`, no OTHER THREAD can change the value of `turn`. 
 {:.error}
 
-Since we MUST use invoke `wait()` while holding a lock, it is important for `wait()` to <span style="color:#f77729;"><b>release</b></span> the object lock eventually (when the thread is waiting).
+Since we MUST invoke `wait()` while holding a lock, it is important for `wait()` to <span style="color:#f77729;"><b>release</b></span> the object lock eventually (when the thread is waiting).
 If you call another method to `sleep` such as `Thread.yield() `instead of `wait()`, then it <span style="color:#f7007f;"><b>will not</b></span> release the lock while waiting. This is <span style="color:#f77729;"><b>dangerous</b></span> as it will result in indefinite waiting or <span style="color:#f7007f;"><b>deadlock</b></span>.
 
 Upon return from `wait()`, the Java thread would have <span style="color:#f77729;"><b>re-acquired</b></span> the mutex lock <span style="color:#f77729;"><b>automatically</b></span>. 
@@ -137,8 +137,8 @@ It is  <span style="color:#f77729;"><b>important</b></span> to put the waiting o
 1. <span style="color:#f77729;"><b>Spurious</b></span> wakeup: a thread might get woken up even though no thread signalled the condition (`POSIX` does this for performance reasons)
 2. <span style="color:#f77729;"><b>Extraneous</b></span> wakeup: you woke up the correct amount of threads  but some hasn’t been scheduled yet, so some other threads do the job first. <span style="color:#f77729;"><b>For example:</b></span> 
    * There are <span style="color:#f77729;"><b>two</b></span> jobs in a queue, and there’s two threads: thread A and B that got woken up.
-   * Thread A gets <span style="color:#f77729;"><b>scheduled</b></span>, and finishes the first job. Finds the second job in the queue, and <span style="color:#f77729;"><b>finishes</b></span> it as well.
-   * Thread B finally gets scheduled, finding the queue empty, crashed. 
+   * Thread A gets <span style="color:#f77729;"><b>scheduled</b></span>, and finishes the first job. It then finds the second job in the queue, and <span style="color:#f77729;"><b>finishes</b></span> it as well.
+   * Thread B finally gets scheduled and, upon finding the queue empty, crashes. 
 
 # Reentrant Lock
 A lock is re-entrant if it is <span style="color:#f77729;"><b>safe</b></span> to be acquired <span style="color:#f77729;"><b>again</b></span> by a caller that’s <span style="color:#f77729;"><b>already holding the lock</b></span>. You can create a `ReentrantLock()` object explicitly to allow reentrancy in your critical section. 
@@ -212,35 +212,35 @@ public void doSomething(int argument){
 A thread that calls `lock()` for the first time will <span style="color:#f77729;"><b>succeed</b></span>, but the second call to lock() will be blocked since the variable `isLocked == true`. 
 
 ## Releasing Locks
-One final point to note is that some implementations require you to <span style="color:#f77729;"><b>release</b></span> the lock `N` times after <span style="color:#f77729;"><b>acquiring</b></span> it for `N` times. You need to carefully <span style="color:#f77729;"><b>read documentations</b></span> to see if the locks are auto-released or that you need to explicitly release a lock `N` times to allow others to successfully acquire it again.
+One final point to note is that some implementations require you to <span style="color:#f77729;"><b>release</b></span> the lock `N` times after <span style="color:#f77729;"><b>acquiring</b></span> it `N` times. You need to carefully <span style="color:#f77729;"><b>read the documentation</b></span> to see if the locks are auto released or if you need to explicitly release a lock `N` times to allow others to successfully acquire it again.
 
 ## Fine-Grained Condition Synchronisation
-If we want to perform fine grained condition synchronization, we can use Java <span style="color:#f77729;"><b>named</b></span> variables and reentrant lock. Named condition variables are created explicitly by first creating a `ReentrantLock()`. The template is as follows:
+If we want to perform fine grained condition synchronization, we can use Java's <span style="color:#f77729;"><b>named</b></span> conditional variables and a reentrant lock. Named conditional variables are created explicitly by first creating a `ReentrantLock()`. The template is as follows:
 
 ```java
-Lock lock = new ReentrantLock()
-Condition lockCondition = lock.newCondition() // call this multiple times if you have more than 1 condition
+Lock lock = new ReentrantLock();
+Condition lockCondition = lock.newCondition(); // call this multiple times if you have more than 1 condition
 
 // Step 1: LOCK
-lock.lock() // remember, need to lock before calling await()
+lock.lock(); // remember, need to lock before calling await()
 
 // Step 2a: WAIT
 // To wait for specific condition: 
-lockCondition.await()
+lockCondition.await();
 
 // OR Step 2b: SIGNAL
 // To signal specific thread waiting for this condition: 
-lockCondition.signal()
+lockCondition.signal();
 // ... 
 // ...
 
 // Step 3: UNLOCK
-lock.unlock()
+lock.unlock();
 ```
 
-At first, we associate a condition variable with a lock: `lock.newCondition()`. This <span style="color:#f77729;"><b>forces</b></span> us to always hold a lock when a condition is being signaled or waited for. 
+At first, we associate a conditional variable with a lock: `lock.newCondition()`. This <span style="color:#f77729;"><b>forces</b></span> us to always hold a lock when a condition is being signaled or waited for. 
 
-We can modify the example above of N threads which can only progress if `id == turn` to use <span style="color:#f77729;"><b>condition variables</b></span> as follows:
+We can modify the example above of N threads which can only progress if `id == turn` to use <span style="color:#f77729;"><b>conditional variables</b></span> as follows:
 ```java
 // Create arrays of condition
 Lock lock = new ReentrantLock();
@@ -253,7 +253,7 @@ The Thread function is changed to incorporate a wait to each `condVars[id]`:
 // the function
 public void doWork(int id)
 {
-   lock.lock()
+   lock.lock();
    while (turn != myNumber)
    {
        try
@@ -263,7 +263,7 @@ public void doWork(int id)
        catch (InterruptedException e){}
    }
    // CS
-   // assume there's some where to be done here...
+   // assume there's some work to be done here...
    turn = (turn + 1) % 5;
    condVars[turn].signal(); 
    lock.unlock();
