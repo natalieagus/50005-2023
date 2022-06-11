@@ -275,7 +275,7 @@ semaphore mutex_p = 1;
 semaphore mutex_c = 1;
 ```
 
-Produce program:
+Producer program:
 ```cpp
 void send (char c){
    wait(space);
@@ -305,7 +305,7 @@ char rcv(){
 ```
 
 # Conditional Variables
-Condition variables allow a process or thread o wait for completion of a given <span style="color:#f7007f;"><b>event</b></span> on a particular object (some shared state, data structure, anything).  It is used to <span style="color:#f77729;"><b>communicate</b></span> between processes or threads when certain conditions become `true`.
+Conditional variables allow a process or thread to wait for completion of a given <span style="color:#f7007f;"><b>event</b></span> on a particular object (some shared state, data structure, anything).  It is used to <span style="color:#f77729;"><b>communicate</b></span> between processes or threads when certain conditions become `true`.
 > The "event"  is the *change* in state of some condition that thread is interested in. Until that is satisfied, the process waits to be awakened later by a signalling process/thread (that actually <span style="color:#f77729;"><b>changes</b></span> the condition).
 
 Conditional variables are and <span style="color:#f77729;"><b>should</b></span> always be implemented with <span style="color:#f77729;"><b>mutex</b></span> locks. When implemented properly, they provide <span style="color:#f7007f;"><b>condition synchronization</b></span>. 
@@ -326,7 +326,7 @@ Now consider Process/Thread 1 instructions:
 pthread_mutex_lock(&mutex);
 // CRITICAL SECTION
 // ...
-cond_x = true
+cond_x = true;
 pthread_cond_signal(&cond);
 pthread_mutex_unlock(&mutex);
 ```
@@ -359,7 +359,7 @@ This is crucial because it will re-check the state of `cond_x` again before cont
 {:.error}
   
 ## Final Thoughts
-Condition variable is effectively a <span style="color:#f77729;"><b>signalling</b></span> mechanism under the context of a given mutex lock. With mutex lock alone, we cannot easily block a process out of its CS based on any <span style="color:#f77729;"><b>arbitrary condition</b></span> even when the mutex is <span style="color:#f77729;"><b>available</b></span>.
+A conditional variable is effectively a <span style="color:#f77729;"><b>signalling</b></span> mechanism under the context of a given mutex lock. With mutex lock alone, we cannot easily block a process out of its CS based on any <span style="color:#f77729;"><b>arbitrary condition</b></span> even when the mutex is <span style="color:#f77729;"><b>available</b></span>.
 
 # Appendix: Sample C Code
 ## Mutex
@@ -598,7 +598,7 @@ Paste the two functions above before `main()`. After you compile and run the cod
 <img src="/50005/assets/images/week4/2.png"  class="center_seventy"/>
 
 [^1]: 
-An operation acting on shared memory is atomic  if it completes in a single step relative to other threads. For example, when an atomic store is performed on a shared variable, no other thread/process can observe the modification half-complete.  
+	An operation acting on shared memory is atomic  if it completes in a single step relative to other threads. For example, when an atomic store is performed on a shared variable, no other thread/process can observe the modification half-complete.  
 
 [^2]: 
-You know this as a non-preemptive  approach, and some kernels are non-preemptive (non-interruptible) and therefore will not face the race condition in the kernel level itself.
+	You know this as a non-preemptive  approach, and some kernels are non-preemptive (non-interruptible) and therefore will not face the race condition in the kernel level itself.
