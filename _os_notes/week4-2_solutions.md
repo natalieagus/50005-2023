@@ -45,7 +45,7 @@ do{
    while (flag[j] && turn == j); // this is a while LINE
    // CRITICAL SECTION HERE
    // ...
-   flag[j] = false;
+   flag[i] = false;
    // REMAINDER SECTION HERE
    // ...
 }while(true)
@@ -56,7 +56,7 @@ The algorithm above is the solution for process `Pi`.
 * `Pi` will be <span style="color:#f7007f;"><b>stuck</b></span> at the while-line (notice it's NOT a while-loop, there’s a semicolon at the end), for as long as `flag[j] == true` <span style="color:#f7007f;"><b>and</b></span> `turn == j`. 
 
 ## Proof of Correctness
-The proof that this solution is correct, we need to show that:
+To prove that this solution is correct, we need to show that:
 * <span style="color:#f77729;"><b>Mutual exclusion</b></span> is preserved.
 * The <span style="color:#f77729;"><b>progress</b></span> requirement is satisfied.
 * The <span style="color:#f77729;"><b>bounded-waiting</b></span> requirement is met.
@@ -72,7 +72,7 @@ Now two different scenarios might happen.
 ### Scenario 1: Proceed to CS
 `Pi`might break from the `while`-loop under two possible conditions.
 
-<span style="color:#f77729;"><b>Conditon 1:</b></span> `flag[j] == false`, meaning that the other `Pj`` is <span style="color:#f7007f;"><b>not ready</b></span> to enter the CS and is <span style="color:#f7007f;"><b>also not in the critical section</b></span>. This ensures <span style="color:#f77729;"><b>mutex</b></span>.
+<span style="color:#f77729;"><b>Conditon 1:</b></span> `flag[j] == false`, meaning that the other `Pj` is <span style="color:#f7007f;"><b>not ready</b></span> to enter the CS and is <span style="color:#f7007f;"><b>also not in the critical section</b></span>. This ensures <span style="color:#f77729;"><b>mutex</b></span>.
 
 <span style="color:#f77729;"><b>Condition 2:</b></span> OR, IF `flag[j] == true` but `turn == i`. This means the other process `Pj` is also <span style="color:#f77729;"><b>about</b></span> to enter the critical section. No process is in the Critical Section, but it is `Pi`'s turn, so `Pi` gets to enter the CS first (ensuring <span style="color:#f77729;"><b>progress</b></span>). 
 
@@ -152,7 +152,7 @@ static pthread_spinlock_t spinlock;
 pthread_spin_init(&spinlock,0);
 pthread_spin_lock(&spinlock); // no context switch, no system call, busy waits if not available
 // CRITICAL SECTION ...
-pthread_spin_unlock(&spinlock)
+pthread_spin_unlock(&spinlock);
 // REMAINDER SECTION ...
 ```
 
