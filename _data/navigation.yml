@@ -78,6 +78,12 @@ os_labs:
         url: /os_labs/lab2_vulnerableprog
       - title: Bug Fix
         url: /os_labs/lab2_fix
+  - title: Lab 3
+    children:
+      - title: Banker's Algorithm
+        url: /os_labs/lab3_intro
+      - title: Submission Procedure
+        url: /os_labs/lab3_submission
 
 ns_labs:
   - title: Lab 1
