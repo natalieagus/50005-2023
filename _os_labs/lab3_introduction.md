@@ -463,7 +463,7 @@ Run the Banker algorithm with `q3`:
 python3.10 banker.py test_files/q3.txt    
 ```
 
-At first, P0 is making the request `[1,0,3] and it is granted<span style="color:#f77729;"><b>granted</b></span> as shown in the `allocation` matrix:
+At first, P0 is making the request `[1,0,3] and it is <span style="color:#f77729;"><b>granted</b></span> as shown in the `allocation` matrix:
 ```
 Customer 0 requesting
 [1, 0, 3]
