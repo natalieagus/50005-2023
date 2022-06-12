@@ -42,6 +42,9 @@ sudo apt update
 sudo apt install zip
 ```
 
+Once you have submitted to the bot, <span style="color:#f7007f;"><b>show your submission chat history with the bot to the UTA</b></span> (not instructor, but UTA). They will note that you have <span style="color:#f77729;"><b>completed the lab in class</b></span>. You are supposed to complete this DURING the lab, and as such we would like to note that you have submitted on time. Of course we will check your submission time via the bot, but it will be so much better to just manually inform the UTA that you have submitted `lab3` to our bot.  
+{:.error} 
+
 # Appendix 
 ### How to migrate the .zip file?
 Working on a VM and don't know how to migrate your .zip file out to your host OS? You can choose the <span style="color:#f77729;"><b>hard way</b></span> like login to your email account in your VM and then email yourself the zipfile. Or, login to Telegram in your VM. 
