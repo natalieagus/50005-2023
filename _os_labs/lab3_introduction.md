@@ -439,7 +439,7 @@ The algorithm goes as follows:
 
 2. Find an index `i` such that:
    * `finish[i] == False` <span style="color:#f7007f;"><b>and</b></span>
-   * `need[i][j] < work[j]` for <span style="color:#f7007f;"><b>all</b></span> `j<M`. 
+   * `need[i][j] <= work[j]` for <span style="color:#f7007f;"><b>all</b></span> `j<M`. 
 
 3. If such index `i` from Step 2 exists do the following, else go to Step 4.
    * Update: `work[j] = work[j] + allocation[i][j]` for <span style="color:#f7007f;"><b>all</b></span> `j<M`.  
