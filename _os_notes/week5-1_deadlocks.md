@@ -1,7 +1,7 @@
 ---
-title: Deadlocks
-permalink: /os_notes/week5_deadlocks
-key: week5_deadlocks
+title: Deadlock
+permalink: /os_notes/week5_deadlock
+key: week5_deadlock
 layout: article
 nav_key: os_notes
 sidebar:
