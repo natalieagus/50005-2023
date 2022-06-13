@@ -162,7 +162,8 @@ while(true){
 The protocol to approach a CS in general causes the process to:
 * <span style="color:#f77729;"><b>Request</b></span> for permission to enter the section (entry section).
 * <span style="color:#f77729;"><b>Execute</b></span> the critical section when the request is granted
-* There may exist an exit section 
+* <span style="color:#f77729;"><b>Exit </b></span> the CS solution
+* There may exist an *remainder* section 
 
 The rest of the program that is not part of the critical section  is called the <span style="color:#f77729;"><b>remainder</b></span> section.
 {:.warning}
