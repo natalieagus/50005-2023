@@ -91,8 +91,8 @@ This satisfies <span style="color:#f77729;"><b>mutual exclusion</b></span>: `fla
 > You might want to <span style="color:#f77729;"><b>interleave</b></span> the execution of instructions between `Pi` and `Pj`, and convince yourself that this solution is indeed a legitimate solution to the CS problem. Try to also modify some parts: not to use `turn`, set `turn` for `Pi` as itself (`i`) instead of `j`, not to use `flag`, etc and convince yourself whether the 3 <span style="color:#f77729;"><b>correctness</b></span> property for the original Peterson's algorithm still apply. 
 
 ## Why is Atomic LD/ST and Sequential Consistency is Required?
-<span style="color:#f7007f;"><b>WARNING</b></span>. This section is not required in our syllabus. It's written to satisfy some curiosity that may arise due to the specific requirements of Peterson's solution: atomic LD/ST, sequential coherency, and used in single-core CPU. 
-{:.info}
+<span style="color:#f7007f;"><b>WARNING</b></span>. This section is not required in our syllabus. It's written to satisfy some curiosity that may arise due to the specific requirements of Peterson's solution: atomic LD/ST, sequential coherency, and used in single-core CPU. Only proceed to read these sections if you are prepared to feel 🤯. Otherwise, skip to Synchronisation Hardware.
+{:.error}
 
 First of all, let's begin with a definition of <span style="color:#f77729;"><b>atomicity</b></span>:
 
@@ -100,6 +100,7 @@ When an atomic store is performed on a shared variable, *no other thread* can ob
 {:.info}
 
 <span style="color:#f77729;"><b>Sequential consistency</b></span> means (simplified):
+
 The operations of each individual processor appear in a specific sequence in the order specified by its program, and will not be re-ordered by the compiler or executed out-of-order by the CPU.
 {:.info}
 
