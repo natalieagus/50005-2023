@@ -178,7 +178,7 @@ For example:
 ```cpp
 volatile int turn = j;
 
-if (turn == j && ...){
+if (turn == j && ...){ // this invokes another READ to `turn` although it's unchanged by this thread's instruction
    // do something
 }
 
