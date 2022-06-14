@@ -106,10 +106,10 @@ The operations of each individual processor appear in a specific sequence in the
 
 ### Non-atomic example
 Not all `LD`/`ST` instructions are guaranteed to be atomic, we take this for granted. To understand this better, let's use an analogy. Consider a scenario of a non-atomic database containing student grades that were initialised to `null` and these two actions performed: 
-1. Professor A is keying in the grade of student I. Total grade is 90, but he did it via multiple steps: 45, then old value + 45. This storing of student grade is non-atomic (requires two steps)
-2. Professor B fetch the grade of student I, checked that it's not `null`, and assumed that Professor A has done uploading the grades. Professor B then increment it by 2: old value + 2, and submit the copy to student Admin 
+1. Professor A is keying in the grade of student `I`. Total grade is 90, but he did it via multiple steps: 45, then old value + 45. This storing of student grade is non-atomic (requires two steps)
+2. Professor B fetch the grade of student `I`, checked that it's not `null`, and assumed that Professor A has done uploading the grades. Professor B then increment it by 2: old value + 2, and submit the copy to student Admin 
 
-By right, the grade of student I should be 92. However, since the database is not atomic, Professor B might fetch the intermediary grade of student I (which means the update done by Professor A is not complete yet). Student I end up having a grade of 47 instead of 92 (got an F instead of an A!). This grade 47 *does not belong to anybody*, it's just a catastrophe resulted from non-atomic store made by Professor A. 
+By right, the grade of student `I` should be 92. However, since the database is not atomic, Professor B might fetch the intermediary grade of student `I` (which means the update done by Professor A is not complete yet). Student `I` end up having a grade of 47 instead of 92 (got an F instead of an A!). This grade 47 *does not belong to anybody*, it's just a catastrophe resulted from non-atomic store made by Professor A. 
 
 What happened? 
 > The `STORE` done by Professor A is not `ATOMIC`, meaning that what Professor B saw was a non-existent intermediary value of the student's grade. Professor B indeed executed his action *after* Professor A, but didn't realise that Professor A has not finished. Many operations of read and write from a distributed (noSQL) database are not atomic because it causes a slow performance. *Actually* storing the value into the database is done in background to improve interactivity. 
@@ -130,7 +130,7 @@ while(flag[j] == True and turn == j); // LOAD from flag[j]
 flag[i] = True  // STORE from flag[i]
 // CS...
 // ...
-flag[i = False
+flag[i] = False
 ```
 > On modern operating system where you have multiple processors, the order of LOAD and STORE instructions can change if these instructions are not dealing with same memory addresses. You can obviously find out why the above is disastrous. 
 
