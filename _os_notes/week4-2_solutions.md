@@ -22,7 +22,7 @@ In the next few sections, we discuss several known solutions to CS problems. The
 # Software Mutex Algorithm
 ## Peterson's Solution
 Peterson’s solution is a <span style="color:#f77729;"><b>software</b></span>-based approach that solves the CS problem, but two restrictions apply:
-* Strictly <span style="color:#f77729;"><b>two</b></span> processes that <span style="color:#f77729;"><b>alternate</b></span> execution between their critical sections and remainder sections (can be generalised to `N` processes with proper data structures, out of syllabus)
+* Strictly <span style="color:#f77729;"><b>two</b></span> processes that <span style="color:#f77729;"><b>alternate</b></span> execution in a <span style="color:#f77729;"><b>single</b></span> core between their critical sections and remainder sections (can be generalised to `N` processes with proper data structures, out of syllabus)
 * Architectures where `LD` and `ST` are <span style="color:#f77729;"><b>atomic</b></span>[^1] (i.e: executed in 1 clk cycle, or not interruptible)
 
 
@@ -86,6 +86,18 @@ This satisfies <span style="color:#f77729;"><b>mutual exclusion</b></span>: `fla
 * `Pi` only needs to wait a <span style="color:#f7007f;"><b>MAXIMUM</b></span> of 1 cycle before being able to enter the CS.
 
 > You might want to <span style="color:#f77729;"><b>interleave</b></span> the execution of instructions between `Pi` and `Pj`, and convince yourself that this solution is indeed a legitimate solution to the CS problem. Try to also modify some parts: not to use `turn`, set `turn` for `Pi` as itself (`i`) instead of `j`, not to use `flag`, etc and convince yourself whether the 3 <span style="color:#f77729;"><b>correctness</b></span> property for the original Peterson's algorithm still apply. 
+
+## Why Atomic LD/ST is Required?
+Not all LD/ST instructions are guaranteed to be atomic, we take this for granted. Consider a scenario of a non-atomic database containing student grades, and initial grade of student I of `60`, and these two actions performed sequentially (but not atomic): 
+1. Professor A updates the grade of student I to 90
+2. Professor B fetch the grade of student I, and increment it by 2 and submit the copy to student Admin 
+
+By right, the grade of student I should be 92. However, since the database is not atomic, Professor B fetched the old grade of student I (which means the update done by Professor A is not *immediately* reflected in the database). Student I end up having a grade of 62 instead of 92 (got a C instead of an A!). 
+
+What happened? 
+> The STORE done by Professor A is not ATOMIC, meaning that what Professor B saw was a "stale" grade, although Professor B's action is done *after* Professor A. Many operations of read and write from a distributed database are not atomic because it causes a slow performance. *Actually* storing the value into the database is done in background to improve interactivity. 
+
+When we <span style="color:#f77729;"><b>check</b></span> for `turn == j`, or `flag[j] == True` we need to be sure that these values that are read are not *stale*. Equivalently, any STORE of `turn` or `flag` value should complete before subsequent attempts to access `turn` and `flag` is done, otherwise it is possible for both processes to enter the CS (or stuck in busy wait). If you're interested, you can read [this](https://harmony.cs.cornell.edu/docs/textbook/spinlock/) article. If not, just accept that Peterson's solution require atomic `LD/ST` 😉. 
 
 # Synchronization Hardware 
 Peterson’s solution is a software solution that is not guaranteed to work on modern computer architectures where `LD/ST` might not be atomic (e.g: there are many processors accessing the same location).
