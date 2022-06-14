@@ -176,12 +176,8 @@ You can use the `volatile` keyword in C to let the compiler know that it is poss
 
 For example:
 ```cpp
-volatile int turn = j;
-
-if (turn == j && ...){ // this invokes another READ to `turn` although it's unchanged by this thread's instruction
-   // do something
-}
-
+volatile int turn;
+volatile int flag[2] = {0,0}
 ```
 
 
