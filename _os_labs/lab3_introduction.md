@@ -248,8 +248,8 @@ The algorithm goes as follows:
 4. If the outcome of Step(3) is:
    * `True`: <span style="color:#f77729;"><b>UPDATE</b></span> all system states concerning Process i <span style="color:#f7007f;"><b>(request granted)</b></span>:
      * `available = available - request`
-     * `need[i] = need[i] - request`
-     * `allocation[i] = allocation[i] + request`
+     * `need[customer_index] = need[customer_index] - request`
+     * `allocation[customer_index] = allocation[customer_index] + request`
    * `False`: This means <span style="color:#f7007f;"><b>request rejected</b></span>, and process i has to try again in the future. This is because granting the request results in deadlock in the future.
 
 ### Example 1
@@ -436,18 +436,20 @@ def check_safe(self, customer_index, request, work, need, allocation):
 
 The algorithm goes as follows:
 1. Create a vector `finish: list[int]` of size `N`, initialised to be `False` for all elements in `finish`. 
-   * Then, <span style="color:#f77729;"><b>hypothetically</b></span>  grant the current request by updating:
+   * Then, <span style="color:#f77729;"><b>hypothetically</b></span>  grant the current request by customer `customer_index` by updating:
      *  `work[i] = work[i] - request[i]` for all `i<M`
-     *  `need[i][j] = need[i][j] - request[j]` for all `j<M`
-     *  `allocation[i][j] = allocation[i][j] + request[j]` for all `j<M`
+     *  `need[customer_index][i] = need[customer_index][i] - request[i]` for all `i<M`
+     *  `allocation[customer_index][i] = allocation[customer_index][] + request[i]` for all `i<M`
    * This request granting is *hypothetical* because `work` is a <span style="color:#f77729;"><b>copy</b></span> of `available` (not the actual `available`). Similar argument with `need, allocation`. In reality, we haven't granted the request yet, we simply compute this hypothetical situation and decide whether it will be `safe` or `unsafe`. 
 
-2. Find an index `i` such that:
+2. Find an index `i` (which is a *customer*) such that:
    * `finish[i] == False` <span style="color:#f7007f;"><b>and</b></span>
    * `need[i][j] <= work[j]` for <span style="color:#f7007f;"><b>all</b></span> `j<M`. 
+   * The two above condition signifies that an incomplete Customer `i` can *complete* even after this request by `customer_index` is granted
 
 3. If such index `i` from Step 2 exists do the following, else go to Step 4.
    * Update: `work[j] = work[j] + allocation[i][j]` for <span style="color:#f7007f;"><b>all</b></span> `j<M`.  
+     * This signifies that a Customer `i` that can *complete* will free its *currently* allocated resources.  
    * Update: `finish[i] = True`
    * <span style="color:#f7007f;"><b>Then, REPEAT step 2</b></span>
 > You might want to store the values of `i` each time you execute this Step 3 elsewhere to backtrack a possible safe execution sequence, but that's not required for this lab. 
