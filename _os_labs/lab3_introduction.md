@@ -436,6 +436,8 @@ def check_safe(self, customer_index, request, work, need, allocation):
 
 The algorithm goes as follows:
 1. Create a vector `finish: list[int]` of size `N`, initialised to be `False` for all elements in `finish`. 
+   * Then, <span style="color:#f77729;"><b>hypothetically</b></span>  grant the current request by updating `work = work - request`
+   * This request granting is *hypothetical* because `work` is a <span style="color:#f77729;"><b>copy</b></span> of `available` (not the actual `available`). In reality, we haven't granted the request yet, we simply compute this hypothetical situation and decide whether it will be `safe` or `unsafe`. 
 
 2. Find an index `i` such that:
    * `finish[i] == False` <span style="color:#f7007f;"><b>and</b></span>
