@@ -77,7 +77,7 @@ lab_banker/
 
 You will be required to modify only certain sections in `banker.py`. 
 
-Leave ALL other files untouched. Also, do not `print` anything else in `banker.py`.
+Leave ALL other files untouched. Also, <span style="color:#f7007f;"><b>DO NOT</b></span> `print` anything else in `banker.py`. Only type your answers in the given space labeled in the starter code as `TASK 1` and `TASK 2`. <span style="color:#f7007f;"><b>DO NOT</b></span> print anything else, and <span style="color:#f7007f;"><b>DO NOT</b></span> import any other modules, and <span style="color:#f7007f;"><b>DO NOT</b></span> modify any other instructions.
 {:.error}
 
 # Banker's Algorithm
