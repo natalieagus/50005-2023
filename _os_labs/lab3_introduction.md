@@ -247,9 +247,9 @@ The algorithm goes as follows:
 
 4. If the outcome of Step(3) is:
    * `True`: <span style="color:#f77729;"><b>UPDATE</b></span> all system states concerning Process i <span style="color:#f7007f;"><b>(request granted)</b></span>:
-     * `available = available - request`
-     * `need[customer_index] = need[customer_index] - request`
-     * `allocation[customer_index] = allocation[customer_index] + request`
+     * `available[i] = available[i] - request[i]` for all `i<M`
+     * `need[customer_index][i] = need[customer_index][i] - request[i]` for all `i<M`
+     * `allocation[customer_index][i] = allocation[customer_index][i] + request[i]` for all `i<M`
    * `False`: This means <span style="color:#f7007f;"><b>request rejected</b></span>, and process i has to try again in the future. This is because granting the request results in deadlock in the future.
 
 ### Example 1
