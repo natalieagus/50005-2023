@@ -159,10 +159,11 @@ The `request` matrix contains current requests of resources made by <span style=
 
 The deadlock detection algorithm goes as follows:
 * <span style="color:#f77729;"><b>Step 1</b></span>: Initialize these two vectors:
-  * `work` (length is #resources `M`) initialized to be == Available
+  * `work` (length is #resources `M`) initialized to be == `available`
   * `finish` (length is #processes `N`) initialized to be:
     * `False` if `request[i]` != {0} (empty set)
     * True `otherwise` (means process i doesn’t request for anything else anymore and can be resolved or finished)
+  * No update of `allocation, need` needed. We are checking whether the CURRENT state is safe, not whether a HYPOTHETICAL state is safe. 
 
 * <span style="color:#f77729;"><b>Step 2</b></span>: find an index `i` such that <span style="color:#f77729;"><b>both</b></span> conditions below are fulfilled,
   * `Finish[i] == False`
