@@ -42,7 +42,7 @@ sudo apt update
 sudo apt install zip
 ```
 
-You need to submit the code by the end of the day (midnight). In the event that the bot is not responsive, you may send your python file `Banker.py` to your UTA. They will collate and submit it to our instructor. 
+You need to submit the code within 24 hours from the start of your lab session. In the event that the bot is not responsive, you may send your python file `Banker.py` to your UTA. They will collate and submit it to our instructor. 
 {:.error} 
 
 # Appendix 
