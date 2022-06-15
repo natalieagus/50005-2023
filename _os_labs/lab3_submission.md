@@ -42,7 +42,7 @@ sudo apt update
 sudo apt install zip
 ```
 
-You need to submit the code within 24 hours from the start of your lab session. In the event that the bot is not responsive, you may send your python file `Banker.py` to your UTA. They will collate and submit it to our instructor. 
+You need to submit the code within 24 hours from the start of your lab session. In the event that the bot is not responsive, you may send your python file `Banker.py` to your UTA. They will collate and submit it to our instructor. <span style="color:#f7007f;"><b>Remember</b></span>: only type your answers in the given space. <span style="color:#f7007f;"><b>DO NOT</b></span> print anything else, and <span style="color:#f7007f;"><b>DO NOT</b></span> import any other modules, and <span style="color:#f7007f;"><b>DO NOT</b></span> modify any other instructions.
 {:.error} 
 
 # Appendix 
