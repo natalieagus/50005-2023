@@ -551,13 +551,16 @@ def check_safe(self, customer_index, request, available, need, allocation):
 
   # TASK 2
   # TODO: Check if the state is safe
-  # 1. Create work list[int] of length self.M, set work = available
-  # 2. Create finish list[int] of length self.N
-  # 3. Find index i such that both finish[i] == False, need[i] <= work
-  # 4. If such index in (3) exists, update work += allocation[i], finish[i] = True
-  # 5. REPEAT step (3) until no such i exists
-  # 6. If no such i exists anymore, and finish[i] == True for all i, set safe = True
-  # 7. Otherwise, set safe = False
+  # 1. Create finish list[int] of length self.N
+  #    Then, hypothetically grant the current request by updating:
+  #       1. work[i] = work[i] - request[i] for all i<M
+  #       2. need[i][j] = need[i][j] - request[j] for all j<M
+  #       3. allocation[i][j] = allocation[i][j] + request[j] for all j<M
+  # 2. Find index i such that both finish[i] == False, need[i] <= work
+  # 3. If such index in (3) exists, update work += allocation[i], finish[i] = True
+  # 4. REPEAT step (3) until no such i exists
+  # 5. If no such i exists anymore, and finish[i] == True for all i, set safe = True
+  # 6. Otherwise, set safe = False
   # DO NOT PRINT ANYTHING ELSE
 
   ### BEGIN ANSWER HERE ###
