@@ -556,8 +556,8 @@ def check_safe(self, customer_index, request, available, need, allocation):
   # 1. Create finish list[int] of length self.N
   #    Then, hypothetically grant the current request by updating:
   #       1. work[i] = work[i] - request[i] for all i<M
-  #       2. need[i][j] = need[i][j] - request[j] for all j<M
-  #       3. allocation[i][j] = allocation[i][j] + request[j] for all j<M
+  #       2. need[customer_index][i] = need[customer_index][i] - request[i] for all i<M
+  #       3. allocation[customer_index][i] = allocation[customer_index][i] + request[i] for all i<M
   # 2. Find index i such that both finish[i] == False, need[i] <= work
   # 3. If such index in (3) exists, update work += allocation[i], finish[i] = True
   # 4. REPEAT step (3) until no such i exists
