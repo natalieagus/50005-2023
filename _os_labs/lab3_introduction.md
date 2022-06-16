@@ -77,7 +77,7 @@ lab_banker/
 
 You will be required to modify only certain sections in `banker.py`. 
 
-Leave ALL other files untouched. Also, do not `print` anything else in `banker.py`.
+Leave ALL other files untouched. Also, <span style="color:#f7007f;"><b>DO NOT</b></span> `print` anything else in `banker.py`. Only type your answers in the given space labeled in the starter code as `TASK 1` and `TASK 2`. <span style="color:#f7007f;"><b>DO NOT</b></span> print anything else, and <span style="color:#f7007f;"><b>DO NOT</b></span> import any other modules, and <span style="color:#f7007f;"><b>DO NOT</b></span> modify any other instructions.
 {:.error}
 
 # Banker's Algorithm
@@ -247,9 +247,9 @@ The algorithm goes as follows:
 
 4. If the outcome of Step(3) is:
    * `True`: <span style="color:#f77729;"><b>UPDATE</b></span> all system states concerning Process i <span style="color:#f7007f;"><b>(request granted)</b></span>:
-     * `available = available - request`
-     * `need[i] = need[i] - request`
-     * `allocation[i] = allocation[i] + request`
+     * `available[i] = available[i] - request[i]` for all `i<M`
+     * `need[customer_index][i] = need[customer_index][i] - request[i]` for all `i<M`
+     * `allocation[customer_index][i] = allocation[customer_index][i] + request[i]` for all `i<M`
    * `False`: This means <span style="color:#f7007f;"><b>request rejected</b></span>, and process i has to try again in the future. This is because granting the request results in deadlock in the future.
 
 ### Example 1
@@ -436,18 +436,20 @@ def check_safe(self, customer_index, request, work, need, allocation):
 
 The algorithm goes as follows:
 1. Create a vector `finish: list[int]` of size `N`, initialised to be `False` for all elements in `finish`. 
-   * Then, <span style="color:#f77729;"><b>hypothetically</b></span>  grant the current request by updating:
+   * Then, <span style="color:#f77729;"><b>hypothetically</b></span>  grant the current request by customer `customer_index` by updating:
      *  `work[i] = work[i] - request[i]` for all `i<M`
-     *  `need[i][j] = need[i][j] - request[j]` for all `j<M`
-     *  `allocation[i][j] = allocation[i][j] + request[j]` for all `j<M`
+     *  `need[customer_index][i] = need[customer_index][i] - request[i]` for all `i<M`
+     *  `allocation[customer_index][i] = allocation[customer_index][] + request[i]` for all `i<M`
    * This request granting is *hypothetical* because `work` is a <span style="color:#f77729;"><b>copy</b></span> of `available` (not the actual `available`). Similar argument with `need, allocation`. In reality, we haven't granted the request yet, we simply compute this hypothetical situation and decide whether it will be `safe` or `unsafe`. 
 
-2. Find an index `i` such that:
+2. Find an index `i` (which is a *customer*) such that:
    * `finish[i] == False` <span style="color:#f7007f;"><b>and</b></span>
    * `need[i][j] <= work[j]` for <span style="color:#f7007f;"><b>all</b></span> `j<M`. 
+   * The two above condition signifies that an incomplete Customer `i` can *complete* even after this request by `customer_index` is granted
 
 3. If such index `i` from Step 2 exists do the following, else go to Step 4.
    * Update: `work[j] = work[j] + allocation[i][j]` for <span style="color:#f7007f;"><b>all</b></span> `j<M`.  
+     * This signifies that a Customer `i` that can *complete* will free its *currently* allocated resources.  
    * Update: `finish[i] = True`
    * <span style="color:#f7007f;"><b>Then, REPEAT step 2</b></span>
 > You might want to store the values of `i` each time you execute this Step 3 elsewhere to backtrack a possible safe execution sequence, but that's not required for this lab. 
@@ -468,7 +470,7 @@ Run the Banker algorithm with `q3`:
 python3.10 banker.py test_files/q3.txt    
 ```
 
-At first, P0 is making the request `[1,0,3]1 and it is <span style="color:#f77729;"><b>granted</b></span> as shown in the `allocation` matrix:
+At first, P0 is making the request `[1,0,3]` and it is <span style="color:#f77729;"><b>granted</b></span> as shown in the `allocation` matrix:
 ```
 Customer 0 requesting
 [1, 0, 3]
@@ -551,13 +553,16 @@ def check_safe(self, customer_index, request, available, need, allocation):
 
   # TASK 2
   # TODO: Check if the state is safe
-  # 1. Create work list[int] of length self.M, set work = available
-  # 2. Create finish list[int] of length self.N
-  # 3. Find index i such that both finish[i] == False, need[i] <= work
-  # 4. If such index in (3) exists, update work += allocation[i], finish[i] = True
-  # 5. REPEAT step (3) until no such i exists
-  # 6. If no such i exists anymore, and finish[i] == True for all i, set safe = True
-  # 7. Otherwise, set safe = False
+  # 1. Create finish list[int] of length self.N
+  #    Then, hypothetically grant the current request by updating:
+  #       1. work[i] = work[i] - request[i] for all i<M
+  #       2. need[customer_index][i] = need[customer_index][i] - request[i] for all i<M
+  #       3. allocation[customer_index][i] = allocation[customer_index][i] + request[i] for all i<M
+  # 2. Find index i such that both finish[i] == False, need[i] <= work
+  # 3. If such index in (3) exists, update work += allocation[i], finish[i] = True
+  # 4. REPEAT step (3) until no such i exists
+  # 5. If no such i exists anymore, and finish[i] == True for all i, set safe = True
+  # 6. Otherwise, set safe = False
   # DO NOT PRINT ANYTHING ELSE
 
   ### BEGIN ANSWER HERE ###

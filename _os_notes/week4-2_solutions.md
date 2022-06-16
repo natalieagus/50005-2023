@@ -53,7 +53,7 @@ do{
 }while(true)
 ```
 
-The algorithm above is the solution for process `Pi`. 
+The algorithm above is the solution for process `Pi`. The code for `Pj` is equivalent, just swap all the `i` to `j` and vice versa.
 * In the `while`-loop, `Pi` busy waits (means <span style="color:#f77729;"><b>try</b></span> and keep <span style="color:#f77729;"><b>retrying</b></span> until succeed, thus wasting the quanta given to the process), 
 * `Pi` will be <span style="color:#f7007f;"><b>stuck</b></span> at the while-line (notice it's NOT a while-loop, there’s a semicolon at the end), for as long as `flag[j] == true` <span style="color:#f7007f;"><b>and</b></span> `turn == j`. 
 
