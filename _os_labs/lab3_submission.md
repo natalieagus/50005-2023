@@ -42,7 +42,7 @@ sudo apt update
 sudo apt install zip
 ```
 
-Once you have submitted to the bot, <span style="color:#f7007f;"><b>show your submission chat history with the bot to the UTA</b></span> (not instructor, but UTA). They will note that you have <span style="color:#f77729;"><b>completed the lab in class</b></span>. You are supposed to complete this DURING the lab, and as such we would like to note that you have submitted on time. Of course we will check your submission time via the bot, but it will be so much better to just manually inform the UTA that you have submitted `lab3` to our bot. In the event that the bot is not responsive, you may send your python file `Banker.py` to your UTA. They will collate and submit it to our instructor. 
+You need to submit the code within 24 hours from the start of your lab session. In the event that the bot is not responsive, you may send your python file `Banker.py` to your UTA. They will collate and submit it to our instructor. <span style="color:#f7007f;"><b>Remember</b></span>: only type your answers in the given space. <span style="color:#f7007f;"><b>DO NOT</b></span> print anything else, and <span style="color:#f7007f;"><b>DO NOT</b></span> import any other modules, and <span style="color:#f7007f;"><b>DO NOT</b></span> modify any other instructions.
 {:.error} 
 
 # Appendix 

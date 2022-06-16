@@ -127,7 +127,7 @@ When an interrupt occurs, the kernel needs to save the current context of the pr
 #### Benefits of Context Switching
 Rapid Context switching is beneficial because it gives the <span style="color:#f77729;"><b>illusion</b></span> of concurrency in uniprocessor system.
 * Improve system <span style="color:#f77729;"><b>responsiveness</b></span> and intractability, ultimately allowing timesharing (users can interact with each program when it is running).
-* To support <span style="color:#f77729;"><b>Multiprogramming</b></span>: <span style="color:#f77729;"><b>optimise</b></span> CPU usage, we cannot just let one single program to run all the time, especially when that program <span style="color:#f77729;"><b>blocks</b></span> execution when waiting for I/O (idles, have nothing important to do).
+* To support <span style="color:#f77729;"><b>multiprogramming</b></span>, we need to <span style="color:#f77729;"><b>optimise</b></span> CPU usage. We cannot just let one single program to run all the time, especially when that program <span style="color:#f77729;"><b>blocks</b></span> execution when waiting for I/O (idles, have nothing important to do).
 
 ### Drawbacks
 Context-switch time is pure <span style="color:#f7007f;"><b>overhead</b></span>, because the system <span style="color:#f7007f;"><b>does no useful work</b></span> while switching. To minimise downtime due to overhead, context-switch times are highly dependent on hardware support -- some hardware supports rapid context switching by having a <span style="color:#f7007f;"><b>dedicated</b></span> unit for that (effectively bypassing the CPU).
@@ -159,7 +159,7 @@ Think about scenarios that requires <span style="color:#f77729;"><b>mode switch<
 
 The objective of <span style="color:#f77729;"><b>multiprogramming</b></span> is to have some process running at all times, to maximize CPU utilization. 
 
-The objective of time sharing is to switch the CPU among processes so frequently that users can interact with each program while it is running. 
+The objective of <span style="color:#f77729;"><b>time sharing</b></span> is to switch the CPU among processes so frequently that users can interact with each program while it is running. 
 
 To meet <span style="color:#f77729;"><b>both</b></span> objectives, the process scheduler selects an available process (possibly from a set of several available processes) for program execution on the CPU. 
   * For a single-processor system, there will never be more than one actual running process at any instant. 
