@@ -141,7 +141,7 @@ Let's analyse them <span style="color:#f77729;"><b>line by line</b></span>.
 
 <span style="color:#f77729;"><b>The third line:</b></span>  When process `75614` <span style="color:#f77729;"><b>forks</b></span>, it has a child process with pid `75615`. It is clear that since child `pid != pgid`, then the child process is <span style="color:#f7007f;"><b>not</b></span> a session leader and is not a group leader either. 
 
-So who is 70797? We can type the command ps -a -j and find a process with pid 70797. Apparently, it's the `zsh`, the shell itself, connected to the controlling terminal `s002`.  
+So who is 27063? We can type the command ps -a -j and find a process with pid 27063. Apparently, it's the `zsh`, the shell itself, connected to the controlling terminal `s002`.  
 
 <img src="/50005/assets/images/pa1/11.png"  class="center_seventy"/>
 
@@ -158,7 +158,7 @@ Thanks to Step 1, the effect of `setsid` in Step 3 works as intended, and our <s
 This intermediate process is going to `fork()` one more time in Step 5 to create the <span style="color:#f7007f;"><b>daemon</b></span> process. 
 
 By ignoring `SIGCHLD`, our daemon process -- the child of this intermediate process <span style="color:#f7007f;"><b>will NOT be a zombie process</b></span> when it terminates. Normally, a child process will be a zombie process if the parent does not `wait` for it. 
-* Since `SIGCHLD` is ignored, when the daemon (child of this intermeidate process) exits, it is reaped immediately. 
+* Since `SIGCHLD` is ignored, when the daemon (child of this intermediate process) exits, it is reaped immediately. 
 * However, the daemon will outlive the parent process anyway, so it does not really matter. This step is just for "in case".
 
 Also, this intermediate process is a <span style="color:#f77729;"><b>session leader</b></span> (from step 3, since we need to <span style="color:#f77729;"><b>lose</b></span> the controlling terminal). 
