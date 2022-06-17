@@ -141,7 +141,7 @@ Let's analyse them <span style="color:#f77729;"><b>line by line</b></span>.
 
 <span style="color:#f77729;"><b>The third line:</b></span>  When process `75614` <span style="color:#f77729;"><b>forks</b></span>, it has a child process with pid `75615`. It is clear that since child `pid != pgid`, then the child process is <span style="color:#f7007f;"><b>not</b></span> a session leader and is not a group leader either. 
 
-So who is 70797? We can type the command ps -a -j and find a process with pid 70797. Apparently, it's the `zsh`, the shell itself, connected to the controlling terminal `s002`.  
+So who is 27063? We can type the command ps -a -j and find a process with pid 27063. Apparently, it's the `zsh`, the shell itself, connected to the controlling terminal `s002`.  
 
 <img src="/50005/assets/images/pa1/11.png"  class="center_seventy"/>
 
