@@ -29,7 +29,7 @@ We can illustrate multiple process creation as a <span style="color:#f77729;"><b
 
 <img src="/50005/assets/images/week3/8.png"  class="center_fourty"/>
 
-In the example above, there are 5 processes in total. Process 2,3, and 4 are direct <span style="color:#f77729;"><b>children</b></span> of Process 1. Process 5 is created by Process 2. 
+In the example above, there are 5 processes in total. Process 2, 3, and 4 are direct <span style="color:#f77729;"><b>children</b></span> of Process 1. Process 5 is created by Process 2. 
 
 
 
