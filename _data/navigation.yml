@@ -60,6 +60,12 @@ os_notes:
         url: /os_notes/week5_deadlock
       - title: Deadlock Handling
         url: /os_notes/week5_handling
+  - title: File System
+    children:
+      - title: Basics of File
+        url: /os_notes/week6-1_filesystem
+      - title: Directories and Links
+        url: /os_notes/week6-2_directories
 
 ns_notes:
   - title: Week 1
