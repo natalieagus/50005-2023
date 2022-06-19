@@ -54,6 +54,7 @@ File content structure that can exist in your computer varies greatly:
 * Complex Structure: 
   * **Executable** files (`ELF` files)   
 
+<<<<<<< HEAD
 ## File Format and Type
 File format is the actual data structure of a certain file, defining the <span style="color:#f77729;"><b>syntax</b></span> (permitted values, formal structure or grammar) and <span style="color:#f77729;"><b>semantics</b></span> (meaning and interpretation) of data within a file. 
 
@@ -77,6 +78,8 @@ A file extension is the <span style="color:#f77729;"><b>character</b></span> or 
 
 
 
+=======
+>>>>>>> c45c8d346208ff60b585462247b5df2179fc79f6
 ## File Interpreters
 Who can read and understand the content of the file? 
 * The OS Kernel:
