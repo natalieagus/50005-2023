@@ -92,7 +92,7 @@ We always conveniently call `printf()` whenever we want to display our output to
 
 <img src="/50005/assets/images/week2/3.png"  class="center_fifty"/>
 
-The full implementation of `printf` in Mach OS can be found [here](https://opensource.apple.com/source/xnu/xnu-201/osfmk/kern/printf.c.auto.html). It calls other functions like `putc` and eventually `write` function that makes the system call to  `stdout` file descriptor. 
+The full implementation of `printf` in macOS can be found [here](https://opensource.apple.com/source/xnu/xnu-201/osfmk/kern/printf.c.auto.html). It calls other functions like `putc` and eventually `write` function that makes the system call to  `stdout` file descriptor. 
 
 ### Example: CopyFile()
 
