@@ -48,7 +48,7 @@ Easier means for resource sharing and communication (since code, data, and files
 
 Creating new threads requires <span style="color:#f7007f;"><b>cheaper</b></span> resources than creating new processes. Performing thread context switch is also a <span style="color:#f77729;"><b>cheaper</b></span> process. 
 * Allocating memory and resources for process creation is <span style="color:#f7007f;"><b>costly</b></span>. 
-* Because threads <span style="color:#f7007f;"><b>share</b></span> the resources of the process to which they belong, it is more economical to <span style="color:#f7007f;"><b>create</b></span> and <span style="color:#f7007f;"><b>context-switc</b></span>h threads.
+* Because threads <span style="color:#f7007f;"><b>share</b></span> the resources of the process to which they belong, it is more economical to <span style="color:#f7007f;"><b>create</b></span> and <span style="color:#f7007f;"><b>context-switch</b></span> threads.
 
 Remember, context switch is <span style="color:#f77729;"><b>pure</b></span> overhead.
 {:.warning}

@@ -75,7 +75,7 @@ The figure below shows the scheduling state transition diagram of a typical proc
 
 ## Process Table and Process Control Block {#process-control-block}
 
-The system-wide process table is <span style="color:#f77729;"><b>data structure</b></span> maintained by the Kernel to facilitate **context switching** and **scheduling**. Each process metadata is <span style="color:#f77729;"><b>stored</b></span> by the Kernel in a particular data structure called the process control block (PCB). A process table is made up on an array of PCBs, containg information about of current processes[^3] in the system. 
+The system-wide process table is <span style="color:#f77729;"><b>data structure</b></span> maintained by the Kernel to facilitate **context switching** and **scheduling**. Each process metadata is <span style="color:#f77729;"><b>stored</b></span> by the Kernel in a particular data structure called the process control block (PCB). A process table is made up of an array of PCBs, containing information about of current processes[^3] in the system. 
 {:.warning}
 > Also called a <span style="color:#f77729;"><b>task control block</b></span> in some textbooks. 
 
