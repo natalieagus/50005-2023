@@ -420,9 +420,9 @@ For example, we can initialize a mutex guarding certain CS:
 pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
 ```
 
-And in this example, we assume that a particular CS in Process/Thread 2 cannot be executed if `bool x == false`. Therefore we can create a condition to represent this:
+And in this example, we assume that a particular CS in Process/Thread 2 cannot be executed if `bool cond_x == false`. Therefore we can create a condition to represent this:
 ```cpp
-pthread_cond_t cond_x = PTHREAD_COND_INITIALIZER;
+pthread_cond_t p_cond_x = PTHREAD_COND_INITIALIZER;
 ```
 
 Now consider Process/Thread 1 instructions:
@@ -431,7 +431,7 @@ pthread_mutex_lock(&mutex);
 // CRITICAL SECTION
 // ...
 cond_x = true;
-pthread_cond_signal(&cond);
+pthread_cond_signal(&p_cond_x);
 pthread_mutex_unlock(&mutex);
 ```
 
@@ -439,7 +439,7 @@ pthread_mutex_unlock(&mutex);
 ```cpp
 pthread_mutex_lock(&mutex);
 while (cond_x == false){
-   pthread_cond_wait(&cond_x, &mutex);  // yields mutex, sleeping
+   pthread_cond_wait(&p_cond_x, &mutex);  // yields mutex, sleeping
 }
 // CRITICAL SECTION, can only be executed iff cond_x == true
 // ...
