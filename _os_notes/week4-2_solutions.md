@@ -389,7 +389,7 @@ void send (char c){
    in = (in + 1)%N;
 
    signal(mutex_p);
-   signal(space);
+   signal(chars);
 }
 ```
 
@@ -404,7 +404,7 @@ char rcv(){
    out = (out+1)%N;
 
    signal(mutex_c);
-   signal(chars);
+   signal(space);
 }
 ```
 
