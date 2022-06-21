@@ -149,7 +149,7 @@ Java synchronized methods and synchronized blocks with intrinsic lock (recall: e
 For example, a thread can safely <span style="color:#f77729;"><b>recurse</b></span> on blocks guarded by reentrant locks (sync methods, sync statement)
 ```java
 // Method 1
-Public synchronized void foo() {
+public synchronized void foo(int x) {
    // some condition ... 
    foo(x-1); // recurse does not cause error
 }
