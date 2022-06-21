@@ -56,7 +56,7 @@ To *allow* preemption, we need a certain protocols in place to ensure that progr
 
 A process is holding some resources and requests another resource that cannot be immediately allocated to it (that is, the process must wait). We can then decide to do either protocols below:
 * <span style="color:#f77729;"><b>Protocol 1</b></span>: All resources the process is currently holding are *preempted* -- <span style="color:#f7007f;"><b>implicitly released</b></span>.
-* <span style="color:#f77729;"><b>Protocl 2</b></span>: Check first if the resources requested are held by other waiting processes or not.
+* <span style="color:#f77729;"><b>Protocol 2</b></span>: Check first if the resources requested are held by other waiting processes or not.
   * If held by other <span style="color:#f77729;"><b>waiting</b></span> process: preempts the waiting process and give the resource to the requesting process
   * If neither held by waiting process nor available: requesting process must wait. 
 
