@@ -265,7 +265,7 @@ git commit -m "feat: Complete Task 6"
 ## Task 7 (1%)
 `TASK 7:`{:.info} Implement system program `checkdaemon`. 
 
-Open `checkdaemon.c`, and complete the following `execute` function:
+Open `check_daemon.c`, and complete the following `execute` function:
 ```cpp
 /*  A program that prints how many summoned daemons are currently alive */
 int execute()
@@ -325,7 +325,7 @@ Simply <span style="color:#f7007f;"><b>recompile</b></span> with `make`, and run
 Save your changes and commit the changes:
 
 ```
-git add ./bin/source/checkdaemon.c    
+git add ./bin/source/check_daemon.c    
 git commit -m "feat: Complete Task 7"
 ```
 
