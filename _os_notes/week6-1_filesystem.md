@@ -185,7 +185,7 @@ The figure below illustrates a simplified UNIX file system data structure in-mem
 
 <img src="/50005/assets/images/week6/4.png"  class="center_seventy"/>
 
-## File Descriptor Table: 
+## File Descriptor Table
 The fd table exists per-process.
 {:.warning}
 
@@ -193,7 +193,7 @@ Whenever a process `open()` or `dup()` a file, the opened file is associated wit
 * A file descriptor is a number that <span style="color:#f77729;"><b>uniquely</b></span> (unique in that process) identifies an open file in a computer's operating system
 * A file descriptor has a file `pointer` field, that is a pointer to the <span style="color:#f7007f;"><b>system wide open-file-table</b></span>. 
 
-## System-Wide Open File Table (swoft):
+## System-Wide Open File Table (swoft)
 Managed by the Kernel, contains a list of opened files and its entries created by `open()`.
 {:.warning}
 
