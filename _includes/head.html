@@ -17,6 +17,13 @@
 {%- include snippets/prepend-baseurl.html path='/assets/css/main.css' -%}
 <link rel="stylesheet" href="{{ __return }}">
 
+{% if site.text_skin_alt %}
+  <meta name="color-scheme" content="light dark">
+  <style>
+    @import url("{{ '/assets/css/alternate.css' | relative_url }}") (prefers-color-scheme: dark);
+  </style>
+{% endif %}
+
 {%- include snippets/get-sources.html -%}
 {%- assign _sources = __return -%}
 <link rel="stylesheet" href="{{ _sources.font_awesome }}" >

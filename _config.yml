@@ -13,8 +13,10 @@
 
 ## => Site Settings
 ##############################
-text_skin: "dark" # "default" (default), "dark", "forest", "ocean", "chocolate", "orange"
-highlight_theme: default # "default" (default), "tomorrow", "tomorrow-night", "tomorrow-night-eighties", "tomorrow-night-blue", "tomorrow-night-bright"
+text_skin_alt: "dark" # "default" (default), "dark", "forest", "ocean", "chocolate", "orange"
+highlight_theme_alt: "default" # "default" (default), "tomorrow", "tomorrow-night", "tomorrow-night-eighties", "tomorrow-night-blue", "tomorrow-night-bright"
+text_skin: "default" # "default" (default), "dark", "forest", "ocean", "chocolate", "orange"
+highlight_theme: "tomorrow" # "default" (default), "tomorrow", "tomorrow-night", "tomorrow-night-eighties", "tomorrow-night-blue", "tomorrow-night-bright"
 url: "https://natalieagus.github.io"
 baseurl: /50005 # does not include hostname
 title: 50.005 Computer System Engineering
