@@ -229,6 +229,7 @@ int main(){
   printf("Name entered : %s \n", str1);
   fprintf(stdout, "EXIT! \n");
   return 0;
+}
 ```
 
 The blocking instruction `scanf` is there to make the process not terminate yet, so that we can have enough time to observe it's file descriptor table. Running this process <span style="color:#f77729;"><b>twice</b></span>, and then running the command `ps | grep ./out | grep -v grep` in the third terminal results in:
