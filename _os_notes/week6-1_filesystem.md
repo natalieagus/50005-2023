@@ -348,8 +348,8 @@ Look at the following example that illustrates <span style="color:#f77729;"><b>C
 
 We `open(input.txt)`, and then duplicate the returned file descriptor as `fd_b` and `fd_c`.
 
-The difference between the two system calls is that `dup()` will return the <span style="color:#f77729;"><b>lowest</b></span> available `fd`, which is 4 (since 0, 1, and 2 are reserved as stdout, stdin, and stderr, and 3 is already used for open), while `dup2(old fd, new fd)` allows us to explicitly set the `new fd`. 
-> If the new fd is <span style="color:#f77729;"><b>already in use</b></span> then the existing one will be closed first before being reused again. 
+The difference between the two system calls is that `dup()` will return the <span style="color:#f77729;"><b>lowest</b></span> available `fd`, which is 4 (since 0, 1, and 2 are *reserved* (set by default due to convention) as stdin, stdout, and stderr, and 3 is already used for open), while `dup2(old fd, new fd)` allows us to explicitly set the `new fd`. 
+> If the new fd is <span style="color:#f77729;"><b>already in use</b></span> then the existing one will be closed first before being reused again. Note that fd 0, 1, and 2 can be closed or changed to point to another file as per other fds. The only difference is that upon process creation, these 3 fds are *already* set as convenience to stdin, stdout, and stderr. 
 
 We can cause the process to block itself (as shown in previous section, use `scanf` or some blocking operation that waits for user input) and meanwhile `print` its file descriptor table content (use `ps` to get its `pid`, and then use `lsof -p pid`). 
 
