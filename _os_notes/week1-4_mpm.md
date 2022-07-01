@@ -124,12 +124,12 @@ The kernel is <span style="color:#f7007f;"><b>not</b></span> a process in itself
 * For instance, I/O handlers are not processes. They do not have <span style="color:#f77729;"><b>context</b></span> (state of execution in registers, stack data, heap, etc) like normal processes do. They are simply a piece of **instructions** that is written to **handle** certain events.
 
 
-You can think of a the kernel instead as made up of just :
+You can think of a the kernel instead as made up of just:
 * Instructions, data:
   * Parts of the kernel deal with memory management, parts of it with scheduling portions of itself (like drivers, etc.), and parts of it with scheduling processes.
 * Much like a state-machine that user-mode processes executes to complete a particular <span style="color:#f77729;"><b>service</b></span> and then return to its own instruction
   * User processes running the kernel code will have its mode changed to <span style="color:#f77729;"><b>Kernel Mode</b></span>
-  * Once it returns from the handler, its mode is change dback to <span style="color:#f77729;"><b>User Mode</b></span>
+  * Once it returns from the handler, its mode is changed back to <span style="color:#f77729;"><b>User Mode</b></span>
 
 Hence, the statement that the <span style="color:#f77729;"><b>kernel is a program that is running at all times</b></span> is technically true because the kernel <span style="color:#f7007f;"><b>IS</b></span> <span style="color:#f7007f;"><b>part of each process</b></span>. Any process may switch itself into Kernel Mode and perform system call routines (software interrupt), or forcibly switched to Kernel Mode in the event of hardware interrupt. 
 
