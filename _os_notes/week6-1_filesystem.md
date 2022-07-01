@@ -185,7 +185,7 @@ The figure below illustrates a simplified UNIX file system data structure in-mem
 
 <img src="/50005/assets/images/week6/4.png"  class="center_seventy"/>
 
-## File Descriptor Table: 
+## File Descriptor Table
 The fd table exists per-process.
 {:.warning}
 
@@ -193,7 +193,7 @@ Whenever a process `open()` or `dup()` a file, the opened file is associated wit
 * A file descriptor is a number that <span style="color:#f77729;"><b>uniquely</b></span> (unique in that process) identifies an open file in a computer's operating system
 * A file descriptor has a file `pointer` field, that is a pointer to the <span style="color:#f7007f;"><b>system wide open-file-table</b></span>. 
 
-## System-Wide Open File Table (swoft):
+## System-Wide Open File Table (swoft)
 Managed by the Kernel, contains a list of opened files and its entries created by `open()`.
 {:.warning}
 
@@ -229,6 +229,7 @@ int main(){
   printf("Name entered : %s \n", str1);
   fprintf(stdout, "EXIT! \n");
   return 0;
+}
 ```
 
 The blocking instruction `scanf` is there to make the process not terminate yet, so that we can have enough time to observe it's file descriptor table. Running this process <span style="color:#f77729;"><b>twice</b></span>, and then running the command `ps | grep ./out | grep -v grep` in the third terminal results in:
@@ -347,8 +348,8 @@ Look at the following example that illustrates <span style="color:#f77729;"><b>C
 
 We `open(input.txt)`, and then duplicate the returned file descriptor as `fd_b` and `fd_c`.
 
-The difference between the two system calls is that `dup()` will return the <span style="color:#f77729;"><b>lowest</b></span> available `fd`, which is 4 (since 0, 1, and 2 are reserved as stdout, stdin, and stderr, and 3 is already used for open), while `dup2(old fd, new fd)` allows us to explicitly set the `new fd`. 
-> If the new fd is <span style="color:#f77729;"><b>already in use</b></span> then the existing one will be closed first before being reused again. 
+The difference between the two system calls is that `dup()` will return the <span style="color:#f77729;"><b>lowest</b></span> available `fd`, which is 4 (since 0, 1, and 2 are *reserved* (set by default due to convention) as stdin, stdout, and stderr, and 3 is already used for open), while `dup2(old fd, new fd)` allows us to explicitly set the `new fd`. 
+> If the new fd is <span style="color:#f77729;"><b>already in use</b></span> then the existing one will be closed first before being reused again. Note that fd 0, 1, and 2 can be closed or changed to point to another file as per other fds. The only difference is that upon process creation, these 3 fds are *already* set as convenience to stdin, stdout, and stderr. 
 
 We can cause the process to block itself (as shown in previous section, use `scanf` or some blocking operation that waits for user input) and meanwhile `print` its file descriptor table content (use `ps` to get its `pid`, and then use `lsof -p pid`). 
 

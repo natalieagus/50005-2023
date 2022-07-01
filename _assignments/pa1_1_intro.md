@@ -35,7 +35,7 @@ Download the starter code:
 This will result in a directory called `pa1`. 
 
 ### Create a Github Remote Repo
-Open your web browser in your host OS and create a <span style="color:#f7007f;"><b>PRIVATE repository</b></span> called `pa_1`. Make sure you create the `master` branch and push to this <span style="color:#f7007f;"><b>master</b></span> branch for this assignment (and not use `main`!).
+Open your web browser in your host OS and create a <span style="color:#f7007f;"><b>PRIVATE repository</b></span> called `pa_1`. Make sure you create the `master` branch and push to this <span style="color:#f7007f;"><b>master</b></span> branch for this assignment (and not use `main`!). You also need to [make master the default branch](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-branches-in-your-repository/changing-the-default-branch).
 
 Then, cd to `/pa1/` that you have downloaded, and <span style="color:#f7007f;"><b>add</b></span> this project to your own <span style="color:#f7007f;"><b>private</b></span> repo:
 
