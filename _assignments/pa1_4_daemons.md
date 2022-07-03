@@ -336,6 +336,9 @@ Before the due date, ensure that you always push to your remote repository. Assu
 git push -u origin master
 ```
 
+# Debugging
+Note that all the steps provided to you above are *necessary* but <span style="color:#f77729;"><b>not sufficient</b></span>, meaning that if you were to blindly follow it **step by step**, bugs are still bound to happen, although *minor*. For instance, the shell will run but you might find garbage values printed out when you simply press a bunch of `return` keys in the shell, `usage` not executed properly, and many other small bugs that does not make the shell perfect. You are supposed to <span style="color:#f7007f;"><b>figure these out</b></span> by yourself, that's why this assignment is <span style="color:#f7007f;"><b>graded</b></span> (10%) and it is set as a pair work. 
+
 # Submission
 Go to our bot and type `/start`. Follow the instructions there. You're only required to submit the github remote repo link. Ensure that you have invited `natalieagus-sutd` as collaborator. 
 
