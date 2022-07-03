@@ -82,7 +82,7 @@ The system-wide process table is <span style="color:#f77729;"><b>data structure<
 
 The PCB contains many pieces of information associated with a specific process. These information are up<span style="color:#f77729;"><b></b></span>dated each time when a process is <span style="color:#f77729;"><b>interrupted</b></span>:
 1. Process <span style="color:#f77729;"><b>state</b></span>: any of the state of the process -- new, ready, running, waiting, terminated
-2. <span style="color:#f77729;"><b>Program counter</b></span>: the address of the _next instruction _for this process
+2. <span style="color:#f77729;"><b>Program counter</b></span>: the address of the _next instruction_ for this process
 3. CPU <span style="color:#f77729;"><b>registers</b></span>:  the contents of the registers in the CPU when an interrupt occurs, including stack pointer, exception pointer, stack base, linkage pointer, etc. These contents are saved each time to allow the process to be continued correctly afterward.
 4. <span style="color:#f77729;"><b>Scheduling </b></span> information: access priority, pointers to scheduling queues, and any other scheduling parameters
 5. <span style="color:#f77729;"><b>Memory-management</b></span> information: page tables, MMU-related information, memory limits
