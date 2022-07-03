@@ -159,6 +159,8 @@ The reference count for `subdir` is 2 by default, shown in the screenshot above.
 * `.` pointing to the directory itself (thus increasing the reference count of itself by 1 -- resulting in 2 that we see in the screenshot above)
 * `..` pointing to its <span style="color:#f77729;"><b>parent</b></span> (thus increasing the reference count of its parent: `Links`)
 
+Note that the above are *special links*, created by the OS for easy of traversal. For the sake of simplicity in this course, we *ignore* the presence of `.` and `..`.
+
 This provided an <span style="color:#f77729;"><b>easy</b></span> way to traverse the filesystem, both for applications and for the OS itself.
 
 ### Hard Links to Link Directories
@@ -166,6 +168,9 @@ In UNIX-like systems, you <span style="color:#f7007f;"><b>cannot</b></span> crea
 > By effectively prohibiting multiple references to directories, UNIX-like OS like Linux maintains an acyclic-graph structure (more about this structure later). However this is not always true for all OS. 
 
 <img src="/50005/assets/images/week6/16.png"  class="center_seventy"/>
+
+Note that `..` and `.` can be regarded as *special* hard links, so although they technically points to directories (itself and the parent) we don't treat it the same as other regular user-created hard links. Again, for the same of simplicity in this course we <span style="color:#f77729;"><b>ignore</b></span> the presence of these special links. All sections below assume that `.` and `..` are not implemented.
+{:.warning}
 
 ### Path Names
 Links have path names, e.g: `/Users/natalie_agus/Desktop/Links/input_hardlink`. 
@@ -217,8 +222,8 @@ Suppose you want to categorize them both ways. What you can do:
 
 <span style="color:#f77729;"><b>Method 2</b></span>: Create hard links. 
 
-* A hard link takes up almost no space at all. Y
-* ou could, therefore, store the same photo in various different categories (i.e. by color, by type, etc). 
+* A hard link takes up almost no space at all. 
+* You could, therefore, store the same photo in various different categories (i.e. by color, by type, etc). 
 
 
 A symbolic link is much like a desktop <span style="color:#f77729;"><b>shortcut</b></span> within Windows. The symbolic link merely points to the location of a file. We have all been using it. 
@@ -229,7 +234,7 @@ The figure below summarizes the concept of links:
 
 # Graph Directory Structure
 ## Acyclic Graph Directory
-In acyclic graph directories, we can have the <span style="color:#f77729;"><b>same</b></span> file, but with <span style="color:#f77729;"><b>multiple</b></span> names (through symbolic/hard links).
+In acyclic graph directories, we can have the <span style="color:#f77729;"><b>same</b></span> file, but with <span style="color:#f77729;"><b>multiple</b></span> names (through symbolic/hard links). 
 {:warning}
 
 > Note that in <span style="color:#f77729;"><b>tree</b></span> graph directory in the previous section we can’t have more than 1 path to reach the same file entry denoted in pink.
@@ -241,10 +246,9 @@ In the graphical representation of a directory, we draw edges to represent any l
 
 From the example above, notice that `/Users/Guest/readme.md` is a *hard* link to` /Users/Guest/readme.txt` and `/bin/readme` is a *symbolic* link to the <span style="color:#f77729;"><b>same</b></span> file pointed by  `/Users/Guest/readme.txt`. 
 * If we do `rm /Users/Guest/readme.md` AND `rm /Users/Guest/readme.txt`, the underlying file is <span style="color:#f77729;"><b>removed</b></span>. The inode for this file is removed, and we can say that our file is *erased*. The symbolic link becomes a *dangling* pointer, references to a non-existent file.
-
 * If we do `rm /bin/readme`, the underlying file is <span style="color:#f7007f;"><b>not</b></span> removed, because there’s still *another* hard-link reference to the file. 
-  * The inode table entry (for the file) is completely removed only when its reference count is zero. 
-  * 
+* The inode table entry (for the file) is completely removed only when its reference count is zero. 
+
 An inode entry cannot be deleted as long as the reference count to it is more than 0, meaning that there’s 1 or more directory entry that points to the inode entry. 
 {:.warning}
 
