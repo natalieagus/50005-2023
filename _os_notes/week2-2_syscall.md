@@ -413,7 +413,7 @@ command &
 
 
 [^2]:
-     Image taken from https://notes.shichao.io/tlpi/ch6/
+     Image taken from [here](https://notes.shichao.io/tlpi/ch6/).
 
 [^3]:
      A library is a chunk of code that implements an API. An API (application programming interface) is a term that refers to the functions/methods in a library that you can call to perform the task on your behalf (without you actually having to implement the code). As its name said, an API for a particular library, is the interface to the library. The same API can be implemented by different libraries (implementation). The underlying libraries can be updated, etc without changing the API and hence not breaking other code that utilizes the API.
