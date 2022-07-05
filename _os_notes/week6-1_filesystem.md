@@ -312,7 +312,7 @@ Upon execution, we found that the output.txt contains:
 abcdefghijklmnopqrstuvwxyz
 
 Moved cursor to 13th byte:
-mnopqrstuvwxzy
+mnopqrstuvwxyz
 ```
 
 # File System Mapping
