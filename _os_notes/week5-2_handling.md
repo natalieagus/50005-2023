@@ -167,7 +167,7 @@ The deadlock detection algorithm goes as follows:
 
 * <span style="color:#f77729;"><b>Step 2</b></span>: find an index `i` such that <span style="color:#f77729;"><b>both</b></span> conditions below are fulfilled,
   * `Finish[i] == False`
-  * `request[i] <= work` (elemet-wise comparison for these vectors)
+  * `request[i] <= work` (element-wise comparison for these vectors)
 
 * <span style="color:#f77729;"><b>Step 3</b></span>: 
   * If Step 2 produces such index `i`, update `work` and `finish[i]`,
