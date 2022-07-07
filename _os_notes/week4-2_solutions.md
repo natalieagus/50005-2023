@@ -74,7 +74,7 @@ Now two different scenarios might happen.
 ### Scenario 1: Proceed to CS
 `Pi`might break from the `while`-loop under two possible conditions.
 
-<span style="color:#f77729;"><b>Conditon 1:</b></span> `flag[j] == false`, meaning that the other `Pj` is <span style="color:#f7007f;"><b>not ready</b></span> to enter the CS and is <span style="color:#f7007f;"><b>also not in the critical section</b></span>. This ensures <span style="color:#f77729;"><b>mutex</b></span>.
+<span style="color:#f77729;"><b>Condition 1:</b></span> `flag[j] == false`, meaning that the other `Pj` is <span style="color:#f7007f;"><b>not ready</b></span> to enter the CS and is <span style="color:#f7007f;"><b>also not in the critical section</b></span>. This ensures <span style="color:#f77729;"><b>mutex</b></span>.
 
 <span style="color:#f77729;"><b>Condition 2:</b></span> OR, IF `flag[j] == true` but `turn == i`. This means the other process `Pj` is also <span style="color:#f77729;"><b>about</b></span> to enter the critical section. No process is in the Critical Section, but it is `Pi`'s turn, so `Pi` gets to enter the CS first (ensuring <span style="color:#f77729;"><b>progress</b></span>). 
 
