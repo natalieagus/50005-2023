@@ -254,7 +254,7 @@ The Thread function is changed to incorporate a wait to each `condVars[id]`:
 public void doWork(int id)
 {
    lock.lock();
-   while (turn != myNumber)
+   while (turn != id)
    {
        try
        {
