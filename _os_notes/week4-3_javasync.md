@@ -286,7 +286,7 @@ There are also a few solutions listed below.
 
 Basic <span style="color:#f77729;"><b>condition</b></span> variables provide <span style="color:#f7007f;"><b>condition synchronization</b></span> and are used along with a mutex lock.
 
-<span style="color:#f77729;"><b>Java anonymous</b></span> default synchronization object provides mutex using reentrant binary lock (`this`), and provides condition synchronisation using `wait()` and notifyAll()` or `notify()`
+<span style="color:#f77729;"><b>Java anonymous</b></span> default synchronization object provides mutex using reentrant binary lock (`this`), and provides condition synchronisation using `wait()` and `notifyAll()` or `notify()`
 
 <span style="color:#f77729;"><b>Java named synchronization</b></span> object provides mutex using named reentrant binary lock (`ReentrantLock()`) and provides condition sync using condition variables and  `await()/signal()`
 
