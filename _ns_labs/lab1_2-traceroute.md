@@ -74,7 +74,7 @@ For instance,
 
 ## Final Thoughts
 
-Is there anything *unusual* in the output? Are the <span style="color:#f77729;"><b>same</b></span> routers traversed in both directions? 
+Is there anything *unusual* in the output of **Task 8**? Are the <span style="color:#f77729;"><b>same</b></span> routers traversed in both directions? 
 > If no, why so?
 
 

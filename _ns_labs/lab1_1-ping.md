@@ -67,6 +67,9 @@ Website | Successfull %| Min RTT | Ave RTT | Max RTT
  www.usyd.edu.au |  |  |  | 
  www.kyoto-u.ac.jp |  |  |  | 
  
+Also, go to this [online ping test site](https://tools.keycdn.com/ping) and ping www.csail.mit.edu
+> From whom do you receive replies? You can get the IP address and use the command `whois [ip_address]`
+
 ### Task 2 
 `TASK 2:`{:.info} Repeat the exercise from Task 1 using packet sizes of 512 and 1024 bytes. Record the <span style="color:#f77729;"><b>minimum</b></span>, <span style="color:#f77729;"><b>average</b></span>, and <span style="color:#f77729;"><b>maximum</b></span> round trip times for each of the packet sizes with a table like the previous task, and head to edimension to key in your answer.
 
