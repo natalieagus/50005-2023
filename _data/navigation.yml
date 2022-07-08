@@ -10,9 +10,9 @@ header:
   # - title: NS-Notes
   #   url: /ns_notes/overview
   #   key: ns_notes
-  # - title: NS-Labs
-  #   url: /ns_labs/overview
-  #   key: ns_labs
+  - title: NS-Labs
+    url: /ns_labs/lab1_1
+    key: ns_labs
   - title: Assignments
     url: /assignments/pa1_1_intro
     key: assignments
@@ -100,8 +100,10 @@ os_labs:
 ns_labs:
   - title: Lab 1
     children:
-      - title: Overview
-        url: /ns_labs/overview
+      - title: Ping
+        url: /ns_labs/lab1_1
+      - title: Traceroute
+        url: /ns_labs/lab1_2
 
 assignments:
   - title: PA1 - Shell
