@@ -24,8 +24,13 @@ Here is an example of the output produced when traceroute is used to trace the r
 
 <img src="/50005/assets/images/nslab1/1.png"  class="center_seventy"/>
 
+The first line of the traceroute output describes what the command is set for.  
+* It lists the <span style="color:#f77729;"><b>destination</b></span> system (e9566.dscb.akamaiedge.net), destination IP address (184.50.104.236), and the maximum number of hops that will be used in the traceroute (30).
 
-Each line in the output begins with a <span style="color:#f77729;"><b>host</b></span> on the route from your computer to www.mit.edu, followed by the round-trip time (<span style="color:#f77729;"><b>RTT</b></span>) for <span style="color:#f7007f;"><b>3</b></span> packets sent to that host. 
+The remainder of the output shows information on <span style="color:#f77729;"><b>each hop</b></span>, where each line is a reply from (typically) a router, *in the path between the sender and the final destination*. 
+> It is <span style="color:#f77729;"><b>important</b></span> to note that the number of hops isn’t an important factor that affects latency. 
+
+Each of these lines begins with a host (e.g router) <span style="color:#f77729;"><b>IP</b></span> on the route from your computer to www.mit.edu, followed by the round-trip time (<span style="color:#f77729;"><b>RTT</b></span>) for <span style="color:#f7007f;"><b>3</b></span> packets sent to that host. 
 
 For more information about `traceroute`, you can look up its manual page by running `man traceroute` from the command line.
 
