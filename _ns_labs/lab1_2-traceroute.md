@@ -42,8 +42,9 @@ In this exercise, you will run traceroute in two <span style="color:#f77729;"><b
 
 ### Task 6 
 `TASK 6:`{:.info} Visit [this link](https://www.uptrends.com/tools/traceroute) in your web browser. 
-* Enter your computer’s public IP address, select the “from Location” and click “Start Test” to start a traceroute to your computer. 
-* Follow the steps shown in site for at least <span style="color:#f7007f;"><b>three</b></span> locations namely: New York, Amsterdam, Tokyo.
+* Enter your computer’s public IP address, 
+* Select the “from Location”, and follow the steps shown in site for at least <span style="color:#f7007f;"><b>three</b></span> locations namely: New York, Amsterdam, Tokyo.
+* Then, click “Start Test” to start a traceroute to your computer. 
 * Take a <span style="color:#f77729;"><b>screenshot</b></span> of the output
 
 > If the output shows that the packet *does not reach your IP* (request timed out), think about a reason or two on why this is so.
