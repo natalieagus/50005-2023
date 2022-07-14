@@ -37,6 +37,8 @@ For more information about `traceroute`, you can look up its manual page by runn
 ### Task 4 
 `TASK 4:`{:.info} Find out how `traceroute` works. You will need this to answer several questions on eDimension. 
 
+> Hint: `traceroute` sends a UDP packet to the destination host's (highly likely) *unusable* port, with increasing TTL. The routers that reduces the TTL to 0 will send an ICMP TTL Exceeded reply. The end host will send an ICMP Port unreachable reply. 
+
 ## Route Asymmetries
 The route taken to send a packet from your  machine to the remote host machine is <span style="color:#f77729;"><b>not always the same</b></span> with the route taken to send a packet from the remote machine *back* to you.
 
