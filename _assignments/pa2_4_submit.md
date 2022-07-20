@@ -49,6 +49,11 @@ git commit -a -m "feat: save to recv_files_enc and send_files_enc before encrypt
 You can also put your own large files at `/source/files` (>100MB) to <span style="color:#f77729;"><b>test</b></span> internally, but <span style="color:#f77729;"><b>remove</b></span> it before pushing to Github since it doesn't allow you to push any single file >100MB. Please <span style="color:#f77729;"><b>do not use</b></span> `git-lfs`.  
 {:.info}
 
+# Demo 
+The following gif shows the expected interaction between Server and Client processes.
+
+<img src="https://www.dropbox.com/s/ajjzhzh9zcv1rfo/pa2.gif?raw=1"  class="center_ninety"/>
+
 # Submission
 Go to our bot and type `/start`. Follow the instructions there. You're only required to submit the github remote repo link. Ensure that you have invited `natalieagus-sutd` as collaborator. 
 

@@ -145,6 +145,7 @@ encrypted_message = public_key.encrypt(
 
 ### Padding and Message Size
 Note that in the example above, [`OAEP`](https://en.wikipedia.org/wiki/Optimal_asymmetric_encryption_padding) padding scheme is used. This is an RSA <span style="color:#f77729;"><b>encryption padding scheme</b></span> (as opposed to `PSS`, which is a signature padding scheme). 
+> Note that there are two RSA <span style="color:#f77729;"><b>signature</b></span> schemes specified in [PKCS1](https://www.cryptosys.net/pki/manpki/pki_References.html#PKCS1): RSASSA-PKCS1-v1_5 and RSASSA-PSS, and there are two RSA <span style="color:#f77729;"><b>encryption</b></span> schemes: RSAES-PKCS-v1_5 and RSAES-OAEP. The details are out of our syllabus.
 
 The <span style="color:#f77729;"><b>minimum</b></span> length of `OAEP` padding is 66 bytes. A `1024` bit RSA keys can at most encrypt 128 bytes of message data chunk at a time. With 66 bytes of padding at minimum this leaves us with 62 bytes of message to encrypt at a time.
 {:.error}
