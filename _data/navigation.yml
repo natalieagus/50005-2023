@@ -116,3 +116,15 @@ assignments:
         url: /assignments/pa1_3_sysprogs
       - title: Daemon Processes
         url: /assignments/pa1_4_daemons
+  - title: PA2 - Secure FTP
+    children:
+      - title: Overview
+        url: /assignments/pa2_1_intro
+      - title: Authentication Protocol
+        url: /assignments/pa2_2_ap
+      - title: Confidentiality Protocol
+        url: /assignments/pa2_3_cp
+      - title: Submission
+        url: /assignments/pa2_4_submit
+      - title: Python Cryptography
+        url: /assignments/pa2_5_crypto
