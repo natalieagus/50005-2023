@@ -103,7 +103,7 @@ During the step labeled `CHECK SERVER ID`, the client must:
 4. If the `CHECK` passes, the client will proceed with file upload protocol (next task) 
 5. In the event that the `CHECK` fails, the client must <span style="color:#f77729;"><b>close</b></span> the connection immediately (abort mission)
 
-However, theres one <span style="color:#f7007f;"><b>problem</b></span> with the proposed AP above. You need to <span style="color:#f77729;"><b>fix this</b></span> in your submission. 
+However, theres one <span style="color:#f7007f;"><b>problem</b></span> with the proposed AP above (means it has a <span style="color:#f77729;"><b>vulnerability</b></span>). You need to <span style="color:#f77729;"><b>identify and fix this problem</b></span> in your submission. 
 {:.error}
 
 > Hint: read back the <span style="color:#f77729;"><b>second</b></span> requirement of the assignment in the previous page.

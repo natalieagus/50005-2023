@@ -57,6 +57,9 @@ Here's a recap of the `MODE` for CP1:
 - `2`: client closes connection (no need to modify, same as original)
 - `3`: client begins authentication protocol as per Task 1 (no need to modify, same as AP in Task 1)  
 
+And here's a little diagram to help you in your implementation. Remember, the little <span style="color:#f77729;"><b>vulnerability</b></span> highlighted in the AP section is still illustrated here. 
+<img src="/50005/assets/images/pa2/6.png"  class="center_seventy"/>
+
 You might want to refer to the [fifth page](https://natalieagus.github.io/50005/assignments/pa2_5_crypto) of this assignment to get started with some basic functionalities of Python `cryptography` module. 
 
 ### Grading
@@ -106,6 +109,9 @@ Here's a recap of the `MODE` for CP2:
 - `2`: client closes connection (no need to modify, same as original)
 - `3`: client begins authentication protocol as per Task 1 (no need to modify, same as AP in Task 1)  
 - `4`: client begins sharing of session key protocol (NEW for Task 3)
+
+And here's a little diagram to help you in your implementation. Remember, the little <span style="color:#f77729;"><b>vulnerability</b></span> highlighted in the AP section is still illustrated here. 
+<img src="/50005/assets/images/pa2/7.png"  class="center_seventy"/>
 
 ### Grading
 We will <span style="color:#f77729;"><b>manually</b></span> check the implementation of your `MODE 1` and `MODE 4` in both Client and Server scripts.
