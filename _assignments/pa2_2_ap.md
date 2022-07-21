@@ -115,21 +115,23 @@ The <span style="color:#f7007f;"><b>starter code</b></span> given to you has  im
 
 1. Upon successful `connect`, the Client will `send` messages to the server in this general form: 
    1. First to send a `MODE` (an `int` converted to bytes), 
-   2. Then to send streams `messages`. There might be more than 1 messages sent after each `MODE` depending on the purpose of the `MODE`. In the diagram above, the first message is labeled as `M1`: the size of the second message (this size alone not exceeding 8 bytes by design), and then the second message labeled as `M2`: the actual content of the message. <span style="color:#f7007f;"><b>This is so that the server is able to `read` from the socket exactly those `N` number of bytes dictated in the first message. </b></span>
+   2. Then to send streams `messages`. There might be more than 1 message sent after each `MODE` depending on the purpose of the `MODE`. In the diagram above, the first message is labeled as `M1`: the size of the second message (this size alone not exceeding 8 bytes to represent by design), and then the second message labeled as `M2`: the actual content of the message. <span style="color:#f7007f;"><b>This is so that the server is able to `read` from the socket exactly those `N` number of bytes dictated in the first message. </b></span>
   
 2. The Server will at first listen to message `MODE` sent by client at all times, and then attempt to `read` accordingly. 
    
 3. There are 3 default `MODE`s provided, which upon received, the server will categorise the second message as the following:
-* `0`: one message is expected following a `0`,
-  * `M1`: The file name length (this is no more than 8 bytes long <span style="color:#f77729;"><b>by design</b></span>)
+* `0`: two messages are expected following a `0`,
+  * `M1`: The filename length (this is no more than 8 bytes long <span style="color:#f77729;"><b>by design</b></span>)
     * Note that it does NOT mean that the length of the filename is less than `8`
     * It means that the length of the filename needs at most 8 bytes to represent
     * Thats covering integer value between 0 to $$2^{8\times8}$$ for unsigned integers, that's a large number!
-  * `M2`: The file name itself with size dictated in the first message
+  * `M2`: The filename data itself with size dictated in the first message
 * `1`: two messages are expected following a `1`,
   * `M1`: <span style="color:#f77729;"><b>size</b></span> of the data block in bytes (not more than 8 bytes long <span style="color:#f77729;"><b>by design</b></span>)
   * `M2`: the data block itself with size dictated in the first message
 * `2`: no message is expected. This is a <span style="color:#f77729;"><b>connection close</b></span> request. 
+
+> Note that it is <span style="color:#f77729;"><b>not always</b></span> necessary to send two messages after each `MODE` `int` data is sent, if the server knows <span style="color:#f77729;"><b>EXACTLY</b></span> the number of bytes that the client will send following a `MODE`. For instance, if <span style="color:#f77729;"><b>filename</b></span> has a <span style="color:#f77729;"><b>fixed</b></span> byte length: 32 bytes for instance, we can condense `MODE 0` in the server side to always do a `read_bytes(client_socket, 32)`. For this assignment however, follow the protocol stated in this handout closely. 
 
 ### Expanding the FTP
 Make a <span style="color:#f77729;"><b>copy</b></span> of the original `ClientWithoutSecurity.py` and `ServerWithoutSecurity.py` each, and name it as `ClientWithSecurityAP.py` and `ServerWithSecurityAP.py`.
