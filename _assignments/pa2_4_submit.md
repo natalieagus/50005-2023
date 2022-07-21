@@ -53,9 +53,16 @@ You can also put your own large files at `source/files` (>100MB) to <span style=
 The autograder does not check your program's `stdout`, so you're <span style="color:#f77729;"><b>free to print</b></span> whatever you need or want during the development of the assignment. However, you need to stick to the protocol strictly, that is to implement each `MODE` as specified so that we can run your server scripts against our <span style="color:#f77729;"><b>answer key</b></span> client scripts and vice versa. 
 
 # Demo 
-The following gif shows the expected interaction between Server and Client processes.
+The following video shows the expected interaction between Server and Client processes.
 
-<img src="https://www.dropbox.com/s/ajjzhzh9zcv1rfo/pa2.gif?raw=1"  class="center_ninety"/>
+<video controls class="center_ninety">
+
+    <source src="https://www.dropbox.com/s/qp90sfdzt2iorgd/pa2.mov?raw=1"
+            type="video/mp4">
+
+    Sorry, your browser doesn't support embedded videos.
+</video>
+
 
 # Submission
 Go to our bot and type `/start`. Follow the instructions there. You're only required to submit the github remote repo link. Ensure that you have invited `natalieagus-sutd` as collaborator. 
