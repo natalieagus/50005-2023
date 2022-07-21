@@ -71,6 +71,9 @@ result_enc
 result_plain
 ```
 
+`source/recv_files`, `source/recv_files_enc`, and `source/send_files_enc` are all empty directories that are not added in `.git`. To create them, simply run `./cleanup.sh` in `pa2` as your current working directory. You should see exactly the above file structure afterwards.
+{:.error}
+
 ### Create a Github Remote Repo
 Similar to Programming Assignment 1, create a <span style="color:#f7007f;"><b>private</b></span> remote repo on Github called `pa_2`. 
 
