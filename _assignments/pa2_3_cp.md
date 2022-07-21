@@ -79,25 +79,24 @@ Although CP1 is easy to implement, it is unbearably <span style="color:#f7007f;"
 
 Hence, you will also implement this alternate confidentiality protocol that we call CP2:
 * CP2 negotiates a <span style="color:#f77729;"><b>shared session key</b></span> (symmetric key) between the client and server, and 
-
-* Uses the session key to provide <span style="color:#f77729;"><b>confidentiality</b></span> of the file data. 
+> You <span style="color:#f7007f;"><b>should</b></span> use [`Fernet`](https://cryptography.io/en/latest/fernet/) to generate the session keys. Fernet is a symmetric key encryption system based on AES in CBC mode with a 128-bit key for encryption with PCKS7 padding. It is part of Python `cryptography` module). Recall that symmetric key encryption is <span style="color:#f77729;"><b>much</b></span> faster than RSA. 
+* Uses the session key to provide <span style="color:#f77729;"><b>confidentiality</b></span> of the file data thereafter. 
  
-Importantly, your session key will be based on AES in CBC mode with a 128-bit key for encryption with PCKS7 padding (use [`Fernet`](https://cryptography.io/en/latest/fernet/) from Python `cryptography` module), a symmetric key encryption system, which is <span style="color:#f77729;"><b>much</b></span> faster than RSA. 
-
 You might want to refer to the [fifth page](https://natalieagus.github.io/50005/assignments/pa2_5_crypto) of this assignment to get started with some basic functionalities of Python `cryptography` module. 
+
+Before you proceed, you might want to ask yourself: <span style="color:#f77729;"><b>who</b></span> should generate the session key? Client or server?
+{:error}
 
 ### Expanding the FTP
 Make a <span style="color:#f77729;"><b>copy</b></span> of Task 1 files: `ClientWithSecurityCP1.py` and `ServerWithSecurityCP1.py` each, and name it as `ClientWithSecurityCP2.py` and `ServerWithSecurityCP2.py`.
 > Leave the original files as is. You should have 8 `.py` files now under `/pa2`.
 
-
 Now both client and server must implement `MODE: 4`, which signifies the `key generation` handshake. 
-
-1. Upon successful AP, client must then send `MODE: 4`, (`int` converted to `bytes`) to the server, followed by two messages:
+1. Upon successful AP, client must then generate a session key using `Fernet`, then send `MODE: 4`, (`int` converted to `bytes`) to the server, followed by two messages:
    * `M1`: size of `M2` in bytes
    * `M2`: generated <span style="color:#f77729;"><b>session key</b></span> that is encrypted (by what key? Remember we want to protect the confidentiality of this session key -- so only our server can decrypt it).
 2. Then the client proceed to prompt the user with filename as per the regular FTP. 
-3. Upon receiving `MODE: 4`, the server must decrypt the session key and use it to decrypt every single messages coming from the client thereafter. It then should save the received files under `source/recv_files`.
+3. Upon receiving `MODE: 4`, the server must decrypt the session key and use it to decrypt every single messages coming from the client thereafter. The server should save the decrypted received files under `source/recv_files`.
 
 Here's a recap of the `MODE` for CP2:
 - `0`: client will send `M1`: size of filename, and `M2`: the filename (no need to modify, don't need to encrypt this)

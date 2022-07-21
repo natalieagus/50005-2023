@@ -17,6 +17,7 @@ The Python [`cryptography`](https://pypi.org/project/cryptography/) module is pr
 
 > You can install the `cryptography` module using `pip`: `python3.10 -m pip install cryptography`. Make sure that it is installed to your `Python3.10` and not your previous versions of Python, that is to call the `pip` with the `python3.10` version (make sure its in `$PATH`, no other alias, etc). If you don't know how to manage your modules for different versions of Python, please Google harder and try to understand how things are *installed* in your computer from your knowledge about the OS and the File System. We are *way* past this right now. 
 
+You can skim the sections below or jump straight ahead to read their official documentation about RSA (Asymmetric encryption) [here](https://cryptography.io/en/latest/hazmat/primitives/asymmetric/rsa/?highlight=rsa) and Fernet (Symmetric encryption) [here](https://cryptography.io/en/latest/fernet/).
 
 ## Key Generation
 In `source/auth/generate_keys.py`, we have provided you with instructions on how to generate 1024-bit RSA key pair. You can run the script as such:
@@ -204,12 +205,10 @@ public_key.verify(
 ```
 
 ## Generating a Symmetric Key
-You can generate a symmetric key as <span style="color:#f77729;"><b>session key</b></span> for a better file encryption performance. You can use the [`Fernet`](https://cryptography.io/en/latest/fernet/) method to generate a symmetric key. It is really simple to use:
+You can generate a symmetric key as <span style="color:#f77729;"><b>session key</b></span> for a better file encryption performance. You can use the [`Fernet`](https://cryptography.io/en/latest/fernet/) method to generate a <span style="color:#f77729;"><b>secure</b></span> symmetric key, instead of the usual AES/3DES. It is really simple to use:
 ```python
 from cryptography.fernet import Fernet
-key = (
-    Fernet.generate_key() # generates 128-bit symmetric key as bytes
-) 
+key = Fernet.generate_key() # generates 128-bit symmetric key as bytes
 session_key = Fernet(key) # instantiate a Fernet instance with key
 ```
 
@@ -224,7 +223,10 @@ decrypted_long_message = session_key.decrypt(encrypted_long_message)
 assert decrypted_long_message == long_message
 ```
 
+You may *experiment* with <span style="color:#f77729;"><b>other</b></span> [symmetric key algorithms](https://cryptography.io/en/latest/hazmat/primitives/symmetric-encryption/) if you wish, but for this assignment, we <span style="color:#f7007f;"><b>expect you to use Fernet</b></span>. 
 
+## More details
+More documentation details can always be found at their [official documentation page](https://cryptography.io/en/latest/). Utilise their search bar. 
 
 
 
