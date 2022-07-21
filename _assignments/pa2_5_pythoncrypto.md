@@ -83,7 +83,7 @@ You can <span style="color:#f77729;"><b>extract</b></span> both the private key 
 try:
     with open("auth/server_private_key.pem", mode="r", encoding="utf8") as key_file:
         private_key = serialization.load_pem_private_key(
-            bytes(key_file.read(), encoding="utf8"), password=b"passphrase"
+            bytes(key_file.read(), encoding="utf8"), password=None
         )
     public_key = private_key.public_key()
 except Exception as e:
