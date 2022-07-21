@@ -47,13 +47,13 @@ Figure out <span style="color:#f77729;"><b>which key</b></span> to use to encryp
 
 ### Expanding the FTP 
 Make a <span style="color:#f77729;"><b>copy</b></span> of Task 1 files: `ClientWithSecurityAP.py` and `ClientWithSecurityAP.py` each, and name it as `ClientWithSecurityCP1.py` and `ServerWithSecurityCP1.py`.
-> Leave the original files as is. You should have 6 `.py` files now under `/source`.
+> Leave the original files as is. You should have 6 `.py` files now under `source/`.
 
 There's no need to implement any new `MODE` in this task. 
 
 Here's a recap of the `MODE`:
 - `0`: client will send `M1`: size of filename, and `M2`: the filename (no need to modify, don't need to encrypt this)
-- `1`: client will send `M1`: size of data block in `M2`, and `M2`: <span style="color:#f7007f;"><b>encrypted</b></span> blocks of data to the server. The server has to decrypt it before writing the file to `/source/recv_files/`. 
+- `1`: client will send `M1`: size of data block in `M2`, and `M2`: <span style="color:#f7007f;"><b>encrypted</b></span> blocks of data to the server. The server has to decrypt it before writing the file to `source/recv_files/`. 
 - `2`: client closes connection
 - `3`: client begins authentication protocol as per Task 1 (no need to modify)  
 
@@ -63,10 +63,10 @@ You might want to refer to the [fifth page](https://natalieagus.github.io/50005/
 We will <span style="color:#f77729;"><b>manually</b></span> check the implementation of your `MODE 1` in both Client and Server scripts.
 
 ### Commit Task 2
-Save your changes and commit the changes:
+Save your changes and commit the changes (assuming your current working directory is `source/`):
 
 ```
-git add ./source/ServerWithSecurityCP1.py ./source/ClientWithSecurityCP1.py 
+git add ServerWithSecurityCP1.py ClientWithSecurityCP1.py 
 git commit -m "feat: Complete Task 2"
 ```
 
@@ -97,7 +97,7 @@ Now both client and server must implement `MODE: 4`, which signifies the `key ge
    * `M1`: size of `M2` in bytes
    * `M2`: generated <span style="color:#f77729;"><b>session key</b></span> that is encrypted (by what key? Remember we want to protect the confidentiality of this session key -- so only our server can decrypt it).
 2. Then the client proceed to prompt the user with filename as per the regular FTP. 
-3. Upon receiving `MODE: 4`, the server must decrypt the session key and use it to decrypt every single messages coming from the client thereafter. It then should save the received files under `/source/recv_files`.
+3. Upon receiving `MODE: 4`, the server must decrypt the session key and use it to decrypt every single messages coming from the client thereafter. It then should save the received files under `source/recv_files`.
 
 Here's a recap of the `MODE` for CP2:
 - `0`: client will send `M1`: size of filename, and `M2`: the filename (no need to modify, don't need to encrypt this)
@@ -110,12 +110,12 @@ Here's a recap of the `MODE` for CP2:
 We will <span style="color:#f77729;"><b>manually</b></span> check the implementation of your `MODE 1` and `MODE 4` in both Client and Server scripts.
 
 ### Commit Task 3
-Save your changes and commit the changes:
+Save your changes and commit the changes (assuming your current working directory is `source/`):
 
 ```
-git add ./source/ServerWithSecurityCP2.py ./source/ClientWithSecurityCP2.py 
+git add ServerWithSecurityCP2.py ClientWithSecurityCP2.py 
 git commit -m "feat: Complete Task 3"
 ```
 
-By the end of Task 3, you have 1 server-client script pairs for each task (8 scripts in total under `/source`): the original (non-secure), AP, CP1, and CP2 pairs. 
+By the end of Task 3, you have 1 server-client script pairs for each task (8 scripts in total under `source/`): the original (non-secure), AP, CP1, and CP2 pairs. 
 

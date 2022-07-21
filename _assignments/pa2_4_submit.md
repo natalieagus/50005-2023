@@ -46,7 +46,7 @@ You should then make the final commit of all tracked files so far:
 git commit -a -m "feat: save to recv_files_enc and send_files_enc before encrypting and before sending" 
 ```
 
-You can also put your own large files at `/source/files` (>100MB) to <span style="color:#f77729;"><b>test</b></span> internally, but <span style="color:#f77729;"><b>remove</b></span> it before pushing to Github since it doesn't allow you to push any single file >100MB. Please <span style="color:#f77729;"><b>do not use</b></span> `git-lfs`.  
+You can also put your own large files at `source/files` (>100MB) to <span style="color:#f77729;"><b>test</b></span> internally, but <span style="color:#f77729;"><b>remove</b></span> it before pushing to Github since it doesn't allow you to push any single file >100MB. Please <span style="color:#f77729;"><b>do not use</b></span> `git-lfs`.  
 {:.info}
 
 # Demo 

@@ -28,8 +28,8 @@ What you can do is:
 > There’s one <span style="color:#f77729;"><b>catch</b></span>, however. 
 
 How can you obtain SecureStore’s public key <span style="color:#f77729;"><b>reliably</b></span>? 
-* If you simply ask SecStore to send you the key, you’ll have to ensure that you’re *indeed* receiving a reply *from* SecureStore, otherwise a man in the middle attack is possible like we learned in class. 
-* There's circular dependency here: you're replacing an authentication problem by another authentication problem!
+* If you simply ask SecureStore to send you the key, you’ll have to ensure that you’re *indeed* receiving a reply *from* SecureStore, otherwise <span style="color:#f7007f;"><b>a man in the middle attack</b></span> is possible like we learned in class. 
+* There's <span style="color:#f77729;"><b>circular dependency here</b></span>: you're replacing an authentication problem by another authentication problem!
 
 ## Certificate Authority
 In the  Internet, <span style="color:#f77729;"><b>trust</b></span> for public keys is bootstrapped by users going to well known providers (e.g., a <span style="color:#f77729;"><b>reputable</b></span> company like Verisign or a <span style="color:#f77729;"><b>government</b></span> authority like IDA) and <span style="color:#f7007f;"><b>registering</b></span> their public keys. 
@@ -54,7 +54,7 @@ Either your browser or your OS <span style="color:#f77729;"><b>ships</b></span> 
 ### csertificate
 In this assignment, you won’t use VeriSign or IDA. Instead, the CSE teaching staff has volunteered to be your trusted CA -- we call our service <span style="color:#f7007f;"><b>csertificate</b></span>, and we’ll tell you (i.e., your SecureStore and any client programs) our public key in <span style="color:#f77729;"><b>advance</b></span> as “common knowledge”. 
 
-We have given our CA certificate in your starter project: `/source/auth/cacsertificate.crt`. 
+We have given our CA certificate in your starter project: `source/auth/cacsertificate.crt`. 
 > This is analogous to how your browser or OS ships with a set of trusted CA certificates. 
 
 
@@ -67,7 +67,8 @@ We have given our CA certificate in your starter project: `/source/auth/cacserti
 To get you started, we suggest a few things that you can do to authenticate the identity of SecureStore:
  
 1. SecureStore generates RSA private and public key pair (use <span style="color:#f77729;"><b>1024bit</b></span> keys). It also creates a certificate signing request (`.csr`), where it submits the public key and other credentials (e.g., its legal name). 
-  * You can already do this by running `/source/auth/generate_keys.py` file provided to you. 
+  * You can already do this by running `python3 generate_keys.py` file provided to you in `source/auth`.
+    * <span style="color:#f77729;"><b>Change</b></span> your working directory to `source/auth` first before running `generate_keys.py`.
   * Study what it does carefully.
 
 2. SecureStore uploads the certificate request for approval to csertificate, our CA. Our CA is integrated with our bot. <span style="color:#f77729;"><b>Simply type `/start` to our bot and follow the instructions.</b></span> Our CA will:
@@ -76,7 +77,7 @@ To get you started, we suggest a few things that you can do to authenticate the 
    * Pass the signed certificate back to SecureStore. 
    * This certificate is now bound to SecureStore and contains its public key.
 
-3. SecureStore retrieves the signed certificate by our CA, and you <span style="color:#f77729;"><b>MUST save the file `server_signed.crt` under `/source/auth/` directory.</b></span> Do not change it to any other name. 
+3. SecureStore retrieves the signed certificate by our CA, and you <span style="color:#f77729;"><b>MUST save the file `server_signed.crt` under `source/auth/` directory.</b></span> Do not change it to any other name. 
 
 4. When people (e.g., a client program) later ask the Server for its public key, it provides this <span style="color:#f77729;"><b>signed</b></span> certificate. 
   * The client can <span style="color:#f77729;"><b>verify</b></span> that this certificate is indeed <span style="color:#f77729;"><b>signed</b></span> (authorised) by our trusted CA csertificate using csertificate's Public Key, embedded within `cassertificate.crt`.
@@ -129,7 +130,7 @@ The <span style="color:#f7007f;"><b>starter code</b></span> given to you has  im
 
 ### Expanding the FTP
 Make a <span style="color:#f77729;"><b>copy</b></span> of the original `ClientWithoutSecurity.py` and `ServerWithoutSecurity.py` each, and name it as `ClientWithSecurityAP.py` and `ServerWithSecurityAP.py`.
-> Leave the original files as is. You should have 4 `.py` files now under `/source`.
+> Leave the original files as is. You should have 4 `.py` files now under `source/`.
 
 Now both client and server must implement `MODE: 3`, which signifies the `authentication` handshake. 
 1. Upon successful `connect`, client must first send `3` (`int` converted to `bytes`) to the server, followed by two messages:
@@ -156,10 +157,10 @@ You might want to refer to the [fifth page](https://natalieagus.github.io/50005/
 We will <span style="color:#f77729;"><b>manually</b></span> check the implementation of your `MODE 3` in both Client and Server scripts.
 
 ### Commit Task 1
-Save your changes and commit the changes:
+Save your changes and commit the changes (assuming your current working directory is `source/`):
 
 ```
-git add ./source/ServerWithSecurityAP.py ./source/ClientWithSecurityAP.py ./source/auth/server_signed.crt ./source/auth/server_private_key.pem  
+git add ServerWithSecurityAP.py ClientWithSecurityAP.py auth/server_signed.crt auth/server_private_key.pem  
 git commit -m "feat: Complete Task 1"
 ```
 

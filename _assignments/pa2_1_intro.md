@@ -106,9 +106,10 @@ If you create a new private repo, invite `natalieagus-sutd` (not `natalieagus`!)
 
 ## Test the Starter Code
 The starter code provided to you implements a <span style="color:#f77729;"><b>simple</b></span>, non-secure file transfer protocol. We will explain in detail what the protocol is. For now, let's just ensure that everything runs normally. 
-* Change the current working directory to `source/`
+* Change the current working directory to `source/`. 
+  * This is where we assume your working directory is <span style="color:#f77729;"><b>unless otherwise stated.</b></span>
 * Run `python3 ServerWithoutSecurity.py`, then run `python3 ClientWithoutSecurity.py` in two terminal windows
-* You can key in the filename you want to send, e.g `files/image.ppm` from the Client's window, and the server will receive it and store it under `/source/recv_files` directory. 
+* You can key in the filename you want to send, e.g `files/image.ppm` from the Client's window, and the server will receive it and store it under `source/recv_files` directory. 
   * Remember that the current working directory of the Client is `source/`  
 * You can repeat the above steps multiple times for each file you want to send to the server. 
 * If the client would like to close connection to the server, key in `-1`. 
