@@ -107,13 +107,11 @@ If you create a new private repo, invite `natalieagus-sutd` (not `natalieagus`!)
 ## Test the Starter Code
 The starter code provided to you implements a <span style="color:#f77729;"><b>simple</b></span>, non-secure file transfer protocol. We will explain in detail what the protocol is. For now, let's just ensure that everything runs normally. 
 * Change the current working directory to `source/`
-* Run `ServerWithoutSecurity.py`, then run `ClientWithoutSecurity.py` in two terminal windows
+* Run `python3 ServerWithoutSecurity.py`, then run `python3 ClientWithoutSecurity.py` in two terminal windows
 * You can key in the filename you want to send, e.g `files/image.ppm` from the Client's window, and the server will receive it and store it under `/source/recv_files` directory. 
   * Remember that the current working directory of the Client is `source/`  
 * You can repeat the above steps multiple times for each file you want to send to the server. 
 * If the client would like to close connection to the server, key in `-1`. 
-
-> Some of you might encouter the error `Module cryptography not found`. You should know what you need to do by now as a CS student. 
 
 The screenshot below shows how client process can send files to the server process, when both are hosted in the same computer:
 
@@ -123,6 +121,38 @@ You can also host the Server file in another computer. The client can connect to
 ```
 python3 ClientWithoutSecurity.py [server-ip-address]
 ```
+
+## Debug Notes
+### Invalid Syntax
+Some of you might encounter the error when running `python3 ServerWithoutSecurity.py`
+
+```python
+  match convert_bytes_to_int(read_bytes(client_socket, 8)):
+        ^              
+      case 0:
+
+SyntaxError: invalid syntax
+```
+That's because your `python3` <span style="color:#f7007f;"><b>is NOT aliased</b></span> to `python3.10` or that you don't have `python3.10` installed. <span style="color:#f7007f;"><b>Fix this on your own.</b></span> You're a CS major student. Not knowing how to install Python and manage its libraries is *a really really bad thing*; it's like as if the entire 50.002 and the first 6 weeks of CSE doesn't mean anything to you. 
+
+In this handout, we assume that `python3` is <span style="color:#f77729;"><b>always aliased</b></span> to `python3.10`. 
+{:.error}
+
+That is, if you type `python3` in the terminal, you'll see at least version 3.10 printed out:
+<img src="/50005/assets/images/pa2/5.png"  class="center_seventy"/>
+
+The <span style="color:#f7007f;"><b>autograder</b></span> file also uses `python3` instead of `python3.10`. You can modify it to call `python3.10` instead accordingly. 
+
+### Module Not Found
+Some of you might encouter the error `ModuleNotFoundError: No module named ‘cryptography’`. You should know what you need to do by now as a CS student. If you have installed cryptography using `pip install cryptography`, but still suffer from this error, it simply means that the `pip` you used does not install to the path library of whatever `python3` version you are using right now. That is, you may have <span style="color:#f7007f;"><b>mixed</b></span> up `Python` and `pip` versions on your machine. 
+
+Assuming your `python3` is aliased to `python3.10`, then you can do:
+```
+python3 -m pip install cryptography
+```
+
+
+
 
 ## Do NOT Import Other Python Modules
 You are <span style="color:#f7007f;"><b>NOT</b></span> allowed to import any other python modules other than what's given:
