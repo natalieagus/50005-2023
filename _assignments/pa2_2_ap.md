@@ -158,6 +158,13 @@ You <span style="color:#f7007f;"><b>must</b></span> implement these `MODE` as sp
 
 You might want to refer to the [fifth page](https://natalieagus.github.io/50005/assignments/pa2_5_crypto) of this assignment to get started with some basic functionalities of Python `cryptography` module. 
 
+Finally, Here's a recap of the `MODE` for AP:
+- `0`: client will send `M1`: size of filename, and `M2`: the filename (no need to modify, same as original)
+- `1`: client will send `M1`: size of data block in `M2`, and `M2`: plain, unencrypted blocks of data to the server (no need to modify, same as original)
+- `2`: client closes connection (no need to modify, same as original)
+- `3`: client begins authentication protocol (NEW for Task 1)
+
+
 ### Grading
 We will <span style="color:#f77729;"><b>manually</b></span> check the implementation of your `MODE 3` in both Client and Server scripts.
 

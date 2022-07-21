@@ -51,11 +51,11 @@ Make a <span style="color:#f77729;"><b>copy</b></span> of Task 1 files: `ClientW
 
 There's no need to implement any new `MODE` in this task. 
 
-Here's a recap of the `MODE`:
+Here's a recap of the `MODE` for CP1:
 - `0`: client will send `M1`: size of filename, and `M2`: the filename (no need to modify, don't need to encrypt this)
-- `1`: client will send `M1`: size of data block in `M2`, and `M2`: <span style="color:#f7007f;"><b>encrypted</b></span> blocks of data to the server. The server has to decrypt it before writing the file to `source/recv_files/`. 
-- `2`: client closes connection
-- `3`: client begins authentication protocol as per Task 1 (no need to modify)  
+- `1`: client will send `M1`: size of data block in `M2`, and `M2`: <span style="color:#f7007f;"><b>encrypted</b></span> blocks of data to the server. The server has to decrypt it before writing the file to `source/recv_files/` (NEW for Task 2)
+- `2`: client closes connection (no need to modify, same as original)
+- `3`: client begins authentication protocol as per Task 1 (no need to modify, same as AP in Task 1)  
 
 You might want to refer to the [fifth page](https://natalieagus.github.io/50005/assignments/pa2_5_crypto) of this assignment to get started with some basic functionalities of Python `cryptography` module. 
 
@@ -96,14 +96,16 @@ Now both client and server must implement `MODE: 4`, which signifies the `key ge
    * `M1`: size of `M2` in bytes
    * `M2`: generated <span style="color:#f77729;"><b>session key</b></span> that is encrypted (by what key? Remember we want to protect the confidentiality of this session key -- so only our server can decrypt it).
 2. Then the client proceed to prompt the user with filename as per the regular FTP. 
-3. Upon receiving `MODE: 4`, the server must decrypt the session key and use it to decrypt every single messages coming from the client thereafter. The server should save the decrypted received files under `source/recv_files`.
+3. Upon receiving `MODE: 4`, the server must receive and decrypt the session key. 
+
+It goes without saying that `MODE: 1` implementation must be modified for both Server and Client to utilise the <span style="color:#f77729;"><b>session key</b></span> instead. 
 
 Here's a recap of the `MODE` for CP2:
 - `0`: client will send `M1`: size of filename, and `M2`: the filename (no need to modify, don't need to encrypt this)
-- `1`: client will send `M1`: size of data block in `M2`, and `M2`: <span style="color:#f7007f;"><b>encrypted</b></span> blocks of data using the <span style="color:#f77729;"><b>session key</b></span>. The server has to decrypt it with the <span style="color:#f77729;"><b>session key</b></span> as well before writing it to file. 
-- `2`: client closes connection
-- `3`: client begins authentication protocol as per Task 1 (no need to modify)  
-- `4`: client begins sharing of session key protocol
+- `1`: client will send `M1`: size of data block in `M2`, and `M2`: <span style="color:#f7007f;"><b>encrypted</b></span> blocks of data using the <span style="color:#f77729;"><b>session key</b></span>. The server has to decrypt it with the <span style="color:#f77729;"><b>session key</b></span> as well before writing it to file (NEW for Task 3)
+- `2`: client closes connection (no need to modify, same as original)
+- `3`: client begins authentication protocol as per Task 1 (no need to modify, same as AP in Task 1)  
+- `4`: client begins sharing of session key protocol (NEW for Task 3)
 
 ### Grading
 We will <span style="color:#f77729;"><b>manually</b></span> check the implementation of your `MODE 1` and `MODE 4` in both Client and Server scripts.
