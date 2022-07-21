@@ -123,8 +123,13 @@ The screenshot below shows how client process can send files to the server proce
 
 You can also host the Server file in another computer. The client can connect to it using the command:
 ```
-python3 ClientWithoutSecurity.py [server-ip-address]
+python3 ClientWithoutSecurity.py [port] [server-ip-address]
 ```
+
+Notes:
+* To get this to work, you most probably need to use <span style="color:#f77729;"><b>local</b></span> ip address instead of public one, unless you have implemented a reverse proxy 
+* You might need to enable <span style="color:#f77729;"><b>port forwarding</b></span> depending on where you host the server
+* If this is all to complicated for you, *skip*. You can totally just do the assignment in the same computer. 
 
 ## Debug Notes
 ### Invalid Syntax
