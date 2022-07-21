@@ -30,7 +30,7 @@ There are <span style="color:#f7007f;"><b>three</b></span> parts of this assignm
 ## System Requirements
 The starter code provided to you is written in Python. You need at least <span style="color:#f7007f;"><b>Python 3.10</b></span> to complete this assignment and the [`cryptography`](https://pypi.org/project/cryptography/) module. 
 
-While you can develop in Python using any OS, you still need to ensure that your assignment runs on a POSIX-compliant OS (path, etc is resolved).
+While you can develop in Python using any OS, you still need to ensure that your assignment runs on a <span style="color:#f7007f;"><b>POSIX-compliant OS</b></span> (path, etc is resolved).
 {:.warning}
 
 ## Starter Code
