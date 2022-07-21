@@ -49,6 +49,9 @@ git commit -a -m "feat: save to recv_files_enc and send_files_enc before encrypt
 You can also put your own large files at `source/files` (>100MB) to <span style="color:#f77729;"><b>test</b></span> internally, but <span style="color:#f77729;"><b>remove</b></span> it before pushing to Github since it doesn't allow you to push any single file >100MB. Please <span style="color:#f77729;"><b>do not use</b></span> `git-lfs`.  
 {:.info}
 
+# Print Statements
+The autograder does not check your program's `stdout`, so you're <span style="color:#f77729;"><b>free to print</b></span> whatever you need or want during the development of the assignment. However, you need to stick to the protocol strictly, that is to implement each `MODE` as specified so that we can run your server scripts against our <span style="color:#f77729;"><b>answer key</b></span> client scripts and vice versa. 
+
 # Demo 
 The following gif shows the expected interaction between Server and Client processes.
 
