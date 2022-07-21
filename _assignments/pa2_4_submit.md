@@ -50,12 +50,17 @@ You can also put your own large files at `source/files` (>100MB) to <span style=
 {:.info}
 
 # Print Statements
-The autograder does not check your program's `stdout`, so you're <span style="color:#f77729;"><b>free to print</b></span> whatever you need or want during the development of the assignment. However, you need to stick to the protocol strictly, that is to implement each `MODE` as specified so that we can run your server scripts against our <span style="color:#f77729;"><b>answer key</b></span> client scripts and vice versa. 
+The autograder does not check your program's `stdout`, so you're <span style="color:#f77729;"><b>free to print</b></span> whatever you need or want during the development of the assignment. 
+
+# Following Protocols Closely (1%) 
+As stated throughout the handout, you need to stick to the protocol <span style="color:#f77729;"><b>strictly</b></span>, that is to implement each `MODE` as specified (`send` or `read` exactly as specified in the `MODE`) so that we can run your server scripts against our <span style="color:#f77729;"><b>answer key</b></span> client scripts and vice versa. This is where the last 1% of your grade come from. 
+
+> You may easily ensure this by checking your server against another pair's client, and vice versa. 
 
 # Demo 
 The following video shows the expected interaction between Server and Client processes.
 
-<video controls class="center_ninety">
+<video controls width="100%" class="center_ninety">
 
     <source src="https://www.dropbox.com/s/qp90sfdzt2iorgd/pa2.mov?raw=1"
             type="video/mp4">
