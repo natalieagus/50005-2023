@@ -121,7 +121,11 @@ The <span style="color:#f7007f;"><b>starter code</b></span> given to you has  im
    
 3. There are 3 default `MODE`s provided, which upon received, the server will categorise the second message as the following:
 * `0`: one message is expected following a `0`,
-  * `M1`: The file name (not more than 8 bytes long <span style="color:#f77729;"><b>by design</b></span>)
+  * `M1`: The file name length (this is no more than 8 bytes long <span style="color:#f77729;"><b>by design</b></span>)
+    * Note that it does NOT mean that the length of the filename is less than `8`
+    * It means that the length of the filename needs at most 8 bytes to represent
+    * Thats covering integer value between 0 to $$2^{8\times8}$$ for unsigned integers, that's a large number!
+  * `M2`: The file name itself with size dictated in the first message
 * `1`: two messages are expected following a `1`,
   * `M1`: <span style="color:#f77729;"><b>size</b></span> of the data block in bytes (not more than 8 bytes long <span style="color:#f77729;"><b>by design</b></span>)
   * `M2`: the data block itself with size dictated in the first message
