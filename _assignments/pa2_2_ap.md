@@ -88,7 +88,7 @@ The diagram below gives the basis of a possible authentication protocol. Take no
 
 The size of `M1` is designed to be not more than `8` bytes. The next section will explain this in more detail.
 
-<img src="/50005/assets/images/pa2/1.png"  class="center_fifty"/>
+<img src="/50005/assets/images/pa2/1.png"  class="center_seventy"/>
 
 The server (SecureStore) has the following items to encrypt/decrypt messages from the client when necessary:
 - Signed certificate `server_signed.crt`, containing server public key: $$Ks^+$$ signed by our CA
