@@ -49,15 +49,15 @@ git commit -a -m "feat: save to recv_files_enc and send_files_enc before encrypt
 You can also put your own large files at `source/files` (>100MB) to <span style="color:#f77729;"><b>test</b></span> internally, but <span style="color:#f77729;"><b>remove</b></span> it before pushing to Github since it doesn't allow you to push any single file >100MB. Please <span style="color:#f77729;"><b>do not use</b></span> `git-lfs`.  
 {:.info}
 
-# Print Statements
+## Print Statements
 The autograder does not check your program's `stdout`, so you're <span style="color:#f77729;"><b>free to print</b></span> whatever you need or want during the development of the assignment. 
 
-# Following Protocols Closely (1%) 
+## Following Protocols Closely (1%) 
 As stated throughout the handout, you need to stick to the protocol <span style="color:#f77729;"><b>strictly</b></span>, that is to implement each `MODE` as specified (`send` or `read` exactly as specified in the `MODE`) so that we can run your server scripts against our <span style="color:#f77729;"><b>answer key</b></span> client scripts and vice versa. This is where the last 1% of your grade come from. 
 
 > You may easily ensure this by checking your server against another pair's client, and vice versa. 
 
-# Demo 
+## Demo 
 The following video shows the expected interaction between Server and Client processes.
 
 <video controls width="100%" class="center_ninety">
@@ -69,7 +69,7 @@ The following video shows the expected interaction between Server and Client pro
 </video>
 
 
-# Submission
+## Submission
 Go to our bot and type `/start`. Follow the instructions there. You're only required to submit the github remote repo link. Ensure that you have invited `natalieagus-sutd` as collaborator. 
 
 <span style="color:#f7007f;"><b>We will clone your repo for grading. Make sure you check that it runs with the given autograder before submitting.</b></span> The bot <span style="color:#f77729;"><b>WILL NOT</b></span> report any marks to you. We will mark your submission after all submissions are collected. 
