@@ -175,6 +175,34 @@ decrypted_message = private_key.decrypt(
   )
 ```
 
+You can also <span style="color:#f77729;"><b>decrypt</b></span> a message with a `public_key`. In order to  *decrypt* with a public key, this message has to be *encrypted* with a private key, and we call this a <span style="color:#f77729;"><b>signature</b></span> (instead of regular encrypted message). 
+
+```python
+message = bytes("hello world", encoding="utf-8")
+signed_message = private_key.sign(
+        message,
+        padding.PSS( # padding must match what's used by the private_key
+            mgf=padding.MGF1(hashes.SHA256()),
+            salt_length=padding.PSS.MAX_LENGTH,
+        ),
+        hashes.SHA256(),
+    )
+```
+
+The <span style="color:#f77729;"><b>function</b></span> to decrypt with a public key is called <span style="color:#f7007f;"><b>verify</b></span>:
+```python
+public_key.verify(
+            file_data,
+            nonce,
+            padding.PSS( # padding must match what's used by the private_key
+                mgf=padding.MGF1(hashes.SHA256()),
+                salt_length=padding.PSS.MAX_LENGTH,
+            ),
+            hashes.SHA256(),
+        )
+# will continue here if the verify above passes
+```
+
 ### Generating a Symmetric Key
 You can generate a symmetric key as <span style="color:#f77729;"><b>session key</b></span> for a better file encryption performance. You can use the [`Fernet`](https://cryptography.io/en/latest/fernet/) method to generate a symmetric key. It is really simple to use:
 ```python

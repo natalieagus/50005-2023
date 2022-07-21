@@ -99,10 +99,9 @@ Upon <span style="color:#f77729;"><b>successful</b></span> connection, the clien
 During the step labeled `CHECK SERVER ID`, the client must:
 1. <span style="color:#f77729;"><b>Verify</b></span> the signed certificate sent by the Server using ca's public key $$Kca^+$$ obtained from `cacsertificate.crt` file,
 2. Extract `server_public_key`: $$Ks^+$$ from it,
-3. Decrypt signed message: $$Ks^-\{M\}$$,
-4. Verify that $$M$$ is the same message sent by the client in the first place
-5. If the `CHECK` passes, the client will proceed with file upload protocol (next task) 
-6. In the event that the `CHECK` fails, the client must <span style="color:#f77729;"><b>close</b></span> the connection immediately (abort mission)
+3. Decrypt signed message: $$Ks^-\{M\}$$ (using the `verify` method) to verify that $$M$$ is the same message sent by the client in the first place
+4. If the `CHECK` passes, the client will proceed with file upload protocol (next task) 
+5. In the event that the `CHECK` fails, the client must <span style="color:#f77729;"><b>close</b></span> the connection immediately (abort mission)
 
 However, theres one <span style="color:#f7007f;"><b>problem</b></span> with the proposed AP above. You need to <span style="color:#f77729;"><b>fix this</b></span> in your submission. 
 {:.error}
