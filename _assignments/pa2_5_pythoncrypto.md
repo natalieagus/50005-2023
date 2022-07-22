@@ -78,6 +78,11 @@ ca_public_key.verify(
 An `InvalidSignature` exception will be <span style="color:#f77729;"><b>raised</b></span> if the signature fails to verify. Otherwise, the instructions will continue.
 {:.warning}
 
+Then you can also extract server's public key from `server_cert` after it passes the verification:
+```python
+server_public_key = server_cert.public_key()
+```
+
 ## Check Certificate Validity
 It is also <span style="color:#f77729;"><b>important</b></span> to check the validity of a certificate before proceeding with the FTP. You can do this easily by doing:
 ```python
