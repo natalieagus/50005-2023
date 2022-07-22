@@ -208,8 +208,8 @@ public_key.verify(
 You can generate a symmetric key as <span style="color:#f77729;"><b>session key</b></span> for a better file encryption performance. You can use the [`Fernet`](https://cryptography.io/en/latest/fernet/) method to generate a <span style="color:#f77729;"><b>secure</b></span> symmetric key, instead of the usual AES/3DES. It is really simple to use:
 ```python
 from cryptography.fernet import Fernet
-key = Fernet.generate_key() # generates 128-bit symmetric key as bytes
-session_key = Fernet(key) # instantiate a Fernet instance with key
+session_key_bytes = Fernet.generate_key() # generates 128-bit symmetric key as bytes
+session_key = Fernet(session_key_bytes) # instantiate a Fernet instance with key
 ```
 
 ## Using a Symmetric Key

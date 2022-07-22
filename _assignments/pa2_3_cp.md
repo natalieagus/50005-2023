@@ -97,7 +97,7 @@ Make a <span style="color:#f77729;"><b>copy</b></span> of Task 1 files: `ClientW
 Now both client and server must implement `MODE: 4`, which signifies the `key generation` handshake. 
 1. Upon successful AP, client must then generate a session key using `Fernet`, then send `MODE: 4`, (`int` converted to `bytes`) to the server, followed by two messages:
    * `M1`: size of `M2` in bytes
-   * `M2`: generated <span style="color:#f77729;"><b>session key</b></span> that is encrypted (by what key? Remember we want to protect the confidentiality of this session key -- so only our server can decrypt it).
+   * `M2`: generated <span style="color:#f77729;"><b>session key bytes</b></span> that is encrypted (by what key? Remember we want to protect the confidentiality of this session key -- so only our server can decrypt it).
 2. Then the client proceed to prompt the user with filename as per the regular FTP. 
 3. Upon receiving `MODE: 4`, the server must receive and decrypt the session key. 
 
