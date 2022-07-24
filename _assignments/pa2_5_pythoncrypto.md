@@ -121,7 +121,7 @@ signed_message = private_key.sign(
     )
 ```
 
-We can then verify the `message` using the `verify` method that we have seen above with the <span style="color:#f7007f;"><b>corresponding</b></span> `public_key`:
+We can then verify the `message` using the `verify` method that we have seen above with the <span style="color:#f7007f;"><b>corresponding</b></span> `public_key`, otherwise will raise `InvalidSignature` Exception. 
 ```python
 public_key.verify(
     signed_message,
