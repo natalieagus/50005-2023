@@ -104,6 +104,16 @@ ns_labs:
         url: /ns_labs/lab1_1
       - title: Traceroute
         url: /ns_labs/lab1_2
+  - title: Lab 2
+    children:
+      - title: Introduction
+        url: /ns_labs/lab2_1-intro
+      - title: Text Encryption
+        url: /ns_labs/lab2_2-sym-txt
+      - title: Image Encryption
+        url: /ns_labs/lab2_3-sym-img
+      - title: Message Digest
+        url: /ns_labs/lab2_4-sign
 
 assignments:
   - title: PA1 - Shell

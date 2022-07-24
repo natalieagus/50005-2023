@@ -37,7 +37,7 @@ python3 autograde.py 1
 python3 autograde.py 2
 ```
 
-You should have the following message if everything goes well (`8` marks for CP1, and `14` marks for CP2). The 8 marks for CP1 will be mapped to 2% of your grade, and the 18 marks for CP2 will also be mapped to 2% of your grade. 
+You should have the following message if everything goes well (`8` marks for CP1, and `14` marks for CP2). The 8 marks for CP1 will be mapped to 2% of your grade, and the 14 marks for CP2 will also be mapped to 2% of your grade. 
 
 <img src="/50005/assets/images/pa2/3.png"  class="center_fifty"/>
 

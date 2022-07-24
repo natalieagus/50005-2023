@@ -42,33 +42,34 @@ git clone https://github.com/natalieagus/pa2.git
 This will result in a directory called `pa2`. Anything under `source/` is where you will work for this assignment. All files in the same level as `source/` are for <span style="color:#f77729;"><b>autograding purposes</b></span>. Do not modify these. 
 
 ```
-source/
-  auth/
-    cacsertificate.crt
-    generate_keys.py
-  files/
-    cbc.bmp
-    file.txt
-    image.ppm
-    jsim.jar
-    player.psd
-    squeak.wav
-    vscodejsim.mp4
-    week9.html
-  recv_files/
-  recv_files_enc/
-  send_files_enc/
-  ClientWithoutSecurity.py
-  ServerWithoutSecurity.py
-autograde.py
-cleanup.sh
-input1
-input2
-output_client 
-output_server 
-result
-result_enc
-result_plain
+pa2/
+  |-source/
+    |-auth/
+        |-cacsertificate.crt
+        |-generate_keys.py
+    |-files/
+        |-cbc.bmp
+        |-file.txt
+        |-image.ppm
+        |-jsim.jar
+        |-player.psd
+        |-squeak.wav
+        |-vscodejsim.mp4
+        |-week9.html
+    |-recv_files/
+    |-recv_files_enc/
+    |-send_files_enc/
+    |-ClientWithoutSecurity.py
+    |-ServerWithoutSecurity.py
+  |-autograde.py
+  |-cleanup.sh
+  |-input1
+  |-input2
+  |-output_client 
+  |-output_server 
+  |-result
+  |-result_enc
+  |-result_plain
 ```
 
 `source/recv_files`, `source/recv_files_enc`, and `source/send_files_enc` are all empty directories that are not added in `.git`. To create them, simply run `./cleanup.sh` in `pa2` as your current working directory. You should see exactly the above file structure afterwards.
