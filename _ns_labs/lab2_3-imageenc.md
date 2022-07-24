@@ -208,7 +208,7 @@ padded_test_bytes b'Lorem\x03\x03\x03'
 With this, you should be able to complete Task 2-3 and 2-4. 
 
 ### Task 2-5 
-`TASK 2-5:`{:.info} Encrypt the padded column bytes.
+`TASK 2-5:`{:.info} Encrypt the padded column bytes. Fill in your answer under the `TODO` for this task. 
 > You should have enough information by now to complete this task.
 
 

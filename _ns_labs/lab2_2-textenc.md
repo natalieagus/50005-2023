@@ -70,11 +70,11 @@ Now you should be able to complete these two tasks.
 
 ### Task 1-3 
 `TASK 1-3:`{:.info} Encrypt the raw bytes
-Fill in your answer in the `TODO` space for this task. 
+Fill in your answer under the `TODO` for this task. 
 
 ### Task 1-4 
 `TASK 1-4:`{:.info} Decrypt the raw bytes
-Fill in your answer in the `TODO` space for this task. 
+Fill in your answer under the `TODO` for this task. 
 
 
 ## Creating a Printable Text Using base64
