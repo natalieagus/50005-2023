@@ -213,7 +213,7 @@ With this, you should be able to complete Task 2-3 and 2-4.
 
 
 ## Observe the Output Images
-When you have successfully completed Task 2-1 to 2-5, there will be 8 output images at `output/`. <span style="color:#f77729;"><b>Observe them</b></span> and think about the answers these questions.
+When you have successfully completed Task 2-1 to 2-5, there will be 8 output images at `output/`. <span style="color:#f77729;"><b>Observe them</b></span> and think about the answers to these questions.
 
 Look at all `ECB` outputs. 
 1. Are there any differences between `top-down` and `bottom-up` output?
