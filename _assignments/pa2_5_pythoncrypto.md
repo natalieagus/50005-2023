@@ -111,7 +111,7 @@ except Exception as e:
 We <span style="color:#f77729;"><b>sign</b></span> a message by encrypting it with our `private_key`. For instance,
 ```python
 message = bytes("hello world", encoding="utf-8")
-private_key.sign(
+signed_message = private_key.sign(
         message, # message in bytes format
         padding.PSS(
             mgf=padding.MGF1(hashes.SHA256()),
@@ -124,14 +124,15 @@ private_key.sign(
 We can then verify the `message` using the `verify` method that we have seen above with the <span style="color:#f7007f;"><b>corresponding</b></span> `public_key`:
 ```python
 public_key.verify(
-    file_data,
-    nonce,
+    signed_message,
+    message,
     padding.PSS(
         mgf=padding.MGF1(hashes.SHA256()),
         salt_length=padding.PSS.MAX_LENGTH,
     ),
     hashes.SHA256(),
 )
+# will continue here if the verify above passes
 ```
 
 Note that in the above example, `SHA256` is used to <span style="color:#f77729;"><b>hash</b></span> the `message` first before encrypting it with `private_key`. 
@@ -139,7 +140,7 @@ Note that in the above example, `SHA256` is used to <span style="color:#f77729;"
 The padding used for the example above is [`PSS`](https://en.wikipedia.org/wiki/Probabilistic_signature_scheme). It is a <span style="color:#f77729;"><b>new signature padding scheme</b></span> standard that should be used to pad <span style="color:#f77729;"><b>signatures</b></span> securely. You may read more about it [here](https://www.cryptosys.net/pki/manpki/pki_rsaschemes.html) but it is out of our syllabus scope.
 
 
-Note that in the above `ca_public_key.verify` example, we used the old `padding.PKCS1v15()` because that's just how our CA bot signed the `.csr`, however when our server signs the client's message, it can use the more advanced `PSS` padding. Conversely, the client <span style="color:#f77729;"><b>must</b></span> also use `PSS` padding if the server used it to pad the digital signature. 
+Also note that in the above `ca_public_key.verify` example, we used the old `padding.PKCS1v15()` because that's just how our CA bot signed the `.csr`, however when our server signs the client's message, it can use the more advanced `PSS` padding. Conversely, the client <span style="color:#f77729;"><b>must</b></span> also use `PSS` padding if the server used it to pad the digital signature. 
 
 
 ## Standard Encryption
@@ -189,33 +190,7 @@ decrypted_message = private_key.decrypt(
   )
 ```
 
-You can also <span style="color:#f77729;"><b>decrypt</b></span> a message with a `public_key`. In order to  *decrypt* with a public key, this message has to be *encrypted* with a private key, and we call this a <span style="color:#f77729;"><b>signature</b></span> (instead of regular encrypted message). 
-
-```python
-message = bytes("hello world", encoding="utf-8")
-signed_message = private_key.sign(
-        message,
-        padding.PSS( # padding must match what's used by the private_key
-            mgf=padding.MGF1(hashes.SHA256()),
-            salt_length=padding.PSS.MAX_LENGTH,
-        ),
-        hashes.SHA256(),
-    )
-```
-
-The <span style="color:#f77729;"><b>function</b></span> to decrypt with a public key is called <span style="color:#f7007f;"><b>verify</b></span>:
-```python
-public_key.verify(
-            file_data,
-            nonce,
-            padding.PSS( # padding must match what's used by the private_key
-                mgf=padding.MGF1(hashes.SHA256()),
-                salt_length=padding.PSS.MAX_LENGTH,
-            ),
-            hashes.SHA256(),
-        )
-# will continue here if the verify above passes
-```
+You can also <span style="color:#f77729;"><b>decrypt</b></span> a message with a `public_key`. In order to  *decrypt* with a public key, this message has to be *encrypted* with a private key, and we call this a <span style="color:#f77729;"><b>signature</b></span> (instead of regular encrypted message). You have seen this in the [previous](https://natalieagus.github.io/50005/assignments/pa2_5_crypto#sign-message-and-verify) section above.
 
 ## Generating a Symmetric Key
 You can generate a symmetric key as <span style="color:#f77729;"><b>session key</b></span> for a better file encryption performance. You can use the [`Fernet`](https://cryptography.io/en/latest/fernet/) method to generate a <span style="color:#f77729;"><b>secure</b></span> symmetric key, instead of the usual AES/3DES. It is really simple to use:
