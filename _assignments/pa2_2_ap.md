@@ -49,7 +49,7 @@ A *certificate* contains a public key. If we have the CA's certificate, we have 
 
 > How do we get CA's information then? How do we know that CA's keys *indeed* belong to the CA? 
  
-Either your browser or your OS <span style="color:#f77729;"><b>ships</b></span> with <span style="color:#f77729;"><b>a set of trusted CA certificates</b></span>. If a new CA comes into the amrket, then the browser or the OS will need to ship a software updates containing the new CA's information. 
+Either your browser or your OS <span style="color:#f77729;"><b>ships</b></span> with <span style="color:#f77729;"><b>a set of trusted CA certificates</b></span>. If a new CA comes into the market, then the browser or the OS will need to ship a software updates containing the new CA's information. 
 
 ### csertificate
 In this assignment, you won’t use VeriSign or IDA. Instead, the CSE teaching staff has volunteered to be your trusted CA -- we call our service <span style="color:#f7007f;"><b>csertificate</b></span>, and we’ll tell you (i.e., your SecureStore and any client programs) our public key in <span style="color:#f77729;"><b>advance</b></span> as “common knowledge”. 
