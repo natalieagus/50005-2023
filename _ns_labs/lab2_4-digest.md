@@ -131,8 +131,8 @@ message_digest_bytes b'\x03\r\xc1\xf96\xc3AZ\xff?3W\x165\x15\x19\r4z(\xe7X\xe1\x
 
 > Is the length of `message_digest_bytes` always the same (32 bytes), regardless of the length of the input `data_bytes`?
 
-### Task 3-(3-8) 
-`TASK 3-(3-8):`{:.info} With all the explanations above, you should be able to complete these tasks. Fill in your answer under the `TODO` for this task. 
+### Task 3-(5-8) 
+`TASK 3-(5-8):`{:.info} With all the explanations above, you should be able to complete these tasks. Fill in your answer under the `TODO` for this task. 
 
 
 ## Summary
