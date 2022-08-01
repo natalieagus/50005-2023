@@ -76,6 +76,10 @@
   & > a {
     display: inline-block;
     font-size: map-get($base, font-size-h4);
+    @media (max-width: 768px) 
+    {
+      font-size: map-get($base, font-size-h4-xs);
+    }
     @include media-breakpoint-down(md) {
       font-size: map-get($base, font-size-h4);
     }
@@ -88,6 +92,11 @@
     height: map-get($layout, header-height);
     padding-bottom: 0;
     margin: 0;
+    font-size: map-get($base, font-size-h5);
+    @media (max-width: 768px) 
+    {
+      font-size: map-get($base, font-size-h4-xs) * 0.9;
+    }
     @include media-breakpoint-down(md) {
       padding-bottom: 4px;
       margin: -4px 0 0 0;
