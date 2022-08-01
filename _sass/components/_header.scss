@@ -76,13 +76,13 @@
   & > a {
     display: inline-block;
     word-break: break-all;
-    font-size: map-get($base, font-size-h5);
+    font-size: map-get($base, font-size-h4);
     @media (max-width: 768px) 
     {
-      font-size: map-get($base, font-size-h5-xs) * 0.8;
+      font-size: map-get($base, font-size-h5);
     }
     @include media-breakpoint-down(md) {
-      font-size: map-get($base, font-size-h4);
+      font-size: map-get($base, font-size-h5);
     }
   }
 }
