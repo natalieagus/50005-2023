@@ -78,7 +78,7 @@
     font-size: map-get($base, font-size-h4);
     @media (max-width: 768px) 
     {
-      font-size: map-get($base, font-size-h5-xs) * 0.9;
+      font-size: map-get($base, font-size-h5-xs) * 0.7;
     }
     @include media-breakpoint-down(md) {
       font-size: map-get($base, font-size-h4);
@@ -95,7 +95,7 @@
     font-size: map-get($base, font-size-h5);
     @media (max-width: 768px) 
     {
-      font-size: map-get($base, font-size-h5-xs) * 0.9;
+      font-size: map-get($base, font-size-h5-xs) * 0.8;
     }
     @include media-breakpoint-down(md) {
       padding-bottom: 4px;
