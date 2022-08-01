@@ -114,6 +114,14 @@ ns_labs:
         url: /ns_labs/lab2_3-sym-img
       - title: Message Digest
         url: /ns_labs/lab2_4-sign
+  - title: Lab 3
+    children:
+      - title: DNS with dig
+        url: /ns_labs/lab3_1-intro
+      - title: DNS Hierarchy
+        url: /ns_labs/lab3_2-hierarchy-caching
+      - title: Wireshark
+        url: /ns_labs/lab3_3-wireshark
 
 assignments:
   - title: PA1 - Shell
