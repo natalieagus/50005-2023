@@ -75,10 +75,11 @@
   }
   & > a {
     display: inline-block;
-    font-size: map-get($base, font-size-h4);
+    word-break: break-all;
+    font-size: map-get($base, font-size-h5);
     @media (max-width: 768px) 
     {
-      font-size: map-get($base, font-size-h5-xs) * 0.7;
+      font-size: map-get($base, font-size-h5-xs) * 0.8;
     }
     @include media-breakpoint-down(md) {
       font-size: map-get($base, font-size-h4);

@@ -138,8 +138,8 @@ pre, code {
 }
 
 code {
-  color: rgba(#ff0000, 1.0);
-  font-size: map-get($base, font-size-xs);
+  color: rgba(#d50204, 1.0);
+  font-size: map-get($base, font-size-root) * 0.9;
   line-height: map-get($base, line-height-sm);
 }
 
