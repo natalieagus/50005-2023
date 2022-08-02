@@ -28,17 +28,19 @@ After opening the file, you should have this interface:
 
 ### Task 12 
 `TASK 12:`{:.info} <span style="color:#f77729;"><b>Locate</b></span> the DNS query and response messages. Are they sent over `UDP` or `TCP`?  
-> Which number is this query packet? Hint: look under protocol <span style="color:#f77729;"><b>DNS</b></span>
+> Which numbers are these DNS query packets? Hint: look under protocol <span style="color:#f77729;"><b>DNS</b></span>
 
 ### Task 13 
 `TASK 13:`{:.info} What is the <span style="color:#f77729;"><b>destination</b></span> port for the DNS *query* message? What is the <span style="color:#f77729;"><b>source</b></span> port of the DNS *response* message?
 
 ### Task 14 
-`TASK 14:`{:.info} What is the IP address to which the DNS query message was sent? Use `ifconfig` to determine the `IPv4` address of your *local* DNS server. Are these two addresses the same? 
+`TASK 14:`{:.info} What is the IP address to which the DNS query message was sent? Run `scutil --dns` to determine the `IPv4` address of your *local* DNS server. Are these two addresses the same? 
 
 ### Task 15 
 `TASK 15:`{:.info} Examine the <span style="color:#f77729;"><b>second</b></span> DNS query message in the Wireshark capture. What <span style="color:#f77729;"><b>type</b></span> of DNS query is it? 
 * Does the query message contain any answers?
+
+Then examine the second DNS **response** message. 
 * How many answers are provided? 
 * What does each of these answers contain?
 
