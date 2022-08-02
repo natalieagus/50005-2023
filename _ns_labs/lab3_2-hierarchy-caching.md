@@ -18,7 +18,7 @@ show_date: false
 In the previous section, you ran `dig` without changing the default options. This causes `dig` to perform a <span style="color:#f77729;"><b>recursive</b></span> lookup if the DNS server being queried supports it. In this part, you will *trace* the intermediate steps involved in a performing recursive query by beginning at a `root` server and <span style="color:#f77729;"><b>manually</b></span> going through the DNS hierarchy to resolve a host name. You can obtain a list of all the root servers by running the command `dig . NS`
 
 ### Task 6 
-`TASK 6:`{:.info} Use `dig` to query the "c" DNS root servers for the IP address of `lirone.csail.mit.edu` <span style="color:#f77729;"><b>without</b></span> using recursion. What is the command that you use to do this?
+`TASK 6:`{:.info} Use `dig` to query the `c` DNS root server for the IP address of `lirone.csail.mit.edu` <span style="color:#f77729;"><b>without</b></span> using recursion. What is the command that you use to do this?
 
 ### Task 7 
 `TASK 7:`{:.info} Go through the DNS hierarchy from the root until you have found the IP address of `lirone.csail.mit.edu`.
