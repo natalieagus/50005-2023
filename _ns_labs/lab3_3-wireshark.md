@@ -45,7 +45,7 @@ Then examine the second DNS **response** message.
 * What does each of these answers contain?
 
 ### Task 16 
-`TASK 16:`{:.info} Locate a `TCP SYN` packet sent by your host subsequent to the above DNS response. 
+`TASK 16:`{:.info} Locate a `TCP SYN` packet sent by your host subsequent to the above (second) DNS response. 
 
 This packet opens a `TCP` <span style="color:#f77729;"><b>connection</b></span> between your host and the web server. Does the <span style="color:#f7007f;"><b>destination</b></span> IP address of the `SYN` packet correspond to any of the IP addresses provided in the DNS response message?
 
