@@ -109,6 +109,7 @@ html,
     position: relative;
     display: block;
     width: map-get($layout, aside-width);
+    word-wrap: break-word;
     & > aside {
       &.fixed {
         position: fixed;
