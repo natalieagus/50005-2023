@@ -1,5 +1,5 @@
 .article__content {
-  line-height: map-get($base, line-height-lg);
+  line-height: map-get($base, line-height);
   word-wrap: break-word;
   @media print {
     line-height: map-get($base, line-height);
