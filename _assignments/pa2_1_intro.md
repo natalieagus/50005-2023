@@ -179,6 +179,21 @@ If the autograder complains that your programs did not produce the output files 
 Simply add a `strip()` function inside your `Client[version].py` scripts when getting `filename` from the <span style="color:#f77729;"><b>user</b></span> to eliminate these trailing whitespaces.
 
 
+### No Such File or Directory: recv_files/EXPECTED_FILE
+Depending on your OS, when you run `ServerWithSecurity[version].py` or the <span style="color:#f77729;"><b>autograder</b></span>, it might complain about files in the directories: `recv_files/EXPECTED_FILE`, `recv_files_enc/EXPECTED_FILE`, etc <span style="color:#f77729;"><b>not found</b></span> when you clearly have it in your project path or have run `cleanup.sh`. 
+
+This is due to differences in what constitutes a *line break*:
+* `\r\n` is a Windows Style
+* `\n` is a POSIX Style
+* `\r` is a old pre-OS X Macs Style, Modern Mac's using POSIX Style
+
+Therefore your directory name might be set as `recv_files\r\n` when you run `cleanup.sh`. You can't tell whether the line break is there or not. Similarly, when you receive `filename` from  `input` in `ClientWithSecurity[version].py`, the line break might be there, creating filename like `files.txt\r\n`. In order to tackle this, you can:
+1. Add `.strip()` at the end of `input`, resulting in `input("Enter a filename....").strip()`
+2. Create a new `cleanup.sh` with the exact same content and overwrites the old one so that the line break suits your system's 
+
+
+
+
 ## Do NOT Import Other Python Modules
 You are <span style="color:#f7007f;"><b>NOT</b></span> allowed to import any other python modules other than what's given:
 
@@ -198,18 +213,5 @@ from cryptography.hazmat.primitives import hashes, serialization
 from cryptography.hazmat.primitives.asymmetric import padding
 from cryptography.hazmat.backends import default_backend
 ```
-
-### No Such File or Directory: recv_files/EXPECTED_FILE
-Depending on your OS, when you run `ServerWithSecurity[version].py` or the <span style="color:#f77729;"><b>autograder</b></span>, it might complain about files in the directories: `recv_files/EXPECTED_FILE`, `recv_files_enc/EXPECTED_FILE`, etc <span style="color:#f77729;"><b>not found</b></span> when you clearly have it in your project path or have run `cleanup.sh`. 
-
-This is due to differences in what constitutes a *line break*:
-* `\r\n` is a Windows Style
-* `\n` is a POSIX Style
-* `\r` is a old pre-OS X Macs Style, Modern Mac's using POSIX Style
-
-Therefore your directory name might be set as `recv_files\r\n` when you run `cleanup.sh`. You can't tell whether the line break is there or not. Similarly, when you receive `filename` from  `input` in `ClientWithSecurity[version].py`, the line break might be there, creating filename like `files.txt\r\n`. In order to tackle this, you can:
-1. Add `.strip()` at the end of `input`, resulting in `input("Enter a filename....").strip()`
-2. Create a new `cleanup.sh` with the exact same content and overwrites the old one so that the line break suits your system's 
-
 
 
