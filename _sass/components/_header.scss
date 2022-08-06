@@ -1,7 +1,7 @@
 .header {
   background: $header-background;
   a {
-    font-weight: map-get($base, font-weight) + 300;
+    font-weight: map-get($base, font-weight) + 200;
     text-decoration: none !important;
     @include link-colors($header-text-color, $main-color-1);
   }
@@ -64,19 +64,19 @@
   @include flexbox();
   @include align-items(center);
   & > svg {
-    width: map-get($base, font-size-h4) * 1.6;
-    height: map-get($base, font-size-h4) * 1.6;
+    width: map-get($base, font-size-h4);
+    height: map-get($base, font-size-h4);
     margin-right: map-get($spacers, 3);
     vertical-align: middle;
     @include media-breakpoint-down(md) {
-      width: map-get($base, font-size-h4) * 1.2;
-      height: map-get($base, font-size-h4) * 1.2;
+      width: map-get($base, font-size-h5) ;
+      height: map-get($base, font-size-h5) ;
     }
   }
   & > a {
     display: inline-block;
     word-break: break-all;
-    font-size: map-get($base, font-size-h4);
+    font-size: map-get($base, font-size-h5);
     @media (max-width: 768px) 
     {
       font-size: map-get($base, font-size-h5);
@@ -96,7 +96,7 @@
     font-size: map-get($base, font-size-h5);
     @media (max-width: 768px) 
     {
-      font-size: map-get($base, font-size-h5-xs) * 0.8;
+      font-size: map-get($base, font-size-h5-sm);
     }
     @include media-breakpoint-down(md) {
       padding-bottom: 4px;

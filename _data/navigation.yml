@@ -1,16 +1,16 @@
 header:
   - title: Home
     url: /index.html
-  - title: OS-Notes
+  - title: OSNotes
     url: /os_notes/week1_intro
     key: os_notes
-  - title: OS-Labs
+  - title: OSLabs
     url: /os_labs/lab1_intro
     key: os_labs
   # - title: NS-Notes
   #   url: /ns_notes/overview
   #   key: ns_notes
-  - title: NS-Labs
+  - title: NSLabs
     url: /ns_labs/lab1_1
     key: ns_labs
   - title: Assignments
