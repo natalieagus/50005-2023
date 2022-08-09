@@ -54,6 +54,9 @@ There's no need to implement any new `MODE` in this task.
 Here's a recap of the `MODE` for CP1:
 - `0`: client will send `M1`: size of filename, and `M2`: the filename (no need to modify, don't need to encrypt this)
 - `1`: client will send `M1`: size of data block in `M2`, and `M2`: <span style="color:#f7007f;"><b>encrypted</b></span> blocks of data to the server. The server has to decrypt it before writing the file to `source/recv_files/` (NEW for Task 2)
+  - Note: It is up to you to <span style="color:#f77729;"><b>either</b></span> concatenate ALL encrypted bytes and send it all at once as `M2` with the appropriate `M1` value (total encrypted bytes) *or* to send chunks of 128 bytes at repeatedly, e.g: send `M1`: 128 (as bytes), then `M2`: encrypted data chunk, repeatedly until the entire encrypted files are sent. The latter requires lots of socket `send` function calls, but it's your call. We have accounted for either cases in our grading scheme.  
+  - No matter which method you choose, both are still *under* `MODE 1`, which means to send the file *data* in its entirety. 
+  - Do not repeatedly send `MODE 1` for every 128-bytes chunk. 
 - `2`: client closes connection (no need to modify, same as original)
 - `3`: client begins authentication protocol as per Task 1 (no need to modify, same as AP in Task 1)  
 
