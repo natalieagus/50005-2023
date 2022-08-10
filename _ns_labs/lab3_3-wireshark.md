@@ -19,7 +19,7 @@ show_date: false
 
 
 ## Observe Wireshark Capture File
-Open the dnsrealtrace.pcapng in Wireshark and answer the following questions. You can refer to Wireshark tutorial [here](https://drive.google.com/file/d/12zi50lKYTf6ebXQNbUJsstc_BBSWO6X6/view?usp=sharing) before proceeding, but most things are self-explanatory. 
+Open the dnsrealtrace.pcapng in Wireshark and answer the following questions. You can refer to Wireshark tutorial [here](https://drive.google.com/file/d/12zi50lKYTf6ebXQNbUJsstc_BBSWO6X6/view?usp=sharing) before proceeding, but most things are self-explanatory. If the download link doesn't work, head to eDimension Week 13 to get the file. 
 
 After opening the file, you should have this interface:
 
