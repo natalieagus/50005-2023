@@ -55,7 +55,9 @@ The autograder does not check your program's `stdout`, so you're <span style="co
 ## Following Protocols Closely (1%) 
 As stated throughout the handout, you need to stick to the protocol <span style="color:#f77729;"><b>strictly</b></span>, that is to implement each `MODE` as specified (`send` or `read` exactly as specified in the `MODE`) so that we can run your server scripts against our <span style="color:#f77729;"><b>answer key</b></span> client scripts and vice versa. This is where the last 1% of your grade come from. 
 
-> You may easily ensure this by checking your server against another pair's client, and vice versa. 
+> You may easily ensure this by checking your server against another pair's client, and vice versa. You may need to handle two cases: ensure the padding schemes <span style="color:#f77729;"><b>match</b></span>, and check for `MODE 1` if the encrypted bytes are concatenated together by client before sending to server, or if client is sending it 128 bytes at a time (and server decrypt each chunk and assemble). 
+
+Not to worry, our server and client scripts that will be used to test your client and server script will handle these cases. 
 
 ## Demo 
 The following video shows the expected interaction between Server and Client processes.
