@@ -18,7 +18,7 @@ If you have reached this stage, you have completed 95% of this assignment, <span
 Please read this section very very carefully and watch the given demo with your full attention. 
 {:.error}
 
-You are expected to <span style="color:#f77729;"><b>store</b></span> TWO additional files each time a client send a file to the server:
+You are expected to <span style="color:#f77729;"><b>store</b></span> TWO additional files each time a client sends a file to the server:
 1. Client to save encrypted files to `source/send_files_enc` before sending, with the name: `enc_[filename]`, e.g: `enc_image.ppm` if it is sending `image.ppm` to the server. 
 2. Server to save received encrypted file to client to `source/recv_files_enc` before decrypting, with the name `enc_recv_[filename]`, e.g: `enc_recv_image.ppm`. 
 
