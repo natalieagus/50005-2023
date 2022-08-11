@@ -34,7 +34,7 @@ The Domain Information Groper (`dig`) is commonly used for performing DNS lookup
 
 <img src="/50005/assets/images/nslab3/1.png"  class="center_seventy"/>
 
-When the command `dig slashdot.org` is run, dig performs a DNS lookup and displays information about the request and the response it receives. At the bottom of the printout, we can see that the query was sent to the DNS server running on `192.168.2.100`, and that the query took 226 ms to complete. Most of the information that we are interested in can be found in the `ANSWER SECTION`.
+When the command `dig slashdot.org` is run, dig performs a DNS lookup and displays information about the request and the response it receives. At the bottom of the printout, we can see that the query was sent to the DNS server running on `192.168.2.100`, and that the query took 101 ms to complete. Most of the information that we are interested in can be found in the `ANSWER SECTION`.
 
 The answer section for this query contains a DNS record:
 
