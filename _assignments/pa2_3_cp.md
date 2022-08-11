@@ -94,7 +94,7 @@ Before you proceed, you might want to ask yourself: <span style="color:#f77729;"
 {:error}
 
 ### Expanding the FTP
-Make a <span style="color:#f77729;"><b>copy</b></span> of Task 1 files: `ClientWithSecurityCP1.py` and `ServerWithSecurityCP1.py` each, and name it as `ClientWithSecurityCP2.py` and `ServerWithSecurityCP2.py`.
+Make a <span style="color:#f77729;"><b>copy</b></span> of Task 2 files: `ClientWithSecurityCP1.py` and `ServerWithSecurityCP1.py` each, and name it as `ClientWithSecurityCP2.py` and `ServerWithSecurityCP2.py`.
 > Leave the original files as is. You should have 8 `.py` files now under `/pa2`.
 
 Now both client and server must implement `MODE: 4`, which signifies the `key generation` handshake. 
