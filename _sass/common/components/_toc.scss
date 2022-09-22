@@ -39,7 +39,7 @@ ul.toc {
     }
   }
   .toc-h1 {
-    @include split-line(bottom);
+    // @include split-line(bottom);
     padding: map-get($spacers, 2) 0 map-get($spacers, 1) 0;
     margin-bottom: map-get($spacers, 2);
     color: $text-color-d;

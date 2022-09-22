@@ -77,7 +77,7 @@ h5,
 h6,
 strong {
   font-weight: map-get($base, font-weight-bold);
-  color:#f77729;
+  color: $main-color-1;
 }
 
 h1 {
@@ -174,3 +174,27 @@ input {
 .mermaidTooltip {
   display: none;
 }
+
+* {
+  scrollbar-width: thin;
+  // scrollbar-color: blue orange;
+}
+
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 10px;
+}
+
+*::-webkit-scrollbar-thumb:horizontal{
+  background: transparent;
+}
+
+*::-webkit-scrollbar-track {
+  background: $background-color;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: rgba($text-color, 0.2);;
+  
+}
+

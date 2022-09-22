@@ -79,8 +79,8 @@ html,
   width: 80%;
   max-width: map-get($layout, sidebar-width);
   height: 100%;
-  background-color: $background-color;
-  @include split-line(right);
+  background-color: $main-color-3;
+  // @include split-line(right);
   @include transition(transform map-get($animation, duration));
   @include overflow(auto);
   .sidebar-toc {
@@ -165,3 +165,17 @@ html,
     padding-top: map-get($layout, header-height);
   }
 }
+
+.page__sidebar::-webkit-scrollbar-thumb {
+  background-color: transparent;
+}
+
+.page__sidebar::-webkit-scrollbar {
+  background-color: transparent;
+}
+
+.page__sidebar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+
