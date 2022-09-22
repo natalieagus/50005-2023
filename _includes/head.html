@@ -35,7 +35,7 @@ path='/assets/css/main.css' -%}
   @import url("{{ '/assets/css/main.css' | relative_url }}");
   @import url("{{ '/assets/css/main_alt.css' | relative_url }}");
 </style>
-
+<div class="baseurl" style="display: none">{{ site.baseurl }}</div>
 {%- include snippets/get-sources.html -%} {%- assign _sources = __return -%}
 <link rel="stylesheet" href="{{ _sources.font_awesome }}" />
 

@@ -3,8 +3,9 @@ function showContent() {
   document.body.style.opacity = 1;
 }
 
-var lightStyle = '@import url("/50005/assets/css/main.css");';
-var darkStyle = '@import url("/50005/assets/css/main_alt.css");';
+var baseURL = document.getElementsByClassName("baseurl")[0].innerHTML;
+var lightStyle = '@import url("' + baseURL + '/assets/css/main.css");';
+var darkStyle = '@import url("' + baseURL + '/assets/css/main_alt.css");';
 
 function setTheme(theme) {
   if (theme == "dark") {
