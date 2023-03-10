@@ -41,7 +41,7 @@ Like system calls, they can also be divided into the following categories:
 
 These programs create, delete, copy, rename, print, dump, list, and generally manipulate files and directories. For example: all commands that you can enter in CLI that involves file management in UNIX systems is actually the <span style="color:#f77729;"><b>name</b></span> of system programs that can be found in the `$PATH`. These include `ls, rm, mkdir, cp, touch` among many others.
 
-Modern OS usually comes with default <span style="color:#f77729;"><b>package managers</b></span> that simplifies installation of softwares (and also managing versions, updates, running background services, etc). For instance, `brew` for macOS and `apt` for Debian-based Linux distributions.
+Modern OS usually comes with default <span style="color:#f77729;"><b>package managers</b></span> that simplifies installation of software applications (and also managing versions, updates, running background services, etc). For instance, `brew` for macOS and `apt` for Debian-based Linux distributions.
 
 Several text editors provided (`nano`, `vi`) may be available to create and modify the content of files stored on disk or other storage devices. There may also be special commands to search the contents of files or perform transformations of the text like `grep, awk, tr`.
 
@@ -87,7 +87,7 @@ Along with system programs, most operating systems are supplied with programs th
 
 # System vs Application Programs
 
-It is often hard to distinguish between system and application (user) programs. Some programs like compiler, assembler, debugger, device drivers, and antivirus can be clearly defined as <span style="color:#f77729;"><b>system programs</b></span>. Programs like media player, photo editing softwares, and video games are clear examples of application programs.
+It is often hard to distinguish between system and application (user) programs. Some programs like compiler, assembler, debugger, device drivers, and antivirus can be clearly defined as <span style="color:#f77729;"><b>system programs</b></span>. Programs like media player, photo editing software applications, and video games are clear examples of application programs.
 
 The table below summarises the differences between system programs and application programs (user programs).
 
@@ -276,7 +276,7 @@ If you'd like to expand your knowledge beyond regular OS, you may have further r
 
 We can run any arm or intel-based OS on arm or intel-based hardware, e.g: Dual boot. An extension to that is <span style="color:#f77729;"><b>virtualization</b></span>, where you can run any OS on any OS (typically the same architecture).
 
-A <span style="color:#f77729;"><b>hypervisor</b></span> is essentially an <span style="color:#f77729;"><b>emulator</b></span> computer software, firmware, and hardware that runs virtual machines. Examples of hypervisors: VMWare, VMWorkstation, VirtualBox, Parallel Desktop for Mac, etc
+A <span style="color:#f77729;"><b>hypervisor</b></span> is essentially an <span style="color:#f77729;"><b>emulator</b></span> computer software applications, firmware, and hardware that runs virtual machines. Examples of hypervisors: VMWare, VMWorkstation, VirtualBox, Parallel Desktop for Mac, etc
 
 ## Containerization
 
@@ -285,7 +285,7 @@ A <span style="color:#f77729;"><b>hypervisor</b></span> is essentially an <span 
 Note: "Host OS" in the picture above assumes that it is UNIX-based POSIX compliant OS. If you run Docker on Windows/Mac, it will download a Hypervisor + Guest Linux too before you can run the Docker Engine.
 {:.warning}
 
-Example of softwares that support containerisation: [Docker](https://www.freecodecamp.org/news/docker-quick-start-video-tutorials-1dfc575522a0).
+Example of software applications that support containerisation: [Docker](https://www.freecodecamp.org/news/docker-quick-start-video-tutorials-1dfc575522a0).
 
 [^10]: `tty` itself is a command in Unix and Unix-like operating systems to print the file name of the terminal connected to standard input. If you open multiple terminal windows in your UNIX-based system and type `tty` on each of them, you will be returned with different ids. You may use write to communicate across terminal windows
 [^11]: Early operating systems were written in assembly language. Now, although some operating systems are still written in assembly language, most are written in a higher-level language such as C or an even higher-level language such as C++. Actually, an operating system can be written in more than one language: (1) The lowest levels of the kernel might be assembly language, and then (2) higher-level routines might be in C, and finally (3) system programs might be in C or C++, in interpreted scripting languages like PERL or Python, or in shell scripts. In fact, a given Linux distribution probably includes programs written in all of those languages.
