@@ -84,18 +84,22 @@ os_labs:
         url: /os_labs/lab1_sc
   - title: Lab 2
     children:
-      - title: The TOC/TOU Bug
+      - title: The TinyOS
         url: /os_labs/lab2_intro
-      - title: Vulnerable Root Program
-        url: /os_labs/lab2_vulnerableprog
-      - title: Bug Fix
-        url: /os_labs/lab2_fix
   - title: Lab 3
     children:
-      - title: Banker's Algorithm
+      - title: The TOC/TOU Bug
         url: /os_labs/lab3_intro
+      - title: Vulnerable Root Program
+        url: /os_labs/lab3_vulnerableprog
+      - title: Bug Fix
+        url: /os_labs/lab3_fix
+  - title: Lab 5
+    children:
+      - title: Banker's Algorithm
+        url: /os_labs/lab5_intro
       - title: Submission Procedure
-        url: /os_labs/lab3_submission
+        url: /os_labs/lab5_submission
 
 ns_labs:
   - title: Lab 1
