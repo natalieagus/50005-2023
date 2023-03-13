@@ -26,7 +26,10 @@ An operating system is a **special program** that acts as an intermediary betwee
 
 The goal of an operating system is such that we have a **dedicated program** to fulfil the following essential roles:
 
-1. **Resource allocator and coordinator**: controls hardware and input/output requests, manage conflicting requests, manage interrupts
+1. **Resource allocator and coordinator**:
+   - Controls hardware and input/output requests
+   - Manage resource conflicting requests
+   - Manage interrupts
 2. **Controls program execution**:
    - Storage hierarchy manager
    - Process manager
