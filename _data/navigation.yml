@@ -86,6 +86,10 @@ os_labs:
     children:
       - title: The TinyOS
         url: /os_labs/lab2_intro
+      - title: Mouse IRQ Handler
+        url: /os_labs/lab2_parta
+      - title: Mouse Supervisor Call
+        url: /os_labs/lab2_partb
   - title: Lab 3
     children:
       - title: The TOC/TOU Bug
