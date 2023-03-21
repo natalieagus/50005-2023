@@ -98,6 +98,12 @@ os_labs:
         url: /os_labs/lab3_vulnerableprog
       - title: Bug Fix
         url: /os_labs/lab3_fix
+  - title: Lab 4
+    children:
+      - title: Process Scheduling
+        url: /os_labs/lab4_parta
+      - title: Process Synchronisation
+        url: /os_labs/lab4_partb
   - title: Lab 5
     children:
       - title: Banker's Algorithm
