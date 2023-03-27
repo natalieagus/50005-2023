@@ -16,6 +16,8 @@ header:
   - title: Assignments
     url: /assignments/pa1_1_intro
     key: assignments
+  - title: Roadmap
+    url: /roadmap
 
 os_notes:
   - title: Basics of OS
