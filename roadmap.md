@@ -10,7 +10,7 @@ title: Roadmap
 
 Here's a Roadmap for you to help you get through tough times in **the first half** of the course. **Blue** nodes are **clickable** and will direct you to the relevant lecture note section. **Yellow** nodes are also clickable and will bring you to the relevant lecture notes.
 
-{: .note}
 This map is inspired by [roadmap.sh](https://roadmap.sh). Give the site a visit, tons of amazing roadmaps in there!
+{: .note}
 
 <object type="image/svg+xml" data="{{ site.baseurl }}/assets/contentimage/roadmap.svg" style="width:100%;"></object>
