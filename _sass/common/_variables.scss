@@ -69,7 +69,7 @@ $spacers: (
   3:                      map-get($base, spacer),
   4:                      map-get($base, spacer) * 1.5,
   5:                      map-get($base, spacer) * 3,
-  6:                      map-get($base, spacer) * 4
+  6:                      map-get($base, spacer) * 3 
 );
 
 $z-indexes: (

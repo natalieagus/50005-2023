@@ -18,7 +18,7 @@ Apart from the Kernel and the user interface (GUI and/or CLI), a modern operatin
 Most users’ view of an operating system is defined by the system programs, not the actual system calls because they are actually hidden from us (through API).
 {:.warning}
 
-- For example, when a user’s computer is running the macOS, the user might see the GUI, featuring a mouse-and-windows interface.
+For example, when a user’s computer is running the macOS, the user might see the GUI, featuring a mouse-and-windows interface.
 
 # System Programs
 
@@ -35,7 +35,7 @@ System programs runs on <span style="color:#f7007f;"><b>user mode</b></span>, ju
 
 ## Categories
 
-Like system calls, they can also be divided into the following categories:
+Like system calls, system programs can also be divided into the categories below.
 
 ### Package Managers: file management and modification
 
@@ -130,7 +130,8 @@ Take for example: a <span style="color:#f77729;"><b>mechanism</b></span> for giv
 
 - <span style="color:#f77729;"><b>Support</b></span> a policy decision that I/O-intensive programs should have priority over CPU-intensive ones
 - Or <span style="color:#f77729;"><b>support</b></span> the opposite policy whenever appropriate.
-  Either way, no change in the instructions need to be made.
+
+Either way, **no** change in the instructions need to be made.
 
 # OS Structures
 

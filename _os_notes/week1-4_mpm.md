@@ -66,18 +66,21 @@ A kernel that supports multiprogramming increases <span style="color:#f77729;"><
 
 The reason for the need of multiprogramming are as follows:
 
-- <span style="color:#f7007f;"><b>Single users must be prevented from keeping CPU and I/O devices busy at all times.</b></span>
-  - Since the clock cycles of a general purpose CPU is very fast (in Ghz), we don't actually need 100% CPU power in most case
-  - It is often _too fast_ to be dedicated for just one program for the entire 100% of the time
-  - Hence, if multiprogramming is not supported and each process has a fixed quantum (time allocated to execute), then the CPU might spend most of its time <span style="color:#f7007f;"><b>idling</b></span>.
-- The kernel must organise jobs (code and data) <span style="color:#f77729;"><b>efficiently</b></span> so CPU always has one to execute:
-  - A <span style="color:#f77729;"><b>subset</b></span> of total jobs in the system is kept in memory + swap space of the disk.
-    - Remember: **Virtual memory** allows execution of processes not completely in memory.
-  - One job is selected per CPU and run by the scheduler
-  - When a particular job has to wait (for I/O for example), context switch is performed.
-    - For instance, Process A asked for user `input()`, enters Kernel Mode via supervisor call
-    - If there's no input, Process A is <span style="color:#f77729;"><b>suspended</b></span> and <span style="color:#f77729;"><b>context switch</b></span> is performed (instead of returning back to Process A)
-    - If we return to Process A, since Process A cannot progress without the given input, it will invoke another `input()` request again -- again and again until the input is present. This will waste so much resources
+**Single user must be prevented from keeping CPU and I/O devices busy at all times.**
+
+Since the clock cycles of a general purpose CPU is very fast (in Ghz), we don't actually need 100% CPU power in most case. It is often _too fast_ to be dedicated for just one program for the entire 100% of the time. Hence, if multiprogramming is not supported and each process has a fixed quantum (time allocated to execute), then the CPU might spend most of its time <span style="color:#f7007f;"><b>idling</b></span>.
+
+**The kernel must organise jobs (code and data) <span style="color:#f77729;"><b>efficiently</b></span> so CPU always has one to execute.**
+A <span style="color:#f77729;"><b>subset</b></span> of total jobs in the system is kept in memory and swap space of the disk.
+
+Remember: **Virtual memory** allows execution of processes not completely in memory. One job is selected per CPU and run by the scheduler.
+{: .info}
+
+When a particular job has to wait (for I/O for example), context switch is performed.
+
+- For instance, Process A asked for user `input()`, enters Kernel Mode via supervisor call
+- If there's no input, Process A is <span style="color:#f77729;"><b>suspended</b></span> and <span style="color:#f77729;"><b>context switch</b></span> is performed (instead of returning back to Process A)
+- If we return to Process A, since Process A cannot progress without the given input, it will invoke another `input()` request again -- again and again until the input is present. This will waste so much resources
 
 ## Timesharing
 
@@ -122,20 +125,19 @@ The kernel is <span style="color:#f7007f;"><b>not</b></span> a process in itself
 
 - For instance, I/O handlers are not processes. They do not have <span style="color:#f77729;"><b>context</b></span> (state of execution in registers, stack data, heap, etc) like normal processes do. They are simply a piece of **instructions** that is written to **handle** certain events.
 
-You can think of a the kernel instead as made up of just:
+You can think of a the kernel instead as made up of just **instructions** (a bunch of handlers) and **data**. Parts of the kernel deal with memory management, parts of it with scheduling portions of itself (like drivers, etc), and parts of it with scheduling processes.
 
-- Instructions, data:
-  - Parts of the kernel deal with memory management, parts of it with scheduling portions of itself (like drivers, etc.), and parts of it with scheduling processes.
-- Much like a state-machine that user-mode processes executes to complete a particular <span style="color:#f77729;"><b>service</b></span> and then return to its own instruction
-  - User processes running the kernel code will have its mode changed to <span style="color:#f77729;"><b>Kernel Mode</b></span>
-  - Once it returns from the handler, its mode is changed back to <span style="color:#f77729;"><b>User Mode</b></span>
+User-mode processes can execute Kernel instructions to complete a particular <span style="color:#f77729;"><b>service</b></span> or **task** before resuming its own instructions:
+
+- User processes running the kernel code will have its mode changed to <span style="color:#f77729;"><b>Kernel Mode</b></span>
+- Once it returns from the handler, its mode is changed back to <span style="color:#f77729;"><b>User Mode</b></span>
 
 Hence, the statement that the <span style="color:#f77729;"><b>kernel is a program that is running at all times</b></span> is technically true because the kernel <span style="color:#f7007f;"><b>IS</b></span> <span style="color:#f7007f;"><b>part of each process</b></span>. Any process may switch itself into Kernel Mode and perform system call routines (software interrupt), or forcibly switched to Kernel Mode in the event of hardware interrupt.
 
 The Kernel <span style="color:#f7007f;"><b>piggybacks</b></span> on any process in the system to run.
 {:.info}
 
-- If there are no system calls made, and no hardware interrupts, the kernel does nothing at this instant since it is not entered, and there’s nothing for it to do.
+If there are no system calls made, and no hardware interrupts, the kernel does nothing at this instant since it is not entered, and there’s nothing for it to do.
 
 ### Process Manager {#process-manager}
 
