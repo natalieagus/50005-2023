@@ -40,6 +40,10 @@ messageBubbles.style.display = "none";
 
 // Create the 'X' button element
 const messageBubblesCloseButton = document.createElement("div");
+messageBubblesCloseButton.setAttribute(
+  "id",
+  "chatbase-message-bubbles-close-button"
+);
 messageBubblesCloseButton.innerHTML = "&#10005;";
 messageBubblesCloseButton.style.position = "absolute";
 messageBubblesCloseButton.style.top = "-7px";
@@ -69,7 +73,7 @@ chatButton.addEventListener("mouseleave", (event) => {
 
 // create the chat button icon element
 const chatButtonIcon = document.createElement("div");
-
+chatButtonIcon.setAttribute("id", "chatbase-chat-button-icon");
 // apply styles to the chat button icon
 chatButtonIcon.style.display = "flex";
 chatButtonIcon.style.alignItems = "center";
@@ -85,7 +89,9 @@ chatButton.appendChild(chatButtonIcon);
 // add the chat button to the page
 
 // toggle the chat component when the chat button is clicked
-chatButton.addEventListener("click", () => {
+chatButton.addEventListener("click", toggleChat);
+
+function toggleChat() {
   // toggle the chat component
   if (chat.style.display === "none") {
     has_been_opened = true;
@@ -94,10 +100,11 @@ chatButton.addEventListener("click", () => {
 
     chatButtonIcon.innerHTML = getChatButtonCloseIcon();
   } else {
+    has_been_opened = false;
     chat.style.display = "none";
     chatButtonIcon.innerHTML = getChatButtonIcon();
   }
-});
+}
 
 messageBubbles.addEventListener("click", () => {
   has_been_opened = true;
@@ -185,7 +192,7 @@ const getChatbotStyles = async () => {
   document.body.appendChild(chatButton);
 
   if (styles.chat_icon) {
-    USER_ADDED_CHAT_ICON = `<img src="https://backend.chatbase.co/storage/v1/object/public/chat-icons/${styles.chat_icon}" class="chatbase-bubble-img"  />`;
+    USER_ADDED_CHAT_ICON = `<img src="https://backend.chatbase.co/storage/v1/object/public/chat-icons/${styles.chat_icon}" class="chatbase-bubble-img" id="chatbase-bubble-img" />`;
   }
 
   const iconColor = getContrastingTextColor(
@@ -273,7 +280,7 @@ const getChatbotStyles = async () => {
 
 function getChatButtonIcon() {
   const CHAT_BUTTON_ICON = `
-  <svg id="chatIcon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.3" stroke="${ICON_COLOR}" width="24" height="24">
+  <svg id="chatbase-chat-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.3" stroke="${ICON_COLOR}" width="24" height="24">
   <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12.76c0 1.6 1.123 2.994 2.707 3.227 1.087.16 2.185.283 3.293.369V21l4.076-4.076a1.526 1.526 0 011.037-.443 48.282 48.282 0 005.68-.494c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z" />
   </svg>`;
 
@@ -283,7 +290,7 @@ function getChatButtonIcon() {
 
 function getChatButtonCloseIcon() {
   const CHAT_BUTTON_CLOSE_ICON = `
-  <svg id="closeIcon" class="closeIcon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.3" stroke="${ICON_COLOR}" width="24" height="24">
+  <svg id="chatbase-close-icon" class="closeIcon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.3" stroke="${ICON_COLOR}" width="24" height="24">
     <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
   </svg>
   `;
@@ -349,3 +356,22 @@ function darkenOrLightenColor(color, percentage) {
 }
 
 getChatbotStyles();
+
+document.onclick = function (e) {
+  console.log(e.target.id);
+  if (
+    e.target.id !== "chatbase-bubble-window" &&
+    e.target.id !== "chatbase-bubble-button" &&
+    e.target.id !== "chatbase-bubble-img" &&
+    e.target.id !== "chatbase-close-icon" &&
+    e.target.id !== "chatbase-chat-icon" &&
+    e.target.id !== "chatbase-chat-button-icon"
+  ) {
+    if (has_been_opened) {
+      chat.style.display = "none";
+      chatButtonIcon.innerHTML = getChatButtonIcon();
+      has_been_opened = false;
+    }
+    console.log("close chat");
+  }
+};
