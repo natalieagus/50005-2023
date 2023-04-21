@@ -17,13 +17,13 @@
 
 .btnScrollToTop {
   opacity: 0;
-  width: 40px;
-  height: 40px;
+  width: 3rem;
+  height: 3rem;
   color: #282b31;
   background-color: $main-color-1;
   position: fixed;
-  bottom: 5%;
-  right: 5%;
+  bottom: 5rem;
+  right: 1.25rem;
   border-radius: 50%;
   font: bold 20px monospace;
   transition: opacity 0.5s, transform 0.5s;
@@ -976,3 +976,24 @@
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 /* end custom scss snippet */
+
+.chatbase-bubble-img{
+  filter: none !important;
+  border-radius: 25px; 
+  object-fit: cover;
+  width: 3rem;
+  height: 3rem;
+}
+.chatbase-bubble-button{
+
+  width: 3rem;
+  height: 3rem;
+  right: 1rem;
+  bottom: 1rem;
+  background-color: $main-color-1 !important; 
+}
+
+.closeIcon{
+  // filter: none !important;
+
+}
