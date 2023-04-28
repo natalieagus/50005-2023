@@ -114,13 +114,13 @@ os_labs:
         url: /os_labs/lab5_submission
 
 ns_labs:
-  - title: Lab 1
+  - title: Lab 6
     children:
       - title: Ping
         url: /ns_labs/lab1_1
       - title: Traceroute
         url: /ns_labs/lab1_2
-  - title: Lab 2
+  - title: Lab 7
     children:
       - title: Introduction
         url: /ns_labs/lab2_1-intro
@@ -130,7 +130,7 @@ ns_labs:
         url: /ns_labs/lab2_3-sym-img
       - title: Message Digest
         url: /ns_labs/lab2_4-sign
-  - title: Lab 3
+  - title: Lab 8
     children:
       - title: DNS with dig
         url: /ns_labs/lab3_1-intro
