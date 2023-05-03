@@ -37,7 +37,7 @@ While you can develop in Python using any OS, you still need to ensure that your
 
 ## Starter Code
 
-TBC
+You should have joined the GitHub Classroom and obtain the starter code for this assignment there. The link can be found in the Course Calendar portion of your Course Handout.
 
 <!-- Download the starter code:
 ```

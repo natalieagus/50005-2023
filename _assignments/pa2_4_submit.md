@@ -76,7 +76,7 @@ The following video shows the expected interaction between Server and Client pro
 
 ## Submission
 
-Go to our bot and type `/start`. Follow the instructions there. You're only required to submit the github remote repo link. Ensure that you have invited `natalieagus-sutd` as collaborator.
+Go to our bot and type `/start`. Follow the instructions there. You're only required to submit the github remote repo link.
 
 <span style="color:#f7007f;"><b>We will clone your repo for grading. Make sure you check that it runs with the given autograder before submitting.</b></span> The bot <span style="color:#f77729;"><b>WILL NOT</b></span> report any marks to you. We will mark your submission after all submissions are collected.
 
