@@ -371,7 +371,7 @@ Note that all the steps provided to you above are _necessary_ but <span style="c
 
 Go to our bot and type `/start`. Follow the instructions there. You're only required to submit the github remote repo link.
 
-<span style="color:#f7007f;"><b>We will clone your repo for grading. Make sure you do not print any other messages other than the starter code, because we are running your shell with an autograder to check for compilability and plagiarism checker, before grading them manually. </b></span>
+<span style="color:#f7007f;"><b>We will clone your repo for grading. Make sure you do not print any other messages other than the starter code, because we are running your shell with an autograder to check for compilability and plagiarism checker, before going through them manually. </b></span>
 {:.error}
 
 # Summary
