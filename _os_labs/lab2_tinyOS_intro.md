@@ -101,7 +101,7 @@ For instance, `WRCHAR()` will print a single character to the terminal. this is 
 
 ### Supervisor Mode
 
-All kernel code is executed with the Kernel-mode bit of the program counter -- its high-order bit --- set. This causes new interrupt requests to be **deferred** until the kernel returns to user mode.
+All kernel code is executed with the Kernel-mode bit of the program counter -- its highest-order bit (MSB) --- set. This causes new interrupt requests to be **deferred** until the kernel returns to user mode.
 
 ### Checkoff and Lab Questionnaire
 
@@ -160,7 +160,7 @@ Upon startup, we will begin executing Process 0, which instruction address resid
 
 The clock interrupt **invokes** the scheduler asynchronously. Each compute-bound process gets a quantum consisting of TICS clock interrupts, where **TICS** is the number stored in the variable Tics below. To avoid overhead, we do a full state save only when the clock interrupt will cause a process swap, using the TicsLeft variable as a counter.
 
-We do a LIMITED state save (r0 only) in order to free up a register, then count down TicsLeft stored below. When it becomes negative, we do a FULL state save and call the scheduler; otherwise we just return, having burned only a few clock cycles on the interrupt. RECALL that the call to Scheduler sets TicsLeft to Tics, giving the newly-swapped-in process a **full** quantum.
+We do a LIMITED state save (R0 only) in order to free up a register, then reduce TicsLeft by 1. When it becomes negative, we do a FULL state save and call the scheduler; otherwise we just return, having burned only a few clock cycles on the interrupt. RECALL that the call to Scheduler sets TicsLeft to Tics, giving the newly-swapped-in process a **full** quantum.
 
 ```nasm
 Tics:	LONG(2)			| Number of clock interrupts/quantum.
@@ -204,7 +204,7 @@ I_IllOp:
 	LD(KStack, SP)		| Install kernel stack pointer.
 
 	LD(XP, -4, r0)		| Fetch the illegal instruction
-	SHRC(r0, 26, r0)	| Extract the 6-bit OPCODE
+	SHRC(r0, 26, r0)	| Extract the 6-bit OPCODE, SVC opcode is 0000 01 (second element of the table)
 	SHLC(r0, 2, r0)		| Make it a WORD (4-byte) index
 	LD(r0, UUOTbl, r0)	| Fetch UUOTbl[OPCODE]
 	JMP(r0)			| and dispatch to the UUO handler.
