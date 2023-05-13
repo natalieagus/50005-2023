@@ -204,7 +204,7 @@ I_IllOp:
 	LD(KStack, SP)		| Install kernel stack pointer.
 
 	LD(XP, -4, r0)		| Fetch the illegal instruction
-	SHRC(r0, 26, r0)	| Extract the 6-bit OPCODE, SVC opcode is 0000 01 (second element of the table)
+	SHRC(r0, 26, r0)	| Extract the 6-bit OPCODE, SVC opcode is 000001 (second element of the table)
 	SHLC(r0, 2, r0)		| Make it a WORD (4-byte) index
 	LD(r0, UUOTbl, r0)	| Fetch UUOTbl[OPCODE]
 	JMP(r0)			| and dispatch to the UUO handler.
@@ -410,6 +410,9 @@ Finally, a `Yield()` is called when a user process wants to give up the remainin
 YieldH: CALL(Scheduler)		| Schedule next process, and
 	BR(I_Rtn)		| and return to user.
 ```
+
+Processes are given equal time slices called quanta (or quantums) takes turns of one quantum each. if a process finishes early, before its quantum expires, the next process starts immediately and gets a full quantum.
+{:.info}
 
 ## User Programs
 
