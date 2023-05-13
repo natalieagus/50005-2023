@@ -60,10 +60,18 @@ Simply <span style="color:#f7007f;"><b>recompile</b></span> with `make`
 The `countline` system program must work as follows. Look at these outputs <span style="color:#f77729;"><b>carefully</b></span>, and no, there's no typos there. 
 <img src="/50005/assets/images/pa1/7.png"  class="center_fifty"/>
 
-<span style="color:#f7007f;"><b>Update</b></span>: at the time of the writing of this handout, the content of `.gitignore` was simply as follows (2 lines). 
+<span style="color:#f7007f;"><b>Update</b></span>: at the time of the writing of this handout, the content of `.gitignore` was simply as follows (10 lines). 
 ```
-.DS_Store
 .vscode/
+.DS_Store
+checkdaemon
+countline
+display
+find
+listdir
+listdirall
+summond
+cseshell
 ```
 If you update the `.gitignore`, adjust the answer accordingly. 
 
