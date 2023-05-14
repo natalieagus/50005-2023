@@ -37,7 +37,7 @@ The kernel runs with special privileges, called the <span style="color:#f7007f;"
 In order for the **kernel** to have more _privileges_ than **other user mode programs**, the computer hardware has to support **dual mode operation.**
 {:.info}
 
-You have learned this before as well, i.e: `PC31` in the Beta CPU indicates whether the current instruction is run in the Kernel mode or the User mode.
+You have learned this before as well, i.e: `PC31` in the Beta CPU indicates whether the current instruction is run in the Kernel mode or the User mode. Note that using PC31 as Kernel/User mode indicator is specific to Beta CPU. Other CPU architecture such as the x86 and ARM uses special registers ([FLAGS](https://en.wikibooks.org/wiki/X86_Assembly/X86_Architecture) register for x86 and [CPSR for certain ARM architecture](https://developer.arm.com/documentation/den0013/d/ARM-Processor-Modes-and-Registers)) for this purpose. The details about other CPU architecture is out of our syllabus, but the concept is similar.
 
 ## Hardware Support for Dual Mode Operation {#dual-mode-operation}
 
