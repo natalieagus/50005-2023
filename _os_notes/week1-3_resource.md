@@ -73,9 +73,9 @@ The figure below summarises the **interrupt-driven** procedure of **asynchronous
 
 Notes:
 
-1. I/O Devices: External I/O Device, e.g: printer, mouse, keyboard. Runs asynchronously, capable of being "smart" and run its own instructions.
-2. Device Controller: Attached to motherboard. Runs asynchronously, may run simple instructions. Has its own buffers, registers, and simple instruction interpreter. Usually transfer data to and fro the I/O device via standard protocols such as USB A/C, HDMI, DP, etc.
-3. Disk Controller: Same as device controller, just that it's specific to control Disks
+1. **I/O Devices**: External I/O Device, e.g: printer, mouse, keyboard. Runs asynchronously, capable of being "smart" and run its own instructions.
+2. **Device Controller**: Attached to motherboard. Runs asynchronously, may run simple instructions. Has its own buffers, registers, and simple instruction interpreter. Usually transfer data to and fro the I/O device via standard protocols such as USB A/C, HDMI, DP, etc.
+3. **Disk Controller**: Same as device controller, just that it's specific to control Disks
 
 ### Receiving asynchronous Input
 
@@ -98,9 +98,9 @@ Two things may happen from here after we have stored the new input to the RAM:
 
 1. If there’s no application that’s currently waiting for this input, then it might be temporarily stored somewhere in kernel space first.
 2. If there is **any application** that is waiting (blocked, like Python's `input()`) for this input (e.g: mouse click), that process will be labelled as <span style="color:#f77729;"><b>ready</b></span>. For example, if the application is blocked upon waiting for this new input, then the system call returns. **We will learn more about this in Week 3.**
-   {:.info}
 
-**One thing is clear**: in an interrupt-driven system, upon the presence of new input, a **hardware interrupt** occurs, which invokes the interrupt handler and then the interrupt service routine to service it. <span style="color:#f7007f;"><b>It does not matter whether any process is currently waiting for it or not</b></span>. If there’s a process that’s waiting for it, then it will be scheduled to resume execution since its system call will **return** (if the I/O request is blocking).
+One thing should be crystal clear: in an interrupt-driven system, upon the presence of new input, a **hardware interrupt** occurs, which invokes the interrupt handler and then the interrupt service routine to service it. <span style="color:#f7007f;"><b>It does not matter whether any process is currently waiting for it or not</b></span>. If there’s a process that’s waiting for it, then it will be scheduled to resume execution since its system call will **return** (if the I/O request is blocking).
+{:.info}
 
 # Software Interrupt (Trap) via System Call
 
@@ -124,7 +124,7 @@ Enter your name:
 
 User processes may <span style="color:#f7007f;"><b>trap</b></span> themselves e.g: by executing an <span style="color:#f7007f;"><b>illegal</b></span> operation (`ILLOP`) implemented as a system call, along with some value in designated registers to <span style="color:#f77729;"><b>indicate</b></span> which system call this program tries to make.
 
-- The details on _which register_, or _what value should be put_ into these registers depends on the architecture of your CPU. <span style="color:#f77729;"><b>This detail is not part of our syllabus</b></span>.
+> The details on _which register_, or _what value should be put_ into these registers depends on the architecture of your CPU. <span style="color:#f77729;"><b>This detail is not part of our syllabus</b></span>.
 
 Traps are **software generated interrupts**, that is some special instructions that will <span style="color:#f77729;"><b>transfer</b></span> the mode of the program to the Kernel Mode.
 {:.info}
@@ -144,7 +144,7 @@ Consider another scenario where you want to open a **very large file** from disk
 Imagine that at first, the CPU is busy executing process instructions in user mode. At the same time, the device is idling.
 
 1. The process requests for Kernel services (e.g: load data asynchronously) by making a <span style="color:#f7007f;"><b>system call</b></span>.
-   - The register state (context) of the process are saved by the trap handler
+   - The **context** of the process are saved by the trap handler
    - Then, the appropriate system call service routine is called. Here, they may require to load appropriate **device drivers** so that the CPU may communicate with the device controller.
 2. The **device controller** then makes the instructed I/O request to the device itself on behalf of the CPU, **e.g: a disk,** as instructed.
    - Meanwhile, the service handler returns and may resume the calling process as illustrated.
@@ -154,7 +154,7 @@ The I/O device then proceeds on responding to the request and **transfers** the 
 
 When I/O transfer is <span style="color:#f7007f;"><b>complete</b></span>, the device controller makes an **<span style="color:#f7007f;"><b>hardware interrupt</b></span> request** to signal that the transfer is done (and data needs to be fetched). The CPU may respond to it by saving the states of the currently interrupted process, handle the interrupt, and resume the execution of the interrupted process.
 
-Note:
+**Note**:
 
 1. SVC <span style="color:#f77729;"><b>delay</b></span> and IRQ <span style="color:#f77729;"><b>delay</b></span>: time elapsed between when the request is invoked until when the request is first executed by the CPU.
 2. Before the user program is resumed, its state must be <span style="color:#f77729;"><b>restored</b></span>. Saving of state during the switch between User to Kernel mode is implied although it is not drawn.
@@ -163,12 +163,14 @@ Note:
 
 A reentrant kernel is the one which allows <span style="color:#f7007f;"><b>multiple</b></span> processes to be executing in the kernel mode at any given point of time, hopefully without causing any consistency problems among the kernel data structures. If the kernel is not re-entrant, a process can only be suspended <span style="color:#f77729;"><b>while it is in user mode</b></span>.
 
-- In a non-reentrant kernel: although it could be suspended in kernel mode, that would still <span style="color:#f77729;"><b>block</b></span> kernel mode execution on <span style="color:#f77729;"><b>all other processes</b></span>.
-- For example, consider Process 1 that is <span style="color:#f7007f;"><b>voluntarily</b></span> paused (suspended) when it is in the middle of handling its `async_load` system call. It is <span style="color:#f77729;"><b>suspended in Kernel Mode</b></span> by `yielding` itself.
-  - In a reentrant kernel: Process 2 is currently executed; able to be handling its `print` system call as well.
-  - In a non-reentrant kernel: Process 2, although currently executed must **wait** for Process 1 to exit from the Kernel Mode if Process 2 wishes to execute its `print` system call.
+In a non-reentrant kernel: although a process could be suspended in kernel mode, that would still <span style="color:#f77729;"><b>block</b></span> kernel mode execution on <span style="color:#f77729;"><b>all other processes</b></span>.
 
-In simple Operating Systems, incoming hardware interrupts are typically <span style="color:#f7007f;"><b>disabled</b></span> while another interrupt (of same or higher priority) is being processed to prevent a lost interrupt i.e: when user states are currently being saved before the actual interrupt service routine began or various **<span style="color:#f7007f;"><b>reentrancy problems</b></span>**[^4].
+For example, consider Process 1 that is <span style="color:#f7007f;"><b>voluntarily</b></span> paused (suspended) when it is in the middle of handling its `async_load` system call. It is <span style="color:#f77729;"><b>suspended in Kernel Mode</b></span> by `yielding` itself.
+
+- In a reentrant kernel: Process 2 is currently executed; able to be handling its `print` system call as well.
+- In a non-reentrant kernel: Process 2, although currently executed must **wait** for Process 1 to exit from the Kernel Mode if Process 2 wishes to execute its `print` system call.
+
+In simpler Operating Systems, incoming hardware interrupts are typically <span style="color:#f7007f;"><b>disabled</b></span> while another interrupt (of same or higher priority) is being processed to prevent a lost interrupt i.e: when user states are currently being saved before the actual interrupt service routine began or various **<span style="color:#f7007f;"><b>reentrancy problems</b></span>**[^4].
 
 # Preemption
 
@@ -184,23 +186,26 @@ In the example of Process 1 and 2 above, assume a scenario whereby there's a per
 
 A kernel can be reentrant but not preemptive: That is if each process voluntarily `yield` after some time while in the Kernel Mode, thus allowing other processes to progress and enter Kernel Mode as well. However, a kernel <span style="color:#f7007f;"><b>should not</b></span> be preemptive and not reentrant (it doesn't make sense!).
 
-Fun fact: Linux Kernel is reentrant and preemptive.
+**Fun fact:** Linux Kernel is reentrant and preemptive.
 {:.info}
 
 # Timed Interrupts {#timed-interrupts}
 
 We must ensure that the kernel, as a <span style="color:#f7007f;"><b>resource allocator</b></span> maintains <span style="color:#f77729;"><b>control</b></span> over the CPU. We cannot allow a user program to get stuck in an infinite loop and never return control to the OS. We also cannot trust a user program to voluntarily return control to the OS. To ensure that no user program can occupy a CPU for indefinitely, a computer system comes with a (<span style="color:#f77729;"><b>hardware</b></span>)-based timer. A timer can be set to invoke the hardware interrupt line so that a running user program may transfer control to the kernel after a specified period. Typically, a <span style="color:#f7007f;"><b>scheduler</b></span> will be invoked each time the timer interrupt occurs.
 
-In the hardware, a timer is generally implemented by a **fixed-rate clock** and a counter. The kernel may set the starting value of the counter, just like how you implement a custom clock in your 1D 50.002 project, for instance:
+In the hardware, a timer is generally implemented by a **fixed-rate clock** and a counter. The kernel may set the starting value of the counter, just like how you implement a custom clock in your 1D 50.002 project, for instance, here's one simple steps describing how timed interrupts work:
 
-- Every time the sytem clock ticks, the counter is decremented.
-- When the counter reaches 0, the timer raises the <span style="color:#f77729;"><b>interrupt request line</b></span>
-  - For instance, a 10-bit counter with a 1-millisecond clock can be set to trigger interrupts at intervals anywhere from 1 millisecond to 1,024 milliseconds, in steps of 1 millisecond.
-- This transfers control over to the interrupt handler:
-  - <span style="color:#f77729;"><b>Save</b></span> the current program's state
-  - Then call the <span style="color:#f77729;"><b>scheduler</b></span> to perform context switching
-  - The scheduler may then reset the counter before restoring the next process to be executed in the CPU. This ensures that a proper timed interrupt can occur in the future.
-    - Note that a scheduler may allocate <span style="color:#f77729;"><b>arbitrary</b></span> amount of time for a process to run, e.g: a process may be allocated a longer time slot than the other. We will learn more about process management in Week 3.
+1. Every time the sytem clock ticks, a counter with some starting value `N` is decremented.
+2. When the counter reaches a certain value, the timer can be hardware triggered to set the <span style="color:#f77729;"><b>interrupt request line</b></span>
+
+For instance, we can have a 10-bit counter with a 1-ms clock can be set to trigger interrupts at intervals anywhere from 1 ms to 1,024 ms, with precision of 1 ms. Let's say we decide that every 512 ms, timed interrupt will occur, then we can say that the size of a **quantum** (time slice) for each process is 512ms. We can give multiple quantums (quanta) for a user process.
+
+When timed interrupt happens, this transfers control over to the interrupt handler, and the following routine is triggered:
+
+- <span style="color:#f77729;"><b>Save</b></span> the current program's state
+- Then call the <span style="color:#f77729;"><b>scheduler</b></span> to perform context switching
+- The scheduler may then reset the counter before restoring the next process to be executed in the CPU. This ensures that a proper timed interrupt can occur in the future.
+- Note that a scheduler may allocate <span style="color:#f77729;"><b>arbitrary</b></span> amount of time for a process to run, e.g: a process may be allocated a longer time slot than the other. We will learn more about process management in Week 3.
 
 # Exceptions {#exceptions}
 
@@ -211,6 +216,7 @@ Exceptions are <span style="color:#f77729;"><b>software interrupts</b></span> th
 Each exception has an ID (associated number), a vector <span style="color:#f77729;"><b>address</b></span> that is the exception <span style="color:#f77729;"><b>entry</b></span> point in memory, and a <span style="color:#f77729;"><b>priority</b></span> level which determines the order in which multiple pending exceptions are handled. In ARMv8-M, the lower the priority number, the higher the priority level.
 
 <span style="color:#f7007f;"><b>You don't have to memorise these, don't worry.</b></span>
+{:.error}
 
 [^2]: Since only a predefined number of interrupts is possible, **a table of pointers to interrupt routines** can be used instead to provide the necessary speed. The interrupt routine is called indirectly through the table, with no intermediate routine needed. Generally, the table of pointers is stored in low memory (the first hundred or so locations), and its values are determined at boot time. These locations hold the addresses of the interrupt service routines for the various devices. This array, or **interrupt vector**, of addresses is then indexed by a unique device number, given with the interrupt request, to provide the address of the interrupt service routine for the interrupting device. Operating systems as different as Windows and UNIX dispatch interrupts in this manner.
 [^3]: Depending on the implementation of the handler, <strong>a <em>full </em>context switch (completely saving ALL register states, etc) may not be necessary</strong>. Some OS may implement interrupt handlers in low-level languages such that it knows exactly which registers to use and only need to save the states of these registers first before using them.
