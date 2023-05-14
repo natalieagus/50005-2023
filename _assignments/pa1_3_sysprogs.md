@@ -16,9 +16,11 @@ show_date: false
 We have completed the shell thus far. Now, we will implement one system program: `countline`. Open `count_line.c` inside `/bin/source`.
 
 ## Task 5 (1%)
-`Task 5:`{:.info} Complete the implementation of `countline` to print out the number of lines in a file. 
+
+`Task 5:`{:.info} Complete the implementation of `countline` to print out the number of lines in a file.
 
 The `countline` system program accepts a pathname in `args[1]`, open that file, and stores the number of new lines in the file inside the variable `number_of_lines`. Complete the following function inside `count_line.c`:
+
 ```cpp
 /*
 Count the number of lines in a file
@@ -55,25 +57,22 @@ int execute(char **args)
 ```
 
 ### Test Task 5
+
 Simply <span style="color:#f7007f;"><b>recompile</b></span> with `make`
 
-The `countline` system program must work as follows. Look at these outputs <span style="color:#f77729;"><b>carefully</b></span>, and no, there's no typos there. 
+The `countline` system program must work as follows. Look at these outputs <span style="color:#f77729;"><b>carefully</b></span>, and no, there's no typos there.
 <img src="/50005/assets/images/pa1/7.png"  class="center_fifty"/>
 
-<span style="color:#f7007f;"><b>Update</b></span>: at the time of the writing of this handout, the content of `.gitignore` was simply as follows (2 lines). 
-```
-.DS_Store
-.vscode/
-```
-If you update the `.gitignore`, adjust the answer accordingly. 
+If you update the `.gitignore` on your own, adjust the answer accordingly.
 
 DO NOT print anything else in the console as part of your answer.
 {:.error}
 
 ### Commit Task 5
+
 Save your changes and commit the changes:
 
 ```
-git add ./bin/source/count_line.c    
+git add ./bin/source/count_line.c
 git commit -m "feat: Complete Task 5"
 ```
