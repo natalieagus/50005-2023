@@ -20,15 +20,15 @@ This is the second part of your lab, which is to implement a trap handler for th
 
 Now our job is to **retrieve** the mouse click coordinates that is stored in the Kernel variable `Mouse_State` in the sample screenshot above. Implement a `Mouse()` supervisor call that returns the coordinate information from the most recent mouse click (i.e., the information stored by the mouse interrupt handler).
 
-Like `GetKey()` supervisor call to retrieve keyboard press, a user-mode call to `Mouse()` should **consume** the available click information. If no mouse click has occurred since the previous call to Mouse(), the supervisor call should **“hang”** (block execution) until new click information is available.
+Like `GetKey()` supervisor call to retrieve keyboard press, a user-mode call to `Mouse()` should **consume** the available click information. If no mouse click has occurred since the previous call to Mouse(), the supervisor call should **“hang”** (blocks execution) until new click information is available.
 
 ### Blocking Execution
 
-“Hang” means that the supervisor call should back up the saved PC so that the next user-mode instruction to be executed is the `Mouse()` call and then **branch** to the **scheduler** to run some other user-mode program.
+A blocking supervisor call means that the supervisor call should back up the calling process' context and move on to schedule other processes if there's no mouse click (**branch** to the **scheduler** to run some other user-mode program). It also adjust the calling process' PC so that the next user-mode instruction to be re-executed is the `Mouse()` call.
 
-Thus when the calling program is **rescheduled** for execution at some later point, the `Mouse()` call is **re-executed** and the whole process repeated.
+Thus when the calling program is **rescheduled** for execution at some later point, the `Mouse()` call is **re-executed** and the whole process repeated again (checking whether there's any recent mouse click). The calling process can only resume when there's a mouse click.
 
-From the user’s point of view, the `Mouse()` call **completes** execution only when there is **new** click information to be returned.
+From the user’s point of view, the `Mouse()` call **completes** its execution only when there is **new** click information to be returned.
 
 The `GetKey()` supervisor call is a good model to follow.
 {:.warning}
