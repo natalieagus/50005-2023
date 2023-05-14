@@ -50,7 +50,7 @@ Both system programs and user programs run in <span style="color:#f7007f;"><b>us
 
 ## The Computer System {#the-computer-system}
 
-A computer system can be roughly divided into **four** components: the hardware, the operating system, the application programs, and the users as shown in the figure below.
+A computer system can be roughly divided into **four** components: the hardware, the operating system, the application programs (also known as **user programs**), and the users as shown in the figure below.
 
 <img src="/50005/assets/images/week1/2.png"  class="center_seventy"/>
 
