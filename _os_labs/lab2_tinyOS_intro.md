@@ -31,6 +31,13 @@ Related sections in 50002 [Asynchronous handling of I/O Devices](https://natalie
 - [The Supervisor Call](https://natalieagus.github.io/50002/notes/asyncio#the-supervisor-call): More details on _trap_
 - [Asynchronous Input Handling](https://natalieagus.github.io/50002/notes/asyncio#asynchronous-input-handling) and [Real time I/O Handling](https://natalieagus.github.io/50002/notes/asyncio#real-time-io-handling): More details on _async IO_ due to Keyboard and Mouse interrupt, as well as timer interrupt
 
+## Checkoff and Lab Questionnaire
+
+You are required to finish the lab questionnaire on eDimension and complete two `CHECKOFF`{:.info} during this session. Simply show that your bsim simulates the desirable checkoff outcome for Part A and Part B (binary grading, either you complete it or you don't) of the lab. Read along to find out more.
+
+There will be no makeup slot for checkoff for this lab. If you miss the class in Week 2 with no LOA, you get zero. If you have LOA, show it to our TAs and you can checkoff during the following Week's Lab session or at the TA's discretion.
+{:.warning}
+
 ## Introduction: The Tiny OS
 
 Enter the following to your terminal to clone the Tiny OS repository and open the directory.

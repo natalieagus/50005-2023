@@ -110,6 +110,7 @@ When youre in the middle of typing something, e.g: `Hello` in the example, any c
 <img src="{{ site.baseurl }}/assets/contentimage/lab6/9.gif"  class="center_seventy"/>
 
 `CHECKOFF`{:.info}
+
 Demonstrate the above result of <span style="color:red; font-weight: bold;">delayed</span> printing the mouse coordinates (when the mouse clicks at the terminal area and user has started typing) to your instructor / TA in class. Only one mouse click should be reported.
 {:.info}
 
