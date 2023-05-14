@@ -54,6 +54,9 @@ SVC_UUO:
 	JMP(r0)
 ```
 
+You also need to modify the `SVCTbl` to now account for 9 supervisor calls instead of 8.
+{:.info}
+
 ### Testing Your Implementation
 
 Once your `Mouse()` implementation is complete, add a `Mouse()` instruction **just after P2Start**. If things are working correctly, this user-mode process should now **hang** and `Count3` should **not** be incremented even if you type in several sentences (i.e., the prompt should always be `00000000>`).
