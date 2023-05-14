@@ -239,6 +239,12 @@ UUOTbl:	BAD()		UUO(SVC_UUO)	BAD()		BAD()
 ....
 ```
 
+Kernel code should reside in the memory region with MSB of 1, as per Beta's way of setting Kernel mode. However, note that BSim memory is not actually 4GB in size. The `UUOTbl` actually resides in address `0x054C`:
+
+<img src="{{ site.baseurl }}//assets/images/lab2_tinyOS_intro/2023-05-14-20-24-40.png"  class="center_seventy"/>
+
+To work around this, we use the macro `.macro UUO(ADR) LONG(ADR+PC_SUPERVISOR)	| Auxiliary Macros`, which simply adds MSB of 1 in the **content** of the `UUOTbl`, which makes the `PC` to be in Supervisor mode when we execute `JMP(r0)` to **dispatch** the UUO handler.
+
 The illegal instruction trap handler looks for illegal instructions it knows to be supervisor calls and calls the appropriate handler defined in `SVC_UUO`, which makes use of the `SVC_Tbl` to branch to the appropriate trap **handler** based on the service call being made:
 
 ```nasm
