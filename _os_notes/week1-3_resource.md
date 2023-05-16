@@ -234,7 +234,9 @@ Each exception has an ID (associated number), a vector <span style="color:#f7772
 Based on the instruction set spec of ARMv8, integer division by zero returns zero and not trapped.
 {:.info}
 
-In x86 architecture, exception handlers are normally found via so called Interrupt Descriptor Table or **IDT** for short. The IDT is normally located in the first 1024 bytes of memory at addresses `0x000000–0x0003FF`. IDT contains up to **256** entries and each of those entries is 16 bytes in size in 64 bit mode. For instance, a **division by zero** exception exists in x86 (unlike in ARMv8), and can be triggered by the CPU automatically (e.g: hardware is built to check that a divisor is not 0). By convention, this directs the PC to exec RAM address containing that division-by-zero handler **entry** directly (e.g: address `0`, as it is customary to have division by zero as the first handler entry of IVT).
+In x86 architecture, exception handlers are normally found via so called Interrupt Descriptor Table or **IDT** for short. The IDT is typically located in memory at a specific base address, stored in Interrupt Descriptor Table Register (IDTR, a special register). The value of this base address **depends on the operating system**. In some older hardware like [Intel 8086](https://en.wikipedia.org/wiki/Intel_8086), the interrupt vector table is placed at a fixed location: always located in the first 1024 bytes of memory at addresses `0x000000–0x0003FF` and the more complex config of IDT + IDTR does not exist.
+
+The IDT contains up to **256** entries and each of those entries is 16 bytes in size in 64 bit mode. For instance, a **division by zero** exception exists in x86 (unlike in ARMv8), and can be triggered by the CPU automatically (e.g: hardware is built to check that a divisor is not 0). By convention, this directs the PC to exec RAM address containing that division-by-zero handler **entry** directly (e.g: address `0`, as it is customary to have division by zero as the first handler entry of IVT).
 
 <img src="{{ site.baseurl }}//assets/images/week1-3_resource/2023-05-16-16-17-06.png"  class="center_seventy"/>
 
