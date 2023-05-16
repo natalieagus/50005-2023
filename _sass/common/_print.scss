@@ -18,10 +18,11 @@
     page-break-inside: avoid;
   }
 
-  img {
+  img, svg {
     page-break-before: auto; /* 'always,' 'avoid,' 'left,' 'inherit,' or 'right' */
     page-break-after: auto; /* 'always,' 'avoid,' 'left,' 'inherit,' or 'right' */
     page-break-inside: avoid; /* or 'auto' */
+    filter: none !important;
 }
 
 }
