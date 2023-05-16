@@ -178,6 +178,9 @@ The following commands are <span style="color:#f77729;"><b>implemented</b></span
   usage
 ```
 
+By "done" it means that the functionality has been implemented for you but it does not mean that it will **immediately** work out of the box because you have **not** implemented the shell yet. For instance `usage` will not work because it relies on global variable `current_number_tokens` which you will need to instantiate later.
+{:.info}
+
 This shell also supports: `listdir`, `listdirall`, `summond`, `checkdaemon`, `find`, and `countline` via the <span style="color:#f77729;"><b>system programs</b></span> in `/pa1/bin/`.
 
 AGAIN, <span style="color:#f7007f;"><b>DO NOT</b></span> modify any directories and file names.
