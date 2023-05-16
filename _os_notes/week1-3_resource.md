@@ -24,9 +24,11 @@ Interrupt-Driven I/O operations allow the CPU to efficiently handle interrupts w
 
 # Hardware Interrupt
 
+<img src="{{ site.baseurl }}//assets/images/week1-3_resource/2023-05-16-10-30-51.png"  class="center_fifty no-invert"/>
+
 The CPU has an <span style="color:#f77729;"><b>interrupt-request line</b></span> that is sensed by its control unit before each instruction execution.
 
-- Upon the presence of new **input**: from <span style="color:#f77729;"><b>external</b></span> events such as keyboard press, mouse click, mouse movement, incoming fax, or **completion of previous I/O requests** made by the drivers on <span style="color:#f77729;"><b>behalf</b></span> of user processes, the device controllers will invoke an **interrupt** request by setting the **bit** on this <span style="color:#f77729;"><b>interrupt-request line</b></span>.
+When there's new **input**: from <span style="color:#f77729;"><b>external</b></span> events such as keyboard press, mouse click, mouse movement, incoming fax, or **completion of previous I/O requests** made by the drivers on <span style="color:#f77729;"><b>behalf</b></span> of user processes, the device controllers will invoke an **interrupt** request by setting the **bit** on this <span style="color:#f77729;"><b>interrupt-request line</b></span>.
 
 Remember that this is a <span style="color:#f7007f;"><b>hardware interrupt</b></span>: an interrupt that is caused by setting the interrupt-request line.
 {:.error}
@@ -106,7 +108,7 @@ One thing should be crystal clear: in an interrupt-driven system, upon the prese
 
 Firstly, this image says it all.
 
-<img src="/50005/assets/images/week1/10.png"  class="center_fifty"/>
+<img src="/50005/assets/images/week1/10.png"  class="center_fifty no-invert"/>
 
 Sometimes user processes are <span style="color:#f77729;"><b>blocked</b></span> from execution because it requires inputs from IO devices, and it may **not be scheduled** until the presence of the required input arrives. For example, this is what happens if you wait for user input in Python:
 
