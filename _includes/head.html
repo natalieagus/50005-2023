@@ -30,11 +30,11 @@ path=_paths_rss -%}
 {%- include head/favicon.html -%} {%- include snippets/prepend-baseurl.html
 path='/assets/css/main.css' -%}
 <link class="current-stylesheet" rel="stylesheet" href="{{ __return }}" />
-
-<style class="current-style">
+<style class="current-style"></style>
+<style type="text/css" media="print">
   @import url("{{ '/assets/css/main.css' | relative_url }}");
-  @import url("{{ '/assets/css/main_alt.css' | relative_url }}");
 </style>
+
 <div class="baseurl" style="display: none">{{ site.baseurl }}</div>
 {%- include snippets/get-sources.html -%} {%- assign _sources = __return -%}
 <link rel="stylesheet" href="{{ _sources.font_awesome }}" />
