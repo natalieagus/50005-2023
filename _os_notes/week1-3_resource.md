@@ -211,11 +211,27 @@ When timed interrupt happens, this transfers control over to the interrupt handl
 
 # Exceptions {#exceptions}
 
-Exceptions are <span style="color:#f77729;"><b>software interrupts</b></span> that occur due to <span style="color:#f7007f;"><b>errors</b></span> in the instruction: such as division by zero, invalid memory accesses, or attempts to access kernel space illegally. This means that the CPU's hardware may be designed such that it checks for the presence of these <span style="color:#f7007f;"><b>serious</b></span> errors, and immediately invokes the appropriate handler via a pre-built <span style="color:#f7007f;"><b>event-vector table</b></span>. Below is an example of ARMv8-M event vector table. The table is typically implemented in the <span style="color:#f77729;"><b>lower</b></span> physical addresses in many architecture.
+Exceptions are <span style="color:#f77729;"><b>software interrupts</b></span> that occur due to <span style="color:#f7007f;"><b>errors</b></span> in the instruction: such as division by zero, invalid memory accesses, or attempts to access kernel space illegally. This means that the CPU's hardware may be designed such that it checks for the presence of these <span style="color:#f7007f;"><b>serious</b></span> errors, and immediately invokes the appropriate handler via a pre-built <span style="color:#f7007f;"><b>event-vector table</b></span>.
+
+# Interrupt Vector Table (IVT)
+
+Generally speaking, CPU must be configured to receive interrupts (IRQs) and invoke correct interrupt handler using the Interrupt Vector Table (IVT). Operating system kernel must provide Interrupt Service Routines (ISRs) to handle interrupts.
+
+Sometimes you might encounter the term IDT instead of IVT. The interrupt descriptor table (IDT) is a _data structure_ used by the x86 architecture to implement an interrupt vector table.
+{:.info}
+
+Below is an example of ARMv8-M interrupt vector table, which describe which RAM addresses should contain the **handler entry** (also called interrupt service routine, ISR) for all sorts of interrupts (both software and hardware). The table is typically implemented in the <span style="color:#f77729;"><b>lower</b></span> physical addresses in many architecture.
 
 <img src="/50005/assets/images/week1/13.png"  class="center_seventy" title="Image taken from https://developer.arm.com/documentation/100701/0200/Exception-properties"/>
 
 Each exception has an ID (associated number), a vector <span style="color:#f77729;"><b>address</b></span> that is the exception <span style="color:#f77729;"><b>entry</b></span> point in memory, and a <span style="color:#f77729;"><b>priority</b></span> level which determines the order in which multiple pending exceptions are handled. In ARMv8-M, the lower the priority number, the higher the priority level.
+
+Based on the instruction set spec of ARMv8, integer division by zero returns zero and not trapped.
+{:.info}
+
+In x86 architecture, exception handlers are normally found via so called Interrupt Descriptor Table or **IDT** for short. The IDT is normally located in the first 1024 bytes of memory at addresses `0x000000–0x0003FF`. IDT contains up to **256** entries and each of those entries is 16 bytes in size in 64 bit mode. For instance, a **division by zero** exception exists in x86 (unlike in ARMv8), and can be triggered by the CPU automatically (e.g: hardware is built to check that a divisor is not 0). By convention, this directs the PC to exec RAM address containing that division-by-zero handler **entry** directly (e.g: address `0`, as it is customary to have division by zero as the first handler entry of IVT).
+
+<img src="{{ site.baseurl }}//assets/images/week1-3_resource/2023-05-16-16-17-06.png"  class="center_seventy"/>
 
 <span style="color:#f7007f;"><b>You don't have to memorise these, don't worry.</b></span>
 {:.error}
