@@ -53,9 +53,14 @@ An alternative is to use a <span style="color:#f77729;"><b>polled interrupt syst
 - Unlike vectored interrupt, there’s no such _interrupt_ signal that includes the identity of the device sending the interrupt signal.
 - In the polled system, the kernel must send a signal out to each controller to **determine** if any device made a service request <span style="color:#f7007f;"><b>periodically, or at any fixed interval</b></span>.
 
-This is simpler to implement, but more time-wasting if there’s sparse I/O requests.
-Does Linux implement a Polled interrupt or Vectored interrupt system? See [here](https://linux-kernel-labs.github.io/refs/heads/master/lectures/interrupts.html) for clues.
+This is simpler to implement, but more time-wasting if there’s frequent I/O requests only from one or some particular device (but each time CPU need to spend overhad to poll many devices). Does Linux implement a Polled interrupt or Vectored interrupt system? See [here](https://linux-kernel-labs.github.io/refs/heads/master/lectures/interrupts.html) for clues.
 {:.info}
+
+## Vectored Interrupt vs Polled Interrupt Scenarios
+
+Polled interrupts are **generally** suitable in simple systems with a **limited** number of devices and **low** interrupt rates. For example, in embedded systems with a single or a few devices generating interrupts infrequently, such as basic sensor input or user interactions, polled interrupts can be sufficient.
+
+Vectored interrupts are commonly used in more **complex** systems with **multiple** devices generating interrupts frequently. They are suitable when efficient handling of multiple interrupts and reduced latency are crucial, such as in high-performance systems, real-time operating systems, or systems with time-sensitive tasks.
 
 ## Multiple Interrupts
 
