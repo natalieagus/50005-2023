@@ -43,7 +43,7 @@ You have learned this before as well, i.e: `PC31` in the Beta CPU indicates whet
 
 <img src="/50005/assets/images/week1/4.png"  class="center_fifty"/>
 
-The dual mode is possible <span style="color:#f7007f;"><b>iff</b></span> it is supported by the hardware. The kernel is also **uninterruptible** and this interruptible feature is also supported by the hardware.
+The dual mode is possible <span style="color:#f7007f;"><b>iff</b></span> it is supported by the hardware. The kernel is also typically **uninterruptible** in older CPU designs, and this interruptible feature is also supported by the hardware. There are some more complex CPU designs that allows interrupt even when the CPU is in kernel mode (based on some kind of priority) but this requires more complex interrupt handling routine (need to save progress, etc).
 {:.info}
 
 ### Differences between architectures
