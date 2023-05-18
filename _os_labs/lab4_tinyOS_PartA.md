@@ -280,7 +280,7 @@ In this task, we would have to **modify** the **kernel** to add support for a **
 
 <img src="/50005/assets/contentimage/lab6/7.png"  class=" center_seventy"/>
 
-Each click message **should** appear on its own line (i.e., it should be preceded and followed by a newline character). You can use `WrMsg()` and `HexPrt()` to send the message; see the code for **Process 0 **for an example of how this is done. Write the instruction for P3 below where P2 ends. For instance:
+Each click message **should** appear on its own line (i.e., it should be preceded and followed by a newline character). You can use `WrMsg()` and `HexPrt()` to send the message; see the code for **Process 0**for an example of how this is done. Write the instruction for P3 below where P2 ends. For instance:
 
 ```nasm
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
