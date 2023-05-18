@@ -102,7 +102,7 @@ DoSwap:	LD(UserMState, r0)	| Restore r0, so we can do a
 
 ## User Programs
 
-`tinyOS.uasm` also contains code for three programs each of which runs in a separate user-mode process.
+`tinyOS.uasm` also contains code for three programs. Each program runs in a separate user-mode process.
 
 ### Process 0
 
