@@ -244,7 +244,7 @@ SignalH:LD(r3,0,r0)		| Fetch semaphore value.
 	BR(I_Rtn)		| and return to user.
 ```
 
-Unlike real-world applications, this lab does **not** actually have **physical** separation in the **memory** between Kernel and User **space** in memory (although it has dual **mode** to prevent interrupts in Kernel mode) due to simplification. We can still perform a `LD` to Kernel variables in User Mode in this lab.
+Unlike real-world applications, this lab does **not** actually implement virtual addressing so there's no separation between Kernel and User **space** in memory (although it has dual **mode** to prevent interrupts in Kernel mode) due to simplification. We can still perform a `LD` to Kernel variables in User Mode in this lab as User processes also work in the physical space.
 {:.info}
 
 ### Auxiliaries for User Process
