@@ -159,7 +159,7 @@ P0Stack:
 
 ### Bounded Buffer FIFO
 
-`Send()` implements a **bounded buffer synchronized** through the use of **semaphores** . Recall that a semaphore is a service provided by the Kernel so that two isolated processes running on a Virtual Machine can **communicate** and **synchronize**.
+`Send()` implements a **bounded buffer** that is **synchronized** through the use of **semaphores** . Recall that a semaphore is a service provided by the Kernel so that two isolated processes running on a Virtual Machine can **communicate** and **synchronize**.
 
 The bounded buffer FIFO routine for our Beta (in user mode) is as follows. It follows the **producer** and consumer model, and the shared buffer can be found at `FIFO` having a size of `100` **words**.
 
