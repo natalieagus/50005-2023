@@ -220,7 +220,7 @@ In short, `CALL(Send)` sends datum in `r0` through pipe (**produce**) and `CALL(
 
 ### Kernel Semaphore
 
-Recall that a semaphore is a **variable** used to **control access** to a common resource by multiple processes. In other words, it is a **variable** controlled by the Kernel to allow two or more processes to synchronise. The semaphore can be seen as a generalised mutual exclusion (mutex) lock. It is implemented at the kernel level, meaning that its **execution** (`WaitH`, and `SignalH`) requires the **calling** process to change into the **kernel** mode.
+Recall that a semaphore is a **variable** used to **control access** to a common resource by multiple processes. In other words, it is a **variable** controlled by the Kernel to allow two or more processes to synchronise. The semaphore can be seen as a generalised mutual exclusion (mutex) lock. It is implemented at the kernel level, meaning that the **execution** of semaphore operations (`WaitH`, and `SignalH`) requires the **calling** process to change into the **kernel** mode.
 
 In its simplest form, it can be thought of as a data structure that contains a guarded integer that represents the number of resources available for the pool of processes that require it.
 
