@@ -213,7 +213,10 @@ Rcv1:	ST(r1,OUT)		| Tuck away input pointer
 	RTN()
 ```
 
-In short, `Call(Send)` sends datum in r0 through pipe (**produce**) and `Call(Rcv)` reads datum from pipe into `r0` (**consume**). Any process calling `Send` and `Rcv` will be synchronised using the semaphores `Chars` and `Holes`, analogous to what we have learned during the lecture.
+In short, `CALL(Send)` sends datum in `r0` through pipe (**produce**) and `CALL(Rcv)` reads datum from pipe into `r0` (**consume**). Any process calling `Send` and `Rcv` will be synchronised using the semaphores `Chars` and `Holes`, analogous to what we have learned during the lecture.`
+
+"Pipe" here is a name given that signifies the means of communication between two processes. It is implemented via FIFO bounded buffer and semaphore. The user processes simply `CALL(Send)` or `CALL(Rcv)` to "use" the pipe.
+{:.info}
 
 ### Kernel Semaphore
 
