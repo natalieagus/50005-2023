@@ -37,7 +37,7 @@ P3Start:
 
 ### Non-blocking SVC
 
-You also need two more supervisor calls to check for any keyboard press and check for any mouse click that is **non blocking** because we need to know whether we have typed something (and block the mouse click printout in P3):
+You also need two more **non-blocking** supervisor calls to check for any keyboard press and check for any mouse click because we need to know whether we have typed something (and delay the mouse click printout in P3):
 
 ```nasm
 .macro CheckMouse() SVC(9) 	| Part D: TO CHECK MOUSE CLICK, NON BLOCKING

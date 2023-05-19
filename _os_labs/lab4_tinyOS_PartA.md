@@ -159,7 +159,7 @@ P0Stack:
 
 ### Bounded Buffer FIFO
 
-`Send()` implements a **bounded buffer** that is **synchronized** through the use of **semaphores** . Recall that a semaphore is a service provided by the Kernel so that two isolated processes running on a Virtual Machine can **communicate** and **synchronize**.
+`Send()` implements a **bounded buffer** that is **synchronized** through the use of **semaphores** in user mode. Recall that a semaphore is a service provided by the Kernel so that two isolated processes running on a Virtual Machine can **communicate** and **synchronize**.
 
 The bounded buffer FIFO routine for our Beta (in user mode) is as follows. It follows the **producer** and consumer model, and the shared buffer can be found at `FIFO` having a size of `100` **words**.
 
@@ -215,7 +215,7 @@ Rcv1:	ST(r1,OUT)		| Tuck away input pointer
 
 In short, `CALL(Send)` sends datum in `r0` through pipe (**produce**) and `CALL(Rcv)` reads datum from pipe into `r0` (**consume**). Any process calling `Send` and `Rcv` will be synchronised using the semaphores `Chars` and `Holes`, analogous to what we have learned during the lecture.`
 
-"Pipe" here is a name given that signifies the means of communication between two processes. It is implemented via FIFO bounded buffer and semaphore. The user processes simply `CALL(Send)` or `CALL(Rcv)` to "use" the pipe.
+"Pipe" here is a name given that signifies the means of communication between two processes using shared memory region. It is implemented via FIFO bounded buffer and semaphore. The user processes simply `CALL(Send)` or `CALL(Rcv)` to "use" the pipe. Our OS is so simple and does not implement address virtualisation, so the statement of "shared memory" feels redundant because any process can LD/ST directly from another process' address space, but you can think of the FIFO buffer as a "legally" shared memory region between the two communicating processes.
 {:.info}
 
 ### Kernel Semaphore
@@ -280,7 +280,7 @@ In this task, we would have to **modify** the **kernel** to add support for a **
 
 <img src="/50005/assets/contentimage/lab6/7.png"  class=" center_seventy"/>
 
-Each click message **should** appear on its own line (i.e., it should be preceded and followed by a newline character). You can use `WrMsg()` and `HexPrt()` to send the message; see the code for **Process 0**for an example of how this is done. Write the instruction for P3 below where P2 ends. For instance:
+Each click message **should** appear on its own line (i.e., it should be preceded and followed by a newline character). You can use `WrMsg()` and `HexPrt()` to send the message; see the code for **Process 0** for an example of how this is done. Write the instruction for P3 below where P2 ends. For instance:
 
 ```nasm
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
