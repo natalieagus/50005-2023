@@ -105,7 +105,7 @@ P0RdCh: GetKey()		| read next character,
 
 At the end, you should be able to report mouse clicks: one click printed per click, doesn't matter if you spammed. Notice the number within the prompt must also increase (proving that `P2` is scheduled properly).
 
-When youre in the middle of typing something, e.g: `Hello` in the example, any click should **not** cause you to print any mouse coordinates **until after** the user **entered** the message.
+When youre in the middle of typing something, e.g: `Hello` in the example, any click should **not** cause you to print any mouse coordinates **until after** the user **entered** the message (pressed carriage return).
 
 <img src="{{ site.baseurl }}/assets/contentimage/lab6/9.gif"  class="center_seventy"/>
 
@@ -120,4 +120,4 @@ Notice that `P0` doesn't have to confirm until `P3` has finished one round of ex
 
 Thanks to the scheduler's round robin policy and long enough quanta dedicated for each process, there won't be the undesirable condition whereby P0 `Yield()` immediately returns execution to P0 again, **before** P3 resumes and then `Signal` the `MouseSemaphore` the **second** time (because it hasn't been cleared by P3 that hasn't progressed!).
 
-Without the round robin policy, `MouseSemaphore` value might accidentally be increased to 2 and we might have a future `Click` message printed out at the same time **while** typing some messages at the console, violating the condition required for this Part 4. If we want to fix this (e.g: assume there's some form of priority scheduling policy used instead of round robin policy), we might have to check that a new mouse click is _actually made_ in `CheckMouseH` by storing the _previous_ history of mouse click at all times.
+Without the round robin policy, `MouseSemaphore` value might accidentally be increased to 2 and we might have a future `Click` message printed out at the same time **while** typing some messages at the console, violating the condition required for Task 2 in this lab. If we want to fix this (e.g: assume there's some form of priority scheduling policy used instead of round robin policy), we might have to check that a new mouse click is _actually made_ in `CheckMouseH` by storing the _previous_ history of mouse click at all times.
