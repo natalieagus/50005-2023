@@ -17,7 +17,7 @@ The kernel <span style="color:#f77729;"><b>controls</b></span> and <span style="
 
 # Interrupt-Driven I/O Operations
 
-Interrupt-Driven I/O operations allow the CPU to efficiently handle interrupts without having to waste resources; waiting for asynchronous interrupts. This notes explains how interrupt-driven I/O operations work in a nutshell. There are <span style="color:#f7007f;"><b>two kinds of interrupts</b></span>:
+Interrupt-Driven I/O operations allow the CPU to efficiently handle interrupts without having to waste resources (waiting for asynchronous IO requests). This notes explains how interrupt-driven I/O operations work in a nutshell. There are <span style="color:#f7007f;"><b>two kinds of interrupts</b></span>:
 
 1. <span style="color:#f7007f;"><b>Hardware Interrupt</b></span>: input from external devices activates the interrupt-request-line, thus pausing the current execution of user programs.
 2. <span style="color:#f7007f;"><b>Software Interrupt</b></span>: a software generated interrupt that is invoked from the instruction itself because the current execution of user program needs to access Kernel services.
