@@ -52,7 +52,7 @@ The original `tinyOS.uasm` prints out “Illegal interrupt” and then **halts**
 1. Adding an interrupt handler that **stores** the click information in a new kernel memory location and then,
 2. **Returns** to the **interrupted process**.
 
-You might find the keyboard interrupt handler `I_Kbd` a good model to follow.
+You might find the keyboard interrupt handler `I_Kbd` a good model to follow. Also, you might find this [bsim documentation](https://drive.google.com/file/d/1Tq_Hg-jbZVPKDJZ4O6OZWYF4_8ywakbi/view?usp=share_link) and [beta isa documentation](https://drive.google.com/file/d/1v-eaGuxa1W5HPPNi_shvdS1g5z99if3_/view?usp=share_link) handy.
 {:.info}
 
 ### The CLICK() instruction
