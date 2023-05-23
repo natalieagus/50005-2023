@@ -27,6 +27,7 @@
   border-radius: 50%;
   font: bold 20px monospace;
   transition: opacity 0.5s, transform 0.5s;
+  z-index: 2 !important;
 }
 
 .btnScrollToTop.show {
