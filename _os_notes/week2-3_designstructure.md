@@ -53,7 +53,7 @@ Typically, these programs format and print the output to the terminal or other o
 
 ### Programming-language support
 
-<span style="color:#f77729;"><b>Compilers</b></span>, <span style="color:#f77729;"><b>assemblers</b></span>, <span style="color:#f77729;"><b>debuggers</b></span>, and <span style="color:#f77729;"><b>interpreters</b></span> for common programming languages (such as C, C++, Java, and Python) are often provided with the operating system or available as a separate download. Package managers such as `npm, pip` are also available by default in modern OS to make it easier for users to develop.
+<span style="color:#f77729;"><b>Compilers</b></span>, <span style="color:#f77729;"><b>assemblers</b></span>, <span style="color:#f77729;"><b>debuggers</b></span>, and <span style="color:#f77729;"><b>interpreters</b></span> for common programming languages (such as C, C++, Java, and Python) are often provided with the operating system or available as a separate download. Package managers such as `npm, pip` may be installed in modern OS to make it easier for users to develop.
 
 Take these example of system programs with a grain of salt. The definitions of what program belongs to system program category is subject to debate. Some Operating Systems don't come with compilers and debuggers so they may not be categorised as "system programs" for some.
 {:.warning}
