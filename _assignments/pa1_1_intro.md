@@ -28,7 +28,7 @@ You may complete this assignment in <span style="color:#f7007f;"><b>pairs</b></s
 
 ## Starter Code
 
-You need to run this assignment in your POSIX compliant OS.
+You need to run this assignment in your **POSIX compliant OS**, using `gcc` version 10.X or below. **Do not use version 11.X and above**.
 {:.error}
 
 You should have joined the GitHub Classroom and obtain the starter code for this assignment there. The link can be found in the Course Calendar portion of your Course Handout.
