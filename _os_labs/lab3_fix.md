@@ -61,20 +61,20 @@ By the end of this lab, we hope that you have learned:
 
 # TL;DR
 
-1. Clone the repository:
+Clone the repository:
 
 ```
 git clone https://github.com/natalieagus/lab_toctou
 ```
 
-2. Set root's password, and login as `root`:
+Set root's password, and login as `root`:
 
 ```
 sudo passwd root
 su root
 ```
 
-3. Create other users (while logged in as root). Use a <span style="color:#f77729;"><b>good</b></span> password, like `LDcwzD&#6JKr`:
+Create other users (while logged in as root). Use a <span style="color:#f77729;"><b>good</b></span> password, like `LDcwzD&#6JKr`:
 
 ```
 adduser test-user-0
@@ -85,20 +85,20 @@ adduser test-user-2
 adduser test-user-2 sudo
 ```
 
-4. `make` inside `/FilesForRoot/` folder (while logged in as root):
+`make` inside `/FilesForRoot/` folder (while logged in as root):
 
 ```
 cd FilesForRoot
 make
 ```
 
-5. Log in back to your regular user account:
+Log in back to your regular user account:
 
 ```
 su <username>
 ```
 
-6. Change to `/User/` directory, `make`, then <span style="color:#f77729;"><b>exploit</b></span>:
+Change to `/User/` directory, `make`, then <span style="color:#f77729;"><b>exploit</b></span>:
 
 ```
 cd ../User
@@ -106,4 +106,4 @@ make
 ./exploit.sh
 ```
 
-7. Once `exploit.sh` succeeds, login to `test-user-0` with password `00000`. This proves that the attack has been successfully launched.
+Once `exploit.sh` succeeds, login to `test-user-0` with password `00000`. This proves that the attack has been successfully launched.

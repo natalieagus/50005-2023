@@ -271,6 +271,6 @@ Then, the main loop is repeated <span style="color:#f77729;"><b>until</b></span>
 3. Then, runs 3 commands in <span style="color:#f77729;"><b>succession</b></span>:
    1. `../Root/vulnerable_root_prog userfile.txt test-user-0`: runs the vulnerable program with `userfile.txt`, belonging to currently logged in user account and the <span style="color:#f77729;"><b>targeted</b></span> username.
    2. `./symlink userfile.txt /etc/shadow`: immediately, executes the `symlink` program to change `userfile.txt` to <span style="color:#f77729;"><b>point</b></span> to `/etc/shadow`.
-   3. `NEWFILE=`ls -l /etc/shadow`: check the file info of `/etc/shadow`and store it into variable`NEWFILE`; to be used in the <span style="color:#f77729;"><b>next</b></span> loop check
+   3. ` NEWFILE=``ls -l /etc/shadow``     `: check the file info of `/etc/shadow`and store it into variable`NEWFILE`; to be used in the <span style="color:#f77729;"><b>next</b></span> loop check
 
 Step (3.1) and (3.2) above are <span style="color:#f77729;"><b>racing</b></span>, and the script terminates when `/etc/shadow` has been successfully changed.
