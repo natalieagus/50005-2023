@@ -14,9 +14,12 @@ show_edit_on_github: false
 show_date: false
 ---
 
+Well, it's actually more like a **patch** than a fix, because we simply just undo the SUID effect if regular user tries to execute the vulnerable program.
+{:.warning}
+
 ## seteuid()
 
-One of the ways to <span style="color:#f77729;"><b>fix</b></span> this TOCTOU bug is to add just <span style="color:#f77729;"><b>one line of instruction</b></span> after `access()` (before `fopen()` is called) to manually set the effective UID of the process as the actual UID of the process.
+One of the ways to <span style="color:#f77729;"><b>patch</b></span> this TOCTOU bug is to add just <span style="color:#f77729;"><b>one line of instruction</b></span> after `access()` (before `fopen()` is called) to manually set the effective UID of the process as the actual UID of the process.
 
 You can do this using the following system call: `seteuid(getuid());`
 
@@ -57,7 +60,7 @@ By the end of this lab, we hope that you have learned:
 - The differences between <span style="color:#f77729;"><b>root</b></span> and <span style="color:#f77729;"><b>normal</b></span> user
 - The meaning of file <span style="color:#f77729;"><b>permission</b></span>. Although we do not go through explicitly on how it is set, you can read about it [here](https://kb.iu.edu/d/abdb) and experiment how to do it using the `chmod` command.
 - How <span style="color:#f77729;"><b>race condition</b></span> happens and how it can be used as an <span style="color:#f77729;"><b>attack</b></span>
-- How to <span style="color:#f77729;"><b>fix</b></span> the TOCTOU bug
+- How to <span style="color:#f77729;"><b>fix</b></span> (patch) the TOCTOU bug
 
 # TL;DR
 
