@@ -220,6 +220,11 @@ A socket is one endpoint of a <span style="color:#f77729;"><b>two-way communicat
 - When concatenated together, they form a <span style="color:#f77729;"><b>socket</b></span>, e.g: 127.0.0.1:8080
 - All socket connection between two communicating processes must be <span style="color:#f77729;"><b>unique</b></span>.
 
+TCP and UDP are different transport protocols. You will learn more about it in the next half of the semester, so don't frent about it now. For now, this image sums it up.
+{:.info}
+
+<img src="{{ site.baseurl }}//assets/images/week3-3_comms/2023-06-02-10-13-29.png"  class="center_seventy no-invert"/>
+
 For processes in the same machine as shown in the figure above, both processes communicate through a socket with IP `localhost` and a <span style="color:#f77729;"><b>unique</b></span>, unused port number. Processes can <code>read()</code>or <code>send()</code>data through the socket through system calls:
 
 1. For example, when P1 tries to send a message (data) to P2 using socket, it has to copy the message from <span style="color:#f7007f;"><b>its own space</b></span> to the kernel space first through the socket via `write` system call.
