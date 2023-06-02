@@ -26,12 +26,25 @@ You can think of a directory as some kind of dictionary; a _symbol_ table that <
 
 > Most of the metadata about the file is stored within the inode associated with the file, not the directory entry.
 
-## Directory File Permission
+## Directory `x` Permission
 
-Unlike regular files, the `x` permission on a directory is very different compared to regular files. It stands for permission to **enter** the directory (e.g: via `cd`) and to actually access any of its files.
+Unlike regular files, the `x` bit on a directory permission is very different compared to regular files. It is often referred to as the _search bit_ and it stands for permission to **enter** the directory (e.g: via `cd`) and to actually access any of its files.
 {:.warning}
 
-This is **different** from `r` permission on directories: which is simply to **view** its contents (e.g: via `ls`) and `w` permission which allows you to modify its content (add or remove files within it).
+`Execute` or `x` is needed on a directory to **access** the inode information of the files within. Users need this to search a directory to read the inodes of the files within.
+
+> For this reason the execute permission on a directory is often called search permission instead.
+
+If we know the inode of the file beforehand within a directory which we don't have the `x` permission, can we still acess it? Well, from this little experiment, it doesn't seem so because `find` still returns the path of the target file having that inode and `cat` still needs the path of that file to be resolved:
+
+<img src="{{ site.baseurl }}//assets/images/week6-2_directories/2023-06-02-21-47-40.png"  class="center_seventy"/>
+
+If you know a way to `open` a file directly given the inode number in Linux, let us know!
+{:.info}
+
+This is **different** from `r` permission on directories: which is simply to **view** the directory's contents (e.g: via `ls`) and `w` permission which allows you to modify its content (add or remove files within it). Here's what `ls` output will look like on a directory without `x` permission. As you can observe, you can still obtain the file names and that's about it, no additional access to the files containing the usual metadata (date created, size, inode, etc).
+
+<img src="{{ site.baseurl }}//assets/images/week6-2_directories/2023-06-02-21-44-52.png"  class="center_seventy"/>
 
 ## Searching for a File
 
