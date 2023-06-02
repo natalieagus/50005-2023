@@ -5,58 +5,62 @@ key: os-notes-week3_comms
 layout: article
 nav_key: os_notes
 sidebar:
-   nav: os_notes
+  nav: os_notes
 license: false
 aside:
-   toc: true
+  toc: true
 show_edit_on_github: false
 show_date: false
 ---
 
-
 Processes executing concurrently in the operating system may be either <span style="color:#f77729;"><b>independent</b></span> processes or <span style="color:#f77729;"><b>cooperating</b></span> processes:
-* By default, processes are independent and isolated from one another (runs on its own virtual machine)
-* A process is cooperating if it can affect or be affected by the other processes executing in the system. 
 
-Processes need to cooperate due to the following possible <span style="color:#f77729;"><b>reasons</b></span>: 
+- By default, processes are independent and isolated from one another (runs on its own virtual machine)
+- A process is cooperating if it can affect or be affected by the other processes executing in the system.
+
+Processes need to cooperate due to the following possible <span style="color:#f77729;"><b>reasons</b></span>:
+
 1. Information sharing
 2. Speeding up computations
 3. Modularity (protect each segments) and convenience
 
 Cooperating processes require Interprocess Communication <span style="color:#f77729;"><b>(IPC)</b></span> mechanisms -- these mechanisms are provided by or supported by the kernel. There are two ways to perform IPC:
+
 1. <span style="color:#f77729;"><b>Shared Memory</b></span>
 2. <span style="color:#f77729;"><b>Message Passing</b></span> (e.g: <span style="color:#f77729;"><b>sockets</b></span>)
 
-
-
 ## POSIX Shared Memory {#shared-memory}
-Shared memory is a region in the RAM that can be <span style="color:#f77729;"><b>created</b></span> and shared among multiple processes using system call. 
-1. Kernel <span style="color:#f7007f;"><b>allocates</b></span> and <span style="color:#f7007f;"><b>establishes</b></span> a region of memory and return to the caller process. 
+
+Shared memory is a region in the RAM that can be <span style="color:#f77729;"><b>created</b></span> and shared among multiple processes using system call.
+
+1. Kernel <span style="color:#f7007f;"><b>allocates</b></span> and <span style="color:#f7007f;"><b>establishes</b></span> a region of memory and return to the caller process.
 2. Once shared memory is established, all accesses are treated as routine <span style="color:#f7007f;"><b>user memory accesses</b></span> for writing or reading to or from it, and <span style="color:#f7007f;"><b>no assistance from the kernel is required</b></span>.
 
+### Procedure
 
-### Procedure 
 This section is here to enhance your understanding. You can skip this if you want.
 {:.warning}
 
-Both reader and writer get the shared memory identifier (an integer) using system call `shmget`. `SHM_KEY` is an integer that has to be unique, so any program can access what is inside the shared memory if they know the `SHM_KEY`. The Kernel will return the memory identifier associated with `SHM_KEY` if it is already created, or create it when it has yet to exist. The second argument: `1024`, is the size (in bytes) of the shared memory. 
+Both reader and writer get the shared memory identifier (an integer) using system call `shmget`. `SHM_KEY` is an integer that has to be unique, so any program can access what is inside the shared memory if they know the `SHM_KEY`. The Kernel will return the memory identifier associated with `SHM_KEY` if it is already created, or create it when it has yet to exist. The second argument: `1024`, is the size (in bytes) of the shared memory.
 
 ```cpp
 int shmid = shmget(SHM_KEY, 1024, 0666 | IPC_CREAT);
 ```
 
-Then, both reader and writer should attach the shared memory onto its address space (i.e: map the allocated segment in physical memory to the VM space of the calling process). You can type cast the return of `shmat` onto any data type you want. In essence, `shmat` returns an address of your address space that translates to the shared memory block[^6]. 
+Then, both reader and writer should attach the shared memory onto its address space (i.e: map the allocated segment in physical memory to the VM space of the calling process). You can type cast the return of `shmat` onto any data type you want. In essence, `shmat` returns an address of your address space that translates to the shared memory block[^6].
 
 ```cpp
 char *str = (char*) shmat(shmid, (void*)0, 0);
 ```
 
 Afterwards, writer can write to the shared memory:
+
 ```cpp
 sprintf(str, "Hello world \n");
 ```
 
-Reader can read from the shared memory: 
+Reader can read from the shared memory:
+
 ```cpp
 printf("Data read from memory: %s\n", str);
 ```
@@ -65,23 +69,21 @@ The figure below illustrates the steps above:
 <img src="/50005/assets/images/week3/13.png"  class="center_full"/>
 
 Once both processes no longer need to communicate, they can detach the shared memory from their address space:
+
 ```cpp
 shmdt(str);
 ```
 
+Finally, one of the processes can destroy it, typically the reader because it is the last process that uses it.
 
-Finally, one of the processes can destroy it, typically the reader because it is the last process that uses it.  
 ```cpp
 shmctl(shmid, IPC_RMID, NULL);
 ```
 
-
-Of course one obvious issue that might happen here is that BOTH writer and reader are accessing the shared memory concurrently, therefore we will run into <span style="color:#f77729;"><b>synchronisation</b></span> problems whereby <span style="color:#f7007f;"><b>writer overwrites before reader finished reading</b></span> or <span style="color:#f7007f;"><b>reader attempts to read an empty memory value before writer finished writing</b></span>. 
+Of course one obvious issue that might happen here is that BOTH writer and reader are accessing the shared memory concurrently, therefore we will run into <span style="color:#f77729;"><b>synchronisation</b></span> problems whereby <span style="color:#f7007f;"><b>writer overwrites before reader finished reading</b></span> or <span style="color:#f7007f;"><b>reader attempts to read an empty memory value before writer finished writing</b></span>.
 {:.error}
 
-We will address such synchronisation problems in the next chapter.  
-
-
+We will address such synchronisation problems in the next chapter.
 
 ### Program: IPC without SVC? {#code-ipc-is-impossible-without-system-calls}
 
@@ -126,7 +128,6 @@ int main(int argc, char const *argv[])
    return 0;
 }
 ```
-
 
 ### Program: IPC with Shared Memory (<span style="color:#f7007f;"><b>unsync</b></span>) {#code-ipc-with-shared-memory-unsync}
 
@@ -202,26 +203,26 @@ int main(int argc, char const *argv[])
 
 In the code above, we didn’t detach and remove the shared memory, so it still persists in the system. Run the command `ipcs -m` to view it. To remove it, run the command `ipcrm -m [mem_id]`
 
-
 ## Message Passing {#message-passing-e-g-socket}
 
-Message passing is a mechanism to allow processes to <span style="color:#f77729;"><b>communicate</b></span> and to <span style="color:#f77729;"><b>synchronize</b></span> their actions <span style="color:#f7007f;"><b>without sharing the same address space</b></span>. Every message passed back and forth between writer and reader (server and client) through message passing <span style="color:#f7007f;"><b>must be done using kernel’s help</b></span>. 
-
+Message passing is a mechanism to allow processes to <span style="color:#f77729;"><b>communicate</b></span> and to <span style="color:#f77729;"><b>synchronize</b></span> their actions <span style="color:#f7007f;"><b>without sharing the same address space</b></span>. Every message passed back and forth between writer and reader (server and client) through message passing <span style="color:#f7007f;"><b>must be done using kernel’s help</b></span>.
 
 ### Socket
-Socket is one of message passing <span style="color:#f7007f;"><b>interfaces</b></span>. 
+
+Socket is one of message passing <span style="color:#f7007f;"><b>interfaces</b></span>.
 {:.warning}
 
-A socket is one endpoint of a <span style="color:#f77729;"><b>two-way communication link</b></span> between two programs running on the network with the help of the **kernel**: 
-* It is a <span style="color:#f77729;"><b>concatenation</b></span> of an IP address, e.g: 127.0.0.1 for localhost
-* And <span style="color:#f77729;"><b>TCP</b></span> (connection-oriented) or <span style="color:#f77729;"><b>UDP</b></span> (connectionless) <span style="color:#f77729;"><b>port</b></span>, e.g: 8080. 
-  * We will learn more about UDP and TCP as network communication protocols in the later part of the semester.
-* When concatenated together, they form a <span style="color:#f77729;"><b>socket</b></span>, e.g: 127.0.0.1:8080
-* All socket connection between two communicating processes must be <span style="color:#f77729;"><b>unique</b></span>.
+A socket is one endpoint of a <span style="color:#f77729;"><b>two-way communication link</b></span> between two programs running on the network with the help of the **kernel**:
 
-    
+- It is a <span style="color:#f77729;"><b>concatenation</b></span> of an IP address, e.g: 127.0.0.1 for localhost
+- And <span style="color:#f77729;"><b>TCP</b></span> (connection-oriented) or <span style="color:#f77729;"><b>UDP</b></span> (connectionless) <span style="color:#f77729;"><b>port</b></span>, e.g: 8080.
+  - We will learn more about UDP and TCP as network communication protocols in the later part of the semester.
+- When concatenated together, they form a <span style="color:#f77729;"><b>socket</b></span>, e.g: 127.0.0.1:8080
+- All socket connection between two communicating processes must be <span style="color:#f77729;"><b>unique</b></span>.
+
 For processes in the same machine as shown in the figure above, both processes communicate through a socket with IP `localhost` and a <span style="color:#f77729;"><b>unique</b></span>, unused port number. Processes can <code>read()</code>or <code>send()</code>data through the socket through system calls:
-1. For example, when P1 tries to send a message (data) to P2 using socket, it has to copy the message from <span style="color:#f7007f;"><b>its own space</b></span> to the kernel space first through the socket via `write` system call. 
+
+1. For example, when P1 tries to send a message (data) to P2 using socket, it has to copy the message from <span style="color:#f7007f;"><b>its own space</b></span> to the kernel space first through the socket via `write` system call.
 2. Then, when P2 tries to read from the socket, that message in the kernel space is copied again to P2’s space via `read` system call.
 
 The diagram below illustrates how socket works in general:
@@ -229,11 +230,11 @@ The diagram below illustrates how socket works in general:
 
 <img src="/50005/assets/images/week3/14.png"  class="center_full"/>
 
-
 ### Program: IPC using Socket {#code-ipc-using-socket}
-One process has to create a socket and listens for incoming connection. We call this process the <span style="color:#f77729;"><b>server</b></span>. After a listening socket is created, another process can connect to it. We call this process the <span style="color:#f77729;"><b>client</b></span>. 
 
-Server process has to be run first, followed by the client process. The code below implements both versions: <span style="color:#f77729;"><b>blocking</b></span> and <span style="color:#f77729;"><b>non blocking</b></span> `read()`. Try blocking version, then nonblocking. 
+One process has to create a socket and listens for incoming connection. We call this process the <span style="color:#f77729;"><b>server</b></span>. After a listening socket is created, another process can connect to it. We call this process the <span style="color:#f77729;"><b>client</b></span>.
+
+Server process has to be run first, followed by the client process. The code below implements both versions: <span style="color:#f77729;"><b>blocking</b></span> and <span style="color:#f77729;"><b>non blocking</b></span> `read()`. Try blocking version, then nonblocking.
 
 <span style="color:#f77729;"><b>Server</b></span> program:
 
@@ -390,17 +391,20 @@ int main(int argc, char const *argv[])
 }
 ```
 
+When you **recompile** the `server` to implement `valread` via **nonblocking** manner, you might observe inconsistent behavior when you spawn `server` and `client` multiple times:
 
+<img src="{{ site.baseurl }}//assets/images/week3-3_comms/2023-06-02-10-07-23.png"  class="center_seventy"/>
 
+This is because `server` will not wait for any messages from the client before returning from `recv`, and so we can only observe the message `Hello from client` to be printed out _before_ `Hello message sent to client` **if** client process is scheduled **before** server process.
 
+You can **exaggerate** this behavior by adding a `sleep(1);` instruction in the client code right _after_ it's established connection to the server but _before_ it sends any message to the server.
 
-### Message Queue 
+### Message Queue
 
-<span style="color:#f77729;"><b>Message Queue </b></span>is just another <span style="color:#f77729;"><b>interface</b></span> for message passing (another example being socket as shown in the previous section). It uses system call `ftok, msgget, msgsnd, msgrcv` each time data has to be passed between the processes. [`msgrcv` and `msgsnd`](https://man7.org/linux/man-pages/man2/msgsnd.2.html) can be made <span style="color:#f77729;"><b>blocking</b></span> or <span style="color:#f77729;"><b>non blocking</b></span> depending on the setup. 
+<span style="color:#f77729;"><b>Message Queue </b></span>is just another <span style="color:#f77729;"><b>interface</b></span> for message passing (another example being socket as shown in the previous section). It uses system call `ftok, msgget, msgsnd, msgrcv` each time data has to be passed between the processes. [`msgrcv` and `msgsnd`](https://man7.org/linux/man-pages/man2/msgsnd.2.html) can be made <span style="color:#f77729;"><b>blocking</b></span> or <span style="color:#f77729;"><b>non blocking</b></span> depending on the setup.
 
-The figure below illustrates the general idea of Message Queue. The queue data structure is maintain by the Kernel, and processes may write into the queue at any time. If there are more than 1 writer and 1 reader at any instant, careful planning has to be made to ensure that the <span style="color:#f77729;"><b>right</b></span> message is obtained by the right process. 
+The figure below illustrates the general idea of Message Queue. The queue data structure is maintain by the Kernel, and processes may write into the queue at any time. If there are more than 1 writer and 1 reader at any instant, careful planning has to be made to ensure that the <span style="color:#f77729;"><b>right</b></span> message is obtained by the right process.
 <img src="/50005/assets/images/week3/16.png"  class="center_full"/>
-
 
 <span style="color:#f77729;"><b>Writer</b></span> process program:
 
@@ -412,12 +416,12 @@ The figure below illustrates the general idea of Message Queue. The queue data s
 #define MAX 10
 
 // structure for message queue
-struct mesg_buffer 
+struct mesg_buffer
 {
    long mesg_type;
    char mesg_text[100];
 } message;
- 
+
 int main()
 {
    key_t key;
@@ -426,8 +430,8 @@ int main()
    // ftok to generate unique key
    // key_t ftok (const char *pathname, int proj_id);
    // pathname to existing file, proj_id: any number
-   // ftok uses the pathname and proj_id to create a unique value 
-   // that can be used by different process to attach to shared memory 
+   // ftok uses the pathname and proj_id to create a unique value
+   // that can be used by different process to attach to shared memory
    // or message queue or any other mechanisms.
    key = ftok("~/somefile", 128);
 
@@ -438,13 +442,13 @@ int main()
 
    printf("Write Data : ");
    fgets(message.mesg_text,MAX,stdin);
-   
+
    // msgsnd to send message
    msgsnd(msgid, &message, sizeof(message), 0);
-   
+
    // display the message
    printf("Data send is : %s \n", message.mesg_text);
-  
+
    return 0;
 }
 ```
@@ -490,47 +494,46 @@ int main()
 }
 ```
 
-
-##  Message Passing vs Shared Memory {#comparison-between-message-passing-and-shared-memory}
+## Message Passing vs Shared Memory {#comparison-between-message-passing-and-shared-memory}
 
 1. <span style="color:#f77729;"><b>Number of system calls made:</b></span>
 
-    * Message Passing, e.g: via socket requires <span style="color:#f7007f;"><b>system calls</b></span> for each message passed through `send() `and `receive()`but it is much quicker compared to shared memory to use if only small messages are exchanged.
+   - Message Passing, e.g: via socket requires <span style="color:#f7007f;"><b>system calls</b></span> for each message passed through `send() `and `receive()`but it is much quicker compared to shared memory to use if only small messages are exchanged.
 
-    * Shared memory requires costly system calls (`shmget` and `shmat`) in the beginning to create the memory segment (this is very costly, depending on the size, pagetable update is required during attaching), but <span style="color:#f7007f;"><b>not afterwards</b></span> when processes are using them.<br>
+   - Shared memory requires costly system calls (`shmget` and `shmat`) in the beginning to create the memory segment (this is very costly, depending on the size, pagetable update is required during attaching), but <span style="color:#f7007f;"><b>not afterwards</b></span> when processes are using them.<br>
 
 2. <span style="color:#f77729;"><b>Number of procs using:</b></span>
-    * Message passing is <span style="color:#f7007f;"><b>one-to-one</b></span>: only between two processes
-  
-    * Shared memory can be shared between <span style="color:#f7007f;"><b>many</b></span> processes.<br>
-    
-3. <span style="color:#f77729;"><b>Usage comparison:</b></span>
-    * Message passing is useful for sending <span style="color:#f7007f;"><b>smaller</b></span> amounts of data between two processes, but if large data is exchanged then will suffer from system call overhead.
-  
-    * Shared memory is costly if only small amounts of data are exchanged. Useful for <span style="color:#f7007f;"><b>large</b></span> and frequent data exchange.<br>
 
+   - Message passing is <span style="color:#f7007f;"><b>one-to-one</b></span>: only between two processes
+
+   - Shared memory can be shared between <span style="color:#f7007f;"><b>many</b></span> processes.<br>
+
+3. <span style="color:#f77729;"><b>Usage comparison:</b></span>
+
+   - Message passing is useful for sending <span style="color:#f7007f;"><b>smaller</b></span> amounts of data between two processes, but if large data is exchanged then will suffer from system call overhead.
+
+   - Shared memory is costly if only small amounts of data are exchanged. Useful for <span style="color:#f7007f;"><b>large</b></span> and frequent data exchange.<br>
 
 4. <span style="color:#f77729;"><b>Synchronization mechanism:</b></span>
-    * Message passing <span style="color:#f7007f;"><b>does not require any synchronisation</b></span> mechanism (because the Kernel will synchronise the two). It will block if required (but can be set to not be blocking too, i.e: block/not block if there’s no message to read but one process requests to read)
-    
-    * Shared memory requires <span style="color:#f7007f;"><b>additional synchronisation</b></span> to prevent <span style="color:#f7007f;"><b>race-condition</b></span> issues (burden on the developer). There’s no blocking support. It also has to be <span style="color:#f7007f;"><b>freed</b></span> after they are no longer needed, otherwise will persist in the system until its turned off (check for existing shared memories using `ipcs` in terminal)<br>
 
+   - Message passing <span style="color:#f7007f;"><b>does not require any synchronisation</b></span> mechanism (because the Kernel will synchronise the two). It will block if required (but can be set to not be blocking too, i.e: block/not block if there’s no message to read but one process requests to read)
+
+   - Shared memory requires <span style="color:#f7007f;"><b>additional synchronisation</b></span> to prevent <span style="color:#f7007f;"><b>race-condition</b></span> issues (burden on the developer). There’s no blocking support. It also has to be <span style="color:#f7007f;"><b>freed</b></span> after they are no longer needed, otherwise will persist in the system until its turned off (check for existing shared memories using `ipcs` in terminal)<br>
 
 ## Application: Chrome Browser Multi-process Architecture {#application-example-chrome-browser-multi-process-architecture}
 
-Websites contain multiple <span style="color:#f77729;"><b>active</b></span> contents: Javascript, Flash, HTML etc to provide a rich and dynamic web browsing experience. You may <span style="color:#f77729;"><b>open</b></span> several tabs and <span style="color:#f77729;"><b>load</b></span> different websites at the same time. However, some web applications contain bugs, and may cause the entire browser to <span style="color:#f7007f;"><b>crash</b></span> if the entire Chrome browser is just <span style="color:#f7007f;"><b>one</b></span> single huge process. 
+Websites contain multiple <span style="color:#f77729;"><b>active</b></span> contents: Javascript, Flash, HTML etc to provide a rich and dynamic web browsing experience. You may <span style="color:#f77729;"><b>open</b></span> several tabs and <span style="color:#f77729;"><b>load</b></span> different websites at the same time. However, some web applications contain bugs, and may cause the entire browser to <span style="color:#f7007f;"><b>crash</b></span> if the entire Chrome browser is just <span style="color:#f7007f;"><b>one</b></span> single huge process.
 
 Google Chrome’s web browser was designed to address this issue by creating separate processes to provide <span style="color:#f77729;"><b>isolation</b></span>:
-1. The Browser process (manages user interface of the browser (not website), disk and network I/O); only one browser process is created when Chrome is *just opened*
-2. The Renderer processes to render web pages: a new renderer process is created for each website opened in a new tab 
+
+1. The Browser process (manages user interface of the browser (not website), disk and network I/O); only one browser process is created when Chrome is _just opened_
+2. The Renderer processes to render web pages: a new renderer process is created for each website opened in a new tab
 3. The Plug-In processes for each type of Plug-In
 
 All processes created by Chrome have to <span style="color:#f77729;"><b>communicate</b></span> with one another depending on the application. The advantage of such multi process architecture is that:
-* Each website runs in <span style="color:#f7007f;"><b>isolation</b></span> from one another: if one website crashes, only its renderer crashes and the other processes are unharmed. 
-* Renderer will also be unable to access the disk and network I/O directly (runs in sandbox: limited access) thus reducing the possibility of security <span style="color:#f7007f;"><b>exploits</b></span>. 
-* Each process can be scheduled <span style="color:#f77729;"><b>independently</b></span>, providing <span style="color:#f7007f;"><b>concurency</b></span> and responsiveness. 
 
+- Each website runs in <span style="color:#f7007f;"><b>isolation</b></span> from one another: if one website crashes, only its renderer crashes and the other processes are unharmed.
+- Renderer will also be unable to access the disk and network I/O directly (runs in sandbox: limited access) thus reducing the possibility of security <span style="color:#f7007f;"><b>exploits</b></span>.
+- Each process can be scheduled <span style="color:#f77729;"><b>independently</b></span>, providing <span style="color:#f7007f;"><b>concurency</b></span> and responsiveness.
 
-
-[^6]:
-     Suppose process 1 and process 2 have successfully attached the shared memory segment.This attachment process causes this shared memory segment will be part of their address space, although the actual address could be different (_i.e._, the starting address of this shared memory segment in the address space of process 1 may be different from the starting address in the address space of process 2).
+[^6]: Suppose process 1 and process 2 have successfully attached the shared memory segment.This attachment process causes this shared memory segment will be part of their address space, although the actual address could be different (_i.e._, the starting address of this shared memory segment in the address space of process 1 may be different from the starting address in the address space of process 2).
