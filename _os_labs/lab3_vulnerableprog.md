@@ -128,6 +128,9 @@ ln -s <source> <symlink>
 In this example below, we created a `goodmorning_symlink.txt` that <span style="color:#f77729;"><b>points</b></span> to the actual file `goodmorning.txt`:
 <img src="/50005/assets/images/lab2/12.png"  class="center_seventy"/>
 
+Note: there are different terminologies for `ln` system program manual. POSIX states `target --> source` while GNU states `link_name --> target`, and hence the word _target_ alone can mean either the symlink or the actual file depending on which manual you read. Be careful!
+{:.info}
+
 ## Exploiting the TOCTOU Bug with SymLink
 
 During this <span style="color:#f77729;"><b>delay</b></span> between <span style="color:#f77729;"><b>checking</b></span> (with `access`) and <span style="color:#f77729;"><b>usage</b></span> (with `fopen`):
