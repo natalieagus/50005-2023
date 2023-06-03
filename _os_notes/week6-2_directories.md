@@ -247,7 +247,7 @@ The file permission value on a symlink differs between operating systems. For in
 
 However on macOS, `chmod` does things differently:
 
-> If the file is a symbolic link, `chmod` change the mode of the link itself rather than the file that the link points to.
+> If the file is a symbolic link, `chmod` with a `-h` option changes the mode of the link itself rather than the file that the link points to.
 
 See the example below (ran on Ubuntu):
 
