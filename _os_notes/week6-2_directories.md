@@ -245,13 +245,18 @@ The file permission value on a symlink differs between operating systems. For in
 
 > `chmod` never changes the permissions of symbolic links; the `chmod` system call cannot change their permissions. This is **not** a problem since the permissions of symbolic links are **never** used. However, for each symbolic link listed on the command line, `chmod` changes the permissions of the **pointed-to** file. In contrast, `chmod` **ignores** symbolic links encountered during recursive directory traversals.
 
-However on macOS, `chmod` does things differently:
+However on macOS, `chmod` does things differently. See the example below:
 
-> If the file is a symbolic link, `chmod` with a `-h` option changes the mode of the link itself rather than the file that the link points to.
+<img src="{{ site.baseurl }}//assets/images/week6-2_directories/2023-06-03-12-36-20.png"  class="center_seventy"/>
 
-See the example below (ran on Ubuntu):
+> If the file is a symbolic link, `chmod` with a `-h` option changes the mode of the link itself rather than the file that the link points to. However most utilities like `echo` and `cat` follows the symlink and ignored the permission. `ls` however is affected. If a symlink is set to have `000` permission, `ls` will not print out where it's pointing to.
+
+On the contrary, here's what happens on Ubuntu:
 
 <img src="{{ site.baseurl }}//assets/images/week6-2_directories/2023-06-02-20-16-47.png"  class="center_seventy"/>
+
+Note that these are just for illustration purposes only, there's **no need to memorise**.
+
 ### Link Properties
 
 #### Broken Symlink
