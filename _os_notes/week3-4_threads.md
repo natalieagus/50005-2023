@@ -233,6 +233,8 @@ User level threads (sometimes known as green threads) are threads that are:
 
 ### Kernel level threads
 
+To augment the need for running background operations, the kernel spawns **threads**, similar to regular processes in that they are represented by a `task_struct` and assigned a PID. Unlike user processes, they do not have any address space mapped, and run exclusively in kernel mode, which makes them non-interactive.
+
 Kernel level threads (sometimes known as OS-level threads) are threads that are:
 
 1. Scheduled by the Kernel, having its own stack and register values, but share data with other Kernel threads.
@@ -250,6 +252,26 @@ Most programming languages will provide an <span style="color:#f77729;"><b>inter
 #include <kthread.h>
 kthread_create(int (*function)(void *data), void *data, const char name[], ...)
 ```
+
+> Fun fact: all kernel threads are descendants of `kthreadd` (pid 2), which is spawned by the kernel (pid 0) during boot. The `kthreadd` is a perpetually running thread that looks into a list called `kthread_create_list` for data on new kthreads to be created.
+
+You can view it via `ps -ef` command, they are shown within square brackets `[]`:
+
+<img src="{{ site.baseurl }}//assets/images/week3-4_threads/2023-06-04-11-49-39.png"  class="center_seventy"/>
+
+They each have a specific task, for instance `[migration/0]` handles distributes processes across cores, `[cpuhp/0]` supports physically adding and removing CPUs from the system, etc. You can read some info about other kernel threads and what [they might do from here](https://everylinuxprocess.com). The are alot of kernel threads that are not well documented, just like your 1D assignments, so don't take it too hard.
+
+#### Use case
+
+Many device drivers utilize the services of kernel threads to implement **assistant** or **helper** tasks. Suppose you would like the Kernel to asynchronously invoke a **user** mode program to send you an email alert whenever it senses that the health of certain key kernel data structures is deteriorating. For instance, free space in network receive buffers has dipped below a certain healthy threshold, risking losing incoming packets.
+
+This need warrants a creation of Kernel Thread because:
+
+- It's a background task because it has to wait for asynchronous events (depending on the network buffer state).
+- It needs access to kernel data structures because the actual detection of events is done by other parts of the kernel.
+- It has to invoke a user mode helper program (time consuming, requires resources to complete).
+
+This Kernelt thread will _sleep_ until it gets woken up by parts of the Kernel responsible for monitoring the network receive buffers. When awake, it invokes a user mode helper program and passes appropriate identity codes in its environment.
 
 ## Kernel vs User Level Threads
 
