@@ -356,7 +356,7 @@ It may sound similar to stream redirection, but the general rule of thumb is tha
 
 ### Task 7 
 `TASK 7:`{:.info} Try out how to pipe:
-1. Suppose we want to pass the want to pass the output of `cat` command as the input of `sort` command. We can’t do this with redirection:
+1. Suppose we want to pass the output of `cat` command as the input of `sort` command. We can’t do this with redirection:
 <img src="/50005/assets/images/lab1/15.png"  class="center_seventy"/>
 
 2. However, using **pipe** works. It serves as a way to allow **interprocess** communication (Week 3 materials): 
