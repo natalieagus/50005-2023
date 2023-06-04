@@ -187,7 +187,12 @@ A parent process <span style="color:#f7007f;"><b>must</b></span> call `wait` or 
 - Only after `wait` or `waitpid` in the parent process returns, the kernel can <span style="color:#f7007f;"><b>remove</b></span> the child PCB entry from the system wide process table.
 - If the parents didn’t call `wait` or `waitpid` and instead continue execution of other things, then children’s entry in the pcb remains; <span style="color:#f7007f;"><b>a zombie process remains</b></span>.
   - A zombie process generally takes up very little memory space, but `pid` of the child remains
-  - Recall that pid is <span style="color:#f7007f;"><b>unique</b></span>, hence in a 32-bit system, there're only 32768 available pids. Well, actually it is 32767, because pid `0` and `1` are reserved, so user processes get 2 to 32767.
+  - Recall that pid is <span style="color:#f7007f;"><b>unique</b></span>, so for example in a 32-bit system, there're only 32768 available pids (thats what set by the OS). Well, actually it is 32767, because pid `0` and `1` are reserved, so user processes get 2 to 32767. On 64-bit systems, the maximum PID is `2^22`.
+
+You can find the maximum PID value for your system in Linux using `cat /proc/sys/kernel/pid_max`:
+
+<img src="{{ site.baseurl }}//assets/images/week3-2_operations/2023-06-04-15-02-06.png"  class="center_seventy"/>
+
 
 Having too many zombie processes might result in inability to create new processes in the system, simply because we may run out of pid.
 {:.warning}
