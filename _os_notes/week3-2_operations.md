@@ -95,7 +95,7 @@ The simple C program above is executed and when the execution system call `fork(
 
 Both have the <span style="color:#f77729;"><b>same</b></span> copy of the text (code) and resources (any opened files, etc). The parent process is <span style="color:#f77729;"><b>cloned</b></span>, resulting in the child process. They're at a <span style="color:#f77729;"><b>different</b></span> address space, executed concurrently by the system.
 
-### fork return value
+### `fork` return value
 
 <code>fork()</code>returns 0 in the child process while in the parent process it returns the pid of the child (>0).
 {:.warning}
@@ -107,13 +107,55 @@ We can write just <span style="color:#f77729;"><b>one instruction</b></span> for
 
 <img src="/50005/assets/images/week3/11.png"  class="center_seventy"/>
 
-### execlp
+### `execlp`
 
 `execlp` is a system call that loads a new program called `ls` onto the child process’ address space, effectively <span style="color:#f7007f;"><b>replacing</b></span> its text (code), data, and stack content.
 
-### wait
+### `wait`
 
 Concurrently, the parent process executes `wait(NULL)`, which is a system call that <span style="color:#f7007f;"><b>suspends</b></span> the parents’ execution until this child process that is executing `ls `has returned.
+
+### Another example
+
+Another simple example to understand how `fork` works is by running this program:
+
+```java
+#include <sys/wait.h>
+#include <sys/types.h>
+#include <stdio.h>
+#include <unistd.h>
+#include <stdlib.h>
+
+int main(int argc, char const *argv[])
+{
+   pid_t pid;
+
+   pid = fork();
+   printf("Return value of fork stored in variable pid is: %d\n", pid);
+
+   if (pid < 0)
+   {
+       fprintf(stderr, "Fork has failed. Exiting now");
+       return 1; // exit error
+   }
+   else if (pid == 0)
+   {
+    // child
+    printf("This is child process with pid %d\n", getpid());
+    exit(0);
+   }
+   else
+   {
+    // parent
+    wait(NULL); // wait for any child to return
+    printf("This is parent process with pid %d\n", getpid());
+   }
+   return 0;
+}
+```
+
+Carefully observe the output and do **not** confuse between variable `pid` to store the **return value** of `fork` vs **actual process id** returned by `getpid`.
+{:.warning}
 
 ## Program: The fork tree {#code-the-fork-tree}
 
@@ -192,7 +234,6 @@ A parent process <span style="color:#f7007f;"><b>must</b></span> call `wait` or 
 You can find the maximum PID value for your system in Linux using `cat /proc/sys/kernel/pid_max`:
 
 <img src="{{ site.baseurl }}//assets/images/week3-2_operations/2023-06-04-15-02-06.png"  class="center_seventy"/>
-
 
 Having too many zombie processes might result in inability to create new processes in the system, simply because we may run out of pid.
 {:.warning}
