@@ -84,12 +84,12 @@ P0Read:	Wait(Prompt)		| Wait until P1 has caught up...
 
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 ||||| LAB 4 PART B: TO SYNCHRONISE, busy wait
-beginCheckMouse: CheckMouse()
-    BEQ(R0, beginCheckKeyboard) | go and check for keyboard press if there's no mouse click
-                                | If there's no mouse click, P3 is stuck at GetMouse() anyway
-    Signal(MouseSemaphore)		| if there mouse click, give signal for P3 to continue
-    Yield()         | stop execution
-    BR(P0Read)		| and restart process
+beginCheckMouse:	CheckMouse()
+					CMPEQC(R0, -1, R0)
+					BNE(R0, beginCheckKeyboard)
+					Signal(MouseSemaphore)		| if there is mouse click, give signal
+					Yield()
+					BR(P0Read)		| and restart process
 
 beginCheckKeyboard: CheckKeyboard()
     BEQ(R0, beginCheckMouse)
