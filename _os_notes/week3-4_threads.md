@@ -271,7 +271,7 @@ This need warrants a creation of Kernel Thread because:
 - It needs access to kernel data structures because the actual detection of events is done by other parts of the kernel.
 - It has to invoke a user mode helper program (time consuming, requires resources to complete).
 
-This Kernelt thread will _sleep_ until it gets woken up by parts of the Kernel responsible for monitoring the network receive buffers. When awake, it invokes a user mode helper program and passes appropriate identity codes in its environment.
+This Kernel thread will _sleep_ until it gets woken up by parts of the Kernel responsible for monitoring the network receive buffers. When awake, it invokes a user mode helper program and passes appropriate identity codes in its environment.
 
 ## Kernel vs User Level Threads
 
