@@ -74,6 +74,8 @@ Now click the mouse once over the console pane and then type more sentences. The
 Demonstrate the above result to your instructor / TA in class. When you are done, remember to **remove** the `Mouse()` instruction you added.
 {: .info}
 
+> Note that if you implement empty mouse buffer as `LONG(0)`, a click at valid coordinate `0,0` in the top left hand corner of the console will not be registered a valid mouse click, so you can't just wholesale copy the the `GetKey()` supervisor model. Please consider this in your implementation, a suggested way is to use `LONG(-1)` to indicate an empty mouse buffer.
+
 ## Summary
 
 <span style="color:indianred; font-weight: bold;">Congratulations 🍾</span>, you have sucessfully implemented both asycnhronous and synchronous interrupt handlers for Mouse-related event.
