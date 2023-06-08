@@ -123,4 +123,6 @@ Notice that `P0` doesn't have to confirm until `P3` has finished one round of ex
 
 Thanks to the scheduler's round robin policy and long enough quanta dedicated for each process, there won't be the undesirable condition whereby P0 `Yield()` immediately returns execution to P0 again, **before** P3 resumes and then `Signal` the `MouseSemaphore` the **second** time (because it hasn't been cleared by P3 that hasn't progressed!).
 
+> Actually it's kinda prevented by the `Signal(Prompt)` in the beginning of `P0Read` for _this lab_, which will eventually block `P0` and have the same effect anyway, but it's important that you understand _why_ you're lucky!
+
 Without the round robin policy, `MouseSemaphore` value might accidentally be increased to 2 or more and we might have a future `Click` message printed out at the same time **while** typing some messages at the console, violating the condition required for Task 2 in this lab. If we want to fix this (e.g: assume there's some form of priority scheduling policy used instead of round robin policy), we might have to check that a new mouse click is _actually made_ in `CheckMouseH` by storing the _previous_ history of mouse click at all times.
