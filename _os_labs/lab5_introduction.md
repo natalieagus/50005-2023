@@ -328,7 +328,7 @@ Need:
 Further request by Process 0: `request=[0,1,0]` is rejected because Process 0 requests <span style="color:#f77729;"><b>MORE</b></span> than what's been declared at `maximum`.
 
 - It declared that it needs at maximum of 2 resources B (the second type of resource)
-- It already held 2 types of resources B --> `need[0][1]: 2`
+- It already held 2 types of resources B --> `Allocation[0][1]: 2`
 
 ```
 Customer 0 requesting
