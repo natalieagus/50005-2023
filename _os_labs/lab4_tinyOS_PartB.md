@@ -91,7 +91,7 @@ beginCheckMouse:	CheckMouse()
 					CMPEQC(R0, -1, R0) | "empty" mouse click buffer contains -1, because 0 is a coordinate
 					BNE(R0, beginCheckKeyboard)
 					Signal(MouseSemaphore)		| if there is mouse click, give signal
-					Yield()
+					Yield() | let P3 print sooner, give up the current quanta
 					BR(P0Read)		| and restart process
 
 beginCheckKeyboard: CheckKeyboard()
@@ -119,10 +119,8 @@ Demonstrate the above result of <span style="color:red; font-weight: bold;">dela
 
 ## Summary
 
-Notice that `P0` doesn't have to confirm until `P3` has finished one round of execution (printing of x, y coordinate) _before_ restarting to `BR(P0Read)` because we **know** that the round robin scheduler will **surely** execute P3 for a round once P0 calls `Yield()`.
+Notice that `P0` doesn't have to confirm that `P3` has finished one round of execution (printing of x, y coordinate) _before_ restarting to `BR(P0Read)` because we **know** that the round robin scheduler will **surely** execute P3 for a round once P0 calls `Yield()`. The scheduler's round robin policy and long enough quanta dedicated for each process, there won't be the undesirable condition whereby P0 `Yield()` immediately returns execution to P0 again, **before** P3 resumes and then accidentally `Signal` the `MouseSemaphore` the **second** time (because it hasn't been cleared by P3 that hasn't progressed!).
 
-Thanks to the scheduler's round robin policy and long enough quanta dedicated for each process, there won't be the undesirable condition whereby P0 `Yield()` immediately returns execution to P0 again, **before** P3 resumes and then `Signal` the `MouseSemaphore` the **second** time (because it hasn't been cleared by P3 that hasn't progressed!).
+> Actually it's also prevented by the `Signal(Prompt)` in the beginning of `P0Read` for _this lab_, which will eventually block `P0` and have the same effect anyway, but it's important that you understand _why_ you're lucky!
 
-> Actually it's kinda prevented by the `Signal(Prompt)` in the beginning of `P0Read` for _this lab_, which will eventually block `P0` and have the same effect anyway, but it's important that you understand _why_ you're lucky!
-
-Without the round robin policy, `MouseSemaphore` value might accidentally be increased to 2 or more and we might have a future `Click` message printed out at the same time **while** typing some messages at the console, violating the condition required for Task 2 in this lab. If we want to fix this (e.g: assume there's some form of priority scheduling policy used instead of round robin policy), we might have to check that a new mouse click is _actually made_ in `CheckMouseH` by storing the _previous_ history of mouse click at all times.
+Be very careful when using Semaphore. In the case that `Signal(prompt)` does not exist and without the round robin policy, `MouseSemaphore` value might accidentally be increased to 2 or more and we might have a future `Click` message printed out at the same time **while** typing some messages at the console, violating the condition required for Task 2 in this lab. If we want to fix this (e.g: assume there's some form of priority scheduling policy used instead of round robin policy), we might have to check that a new mouse click is _actually made_ in `CheckMouseH` by storing the _previous_ history of mouse click at all times.
