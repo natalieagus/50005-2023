@@ -138,6 +138,10 @@ ns_labs:
         url: /ns_labs/lab3_2-hierarchy-caching
       - title: Wireshark
         url: /ns_labs/lab3_3-wireshark
+  - title: Lab 9
+    children:
+      - title: HTCPCP
+        url: /ns_labs/lab4_1-intro
 
 assignments:
   - title: PA1 - Shell

@@ -35,6 +35,9 @@ P3Start:
 
 ```
 
+You can learn how `Wait(Prompt)` and `Signal(Prompt)` works on Semaphore `prompt` in `P0` and `P1`. Note that `P0` and `P1` synchronises its execution **because** the prompt printing in `P0` only happens **after** `P1` has finished printing out the piglatin!
+{:.warning}
+
 ### Non-blocking SVC
 
 You also need two more **non-blocking** supervisor calls to check for any keyboard press and check for any mouse click because we need to know whether we have typed something (and delay the mouse click printout in P3):
@@ -103,6 +106,14 @@ P0RdCh: GetKey()		| read next character,
 	WrCh()			| echo back to user
     ...
 ```
+
+In summary, here's what is supposed to happen:
+
+1. `P0` is scheduled first, print out one prompt, and loop between `beginCheckMouse` and `beginCheckKeyboard`
+2. If there's no mouse click, and no keyboard press, and timer interrupts, `P1`, and then `P2` will continue as per normal. When `P3` is eventually scheduled, it will not print any mouse click either because there's no mouse click thus far.
+3. If there's mouse click and no keyboard press, `P0` will increase `MouseSemaphore` and `yield`, which eventually leads to `P3` being scheduled **sooner**. This allows `P3` to progress and print the click coordinates, after which `P3` will increase `Prompt` Semaphore. When `P0` is scheduled back, it will print another prompt and go back to the loop in step (1).
+4. If there's keyboard press first, then `P0RdCh` routine will be executed, where user input will be reflected on the screen and piglatin will be printed after user presses the return carriage (Enter). If there's mouse click during this time, `P3` will **not** advance and print the click message because `MouseSemaphore` value **is 0**. The only way to increase it is when `beginCheckMouse` routine in `P0` goes through.
+5. Only after the user presses the return carriage, and `P1` prints the piglatin and `Signal(Prompt)`, **then** `P0` can print the prompt and enter `beginCheckMouse` again. If any mouse press is made when the user was in the middle of typing something, then we will process the mouse click now.
 
 ### `Task 2`{: .info}
 
