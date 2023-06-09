@@ -54,17 +54,17 @@ Also, the control logic unit does not _trap_ the PC onto the handler when an int
 
 In the Linux system, low (virtual) memory region is dedicated for the kernel and high memory is assigned for user processes. It is essentially the same as what we have learned before: the concept of having _dual_ mode and _hardware support_.
 
-There has to be some kind of <span style="color:red; font-weight: bold;">hardware-dependent implementatio</span>n that protects the Kernel memory region, e.g: prevents the PC from jumping _illegally_ (not via handlers) to a lower memory address (MSB = 0) when it was from a higher memory address (MSB = 1).
+There has to be some kind of <span style="color:red; font-weight: bold;">hardware-dependent implementation</span> that protects the Kernel memory region, e.g: prevents the PC from jumping _illegally_ (not via handlers) to a lower memory address (MSB = 0) when it was from a higher memory address (MSB = 1).
 
 Note that using MSB of PC register as a flag to indicate kernel/user mode is only specific to our Beta CPU implementation. Actual implementation vary widely. For instance, x86 architecture uses [dedicated FLAGS registers](https://en.wikipedia.org/wiki/FLAGS_register). Such detail is outside of our syllabus.
 {: .error}
 
 ### The Big Picture
 
-A general purpose CPU has at least dual mode operation that should supported by its hardware:
+A general purpose CPU has at least dual mode operation that should be supported by its hardware:
 
 1. **<span style="color:#f7007f;"><b>The Kernel mode</b></span>** (privileged) : the executing code has complete and unrestricted access to the underlying hardware.
-2. **<span style="color:#f77729;"><b>The User mode</b></span>** (unprivileged) : all user programs such as a web browser, word editor, etc and also system programs such as compiler, assembler, file explorer, etc. Runs on _virtual machine_
+2. **<span style="color:#f77729;"><b>The User mode</b></span>** (unprivileged) : all user programs such as a web browser, word editor, etc and also system programs such as compiler, assembler, file explorer, etc runs on _virtual machine_
 
 User programs have to perform **system calls** (supervisor call) when they require services from the kernel, such as access to the hardware or I/O devices. When they perform **system calls**, the user program changes its mode to **the kernel mode** and began executing the kernel instructions handling that call instead of their own program instructions. When the system call returns, the `PC` resumes the execution of the user program.
 
@@ -149,4 +149,4 @@ Since the device controller and our CPU are <span style="color:#f7007f;"><b>asyn
 
 There are several purposes of an operating system: as a <span style="color:#f77729;"><b>resource</b></span> allocator, <span style="color:#f77729;"><b>controls</b></span> program execution, and guarantees <span style="color:#f77729;"><b>security</b></span> in the computer system. The next few notes will touch on each of these topics.
 
-[^1]: Firmware is not equivalent to BIOS, but unfortunately some resources and PC manufacturers might just use them interchangeably. Firmware generally refers to software stored on the motherboard (of any devices like computers, routers, switches,etc), containing basic settings of the device at startup. Some firmwares are upgradable, while some are Read-Only. BIOS is a term generally used specifically to refer to computer’s motherboard firmware in older computers. Modern computers use other Firmwares such as UEFI, also stored on chips on the motherboard. Note that UEFI / BIOS don’t form the entirety of a motherboard’s firmware.
+[^1]: Firmware is not equivalent to BIOS, but unfortunately some resources and PC manufacturers might just use them interchangeably. Firmware generally refers to software stored on the motherboard (of any devices like computers, routers, switches, etc), containing basic settings of the device at startup. Some firmwares are upgradable, while some are Read-Only. BIOS is a term generally used specifically to refer to computer’s motherboard firmware in older computers. Modern computers use other Firmwares such as UEFI, also stored on chips on the motherboard. Note that UEFI / BIOS don’t form the entirety of a motherboard’s firmware.
