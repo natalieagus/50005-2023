@@ -87,7 +87,7 @@ ST(R2, counter)
 
 ## Race Condition Outcome 1
 
-The execution between `counter ++ `and `counter --` can therefore be <span style="color:#f7007f;"><b>interleaved</b></span>. For example assuming the original value of `counter` is `4` and that there’s only 1 CPU, the following interleaved execution between the two may happen may happen:
+The execution between `counter ++ `and `counter --` can therefore be <span style="color:#f7007f;"><b>interleaved</b></span>. For example in a uniprocessor system, when the value of `counter` is `4` and the producer is now writing the 5th item, it could get interrupted while executing `counter++` for consumer to consume the 5th item and cause the following interleaved execution between the two:
 
 ```armasm
 LDR(counter, R2) | Producer executes, then interrupted, R2’s content:4
@@ -101,7 +101,7 @@ ST(R2, counter)  | value 5 is stored at counter, then IRQ
 ST(R2, counter)  | value 3 is stored at counter
 ```
 
-Therefore the final value of the `counter` is `3`.
+Therefore the final value of the `counter` is `3` when it should be `4`.
 
 ## Race Condition Outcome 2
 
@@ -111,14 +111,14 @@ We can try another combination of interleaved execution:
 LDR(counter, R2) | Producer executes, then interrupted R2’s content:4
 ...IRQ on producer, save state, restore consumer
 LDR(counter, R2) | Consumer executes, R2 contains 4
-SUBC(R2, 1, R2)  | R2 contains 3, then consumer is interrupted
-ST(R2, counter)  | value 3 is stored at counter
+SUBC(R2, 1, R2)  | R2 contains 3
+ST(R2, counter)  | value 3 is stored at counter, then consumer is interrupted
 ...IRQ on consumer, save state, restore producer
 ADDC(R2, 1, R2)  | R2 contains 5
 ST(R2, counter)  | value 5 is stored at counter
 ```
 
-Therefore in the case above, the final value of the `counter` is `5`.
+Therefore in the case above, the final value of the `counter` is `5` which is still incorrect.
 
 You may easily find that the value of the counter can be 4 as well through other combinations of interleaved execution of `counter ++` and `counter --`.
 
