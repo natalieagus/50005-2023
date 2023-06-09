@@ -21,7 +21,7 @@ python3.10 banker_test.py
 ```
 
 This will run your `banker.py` against all 6 test cases: q0 to q5. If all goes well, the following message will be printed:
-<img src="/50005/assets/images/lab3/2.png"  class="center_seventy"/>
+<img src="/50005/assets/images/lab3/2.png"  class="center_full"/>
 
 And of course, the above tester file will only run on POSIX-compliant OS.
 {:.info}
@@ -38,7 +38,7 @@ Zip can be done easily via the cli (POSIX-compliant OS). Call this command insid
 zip lab3_submit.zip banker.py
 ```
 
-<img src="/50005/assets/images/lab3/3.png"  class="center_seventy"/>
+<img src="/50005/assets/images/lab3/3.png"  class="center_full"/>
 
 If you don't have `zip`, you shall install it:
 
@@ -75,4 +75,4 @@ ssh -p 3022 ubuntu@127.0.0.1
 ```
 
 You will need to then enter your password. Then click `Open Folder` and select your Home folder. You will have a nice interface with VSCode now, connected to your VM. Drag and drop to transfer files between your host OS and your VM. No lag, nice terminal, can utilise VSCode functionalities.. Doesn't it spark joy?
-<img src="/50005/assets/images/lab3/6.png"  class="center_seventy"/>
+<img src="/50005/assets/images/lab3/6.png"  class="center_full"/>
