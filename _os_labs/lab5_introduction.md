@@ -616,8 +616,8 @@ def check_safe(self, customer_index, request, available, need, allocation):
   #       2. need[customer_index][i] = need[customer_index][i] - request[i] for all i<M
   #       3. allocation[customer_index][i] = allocation[customer_index][i] + request[i] for all i<M
   # 2. Find index i such that both finish[i] == False, need[i] <= work
-  # 3. If such index in (3) exists, update work += allocation[i], finish[i] = True
-  # 4. REPEAT step (3) until no such i exists
+  # 3. If such index in (2) exists, update work += allocation[i], finish[i] = True
+  # 4. REPEAT step (2 & 3) until no such i exists
   # 5. If no such i exists anymore, and finish[i] == True for all i, set safe = True
   # 6. Otherwise, set safe = False
   # DO NOT PRINT ANYTHING ELSE
