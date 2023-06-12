@@ -102,20 +102,13 @@ In order for the Banker's Algorithm to work, need to know the <span style="color
 We also need to represent the <span style="color:#f7007f;"><b>system STATE</b></span>, such as the amount of resources available per-type-per-process using the following data structures:
 
 1. available: 1 by M vector
-
-- `available[i]`: the available instances of resource `i`
-
+   - `available[i]`: the available instances of resource `i`
 2. max: N by M matrix
-
-- `max[i][j]`: maximum demand of process `i` for resource `j` instances
-
+   - `max[i][j]`: maximum demand of process `i` for resource `j` instances
 3. allocation: N by M matrix
-
-- `allocation[i][j]`: current allocation of resource `j` instances for process `i`
-
+   - `allocation[i][j]`: current allocation of resource `j` instances for process `i`
 4. need: N by M matrix
-
-- `need[i][j]`: how much more of resource `j` instances might be needed by process `i`
+   - `need[i][j]`: how much more of resource `j` instances might be needed by process `i`
 
 For example, the following arrays display the `available`, `max`, `allocation`, and `need` values of a current state of a system with 5 processes: `P0`, `P1`, `P2`, `P3`, and `P4`, and 3 types of resources: `A`, `B`, `C`;
 
