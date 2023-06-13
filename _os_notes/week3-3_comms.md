@@ -201,7 +201,11 @@ int main(int argc, char const *argv[])
 
 ### Removing Shared Memory
 
-In the code above, we didn’t detach and remove the shared memory, so it still persists in the system. Run the command `ipcs -m` to view it. To remove it, run the command `ipcrm -m [mem_id]`
+In the code above, we didn’t detach and remove the shared memory, so it still persists in the system. Run the command `ipcs -m` to view it. To remove it, run the command `ipcrm -m [mem_id]`. To remove all shared memory, you can type the short script:
+
+```
+for n in `ipcs -b -m | grep ^m | awk '{ print $2; }'`; do ipcrm -m $n; done
+```
 
 ## Message Passing {#message-passing-e-g-socket}
 
