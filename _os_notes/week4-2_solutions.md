@@ -545,9 +545,54 @@ When Process 1 has set the variable `cond_x` into `true`, it signals Process 2 t
 This is crucial because it will re-check the state of `cond_x` again before continuing to the CS. It is also crucial to re-check `cond_x` before continuing to the CS. <span style="color:#f77729;"><b>Why?</b></span>
 {:.error}
 
-## Final Thoughts
+## Final Note
 
 A conditional variable is effectively a <span style="color:#f77729;"><b>signalling</b></span> mechanism under the context of a given mutex lock. With mutex lock alone, we cannot easily block a process out of its CS based on any <span style="color:#f77729;"><b>arbitrary condition</b></span> even when the mutex is <span style="color:#f77729;"><b>available</b></span>.
+
+By default, condition variables and mutexes cannot be shared across processes. However, you can use condition variables **across** processes if you make the condition variable **process-shared**, using condition variable attribute configured with the `pthread_condattr_setpshared` function and a value of `PTHREAD_PROCESS_SHARED`. You will also have to make the **associated** mutex process-shared, using a mutex attribute configured with `pthread_mutexattr_setpshared`.
+
+Here's an excerpt from the Linux `man` page:
+
+> The process-shared attribute is set to `PTHREAD_PROCESS_SHARED` to permit a condition variable to be operated upon by any thread that has access to the memory where the condition variable is allocated, even if the condition variable is allocated in memory that is shared by multiple processes. If the process-shared attribute is `PTHREAD_PROCESS_PRIVATE`, the condition variable shall only be operated upon by threads created within the same process as the thread that initialized the condition variable; if threads of differing processes attempt to operate on such a condition variable, the behavior is undefined. The **default** value of the attribute is `PTHREAD_PROCESS_PRIVATE`.
+
+An example skeleton code for mutex and condition variables shared among processes is as follows:
+
+```c
+/***** MUTEX *****/
+pthread_mutex_t * pmutex = NULL;
+pthread_mutexattr_t attrmutex;
+
+/* Initialise attribute to mutex */
+pthread_mutexattr_init(&attrmutex);
+pthread_mutexattr_setpshared(&attrmutex, PTHREAD_PROCESS_SHARED);
+
+/* Allocate SHARED memory to pmutex here. */
+
+/* Initialise mutex. */
+pthread_mutex_init(pmutex, &attrmutex);
+
+/***** CONDITIONAL VARIABLE *****/
+pthread_cond_t * pcond = NULL;
+pthread_condattr_t attrcond;
+
+/* Initialise attribute to condition */
+pthread_condattr_init(&attrcond);
+pthread_condattr_setpshared(&attrcond, PTHREAD_PROCESS_SHARED);
+
+/* Allocate memory to pcond here */
+
+/* Initialise condition */
+pthread_cond_init(pcond, &attrcond);
+
+/* Use the mutex */
+/* Use the condition */
+
+/* Clean up when done */
+pthread_cond_destroy(pcond);
+pthread_condattr_destroy(&attrcond);
+pthread_mutex_destroy(pmutex);
+pthread_mutexattr_destroy(&attrmutex);
+```
 
 # Appendix: Sample C Code
 
