@@ -431,7 +431,7 @@ In this specific situation, busy waiting is <span style="color:#f77729;"><b>comp
 
 ## Applying Semaphore to MPC Problem
 
-Now that we know how semaphore works, it’s useful to think about how they can be applied to tackle the <span style="color:#f77729;"><b>multiple</b></span> <span style="color:#f77729;"><b>producer-consumer</b></span>(MPC in short) problem that we analyze earlier in this section above.
+Now that we know how semaphore works, it’s useful to think about how they can be applied to tackle the <span style="color:#f77729;"><b>multiple</b></span> <span style="color:#f77729;"><b>producer-consumer</b></span> (MPC in short) problem that we analyze earlier in this section above.
 
 The pseudocode below illustrates the idea on how the semaphore can be used to replace `counter`, and <span style="color:#f77729;"><b>protect</b></span> the consumer/producer code against multiple (more than 1 of each) consumer/producer threads racing to execute their respective instructions, and sharing resources:
 
