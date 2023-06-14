@@ -119,19 +119,18 @@ The algorithm maintains these four data structures representing the <span style=
 
 1. available: 1 by M vector
 
-- `available[i]`: the available instances of resource `i`
+   - `available[i]`: the available instances of resource `i`
 
 2. max: N by M matrix
 
-- `max[i][j]`: maximum demand of process `i` for resource `j` instances
+   - `max[i][j]`: maximum demand of process `i` for resource `j` instances
 
 3. allocation: N by M matrix
 
-- `allocation[i][j]`: current allocation of resource `j` instances for process `i`
+   - `allocation[i][j]`: current allocation of resource `j` instances for process `i`
 
 4. need: N by M matrix
-
-- `need[i][j]`: how much more of resource `j` instances might be needed by process `i`
+   - `need[i][j]`: how much more of resource `j` instances might be needed by process `i`
 
 ## Part 1: Resource Allocation Algorithm
 
