@@ -23,7 +23,7 @@ python3.10 banker_test.py
 This will run your `banker.py` against all 6 test cases: q0 to q5. If all goes well, the following message will be printed:
 <img src="/50005/assets/images/lab3/2.png"  class="center_full"/>
 
-And of course, the above tester file will only run on POSIX-compliant OS.
+The tester file runs on Windows as well as of 14/06/2023.
 {:.info}
 
 It performs a simple output string matching (which is how our autograder works). Therefore it is <span style="color:#f7007f;"><b>crucial</b></span> for you not to print anything else. If you need to debug, <span style="color:#f7007f;"><b>use a debugger</b></span>. Be a proper programmer, it's never too late to start today 🥳.
