@@ -574,7 +574,7 @@ Need:
 The same logic applies to samples in `q4` and `q5` as well:
 
 - In q4, the last request by P0: `[0,2,0]` leads to an unsafe state and therefore <span style="color:#f77729;"><b>rejected</b></span>.
-- In q4, the request by P1: `[1,0,2]` is rejected because it leads to an <span style="color:#f77729;"><b>unsafe state</b></span>. However, after P0 release the resources it held: `[1,3,4]`, a <span style="color:#f7007f;"><b>repeated</b></span> request by P1 for the same set of resources `[1,0,2]` is granted.
+- In q5, the request by P1: `[2,0,1]` is rejected because it leads to an <span style="color:#f77729;"><b>unsafe state</b></span>. However, after P0 release the resources it held: `[1,3,4]`, a <span style="color:#f7007f;"><b>repeated</b></span> request by P1 for the same set of resources `[2,0,1]` is granted.
 
 ### Task 2
 
