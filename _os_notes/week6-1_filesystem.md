@@ -444,7 +444,103 @@ Note that fd_d is a <span style="color:#f77729;"><b>different entry</b></span> i
 
 It is stated above that the child process will inherit the parent's file descriptor table after `fork`. They will have a separate file descriptor table but pointing to the same entry(ies) in the system wide file descriptor table. This can be used as a way for parent and child processes to **communicate**.
 
-We have given you with enough examples above, please investigate this yourself with the addition of `fork`.
+For instance, suppose we have 3 text files: `input.txt`, `output.txt`, and `foo.txt` in the current working directory, and a `c` program as shown below. To check whether the two processes share a kernel resource, [we use `kcmp`](https://man7.org/linux/man-pages/man2/kcmp.2.html). You can read the `main` function straightaway to quickly understand what the sample code below does:
+
+```cpp
+#define _GNU_SOURCE
+#include <sys/syscall.h>
+#include <sys/wait.h>
+#include <sys/stat.h>
+#include <stdint.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <unistd.h>
+#include <fcntl.h>
+#include <linux/kcmp.h> // this code will only run on Linux, do not try it on macOS!
+
+
+#define errExit(msg)    do { perror(msg); exit(EXIT_FAILURE); \
+                        } while (0)
+
+static int
+kcmp(pid_t pid1, pid_t pid2, int type,
+    unsigned long idx1, unsigned long idx2)
+{
+    return syscall(SYS_kcmp, pid1, pid2, type, idx1, idx2);
+}
+
+static void
+test_kcmp(char *msg, pid_t pid1, pid_t pid2, int fd_a, int fd_b)
+{
+    printf("\t%s\n", msg);
+    printf("\t\tkcmp(%jd, %jd, KCMP_FILE, %d, %d) ==> %s\n",
+            (intmax_t) pid1, (intmax_t) pid2, fd_a, fd_b,
+            (kcmp(pid1, pid2, KCMP_FILE, fd_a, fd_b) == 0) ?
+                        "same" : "different");
+}
+
+
+int main(int argc, char const *argv[])
+{
+   // for blocking
+   char str1[20];
+
+   int fd_a, fd_b, fd_c;
+
+   fd_a = open("input.txt", O_RDONLY, 0666);
+   fd_b = open("output.txt", O_RDONLY, 0666);
+
+   printf("Parent's pid is %d\n", getpid());
+   printf("Originally we have fd_a: %d, fd_b: %d\n", fd_a, fd_b);
+
+   pid_t pid;
+
+   pid = fork();
+   printf("Child pid is: %d\n", pid);
+
+   if (pid < 0)
+   {
+       fprintf(stderr, "Fork has failed. Exiting now");
+       return 1; // exit error
+   }
+   else if (pid == 0)
+   {
+      // child
+      printf("This is child process with pid %d\n", getpid());
+      printf("Originally fd_a: %d, fd_b: %d in child\n", fd_a, fd_b);
+      close(fd_a);
+      fd_c = open("foo.txt", O_RDWR, 0666);
+      printf("After closing fd_a and opening foo.txt, we have fd_b: %d, fd_c: %d in child\n", fd_b, fd_c);
+      printf("Blocking, this is when you might want to do lsof in another shell. Type something to exit: ");
+      scanf("%19s", str1);
+      printf("\nBye from child.");
+      fflush(stdout);
+      exit(0);
+   }
+   else
+   {
+      // parent
+      sleep(1); // introduce artificial delay to increase the chance that child process reaches scanf first
+      test_kcmp("\nCompare duplicate fd_b from different processes:",
+                  getpid(),pid,  fd_b, fd_b);
+      test_kcmp("\nCompare duplicate fd_a from different processes:",
+                  getpid(),pid,  fd_a, fd_a);
+      wait(NULL); // wait for any child to return
+   }
+   return 0;
+}
+```
+
+Before both processes exit, we deliberately **block** both child and parent process with `scanf` and `wait` so that we have enough time to investigate the file descriptors of both processes using `lsof -p [pid]` as follows:
+<img src="{{ site.baseurl }}//assets/images/week6-1_filesystem/2023-06-21-11-01-47.png"  class="center_seventy"/>
+
+Upon successful `fork`, both parent and child will have `fd_a`** and `fd_b` pointing to the **same** open file table entry (which eventually points to `input.txt` and `output.txt` respectively). That means both parent and child `fd_a` will share the **same\*\* `cp` (current pointer) in the open file table, and similarly for `fd_b`. However, the child process eventually `close(fd_a)` and open another file `foo.txt`. Since `open` assigns the lowest available `fd`, the value of `fd_c` is `3` (same as `fd_a`) but now it's pointing to `foo.txt` instead of `input.txt`.
+
+The printout from `kcmp` confirms that `fd_b` (fd 4) in both processes point to the same resources (`output.txt`), but fd 3 (`fd_c` in child process, and `fd_a` in parent process) points to **different** resources (both different open file table entry and different resources). In fact, as long as two processes are pointing to a different open file table entry, `kcmp` will report it as **different** resources. You can confirm this by modifying the child process to `open` `input.txt` instead of `foo.txt`, `kcmp` will still report that they are pointing to different resources:
+
+<img src="{{ site.baseurl }}//assets/images/week6-1_filesystem/2023-06-21-11-31-21.png"  class="center_seventy"/>
+
+We have given you with enough examples above, please do your own investigation.
 {: .error}
 
 # Appendix
