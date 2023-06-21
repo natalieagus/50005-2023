@@ -38,7 +38,7 @@ These sets (entry and waiting) are <span style="color:#f7007f;"><b>per object</b
 
 ### Synchronised Method (Anonymous)
 
-Below is an how you can declare a synchronized method in a class. The mutex lock is <span style="color:#f7007f;"><b>itself</b></span> (`this`). The fact that we don't use other objects as a lock is the reason why we call this the <span style="color:#f77729;"><b>anonymous</b></span> synchronisation object.
+Below is an example of how you can declare a synchronized method in a class. The mutex lock is <span style="color:#f7007f;"><b>itself</b></span> (`this`). The fact that we don't use other objects as a lock is the reason why we call this the <span style="color:#f77729;"><b>anonymous</b></span> synchronisation object.
 
 ```java
 public synchronized returnType methodName(args)
