@@ -108,7 +108,7 @@ In this example, the condition in <span style="color:#f77729;"><b>question</b></
 When calling `wait()`, the lock for mutual exclusion <span style="color:#f77729;"><b>must</b></span> be held by the caller (same as the conditional variable in the section above). That's why the `wait` to the conditional variable is made inside a `synchronized` method. If not, disaster might happen, for example the following execution sequence:
 
 - At `t=0`,
-  - Thread Y check that `turn != id_y`, and then Y is suspended.
+  - Thread Y check that `turn != id_y`, and then Y is suspended by the asynchronous? timer.
 - At `t=n`,
   - Thread X <span style="color:#f77729;"><b>resumes</b></span> and <span style="color:#f77729;"><b>increments</b></span> the `turn`. This causes `turn == id_y`.
   - Suppose X then calls `notify()`, and then X is suspended
