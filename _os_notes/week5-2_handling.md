@@ -163,6 +163,9 @@ and current request `R_1` made by `P1`: `[1,0,2]`, you may find that granting th
 
 1. `P1, P3, P4, P0, P2`,
 2. `P1, P3, P4, P2, P0`
+
+If you randomly iterate through the `finish` vector, you might end up with these other sequences too (which are also valid safe sequences):
+
 3. `P1, P3, P2, P4, P0`
 4. `P1, P3, P2, P0, P4`
 5. `P1, P3, P0, P2, P4`
