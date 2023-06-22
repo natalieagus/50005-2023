@@ -167,6 +167,8 @@ and current request `R_1` made by `P1`: `[1,0,2]`, you may find that granting th
 4. `P1, P3, P2, P0, P4`
 5. `P1, P3, P0, P2, P4`
 6. `P1, P3, P0, P4, P2`
+7. `P1, P4, P3, P0, P2`
+8. `P1, P4, P3, P2, P0`
 
 ## Complexity
 
