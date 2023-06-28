@@ -13,9 +13,19 @@ show_edit_on_github: false
 show_date: false
 ---
 
-<span style="color:#f77729;"><b>Wireshark</b></span> is a powerful tool used to capture packets sent over a network and analyse the content of the packets retrieved. The file [dnsrealtrace.pcapng](https://drive.google.com/file/d/118Z03KnN7mNchsIs3G-DUdtf1zJV3NVI/view?usp=sharing) contains a <span style="color:#f77729;"><b>trace</b></span> of the packets sent and received when a web page is downloaded from a web server over the SUTD network. **Download it**.
+<span style="color:#f77729;"><b>Wireshark</b></span> is a powerful tool used to capture packets sent over a network and analyse the content of the packets retrieved.
 
-> In the process of downloading the web page, DNS is used to find the IP address of the server.
+## Download dnsrealtrace.pcapng
+
+The file [dnsrealtrace.pcapng](https://drive.google.com/file/d/118Z03KnN7mNchsIs3G-DUdtf1zJV3NVI/view?usp=sharing) will be used in this lab, and it contains a <span style="color:#f77729;"><b>trace</b></span> of the packets sent and received when a web page is downloaded from a web server over the SUTD network. **Download it**.
+
+> Fun fact: In the process of downloading the web page, DNS is used to find the IP address of the server.
+
+If you prefer to download the file from the CLI, enter the command:
+
+```
+wget "https://drive.google.com/uc?export=download&id=118Z03KnN7mNchsIs3G-DUdtf1zJV3NVI" --output-document dnsrealtrace.pcapng
+```
 
 ## Install Wireshark
 
@@ -32,11 +42,19 @@ sudo usermod -aG wireshark $(whoami)
 
 ## Observe Wireshark Capture File
 
-Open the dnsrealtrace.pcapng in Wireshark and answer the following questions. You can refer to Wireshark tutorial [here](https://drive.google.com/file/d/12zi50lKYTf6ebXQNbUJsstc_BBSWO6X6/view?usp=sharing) before proceeding, but most things are self-explanatory.
+Open the dnsrealtrace.pcapng in Wireshark and answer the following questions. You can refer to a short Wireshark tutorial [here](https://drive.google.com/file/d/12zi50lKYTf6ebXQNbUJsstc_BBSWO6X6/view?usp=sharing) before proceeding, but most things are self-explanatory.
 
 After opening the file, you should have this interface:
 
 <img src="/50005/assets/images/nslab3/5.png"  class="center_full"/>
+
+If you use `termshark`, you can enter the following command in the directory where the downloaded capture file reside:
+
+```
+termshark -r dnsrealtrace.pcapng
+```
+
+<img src="{{ site.baseurl }}//assets/images/lab3_3-wireshark/2023-06-28-17-13-32.png"  class="center_seventy"/>
 
 ### Task 12
 
