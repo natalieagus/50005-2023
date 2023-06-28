@@ -29,7 +29,7 @@ wget "https://drive.google.com/uc?export=download&id=118Z03KnN7mNchsIs3G-DUdtf1z
 
 ## Install Wireshark
 
-Wireshark is a network protocol analyzer. Install wireshark from its [official homepage here](https://www.wireshark.org/download.html). If your system doesn't support GUI, you can install [tshark](https://tshark.dev/setup/install/) and [termshark](https://termshark.io) instead.
+Wireshark is a network protocol analyzer. Install wireshark from its [official homepage here](https://www.wireshark.org/download.html).
 
 If you use Ubuntu (GUI enabled), run the following commands in install wireshark. You can then run wireshark with `wireshark`.
 
@@ -40,9 +40,20 @@ sudo apt install wireshark
 sudo usermod -aG wireshark $(whoami)
 ```
 
-## Observe Wireshark Capture File
+If your system doesn't support GUI, you can install [tshark](https://tshark.dev/setup/install/) and [termshark](https://termshark.io) instead:
 
-Open the dnsrealtrace.pcapng in Wireshark and answer the following questions. You can refer to a short Wireshark tutorial [here](https://drive.google.com/file/d/12zi50lKYTf6ebXQNbUJsstc_BBSWO6X6/view?usp=sharing) before proceeding, but most things are self-explanatory.
+```
+sudo add-apt-repository -y ppa:wireshark-dev/stable
+sudo apt install -y tshark
+sudo usermod -a -G wireshark $USER
+sudo apt install termshark
+```
+
+The rest of this lab is written with the assumption that you used Wireshark. Other equivalent network protocol analyser should have similar functionalities.
+
+## Inspect Capture File
+
+Open the `dnsrealtrace.pcapng` in Wireshark and answer the following questions. You can refer to a short Wireshark tutorial [here](https://drive.google.com/file/d/12zi50lKYTf6ebXQNbUJsstc_BBSWO6X6/view?usp=sharing) before proceeding, but most things are self-explanatory.
 
 After opening the file, you should have this interface:
 

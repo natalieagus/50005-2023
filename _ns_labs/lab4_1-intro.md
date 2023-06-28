@@ -20,7 +20,7 @@ At the end of this lab exercise, you should be able to:
 - **Deploy** web server and client applications
 - **Understand** how HTTP works
 - **Implement** a toy variant of HTTP called HTCPCP
-- Explore **differences** between HTTP and HTTPs using packet sniffer (Wireshark)
+- Explore **differences** between HTTP and HTTPs using packet sniffer (Wireshark / termshark)
 - **Analyse** various captured packets exchanged between the browser, web server, and HTCPCP server
 
 ## Checkoff and Lab Questionnaire
@@ -37,7 +37,7 @@ This **exploratory** lab is created to give you some kind of understanding on ho
 
 ### System requirements
 
-You need Python 3.10 or above (with `pip`) to run this project, and Wireshark installed in our system. You are free to use either CLI or GUI based Wireshark. The latter is recommended for beginners.
+You need Python 3.10 or above (with `pip`) to run this project, and Wireshark (or equivalent) installed in your system. You are free to use any CLI or GUI based network protocol analyser. The latter is recommended for beginners. The rest of this lab is written with the assumption that you used **Wireshark**. Other equivalent network protocol analyser should have similar functionalities.
 
 ### Source Code
 
