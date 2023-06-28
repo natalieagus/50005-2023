@@ -38,7 +38,7 @@ These sets (entry and waiting) are <span style="color:#f7007f;"><b>per object</b
 
 ### Synchronised Method (Anonymous)
 
-Below is an how you can declare a synchronized method in a class. The mutex lock is <span style="color:#f7007f;"><b>itself</b></span> (`this`). The fact that we don't use other objects as a lock is the reason why we call this the <span style="color:#f77729;"><b>anonymous</b></span> synchronisation object.
+Below is an example of how you can declare a synchronized method in a class. The mutex lock is <span style="color:#f7007f;"><b>itself</b></span> (`this`). The fact that we don't use other objects as a lock is the reason why we call this the <span style="color:#f77729;"><b>anonymous</b></span> synchronisation object.
 
 ```java
 public synchronized returnType methodName(args)
@@ -108,7 +108,7 @@ In this example, the condition in <span style="color:#f77729;"><b>question</b></
 When calling `wait()`, the lock for mutual exclusion <span style="color:#f77729;"><b>must</b></span> be held by the caller (same as the conditional variable in the section above). That's why the `wait` to the conditional variable is made inside a `synchronized` method. If not, disaster might happen, for example the following execution sequence:
 
 - At `t=0`,
-  - Thread Y check that `turn != id_y`, and then Y is suspended.
+  - Thread Y check that `turn != id_y`, and then Y is suspended by the asynchronous? timer.
 - At `t=n`,
   - Thread X <span style="color:#f77729;"><b>resumes</b></span> and <span style="color:#f77729;"><b>increments</b></span> the `turn`. This causes `turn == id_y`.
   - Suppose X then calls `notify()`, and then X is suspended
