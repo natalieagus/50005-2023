@@ -23,6 +23,10 @@ At the end of this lab exercise, you should be able to:
 - Explore **differences** between HTTP and HTTPs using packet sniffer (Wireshark)
 - **Analyse** various captured packets exchanged between the browser, web server, and HTCPCP server
 
+## Checkoff and Lab Questionnaire
+
+You are required to finish the lab questionnaire on eDimension and complete one `CHECKOFF`{:.info} during this session. Simply show that your bsim simulates the desirable checkoff outcome (binary grading, either you complete it or you don't) of the lab. Read along to find out more.
+
 ## The Hyper Text Coffee Pot Control Protocol
 
 The Hyper Text Coffee Pot Control Protocol (**HTCPCP**) is a whimsical communication protocol for controlling, monitoring, and diagnosing coffee pots that is **based** on [HTTP](https://www.rfc-editor.org/rfc/rfc2616). It is specified in [RFC 2324](https://datatracker.ietf.org/doc/html/rfc2324), published on 1 April 1998 as part of an April Fools prank. In this lab, we are not going to control a real coffee pot (although it is [possible](https://github.com/HyperTextCoffeePot/HyperTextCoffeePot)) but a **virtual** one via the HTCPCP protocol.
@@ -59,6 +63,9 @@ You can them on two separate terminal sessions. First, spawn the coffee pot serv
 ```
 python server/server_pot.py
 ```
+
+We assume that `python` is an alias to `python3` in your system.
+{:.error}
 
 Then, spawn the web application (`http`):
 
