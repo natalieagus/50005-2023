@@ -159,10 +159,19 @@ If we find that all processes <span style="color:#f77729;"><b>can still finish</
 For example, given the following system state:
 <img src="/50005/assets/images/week5/4.png"  class="center_seventy"/>
 
-and current request `R_1` made by `P1`: `[1,0,2]`, you may find that granting this request leads to a <span style="color:#f7007f;"><b>safe state</b></span> and there exist two possible execution sequence (depending on _how_ you iterate through the `finish` vector (from index 0 onwards or from index `N-1` backwards):
+and current request `R_1` made by `P1`: `[1,0,2]`, you may find that granting this request leads to a <span style="color:#f7007f;"><b>safe state</b></span> and there exist several possible execution sequence (depending on _how_ you iterate through the `finish` vector, from index 0 onwards or from index `N-1` backwards):
 
-1. `P1, P3, P4, P0, P2`, or
+1. `P1, P3, P4, P0, P2`,
 2. `P1, P3, P4, P2, P0`
+
+If you randomly iterate through the `finish` vector, you might end up with these other sequences too (which are also valid safe sequences):
+
+3. `P1, P3, P2, P4, P0`
+4. `P1, P3, P2, P0, P4`
+5. `P1, P3, P0, P2, P4`
+6. `P1, P3, P0, P4, P2`
+7. `P1, P4, P3, P0, P2`
+8. `P1, P4, P3, P2, P0`
 
 ## Complexity
 
