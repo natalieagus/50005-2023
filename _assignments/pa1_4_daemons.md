@@ -46,7 +46,10 @@ In the `ps -ef` output, if the `TTY` column is listed as a `?` meaning it does n
 
 ### PPID is 1
 
-The PPID of a daemon process is 1, meaning that whoever was creating the daemon process must <span style="color:#f7007f;"><b>terminate</b></span> to let the daemon process be <span style="color:#f77729;"><b>adopted</b></span> by the `init` process.
+The PPID of a daemon process is 1, meaning that whoever was creating the daemon process must <span style="color:#f7007f;"><b>terminate</b></span> to let the daemon process be <span style="color:#f77729;"><b>adopted</b></span> by the `init` process (or equivalent).
+
+**Note:** Although it is common, not all systems assign the `init` process to adopt orphaned process. More modern linux distros uses `systemd` process (or other designated descendant processes or equivalent) to adopt all orphaned process. The pid of `init` or `systemd` or equivalent processes is also **not always 1**. As long as your daemon process' ppid is the same as the pid of `init` _or_ pid of other special instances of `init` _or_ pid of `systemd` and equivalent, it is **acceptable** as long as it is **consistent** (that is the same designated system process is always adopting your daemon processes). When we test it in our system, we _know_ exactly what process will adopt your daemon process, so you don't need to worry.
+{:.warning}
 
 ### Working directory: root
 
