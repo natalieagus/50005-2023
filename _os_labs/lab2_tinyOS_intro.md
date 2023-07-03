@@ -192,7 +192,7 @@ DoSwap:	LD(UserMState, r0)	| Restore r0, so we can do a
 
 ## Synchronous Interrupts
 
-`tinyOS.uasm` implements the a few functionalities to support Synchronous Interrupts (also known as _trap_ or _supervisor call_). **Kernel-mode supervisor call** dispatching and a repertoire of call handlers that provide simple I/O services to user-mode programs include:
+`tinyOS.uasm` implements a few functionalities to support Synchronous Interrupts (also known as _trap_ or _supervisor call_). **Kernel-mode supervisor call** dispatching and a repertoire of call handlers that provide simple I/O services to user-mode programs include:
 
 1. `Halt()` – **stop** a user-mode process (equivalent to closing or killing the process)
 2. `WrMsg()` – write a null-terminated `ASCII` string to the console
@@ -429,7 +429,7 @@ Processes are given equal time slices called quanta (or quantums) takes turns of
 
 ## User Programs
 
-`tinyOS.uasm` also contains code for <span style="color:red; font-weight: bold;">three</span> user programs named `P0, P1`, and `P2`. They're located towards the end of `tinyOS.uasm`. We will not dive in to deep about who each user programs is scheduled (that will be for another lab). For now, here's all the information you need:
+`tinyOS.uasm` also contains code for <span style="color:red; font-weight: bold;">three</span> user programs named `P0, P1`, and `P2`. They're located towards the end of `tinyOS.uasm`. We will not dive in too deep about who each user programs is scheduled (that will be for another lab). For now, here's all the information you need:
 
 1. `P0`: Prompts the user for new lines of input and store the input
 2. `P1`: Converts the given input into piglatin and printing it back to the terminal
