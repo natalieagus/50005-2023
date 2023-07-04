@@ -361,6 +361,8 @@ Semaphore is defined as:
 - An <span style="color:#f77729;"><b>integer variable</b></span> that is maintained in the kernel, initialized to a certain value that represents the number of <span style="color:#f77729;"><b>available</b></span> resources for the sharing processes
 - Is accessed only through two standard <span style="color:#f77729;"><b>atomic</b></span> System Call operations: `wait()` and `signal()`.
 
+> Equivalently, we have `acquire()` and `release()` too in some other libraries. `acquire()` is the same as `wait()` and `release()` is the same as `signal()`.
+
 Since calls to `signal()` or `wait()` for semaphores must be performed atomically, they are often implemented using one of the synchronization hardware mechanisms (to support multiple cores synchronization) or software mutual exclusion algorithms such as Peterson’s algorithm, when restriction applies.
 
 ## Usage
