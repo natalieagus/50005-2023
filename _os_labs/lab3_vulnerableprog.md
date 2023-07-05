@@ -14,7 +14,7 @@ show_edit_on_github: false
 show_date: false
 ---
 
-Our vulnerable program is can be found in `/Root/vulnerable_root_prog`. Open `/FilesForRoot/vulnerable_root_prog.c` to find out what it does.
+Our vulnerable program can be found in `/Root/vulnerable_root_prog`. Open `/FilesForRoot/vulnerable_root_prog.c` to find out what it does.
 
 The program expects <span style="color:#f77729;"><b>two</b></span> arguments: to be stored at `char *fileName`, and `char *match`. It is a _supposedly secure_ program that will allow `root` to replace `*match` string inside `*fileName` with an SHA-512 hashed password `00000`.
 
