@@ -40,21 +40,25 @@ This forces the CPU to **transfer** control to the **interrupt handler**. This s
 
 ## Vectored Interrupt System
 
-Interrupt-driven system may use a <span style="color:#f77729;"><b>vectored interrupt system</b></span>: the interrupt signal that **INCLUDES** the identity of the device sending the interrupt signal, hence allowing the kernel to know exactly which interrupt service routine to execute[^2]. This is more <span style="color:#f7007f;"><b>complex</b></span> to implement, but more <span style="color:#f77729;"><b>useful</b></span> when there are sparse I/O requests.
+Interrupt-driven system may use a <span style="color:#f77729;"><b>vectored interrupt system</b></span>: the interrupt signal that **INCLUDES** the identity of the device sending the interrupt signal, hence allowing the kernel to know exactly which interrupt service routine to execute[^2]. This is more <span style="color:#f7007f;"><b>complex</b></span> to implement, but more <span style="color:#f77729;"><b>useful</b></span> when there is a large number of different interrupt sources that throws interrupts frequently.
 
 This interrupt mechanism accepts an **address**, which is usually one of a small set of numbers for an offset into a table called the **interrupt vector.** This table holds the addresses of routines prepared to process specific interrupts.
 {:.info}
+
+With vectored interrupts, each interrupt source is associated with a unique vector address, which allows the processor to directly jump to the appropriate interrupt handler. This eliminates the need for the processor to search or iterate through a list of interrupt requests to identify the source, resulting in faster and more efficient interrupt handling. Therefore, when there are frequent interrupts from various sources, vectored interrupts can help improve the overall system performance.
 
 ## Polled Interrupt System
 
 An alternative is to use a <span style="color:#f77729;"><b>polled interrupt system</b></span>:
 
-- The interrupted program enters a general interrupt polling routine <span style="color:#f7007f;"><b>protocol</b></span>, where CPU <span style="color:#f7007f;"><b>scans</b></span> (polls) devices to determine which device made a service request.
+- The interrupted program enters a general interrupt polling routine <span style="color:#f7007f;"><b>protocol</b></span> (a single entry point), where CPU <span style="color:#f7007f;"><b>scans</b></span> (polls) devices to determine which device made a service request.
 - Unlike vectored interrupt, there’s no such _interrupt_ signal that includes the identity of the device sending the interrupt signal.
-- In the polled system, the kernel must send a signal out to each controller to **determine** if any device made a service request <span style="color:#f7007f;"><b>periodically, or at any fixed interval</b></span>.
+- The kernel must send a signal out to each controller to **determine** which device made a service request. It may determine the interrupt source by reading the interrupt status registers or other means.
 
 This is simpler to implement, but more time-wasting if there’s frequent I/O requests only from one or some particular device (but each time CPU need to spend overhad to poll many devices). Does Linux implement a Polled interrupt or Vectored interrupt system? See [here](https://linux-kernel-labs.github.io/refs/heads/master/lectures/interrupts.html) for clues.
 {:.info}
+
+This system may be more appropriate for systems with sparse interrupts, where there are only a few interrupt sources or the interrupts occur infrequently. In non-vectored interrupt systems, . While this approach requires more processing overhead for identifying the interrupt source, it may be sufficient and more straightforward for systems with a small number of interrupts.
 
 ## Vectored Interrupt vs Polled Interrupt Scenarios
 
