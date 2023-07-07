@@ -87,7 +87,7 @@ We can assign some kind of `id` to each resource and we need to design some acqu
 - The <span style="color:#f77729;"><b>highest</b></span> priority order of currently-held resources should be _less than or equal to_ the current resource being requested, otherwise the process must release the resources that violate this condition.
 - Each process can request resources only in an <span style="color:#f77729;"><b>increasing</b></span> order of enumeration.
 
-> This burdens the programmer to ensure the order by desig to ensure that it doesn't sacrifice resource utilization unnecessarily.
+> This burdens the programmer to ensure the order by design to ensure that it doesn't sacrifice resource utilization unnecessarily.
 
 # Deadlock Avoidance
 
