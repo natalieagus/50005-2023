@@ -32,7 +32,7 @@ It performs a simple output string matching (which is how our autograder works).
 
 Once you have completed `Banker.py`, zip that file and submit your answer to our bot. Just type `/start` and follow the instruction there.
 
-Zip can be done easily via the cli (POSIX-compliant OS). Call this command inside `lab_banker/` directory:
+Zip can be done easily via the CLI (POSIX-compliant OS). Call this command inside `lab_banker/` directory:
 
 ```
 zip lab3_submit.zip banker.py
@@ -64,7 +64,7 @@ But why do that? Why do that if you're a CS student? Use `ssh`!
 
 ### ssh
 
-You can enable `ssh` at your VM, [here](https://dev.to/developertharun/easy-way-to-ssh-into-virtualbox-machine-any-os-just-x-steps-5d9i) is a guide if you're using VirtualBox. Or, you can simply Google "ssh to your-virtual-machine" and follow simple steps there[. Then, enable ssh on `VSCode`: install the `ssh` extension and connect! You can follow the guide [here](https://code.visualstudio.com/docs/remote/ssh-tutorial) just this part:
+You can enable `ssh` at your VM, [here](https://dev.to/developertharun/easy-way-to-ssh-into-virtualbox-machine-any-os-just-x-steps-5d9i) is a guide if you're using VirtualBox. Or, you can simply Google "ssh to your-virtual-machine" and follow simple steps there. Then, enable ssh on `VSCode`: install the `ssh` extension and connect! You can follow the guide [here](https://code.visualstudio.com/docs/remote/ssh-tutorial) just this part:
 
 <img src="/50005/assets/images/lab3/4.png"  class="center_seventy"/>
 
