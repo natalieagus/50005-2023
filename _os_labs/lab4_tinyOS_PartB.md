@@ -130,7 +130,7 @@ Demonstrate the above result of <span style="color:red; font-weight: bold;">dela
 
 ## Summary
 
-Notice that `P0` doesn't have to confirm that `P3` has finished one round of execution (printing of x, y coordinate) _before_ restarting to `BR(P0Read)` because we **know** that the round robin scheduler will **surely** execute P3 for a round once P0 calls `Yield()`. The scheduler's round robin policy and long enough quanta dedicated for each process, there won't be the undesirable condition whereby P0 `Yield()` immediately returns execution to P0 again, **before** P3 resumes and then accidentally `Signal` the `MouseSemaphore` the **second** time (because it hasn't been cleared by P3 that hasn't progressed!).
+Notice that `P0` doesn't have to confirm that `P3` has finished one round of execution (printing of x, y coordinate) _before_ restarting to `BR(P0Read)` because we **know** that the round robin scheduler will **surely** execute P3 for a round once P0 calls `Yield()`. With the scheduler's round robin policy and long enough quanta dedicated for each process, there won't be the undesirable condition whereby P0 `Yield()` immediately returns execution to P0 again, **before** P3 resumes and then accidentally `Signal` the `MouseSemaphore` the **second** time (because it hasn't been cleared by P3 that hasn't progressed!).
 
 > Actually it's also prevented by the `Signal(Prompt)` in the beginning of `P0Read` for _this lab_, which will eventually block `P0` and have the same effect anyway, but it's important that you understand _why_ you're lucky!
 

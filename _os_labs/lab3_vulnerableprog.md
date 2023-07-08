@@ -14,7 +14,7 @@ show_edit_on_github: false
 show_date: false
 ---
 
-Our vulnerable program is can be found in `/Root/vulnerable_root_prog`. Open `/FilesForRoot/vulnerable_root_prog.c` to find out what it does.
+Our vulnerable program can be found in `/Root/vulnerable_root_prog`. Open `/FilesForRoot/vulnerable_root_prog.c` to find out what it does.
 
 The program expects <span style="color:#f77729;"><b>two</b></span> arguments: to be stored at `char *fileName`, and `char *match`. It is a _supposedly secure_ program that will allow `root` to replace `*match` string inside `*fileName` with an SHA-512 hashed password `00000`.
 
@@ -274,6 +274,6 @@ Then, the main loop is repeated <span style="color:#f77729;"><b>until</b></span>
 3. Then, runs 3 commands in <span style="color:#f77729;"><b>succession</b></span>:
    1. `../Root/vulnerable_root_prog userfile.txt test-user-0`: runs the vulnerable program with `userfile.txt`, belonging to currently logged in user account and the <span style="color:#f77729;"><b>targeted</b></span> username.
    2. `./symlink userfile.txt /etc/shadow`: immediately, executes the `symlink` program to change `userfile.txt` to <span style="color:#f77729;"><b>point</b></span> to `/etc/shadow`.
-   3. ` NEWFILE=``ls -l /etc/shadow``     `: check the file info of `/etc/shadow`and store it into variable`NEWFILE`; to be used in the <span style="color:#f77729;"><b>next</b></span> loop check
+   3. ``NEWFILE=`ls -l /etc/shadow` ``: check the file info of `/etc/shadow`and store it into variable`NEWFILE`; to be used in the <span style="color:#f77729;"><b>next</b></span> loop check
 
 Step (3.1) and (3.2) above are <span style="color:#f77729;"><b>racing</b></span>, and the script terminates when `/etc/shadow` has been successfully changed.
