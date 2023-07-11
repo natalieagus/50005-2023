@@ -94,7 +94,7 @@ We captured these packets when we navigate to our coffee site homepage, brew a c
 1. What are the formats of HTCPCP request and response messages?
 2. What are the ports used for communication by the Flask app and the coffee server? Do they remain the same?
 3. Read the [HTCPCP RFC](https://datatracker.ietf.org/doc/html/rfc2324), and find the corresponding implementation in `webapp_coffee.py` and `server_pot.py`. There aren't many of them.
-4. What are the implemented HTCPCP methods? What headers are accepted on the messages### Task 4
+4. What are the implemented HTCPCP methods? What headers are accepted on the messages
 
 ### Task 5
 
