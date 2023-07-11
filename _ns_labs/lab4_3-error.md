@@ -72,7 +72,7 @@ However we have not implement anything in the webapp to handle that status code 
 
 ### Task 7
 
-`TASK 7:`{:.info} Handle `HTCPCP` status code 418
+`TASK 7:`{:.info} Handle `HTCPCP` status code 406
 
 Open `webapp/webapp_coffee.py` and find the `# TODO` section:
 
