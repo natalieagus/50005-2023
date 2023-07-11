@@ -19,6 +19,9 @@ In the previous lab, you learned how to load and view captured packets with Wire
 
 First, sniff the **loopback** interface:
 
+macOS users need to install `chmodbpf` package before being able to sniff loopback interface. [See here](https://www.wireshark.org/docs/wsug_html_chunked/ChBuildInstallOSXInstall.html).
+{: .note}
+
 <img src="{{ site.baseurl }}//assets/images/lab4_2-inspect/2023-06-26-18-00-22.png"  class="center_full"/>
 
 Then, apply the filter `(tcp.port == 5030) or (tcp.port == 5031)`. Open your web browser and access the homepage of your site `http://127.0.0.1:5031`. You should see some packets captured as follows:
@@ -31,7 +34,7 @@ Notice that there's no `HTCPCP` traffic since Wireshark doesn't have a [dissecto
 
 `TASK 2:`{:.info} Install the `HTPCPCP` dissector for Wireshark.
 
-You can [follow this readme file prepped by your TA](### Task 1 `TASK 1:`{:.info} **Study** the architecture of the project.). This readme file exists under `dissector/` directory.
+You can [follow this readme file prepped by your TA](https://github.com/natalieagus/lab_htcpcp/tree/master/dissector). This readme file exists under `dissector/` directory of the project you just cloned for this lab too.
 
 After the dissector is successfully installed, you should see custom `HTCPCP` tag appearing:
 
