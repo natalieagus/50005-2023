@@ -110,6 +110,6 @@ In particular, pay attention to these few things:
 2. What are the ports used for communication by the web browser and the Flask app? Do they remain the same?
 3. Which HTTP protocol is used? Is the connection persistent? Why and why not?
 4. How does the browser ask for more assets?
-5. The browser and the Flask app communicates via HTTP, not HTCPCP, but the us (users) wish to **brew coffee** (and indirectly communicate with the coffee server). How do we tell the Flask app the format of the HTCPCP message to be sent to the coffee server? _Hint: see message number 52_
+5. The browser and the Flask app communicates via HTTP, not HTCPCP, but the us (users) wish to **brew coffee** (and indirectly communicate with the coffee server). How do we tell the Flask app the format of the HTCPCP message to be sent to the coffee server? _Hint: see message number 45_
 
 As usual, head to eDimension to answer several questions pertaining to this task.
