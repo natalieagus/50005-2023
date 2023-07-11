@@ -25,7 +25,7 @@ Here is an example of the output produced when traceroute is used to trace the r
 <img src="/50005/assets/images/nslab1/1.png"  class="center_seventy"/>
 
 The first line of the traceroute output describes what the command is set for.  
-* It lists the <span style="color:#f77729;"><b>destination</b></span> system (e9566.dscb.akamaiedge.net), destination IP address (184.50.104.236), and the maximum number of hops that will be used in the traceroute (30).
+* It lists the <span style="color:#f77729;"><b>destination</b></span> system (e9566.dscb.akamaiedge.net), destination IP address (184.50.104.236), and the maximum number of hops that will be used in the traceroute (64).
 
 The remainder of the output shows information on <span style="color:#f77729;"><b>each hop</b></span>, where each line is a reply from (typically) a router, *in the path between the sender and the final destination*. 
 > It is <span style="color:#f77729;"><b>important</b></span> to note that the number of hops isn’t an important factor that affects latency. 
