@@ -48,7 +48,7 @@ You can just click **proceed** anyway, and you should be able to view your webpa
 
 <img src="{{ site.baseurl }}//assets/images/lab4_4-https/2023-06-28-15-00-29.png"  class="center_full"/>
 
-However, can you still inspect HTCPCP messages? **Why**? Head to eDimension to answer a few questions pertaining to this task.
+With HTTPs enabled, can you still inspect the HTCPCP messages and their content? **Why**? Head to eDimension to answer a few questions pertaining to this task.
 
 ### Generate self-signed certificate
 
