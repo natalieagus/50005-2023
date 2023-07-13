@@ -53,6 +53,12 @@ Given a cache <span style="color:#f77729;"><b>hit</b></span> ratio $\alpha$, cac
 
 $$\alpha \tau + (1-\alpha) \times \epsilon$$
 
+### Example
+
+Suppose we have a hit rate of $\alpha = 0.5$, cache access time of 20ms, and RAM access time of 100 ms. What is the effective access time of this system?
+
+In this case, $\epsilon = 20 + 100 = 120ms$ (cache _miss_ time). Cache miss time includes the cache access time because **we would have spent** 20ms to check the cache in the first place to know that it's a cache miss. Therefore, the effective access time is **70ms**.
+
 # Process Management {#process-management-to-support-multiprogramming-and-time-sharing-feature}
 
 The Kernel is also responsible for managing all processes in the system and support <span style="color:#f7007f;"><b>multiprogramming</b></span> and <span style="color:#f7007f;"><b>timesharing</b></span> feature.
