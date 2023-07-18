@@ -179,9 +179,12 @@ The constructor for `Cipher` takes in two arguments:
 
 ECB stands for ‘electronic codebook’. When using ECB mode, <span style="color:#f77729;"><b>identical</b></span> input blocks always encrypt to the <span style="color:#f77729;"><b>same</b></span> output block.
 
+<img src="{{ site.baseurl }}/assets/contentimage/ns-lab-2/ecb.png"  class="center_seventy"/>
+
 ### CBC Mode
 
 CBC stands for 'cipher block chaining'. In CBC mode, the current block is added to the previous ciphertext block, and then the result is encrypted with the key (thus the word chained). Decryption is thus the reverse process, which involves decrypting the current ciphertext and then adding the previous ciphertext block to the result.
+<img src="{{ site.baseurl }}/assets/contentimage/ns-lab-2/cbc.png"  class="center_seventy"/>
 
 ## Create a CipherContext instance for encryption
 
