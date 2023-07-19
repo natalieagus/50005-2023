@@ -112,7 +112,7 @@ A single-level directory is best illustrated as follows:
 
 <img src="/50005/assets/images/week6/7.png"  class="center_seventy"/>
 
-> In the above example, there's a directory (blue border), with five entries in it, each pointing to a separate file (pink circle).
+> In the above example, there's a directory with five entries in it (inside the rectangular border), each pointing to a separate file (the circles).
 
 This way we can say that all files are contained in the <span style="color:#f77729;"><b>same</b></span> directory, which is easy to support and understand. The square nodes are the file names (inside the directory), and the circle nodes are files.
 

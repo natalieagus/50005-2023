@@ -122,13 +122,13 @@ A file has <span style="color:#f77729;"><b>attributes</b></span> (metadata), ana
 - <span style="color:#f77729;"><b>Size</b></span>:
   - The current size of the file (in bytes, words, or blocks) and possibly the maximum allowed size are included in this attribute.
 - <span style="color:#f77729;"><b>Protection</b></span>:
-- Access-control information determines who can do reading, writing, executing, and so on.
+  - Access-control information determines who can do reading, writing, executing, and so on.
 - <span style="color:#f77729;"><b>Time, date, and user identification</b></span>:
   - This information may be kept for creation, last modification, and last use. These data can be useful for protection, security, and usage monitoring.
 
 You can use the command `ls -ali` to list all files in the current directory, together with its identifier (inode number, will be explained in the later section):
 
-<img src="/50005/assets/images/week6/3.png"  class="center_seventy"/>
+<img src="/50005/assets/images/week6/3.png"  class="center_seventy no-invert"/>
 
 You should know how to interpret file permission from Lab 1.
 {:.info}
@@ -245,9 +245,9 @@ File name is stored in another file system cataloguing structure called <span st
 This example is created for you to observe per-process <span style="color:#f77729;"><b>file descriptor table</b></span>. Suppose there’s a <span style="color:#f77729;"><b>blocking</b></span> C-code as follows, compiled, and its binary output called out is stored at `/Users/natalie_agus/Desktop`:
 
 ```cpp
+// example.c
 #include <stdio.h>
 #include <stdlib.h>
-
 
 int main(){
    char str1[20];
@@ -261,9 +261,15 @@ int main(){
 }
 ```
 
+It is then saved as `example.c` and compiled as follows:
+
+```
+gcc -o out example.c
+```
+
 The blocking instruction `scanf` is there to make the process not terminate yet, so that we can have enough time to observe it's file descriptor table. Running this process <span style="color:#f77729;"><b>twice</b></span>, and then running the command `ps | grep ./out | grep -v grep` in the third terminal results in:
 
-<img src="/50005/assets/images/week6/5.png"  class="center_seventy"/>
+<img src="/50005/assets/images/week6/5.png"  class="no-invert center_full"/>
 
 As you can see, there’s two instances of ./out at two terminals: ttys009 and ttys011. We can examine its file descriptor table content with the command `lsof -p [pid]`.
 
@@ -532,13 +538,13 @@ int main(int argc, char const *argv[])
 ```
 
 Before both processes exit, we deliberately **block** both child and parent process with `scanf` and `wait` so that we have enough time to investigate the file descriptors of both processes using `lsof -p [pid]` as follows:
-<img src="{{ site.baseurl }}//assets/images/week6-1_filesystem/2023-06-21-11-01-47.png"  class="center_seventy"/>
+<img src="{{ site.baseurl }}//assets/images/week6-1_filesystem/2023-06-21-11-01-47.png"  class="center_full no-invert"/>
 
 Upon successful `fork`, both parent and child will have `fd_a` and `fd_b` pointing to the **same** open file table entry (which eventually points to `input.txt` and `output.txt` respectively). That means both parent and child `fd_a` will share the same `cp` (current pointer) in the open file table, and similarly for `fd_b`. However, the child process eventually `close(fd_a)` and open another file `foo.txt`. Since `open` assigns the lowest available `fd`, the value of `fd_c` is `3` (same as `fd_a`) but now it's pointing to `foo.txt` instead of `input.txt`.
 
 The printout from `kcmp` confirms that `fd_b` (fd 4) in both processes point to the same resources (`output.txt`), but fd 3 (`fd_c` in child process, and `fd_a` in parent process) points to **different** resources (both different open file table entry and different resources). In fact, as long as two processes are pointing to a different open file table entry, `kcmp` will report it as **different** resources. You can confirm this by modifying the child process to `open` `input.txt` instead of `foo.txt`, `kcmp` will still report that they are pointing to different resources:
 
-<img src="{{ site.baseurl }}//assets/images/week6-1_filesystem/2023-06-21-11-31-21.png"  class="center_seventy"/>
+<img src="{{ site.baseurl }}//assets/images/week6-1_filesystem/2023-06-21-11-31-21.png"  class="center_full no-invert"/>
 
 We have given you with enough examples above, please do your own investigation.
 {: .error}
