@@ -35,11 +35,11 @@ The answer section for this query contains a DNS record:
 
 | Server Name    | Expiry (TTL in seconds) | Class | Type | Data           |
 | -------------- | ----------------------- | ----- | ---- | -------------- |
-| `slashdot.org` | 7200                    | IN    | `A`  | `67.251.97.40` |
+| `slashdot.org` | 293                     | IN    | `A`  | `67.251.97.40` |
 
 - We can see that the result is of <span style="color:#f77729;"><b>type</b></span> `A`, an address record.
 - It tells us that the IP address for the domain name slashdot.org is `67.251.97.40`.
-- The expiry time field indicates that this record is valid for 7200 seconds.
+- The expiry time field indicates that this record is valid for 293 seconds.
 - The value of the class field is usually IN (Internet) for all records.
 
 If you’d like to know who’s the authoritative NS for the queried domain, you can add the trace option: `dig slashdot.org +trace`
