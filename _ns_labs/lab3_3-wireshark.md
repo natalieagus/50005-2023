@@ -79,7 +79,7 @@ termshark -r dnsrealtrace.pcapng
 
 ### Task 14
 
-`TASK 14:`{:.info} What is the IP address to which the DNS query message was sent? Run `scutil --dns` to determine the `IPv4` address of your _local_ DNS server. Are these two addresses the same?
+`TASK 14:`{:.info} What is the IP address to which the DNS query message was sent? Run `scutil --dns` (macOS) or `cat /etc/resolv.conf` (Ubuntu) to determine the `IPv4` address of your _local_ DNS server. Are these two addresses the same? For Windows users, google it yourself 😄.
 
 ### Task 15
 
