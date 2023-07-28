@@ -40,7 +40,7 @@ python3 autograde.py 1
 python3 autograde.py 2
 ```
 
-You should have the following message if everything goes well (`8` marks for CP1, and `14` marks for CP2). The 8 marks for CP1 will be mapped to 2% of your grade, and the 14 marks for CP2 will also be mapped to 2% of your grade.
+You should have the following message if everything goes well (`8` marks for CP1, and `14` marks for CP2).
 
 <img src="/50005/assets/images/pa2/3.png"  class="center_fifty"/>
 
@@ -78,7 +78,7 @@ The following video shows the expected interaction between Server and Client pro
 
 Go to our bot and type `/start`. Follow the instructions there. You're only required to submit the github remote repo link.
 
-<span style="color:#f7007f;"><b>We will clone your repo for grading. Make sure you check that it runs with the given autograder before submitting.</b></span> The bot <span style="color:#f77729;"><b>WILL NOT</b></span> report any marks to you. We will mark your submission after all submissions are collected.
+<span style="color:#f7007f;"><b>We will clone your repo for grading. Make sure you check that it runs with the given autograder before submitting.</b></span> The bot <span style="color:#f77729;"><b>will scale and report your marks out of 8 points (8%, which is the total marks for PA2)</b></span>. We will manually check for plagiarism cases.
 
 And it goes without saying that submitting any unrunnable code grants you <span style="color:#f7007f;"><b>0</b></span>. This <span style="color:#f7007f;"><b>includes</b></span> using other modules that's not already been stated in the starter code. Please <span style="color:#f7007f;"><b>do NOT</b></span> import anything else. Our VM will not have any other modules installed to run your script.
 {:.error}
