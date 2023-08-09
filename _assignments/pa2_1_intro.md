@@ -79,7 +79,7 @@ pa2/
   |-result_plain
 ```
 
-`source/recv_files`, `source/recv_files_enc`, and `source/send_files_enc` are all empty directories that are not added in `.git`. To create them, simply run `./cleanup.sh` in `pa2` as your current working directory. You should see exactly the above file structure afterwards.
+`source/recv_files`, `source/recv_files_enc`, and `source/send_files_enc` are all empty directories that are not added in `.git`. To create them, simply run `./cleanup.sh` in `pa2` as your current working directory. You should see exactly the above file structure afterwards. `./cleanup.sh` is a bash script, in order to **execute** it you must `chmod` it to be executable first.  
 {:.error}
 
 <!-- ### Create a Github Remote Repo
@@ -112,7 +112,7 @@ You need to make `master` your <span style="color:#f77729;"><b>default</b></span
 You will be required to make a `commit`{:.error} after each Task in this PA2 as well. This is part of our <span style="color:#f7007f;"><b>grading</b></span> requirement. We want to see that you actually make good practices and perform periodic commits.
 
 ### Add `natalieagus-sutd` as collaborator
-If you create a new private repo, invite `natalieagus-sutd` (not `natalieagus`!) as collaborator and give her 24-48 hours to respond.  --> -->
+If you create a new private repo, invite `natalieagus-sutd` (not `natalieagus`!) as collaborator and give her 24-48 hours to respond.  -->
 
 ## Test the Starter Code
 
@@ -237,3 +237,17 @@ from cryptography.hazmat.primitives import hashes, serialization
 from cryptography.hazmat.primitives.asymmetric import padding
 from cryptography.hazmat.backends import default_backend
 ```
+
+### Bot: Autograder Fails to Run
+
+If the bot complains that the autograder **fails to run**, then check if you have modified the `./cleanup.sh` to be **executable**. We did not explicitly tell you to `chmod +x ./cleanup.sh` , but we _did_ ask you to run it. You did go through Lab 1 right? Yes? We assume you know how to _apply knowledge_.
+
+### Local Autograder Works, but not Bot's
+
+Check that your local autograder did printout **exactly** the following:
+
+<img src="/50005/assets/images/pa2/3.png"  class="center_fifty"/>
+
+That means: **no error messages** like "file A not found". We only give `autograde.py` to you so that you can have some kind of checker beforehand, but we can't guarantee 100% that it will not give false positives because you might not be using the same exact Python >3.10 version, have different system programs or different Linux distros altogether. If you're not sure what went wrong, **just OPEN** `autograde.py` and figure it out. It's in Python! How hard can it be?
+
+> We would've given you a Docker image but then if you can't debug your own code given the autograder written in Python, then apologies, we don't have enough faith yet that you can install Docker on your own and spawn a container properly. Maybe someday 🥹.
