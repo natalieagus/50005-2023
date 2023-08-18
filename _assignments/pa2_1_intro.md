@@ -211,6 +211,9 @@ Therefore your directory name might be set as `recv_files\r\n` when you run `cle
 1. Add `.strip()` at the end of `input`, resulting in `input("Enter a filename....").strip()`
 2. Create a new `cleanup.sh` with the exact same content and overwrites the old one so that the line break suits your system's
 
+When submitting, please use `LF` as your end of line sequence because we are running your code on Linux-distro containers.
+{:.warning}
+
 ### Command truncate Not Found
 
 It is possible that you might not have `truncate` system program installed by default. You have learned the File System in Week 6, so we suppose you know why we use it in our autograder.
