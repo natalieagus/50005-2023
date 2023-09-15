@@ -93,6 +93,11 @@ To get you started, we suggest a few things that you can do to authenticate the 
 4. When people (e.g., a client program) later ask the Server for its public key, it provides this <span style="color:#f77729;"><b>signed</b></span> certificate.
    - The client can <span style="color:#f77729;"><b>verify</b></span> that this certificate is indeed <span style="color:#f77729;"><b>signed</b></span> (authorised) by our trusted CA csertificate using csertificate's Public Key, embedded within `cassertificate.crt`.
    - Recall that csertificate's public key is embedded within `cacsertificate.crt` given to you in the starter code. In real life, this should be a _well known_ certificate shipped by the Browser/OS.
+   - However for the sake of this assignment, we are simply "pretending" to be a legitimate CA but our certificate is as good as self-signed.
+
+  <img src="/50005/assets/images/pa2/img.jpg"  class="center_fifty"/>
+
+#### Authentication Protocol Basis
 
 The diagram below gives the basis of a possible authentication protocol. Take note of the `MODE`. The `MODE` preceeding the streams of messages (`M1, M2`) sent by the Client tells the server what _kind_ of message it is. Then, `M1` tells the server the size of `M2` so that the Server can `read` that appropriate number of bytes from the <span style="color:#f77729;"><b>socket</b></span>.
 
