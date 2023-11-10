@@ -46,7 +46,7 @@ Figure out <span style="color:#f77729;"><b>which key</b></span> to use to encryp
 
 
 ### Expanding the FTP 
-Make a <span style="color:#f77729;"><b>copy</b></span> of Task 1 files: `ClientWithSecurityAP.py` and `ClientWithSecurityAP.py` each, and name it as `ClientWithSecurityCP1.py` and `ServerWithSecurityCP1.py`.
+Make a <span style="color:#f77729;"><b>copy</b></span> of Task 1 files: `ClientWithSecurityAP.py` and `ServerWithSecurityAP.py` each, and name it as `ClientWithSecurityCP1.py` and `ServerWithSecurityCP1.py`.
 > Leave the original files as is. You should have 6 `.py` files now under `source/`.
 
 There's no need to implement any new `MODE` in this task. 

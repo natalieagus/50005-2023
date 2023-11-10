@@ -178,7 +178,7 @@ Now both client and server must implement `MODE: 3`, which signifies the `authen
      - another M1 from server: size of incoming M2 in bytes (this is `server_signed.crt`)
      - another M2 from server: `server_signed.crt`
 
-2. Upon receiving `MODE: 3`, the server will send these four messages above _immediately_, in sequence one after another. There's no need to send another `MODE` to the client because are still under the AP -- and the sequence <span style="color:#f77729;"><b>must be</b></span> as such: client send MODE 3, then <span style="color:#f77729;"><b>TWO</b></span> messages, and expecting <span style="color:#f77729;"><b>FOUR</b></span> messages from the server.
+2. Upon receiving `MODE: 3`, the server will send these four messages above _immediately_, in sequence one after another. There's no need to send another `MODE` to the client because they are still under the AP -- and the sequence <span style="color:#f77729;"><b>must be</b></span> as such: client send MODE 3, then <span style="color:#f77729;"><b>TWO</b></span> messages, and expecting <span style="color:#f77729;"><b>FOUR</b></span> messages from the server.
 
 3. Once the client receives both replies from the server, it will perform the `CHECK` as specified above using the CA's public key extracted from `csertificate.crt`. If check is successful, the regular non-secure FTP should proceed where we can key in the file names one by one for the server to receive. Otherwise, send a `MODE 2` to close connection immediately.
 
