@@ -24,7 +24,7 @@ You are expected to <span style="color:#f77729;"><b>store</b></span> TWO additio
 2. Server to save received encrypted file to client to `source/recv_files_enc` before decrypting, with the name `enc_recv_[filename]`, e.g: `enc_recv_image.ppm`.
 
 You should have the following files now:
-<img src="/50005/assets/images/pa2/2.png"  class="center_fifty"/>
+<img src="/50005-2023/assets/images/pa2/2.png"  class="center_fifty"/>
 
 The new files are mainly (<span style="color:#f7007f;"><b>names must be exactly these!</b></span>):
 
@@ -42,7 +42,7 @@ python3 autograde.py 2
 
 You should have the following message if everything goes well (`8` marks for CP1, and `14` marks for CP2).
 
-<img src="/50005/assets/images/pa2/3.png"  class="center_fifty"/>
+<img src="/50005-2023/assets/images/pa2/3.png"  class="center_fifty"/>
 
 You should then make the final commit of all tracked files so far:
 

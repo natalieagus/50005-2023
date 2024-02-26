@@ -102,11 +102,11 @@ For a system that comes with multiple command line interpreters (shells), a user
 
 - [Bourne-Again shell](https://www.ibm.com/docs/en/aix/7.1?topic=shells-bourne-shell) (bash): written as part of the GNU Project to provide a superset of Bourne Shell functionality. This shell can be found installed and is the default interactive shell for users on most Linux distros and macOS systems.
 
-<img src="/50005/assets/images/week1/17.png"  class="center_seventy"/>
+<img src="/50005-2023/assets/images/week1/17.png"  class="center_seventy"/>
 
 - [Z shell](https://zsh.sourceforge.io) (zsh) is a relatively modern shell that is backward compatible with bash. It's the default shell in macOS since 10.15 Catalina.
 
-<img src="/50005/assets/images/week1/18.png"  class="center_seventy"/>
+<img src="/50005-2023/assets/images/week1/18.png"  class="center_seventy"/>
 
 - [PowerShell](https://docs.microsoft.com/en-us/powershell/) – An object-oriented shell developed originally for Windows OS and now available to macOS and Linux.
 

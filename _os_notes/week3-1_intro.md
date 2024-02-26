@@ -69,7 +69,7 @@ In general these states are:
 5. <span style="color:#f77729;"><b>Terminated</b></span>: The process has finished execution.
 
 The figure below shows the scheduling state transition diagram of a typical process:
-<img src="/50005/assets/images/week3/1.png"  class="center_seventy"/>
+<img src="/50005-2023/assets/images/week3/1.png"  class="center_seventy"/>
 
 ## Process Table and Process Control Block {#process-control-block}
 
@@ -91,20 +91,20 @@ The PCB contains many pieces of information associated with a specific process. 
 ### Linux task_struct
 
 In Linux system, the PCB is created in C using a data structure called `task_struct`. The diagram below[^4] illustrates some of the contents in the structure:
-<img src="/50005/assets/images/week3/2.png"  class="center_fifty"/>
+<img src="/50005-2023/assets/images/week3/2.png"  class="center_fifty"/>
 
 Do not memorize the above, it's just for illustration purposes only. The task_struct is a relatively large data structure, at around 1.7 kilobytes on a 32-bit machine.
 {:.error}
 
 Within the Linux kernel, all active processes are represented using a <span style="color:#f77729;"><b>doubly linked list</b></span> of `task_struct.` The kernel maintains a `current_pointer` to the process that's currently <span style="color:#f77729;"><b>running</b></span> in the CPU.
 
-<img src="/50005/assets/images/week3/3.png"  class="center_fourty"/>
+<img src="/50005-2023/assets/images/week3/3.png"  class="center_fourty"/>
 
 ### Context Switching
 
 When a CPU switches execution between one process to another, the Kernel has to <span style="color:#f77729;"><b>store</b></span> all of the process states onto its corresponding PCB, and <span style="color:#f77729;"><b>load</b></span> the new process’ information from its PCB before resuming them as shown below, (_image screenshot from SGG book_):
 
-<img src="/50005/assets/images/week3/4.png"  class="center_fifty"/>
+<img src="/50005-2023/assets/images/week3/4.png"  class="center_fifty"/>
 
 ## Rapid Context Switching and Timesharing {#rapid-context-switching-and-timesharing}
 
@@ -179,13 +179,13 @@ Each queue contains the <span style="color:#f7007f;"><b>pointer</b></span> to th
 
 The diagram below shows a system with ONE ready queue, and FOUR device queues (_image screenshot from SGG book_):
 
-<img src="/50005/assets/images/week3/5.png"  class="center_seventy"/>
+<img src="/50005-2023/assets/images/week3/5.png"  class="center_seventy"/>
 
 #### Queueing Diagram
 
 A common representation of process scheduling is using a queueing diagram as shown below:
 
-<img src="/50005/assets/images/week3/6.png"  class="center_seventy"/>
+<img src="/50005-2023/assets/images/week3/6.png"  class="center_seventy"/>
 
 Legends:
 
@@ -203,7 +203,7 @@ A new process is initially put in the <span style="color:#f77729;"><b>ready</b><
 
 Scheduler is typically divided into two parts: long term and short term. They manage each queue accordingly as shown:
 
-<img src="/50005/assets/images/week3/7.png"  class="center_seventy"/>
+<img src="/50005-2023/assets/images/week3/7.png"  class="center_seventy"/>
 
 [^1]: Because each process is isolated from one another and runs in different address space (forming virtual machines)
 [^2]: Heap and stack grows in the opposite direction so that it maximises the space that both can have and minimises the chances of overlapping, since we do not know how much they can dynamically grow during runtime. If the heap / stack grows too much during runtime, we are faced with stack/heap overflow error. If there’s a heap overflow, `malloc` will return a `NULL` pointer.

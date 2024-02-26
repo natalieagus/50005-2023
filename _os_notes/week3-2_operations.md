@@ -26,7 +26,7 @@ We can create new processes using <code>fork()</code> system call.
 
 We can illustrate multiple process creation as a <span style="color:#f77729;"><b>process tree</b></span>:
 
-<img src="/50005/assets/images/week3/8.png"  class="center_fourty"/>
+<img src="/50005-2023/assets/images/week3/8.png"  class="center_fourty"/>
 
 In the example above, there are 5 processes in total. Process 2, 3, and 4 are direct <span style="color:#f77729;"><b>children</b></span> of Process 1. Process 5 is created by Process 2.
 
@@ -37,7 +37,7 @@ Each process is identified by an integer called the process id (`pid`). Pid is <
 
 You can type the command `ps [options]` to observe all running processes in your system, along with the `pid` of each process. For instance,
 
-<img src="/50005/assets/images/week3/9.png"  class="center_fifty"/>
+<img src="/50005-2023/assets/images/week3/9.png"  class="center_fifty"/>
 
 ### Child Process vs Parent Process
 
@@ -91,7 +91,7 @@ int main(int argc, char const *argv[])
 
 The simple C program above is executed and when the execution system call `fork()` returns, <span style="color:#f77729;"><b>two processes are present</b></span>.
 
-<img src="/50005/assets/images/week3/10.png"  class="center_seventy"/>
+<img src="/50005-2023/assets/images/week3/10.png"  class="center_seventy"/>
 
 Both have the <span style="color:#f77729;"><b>same</b></span> copy of the text (code) and resources (any opened files, etc). The parent process is <span style="color:#f77729;"><b>cloned</b></span>, resulting in the child process. They're at a <span style="color:#f77729;"><b>different</b></span> address space, executed concurrently by the system.
 
@@ -105,7 +105,7 @@ We can write just <span style="color:#f77729;"><b>one instruction</b></span> for
 - The child executes the line if-clause: `execlp`
 - The parent process executes the `else` clause where it `wait` for the child process to `exit`
 
-<img src="/50005/assets/images/week3/11.png"  class="center_seventy"/>
+<img src="/50005-2023/assets/images/week3/11.png"  class="center_seventy"/>
 
 ### `execlp`
 
@@ -285,4 +285,4 @@ int main(int argc, char const *argv[])
 ```
 
 We can enter the `ps aux | grep 'Z'` command to list all zombie processes in the system caused by running the program above.
-<img src="/50005/assets/images/week3/12.png"  class="center_seventy"/>
+<img src="/50005-2023/assets/images/week3/12.png"  class="center_seventy"/>

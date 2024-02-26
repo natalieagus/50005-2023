@@ -21,7 +21,7 @@ python3.10 banker_test.py
 ```
 
 This will run your `banker.py` against all 6 test cases: q0 to q5. If all goes well, the following message will be printed:
-<img src="/50005/assets/images/lab3/2.png"  class="center_full"/>
+<img src="/50005-2023/assets/images/lab3/2.png"  class="center_full"/>
 
 The tester file runs on Windows as well as of 14/06/2023.
 {:.info}
@@ -38,7 +38,7 @@ Zip can be done easily via the CLI (POSIX-compliant OS). Call this command insid
 zip lab3_submit.zip banker.py
 ```
 
-<img src="/50005/assets/images/lab3/3.png"  class="center_full"/>
+<img src="/50005-2023/assets/images/lab3/3.png"  class="center_full"/>
 
 If you don't have `zip`, you shall install it:
 
@@ -57,7 +57,7 @@ You need to submit the code by the due date stipulated in the course handout. In
 Working on a VM and don't know how to migrate your .zip file out to your host OS? You can choose the <span style="color:#f77729;"><b>hard way</b></span> like login to your email account in your VM and then email yourself the zipfile. Or, login to Telegram in your VM.
 
 If you're using VirtualBox, you can also enable shared clipboard:
-<img src="/50005/assets/images/lab3/5.png"  class="center_seventy"/>
+<img src="/50005-2023/assets/images/lab3/5.png"  class="center_seventy"/>
 
 But why do that? Why do that if you're a CS student? Use `ssh`!
 {:.info}
@@ -66,7 +66,7 @@ But why do that? Why do that if you're a CS student? Use `ssh`!
 
 You can enable `ssh` at your VM, [here](https://dev.to/developertharun/easy-way-to-ssh-into-virtualbox-machine-any-os-just-x-steps-5d9i) is a guide if you're using VirtualBox. Or, you can simply Google "ssh to your-virtual-machine" and follow simple steps there. Then, enable ssh on `VSCode`: install the `ssh` extension and connect! You can follow the guide [here](https://code.visualstudio.com/docs/remote/ssh-tutorial) just this part:
 
-<img src="/50005/assets/images/lab3/4.png"  class="center_seventy"/>
+<img src="/50005-2023/assets/images/lab3/4.png"  class="center_seventy"/>
 
 Then, type in your VM address when prompted in this format: `ssh -p <port_number> <username>@<local_ip>`, for example:
 
@@ -75,4 +75,4 @@ ssh -p 3022 ubuntu@127.0.0.1
 ```
 
 You will need to then enter your password. Then click `Open Folder` and select your Home folder. You will have a nice interface with VSCode now, connected to your VM. Drag and drop to transfer files between your host OS and your VM. No lag, nice terminal, can utilise VSCode functionalities.. Doesn't it spark joy?
-<img src="/50005/assets/images/lab3/6.png"  class="center_full"/>
+<img src="/50005-2023/assets/images/lab3/6.png"  class="center_full"/>

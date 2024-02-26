@@ -42,7 +42,7 @@ Consider the file with name: `Banker.c` below.
 2. File attributes (stored in _inode_) contain <span style="color:#f77729;"><b>important</b></span> metadata such as name, size, datetime of creation, user ID, etc.
 3. Its <span style="color:#f77729;"><b>content</b></span> is a group of data bytes (~12KB) containing instructions to the Banker's algorithm written in C.
 
-<img src="/50005/assets/images/week6/1.png"  class="center_seventy"/>
+<img src="/50005-2023/assets/images/week6/1.png"  class="center_seventy"/>
 
 When we use this file, we _don’t care_ about its physical address (where it is actually stored on disk). We only care about its <span style="color:#f77729;"><b>path</b></span>. The path is a “logical” storage unit.
 {:.warning}
@@ -65,7 +65,7 @@ File format is the actual data structure of a certain file, defining the <span s
 
 File _type_ is a group of file formats that serve similar functions. For instance: arc, zip, and tar are all the format of archive file type. The image below illustrates the common examples (don't have to memorise them, image taken from SGG book):
 
-<img src="/50005/assets/images/week6/2.png"  class="center_fifty"/>
+<img src="/50005-2023/assets/images/week6/2.png"  class="center_fifty"/>
 
 You can tell that different files have different formats from its _extension_. Some OS replaces the icons of the files depending on its extension to give us a <span style="color:#f77729;"><b>visual representation</b></span> of the file format.
 
@@ -128,7 +128,7 @@ A file has <span style="color:#f77729;"><b>attributes</b></span> (metadata), ana
 
 You can use the command `ls -ali` to list all files in the current directory, together with its identifier (inode number, will be explained in the later section):
 
-<img src="/50005/assets/images/week6/3.png"  class="center_seventy no-invert"/>
+<img src="/50005-2023/assets/images/week6/3.png"  class="center_seventy no-invert"/>
 
 You should know how to interpret file permission from Lab 1.
 {:.info}
@@ -205,7 +205,7 @@ In this subject we are focused on the UNIX-specific file system and its data str
 
 The figure below illustrates a simplified UNIX file system data structure in-memory. All these data structures are implemented in the kernel space:
 
-<img src="/50005/assets/images/week6/4.png"  class="center_seventy"/>
+<img src="/50005-2023/assets/images/week6/4.png"  class="center_seventy"/>
 
 ## File Descriptor Table
 
@@ -269,7 +269,7 @@ gcc -o out example.c
 
 The blocking instruction `scanf` is there to make the process not terminate yet, so that we can have enough time to observe it's file descriptor table. Running this process <span style="color:#f77729;"><b>twice</b></span>, and then running the command `ps | grep ./out | grep -v grep` in the third terminal results in:
 
-<img src="/50005/assets/images/week6/5.png"  class="no-invert center_full"/>
+<img src="/50005-2023/assets/images/week6/5.png"  class="no-invert center_full"/>
 
 As you can see, there’s two instances of ./out at two terminals: ttys009 and ttys011. We can examine its file descriptor table content with the command `lsof -p [pid]`.
 
@@ -557,7 +557,7 @@ The inode (index node) is a data structure in a Unix-style file system that <spa
 
 <span style="color:#f7007f;"><b>The inode is the file, excluding its content</b></span>, which is identified by a unique <span style="color:#f7007f;"><b>inode number</b></span>. A filename on the other hand, is just metadata in the file system that refers to a file. A single file/inode can have multiple filenames referring to it (called links, which we will learn later).
 
-<img src="/50005/assets/images/week6/10.png"  class="center_seventy"/>
+<img src="/50005-2023/assets/images/week6/10.png"  class="center_seventy"/>
 
 ## The Logical and Physical File system
 
@@ -611,12 +611,12 @@ All systems have a <span style="color:#f77729;"><b>root</b></span> partition, wh
 The in-memory (means these are in RAM, as long as the computer is alive) information about file system that is loaded at mount time are the three data structures we show above and a few more:
 
 1. <span style="color:#f77729;"><b>Mount-table</b></span>: contains information about each mounted volume. Notice the list of all mounted volumes in the screenshot below. Disk image, USB drives, all those are also mounted devices.
-   <img src="/50005/assets/images/week6/11.png"  class="center_seventy"/>
+   <img src="/50005-2023/assets/images/week6/11.png"  class="center_seventy"/>
 
 2. <span style="color:#f77729;"><b>inode table</b></span>: Contains directory structure and file <span style="color:#f77729;"><b>pointers</b></span> to the actual data on secondary storage or cached memory
 
    - You can list the disk file directory and see how many inodes are present using `df -i`. You should be able to figure out by yourself what each column means, the leftmost one being the filesystem name.  
-     <img src="/50005/assets/images/week6/12.png"  class="center_seventy"/>
+     <img src="/50005-2023/assets/images/week6/12.png"  class="center_seventy"/>
 
 3. <span style="color:#f77729;"><b>System-wide open file table</b></span>
 
@@ -624,7 +624,7 @@ The in-memory (means these are in RAM, as long as the computer is alive) informa
 
 4. Per-process <span style="color:#f77729;"><b>file descriptor table</b></span> (for currently alive processes)
    - You can check opened files for your current terminal process opened files using `lsof -p $$` command.
-     <img src="/50005/assets/images/week6/13.png"  class="center_seventy"/>
+     <img src="/50005-2023/assets/images/week6/13.png"  class="center_seventy"/>
 
 _Details:_
 

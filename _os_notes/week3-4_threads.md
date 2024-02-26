@@ -27,7 +27,7 @@ A thread can execute <span style="color:#f7007f;"><b>any</b></span> part of the 
 
 The figure below _(taken from SGG book)_ shows the illustration of a single-threaded and multi threaded processes. As shown, it <span style="color:#f7007f;"><b>shares</b></span> with other threads belonging to the same process its code section, data section, and other operating-system resources, such as open files and signals. Multiple threads in the same process operates in the <span style="color:#f77729;"><b>same address space</b></span>.
 
-<img src="/50005/assets/images/week3/17.png"  class="center_seventy"/>
+<img src="/50005-2023/assets/images/week3/17.png"  class="center_seventy"/>
 
 # Multithreading Benefits
 
@@ -37,7 +37,7 @@ Threads make the program seem more <span style="color:#f7007f;"><b>responsive</b
 {:.warning}
 
 For example, a multithreaded <span style="color:#f7007f;"><b>server architecture</b></span> below _(taken from SGG book)_:
-<img src="/50005/assets/images/week3/18.png"  class="center_seventy"/>
+<img src="/50005-2023/assets/images/week3/18.png"  class="center_seventy"/>
 
 Multithreading us to reap the benefits of true <span style="color:#f7007f;"><b>parallel</b></span> programming in <span style="color:#f7007f;"><b>multiprocessor</b></span> architecture, where threads may be running in <span style="color:#f7007f;"><b>parallel</b></span> on different processing cores.
 
@@ -311,7 +311,7 @@ Maps <span style="color:#f77729;"><b>many</b></span> user-level threads to <span
 - <span style="color:#f77729;"><b>The entire process will block </b></span>if a thread makes a blocking system call since kernel isn’t aware of the presence of these user threads
 - Since only one thread can access the kernel at a time, multiple threads are unable to run in parallel on multicore systems
 
-<img src="/50005/assets/images/week3/19.png"  class="center_seventy"/>
+<img src="/50005-2023/assets/images/week3/19.png"  class="center_seventy"/>
 
 ### One to One
 
@@ -330,7 +330,7 @@ Maps <span style="color:#f77729;"><b>each</b></span> user thread to a kernel thr
 - <span style="color:#f77729;"><b>May</b></span> have to involve the kernel when there is a context switch between the threads (overhead)
 
 The modern Linux implementation of pthreads uses a 1:1 mapping between pthread threads and kernel threads, so you will always get a kernel-level thread with `pthread_create().`
-<img src="/50005/assets/images/week3/20.png"  class="center_seventy"/>
+<img src="/50005-2023/assets/images/week3/20.png"  class="center_seventy"/>
 
 ### Many to Many
 
@@ -342,11 +342,11 @@ This is the best of both worlds:
 - Developers can <span style="color:#f77729;"><b>create</b></span> as many user threads as necessary,
 - The corresponding kernel threads can run in <span style="color:#f77729;"><b>parallel</b></span> on a multiprocessor.
 
-<img src="/50005/assets/images/week3/21.png"  class="center_seventy"/>
+<img src="/50005-2023/assets/images/week3/21.png"  class="center_seventy"/>
 
 A variation of many-to-many mapping, the <span style="color:#f77729;"><b>two-level model</b></span>: both multiplexing user threads and allowing some user threads to be mapped to just one kernel thread.
 
-<img src="/50005/assets/images/week3/22.png"  class="center_seventy"/>
+<img src="/50005-2023/assets/images/week3/22.png"  class="center_seventy"/>
 
 In some systems, especially in many-to-many or two-level models, there is some way for the user threading library to communicate (coordinate) with kernel threads via scheduler activation, i.e: a mechanism whereby kernel can allocate more threads to the process <span style="color:#f7007f;"><b>on demand</b></span>.
 {:.warning}
@@ -368,10 +368,10 @@ On a system with multiple cores and supported kernel mapping, concurrency means 
 {:.warning}
 
 A possible parallel execution sequence on a multicore system is as shown (Ti stands for Thread i, 4 threads in total in this example):
-<img src="/50005/assets/images/week3/23.png"  class="center_seventy"/>
+<img src="/50005-2023/assets/images/week3/23.png"  class="center_seventy"/>
 
 This is faster from concurrent execution with a single core as shown:
-<img src="/50005/assets/images/week3/24.png"  class="center_seventy"/>
+<img src="/50005-2023/assets/images/week3/24.png"  class="center_seventy"/>
 
 There are two types of parallelism that we can achieve via multicore programming: <span style="color:#f77729;"><b>data</b></span> parallelism and <span style="color:#f77729;"><b>task</b></span> parallelism.
 

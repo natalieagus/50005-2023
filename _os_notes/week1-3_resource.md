@@ -80,7 +80,7 @@ Modern computer systems are **<span style="color:#f7007f;"><b>interrupt-driven</
 
 The figure below summarises the **interrupt-driven** procedure of **asynchronous I/O handling** during **<span style="color:#f7007f;"><b>hardware interrupt</b></span>**:
 
-<img src="/50005/assets/images/week1/9.png"  class="center_seventy"/>
+<img src="/50005-2023/assets/images/week1/9.png"  class="center_seventy"/>
 
 Notes:
 
@@ -117,7 +117,7 @@ One thing should be crystal clear: in an interrupt-driven system, upon the prese
 
 Firstly, this image says it all.
 
-<img src="/50005/assets/images/week1/10.png"  class="center_fifty no-invert"/>
+<img src="/50005-2023/assets/images/week1/10.png"  class="center_fifty no-invert"/>
 
 Sometimes user processes are <span style="color:#f77729;"><b>blocked</b></span> from execution because it requires inputs from IO devices, and it may **not be scheduled** until the presence of the required input arrives. For example, this is what happens if you wait for user input in Python:
 
@@ -142,7 +142,7 @@ Traps are **software generated interrupts**, that is some special instructions t
 
 The CPU is forced to go to a special handler that does a state save and then execute (may not be immediate!) on the proper interrupt service routine to handle the <span style="color:#f7007f;"><b>request</b></span> (e.g: fetch user input in the python example above) in kernel mode. Software interrupts generally have <span style="color:#f77729;"><b>low priority</b></span>, as they are not as urgent as devices with limited buffering space.
 
-<img src="/50005/assets/images/week1/11.png"  class="center_seventy"/>
+<img src="/50005-2023/assets/images/week1/11.png"  class="center_seventy"/>
 
 During the time between system call request until system call return, the program execution is <span style="color:#f7007f;"><b>paused</b></span>. Examples of system calls are: `chmod(), chdir(), print()`. More Linux system calls can be found [here](http://man7.org/linux/man-pages/man2/syscalls.2.html).
 
@@ -150,7 +150,7 @@ During the time between system call request until system call return, the progra
 
 Consider another scenario where you want to open a **very large file** from disk. It takes some time to <span style="color:#f7007f;"><b>load</b></span> (simply transfer your data from disk to the disk controller), and your CPU can proceed to do other tasks in the meantime. Here's a simplified timeline:
 
-<img src="/50005/assets/images/week1/12.png"  class="cenetr_full"/>
+<img src="/50005-2023/assets/images/week1/12.png"  class="cenetr_full"/>
 
 Imagine that at first, the CPU is busy executing process instructions in user mode. At the same time, the device is idling.
 
@@ -231,7 +231,7 @@ Sometimes you might encounter the term IDT instead of IVT. The interrupt descrip
 
 Below is an example of ARMv8-M interrupt vector table, which describe which RAM addresses should contain the **handler entry** (also called interrupt service routine, ISR) for all sorts of interrupts (both software and hardware). The table is typically implemented in the <span style="color:#f77729;"><b>lower</b></span> physical addresses in many architecture.
 
-<img src="/50005/assets/images/week1/13.png"  class="center_seventy" title="Image taken from https://developer.arm.com/documentation/100701/0200/Exception-properties"/>
+<img src="/50005-2023/assets/images/week1/13.png"  class="center_seventy" title="Image taken from https://developer.arm.com/documentation/100701/0200/Exception-properties"/>
 
 Each exception has an ID (associated number), a vector <span style="color:#f77729;"><b>address</b></span> that is the exception <span style="color:#f77729;"><b>entry</b></span> point in memory, and a <span style="color:#f77729;"><b>priority</b></span> level which determines the order in which multiple pending exceptions are handled. In ARMv8-M, the lower the priority number, the higher the priority level.
 

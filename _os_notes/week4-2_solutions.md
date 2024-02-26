@@ -840,7 +840,7 @@ void *consumer_function(void *arg)
 
 Paste the two functions above before `main()`. After you compile and run the code, you should have an output as such where consumer thread nicely prints out the numbers put into the buffer by producer in sequence (and stops at 100):
 
-<img src="/50005/assets/images/week4/2.png"  class="center_seventy"/>
+<img src="/50005-2023/assets/images/week4/2.png"  class="center_seventy"/>
 
 ## Cleanup
 

@@ -41,7 +41,7 @@ Recall from 50.002 that the CPU always operates on virtual addresses (commonly <
 
 <span style="color:#f7007f;"><b>Caching</b></span> is an important principle of computer systems. We perform the <span style="color:#f77729;"><b>caching algorithm</b></span> each time the CPU needs to execute a new piece of instruction or fetch new data from the main memory. Remember that cache is a <span style="color:#f7007f;"><b>hardware</b></span>, built in as part of the CPU itself in modern computers as shown in the figure below:
 
-<img src="/50005/assets/images/week1/14.png"  class="center_seventy"/>
+<img src="/50005-2023/assets/images/week1/14.png"  class="center_seventy"/>
 
 Note that “DMA” means direct memory access from the device controller onto the RAM[^5] (_screenshot taken from SGG book_).
 
@@ -205,7 +205,7 @@ Multiprocessor systems have three main advantages:
 
 There are different architectures for multiprocessor system, such as a <span style="color:#f77729;"><b>symmetric</b></span> architecture — we have multiple CPU chips in a computer system:
 
-<img src="/50005/assets/images/week1/15.png"  class="center_fifty"/>
+<img src="/50005-2023/assets/images/week1/15.png"  class="center_fifty"/>
 
 Notice that each processor has its own set of registers, as well as a private or local cache; however, all processors share the <span style="color:#f77729;"><b>same</b></span> physical memory. This brings about design issues that we need to note in symmetric architectures:
 
@@ -217,7 +217,7 @@ Notice that each processor has its own set of registers, as well as a private or
 
 Another example of a symmetric architecture is to have **multiple cores on the <span style="color:#f77729;"><b>same</b></span> chip** as shown in the figure below:
 
-<img src="/50005/assets/images/week1/16.png"  class="center_fourty"/>
+<img src="/50005-2023/assets/images/week1/16.png"  class="center_fourty"/>
 
 This carries an advantage that on-chip communication is <span style="color:#f77729;"><b>faster</b></span> than across chip communication. However it requires a more delicate hardware design to place multiple cores on the same chip.
 

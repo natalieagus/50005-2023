@@ -78,7 +78,7 @@ int main(int argc, char **argv)
 
 Recompile and run. You should see that what you typed in the console will be printed back after you pressed <span style="color:#f7007f;"><b>enter</b></span>.
 
-<img src="/50005/assets/images/pa1/3.png"  class="center_seventy"/>
+<img src="/50005-2023/assets/images/pa1/3.png"  class="center_seventy"/>
 
 # Task 2 (2%)
 
@@ -157,7 +157,7 @@ int main(int argc, char **argv)
 
 Recompile and run. You should see that what you typed in the console will be printed back, and <span style="color:#f77729;"><b>tokenised</b></span> after you pressed <span style="color:#f7007f;"><b>enter</b></span>.
 
-<img src="/50005/assets/images/pa1/4.png"  class="center_seventy"/>
+<img src="/50005-2023/assets/images/pa1/4.png"  class="center_seventy"/>
 
 ### Commit Task 2
 
@@ -256,7 +256,7 @@ int main(int argc, char **argv)
 
 Recompile and run. You should see that what you typed in the console will be printed back, and <span style="color:#f77729;"><b>tokenised</b></span> and actually <span style="color:#f7007f;"><b>executed</b></span> after you pressed <span style="color:#f7007f;"><b>enter</b></span>.
 
-<img src="/50005/assets/images/pa1/5.png"  class="center_seventy"/>
+<img src="/50005-2023/assets/images/pa1/5.png"  class="center_seventy"/>
 
 ### Commit Task 3
 
@@ -327,7 +327,7 @@ Remove the line `status = shell_exit(args)` because that will cause your shell t
 
 You may use the original `main()` function given in the starter code to test. Your shell now should be able to prompt you for more commands after executing one.
 
-<img src="/50005/assets/images/pa1/6.png"  class="center_seventy"/>
+<img src="/50005-2023/assets/images/pa1/6.png"  class="center_seventy"/>
 
 The shell should <span style="color:#f77729;"><b>never</b></span> crash no matter what input you give (empty lines, commands without arguments, etc). It should only terminate when you type `exit`.
 {:.error}

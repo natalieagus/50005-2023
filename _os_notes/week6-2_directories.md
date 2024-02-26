@@ -58,7 +58,7 @@ The file system driver (part of OS) must <span style="color:#f77729;"><b>use</b>
 
 Typically, both the directory structure and the files themselves reside on disk (and cached in memory). The figure below taken from the SGG book shows a common file system organization:
 
-<img src="/50005/assets/images/week6/6.png"  class="center_seventy"/>
+<img src="/50005-2023/assets/images/week6/6.png"  class="center_seventy"/>
 
 Each <span style="color:#f77729;"><b>volume/partition</b></span> that contains a file system must also contain information about the files in the system. This information is kept as <span style="color:#f77729;"><b>entries</b></span> in the device directory (a.k.a volume table of contents). The device directory (more commonly known simply as the directory) records some <span style="color:#f77729;"><b>important</b></span> information such as name, location, size, and type—for all files _in that volume_.
 
@@ -110,7 +110,7 @@ All of the following file operations involves <span style="color:#f77729;"><b>mo
 
 A single-level directory is best illustrated as follows:
 
-<img src="/50005/assets/images/week6/7.png"  class="center_seventy"/>
+<img src="/50005-2023/assets/images/week6/7.png"  class="center_seventy"/>
 
 > In the above example, there's a directory with five entries in it (inside the rectangular border), each pointing to a separate file (the circles).
 
@@ -126,7 +126,7 @@ If we were to use a single-level directory in our system and the GUI file-manage
 
 ## Two-level Directory
 
-<img src="/50005/assets/images/week6/8.png"  class="center_seventy"/>
+<img src="/50005-2023/assets/images/week6/8.png"  class="center_seventy"/>
 
 A two-level directory allows for a separate directory for <span style="color:#f77729;"><b>each user</b></span>. Notions of subdirectory and paths become clearer, e.g: `/User1/readme.md`, or `/Guest/readme.md`
 
@@ -134,7 +134,7 @@ Each user has a <span style="color:#f77729;"><b>separate name space</b></span>, 
 
 ## Tree-Structured Directory
 
-<img src="/50005/assets/images/week6/9.png"  class="center_full"/>
+<img src="/50005-2023/assets/images/week6/9.png"  class="center_full"/>
 
 In a tree structure directory, there’s only <span style="color:#f77729;"><b>one path</b></span> to reach each file, as shown above.
 
@@ -182,7 +182,7 @@ Let's begin with an example. A containing `helloworld` characters is created, wi
 
 > We call this entry the original filename.
 
-<img src="/50005/assets/images/week6/14.png"  class="center_seventy"/>
+<img src="/50005-2023/assets/images/week6/14.png"  class="center_seventy"/>
 
 All files in a directory-based file system must have at least one hard link (mapping) giving what we call the original name for each file.
 {:.warning}
@@ -195,7 +195,7 @@ Each hard link <span style="color:#f77729;"><b>increases</b></span> the referenc
 
 In some operating systems, such as Linux, when you create new subdirectories, you’re creating a new entry to the existing directory.
 
-<img src="/50005/assets/images/week6/15.png"  class="center_seventy"/>
+<img src="/50005-2023/assets/images/week6/15.png"  class="center_seventy"/>
 
 The reference count for `subdir` is 2 by default, shown in the screenshot above. UNIX-like file system will create two entries in every directory:
 
@@ -212,7 +212,7 @@ In UNIX-like systems, you <span style="color:#f7007f;"><b>cannot</b></span> crea
 
 > By effectively prohibiting multiple references to directories, UNIX-like OS like Linux maintains an acyclic-graph structure (more about this structure later). However this is not always true for all OS.
 
-<img src="/50005/assets/images/week6/16.png"  class="center_seventy"/>
+<img src="/50005-2023/assets/images/week6/16.png"  class="center_seventy"/>
 
 Note that `..` and `.` can be regarded as _special_ hard links, so although they technically points to directories (itself and the parent) we don't treat it the same as other regular user-created hard links. Again, for the same of simplicity in this course we <span style="color:#f77729;"><b>ignore</b></span> the presence of these special links. All sections below assume that `.` and `..` are not implemented.
 {:.warning}
@@ -221,7 +221,7 @@ Note that `..` and `.` can be regarded as _special_ hard links, so although they
 
 Links have path names, e.g: `/Users/natalie_agus/Desktop/Links/input_hardlink`.
 
-<img src="/50005/assets/images/week6/17.png"  class="center_seventy"/>
+<img src="/50005-2023/assets/images/week6/17.png"  class="center_seventy"/>
 
 ## Symbolic Links
 
@@ -230,7 +230,7 @@ A symbolic link is simply a file whose content is a text string (i.e: reference 
 
 Symbolic links are also known as "shortcuts" or "soft links".
 
-<img src="/50005/assets/images/week6/18.png"  class="center_seventy"/>
+<img src="/50005-2023/assets/images/week6/18.png"  class="center_seventy"/>
 
 ### Symbolic Links to Link Directories
 
@@ -262,10 +262,10 @@ Note that these are just for illustration purposes only, there's **no need to me
 #### Broken Symlink
 
 If you delete the <span style="color:#f77729;"><b>reference</b></span> hard link (file name) where the symbolic link is pointing to, the symbolic link will be <span style="color:#f7007f;"><b>broken</b></span>.
-<img src="/50005/assets/images/week6/19.png"  class="center_seventy"/>
+<img src="/50005-2023/assets/images/week6/19.png"  class="center_seventy"/>
 
 If we recreate `input` (file with the same name), then `input_softlink` will work again.
-<img src="/50005/assets/images/week6/20.png"  class="center_seventy"/>
+<img src="/50005-2023/assets/images/week6/20.png"  class="center_seventy"/>
 
 Therefore from this we can know that `input_softlink` is a FILE with id `54354162`, whose <span style="color:#f77729;"><b>CONTENT</b></span> is path to input, e.g: `~/Desktop/Links/input`. It is automatically interpreted by the OS such that when you open input_softlink it will resolve` ~/Desktop/Links/input` and open the referred file.
 {:.error}
@@ -300,7 +300,7 @@ A symbolic link is much like a desktop <span style="color:#f77729;"><b>shortcut<
 ## Links Summary
 
 The figure below summarizes the concept of links:
-<img src="/50005/assets/images/week6/21.png"  class="center_seventy"/>
+<img src="/50005-2023/assets/images/week6/21.png"  class="center_seventy"/>
 
 # Graph Directory Structure
 
@@ -315,7 +315,7 @@ In the graphical representation of a directory, we draw edges to represent any l
 
 > This diagram is just an example. Don’t try to make much sense about the file names.
 
-<img src="/50005/assets/images/week6/22.png"  class="center_full"/>
+<img src="/50005-2023/assets/images/week6/22.png"  class="center_full"/>
 
 From the example above, notice that `/Users/Guest/readme.md` is a _hard_ link to` /Users/Guest/readme.txt` and `/bin/readme` is a _symbolic_ link to the <span style="color:#f77729;"><b>same</b></span> file pointed by `/Users/Guest/readme.txt`.
 
@@ -330,7 +330,7 @@ An inode entry cannot be deleted as long as the reference count to it is more th
 
 The primary advantage of an acyclic graph is the relative simplicity of the algorithms to <span style="color:#f77729;"><b>traverse</b></span> the graph and to determine when there are no more references to a file. We want to avoid traversing shared sections of an acyclic graph twice, mainly for performance reasons.
 
-<img src="/50005/assets/images/week6/23.png"  class="center_full"/>
+<img src="/50005-2023/assets/images/week6/23.png"  class="center_full"/>
 
 If cycles are allowed to exist in the directory (red arrow above -- can be either soft/symbolic link or hard link), we likewise want to _avoid_ searching any component twice, for reasons of correctness as well as performance.
 
@@ -349,4 +349,4 @@ For example, suppose we delete the reference edge as shown below.
 - As a result, the delete action <span style="color:#f7007f;"><b>does not reduce </b></span>the reference count of this directory to _zero_.
 - We are left with three inaccessible directories as shown in the image below.
 
-<img src="/50005/assets/images/week6/24.png"  class="center_full"/>
+<img src="/50005-2023/assets/images/week6/24.png"  class="center_full"/>

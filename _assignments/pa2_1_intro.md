@@ -128,7 +128,7 @@ The starter code provided to you implements a <span style="color:#f77729;"><b>si
 
 The screenshot below shows how client process can send files to the server process, when both are hosted in the same computer:
 
-<img src="/50005/assets/images/pa2/4.png"  class="center_seventy"/>
+<img src="/50005-2023/assets/images/pa2/4.png"  class="center_seventy"/>
 
 You can also host the Server file in another computer:
 
@@ -168,7 +168,7 @@ In this handout, we assume that `python3` is <span style="color:#f77729;"><b>alw
 {:.error}
 
 That is, if you type `python3` in the terminal, you'll see at least version 3.10 printed out:
-<img src="/50005/assets/images/pa2/5.png"  class="center_seventy"/>
+<img src="/50005-2023/assets/images/pa2/5.png"  class="center_seventy"/>
 
 The <span style="color:#f7007f;"><b>autograder</b></span> file also uses `python3` instead of `python3.10`. You can modify it to call `python3.10` instead accordingly.
 
@@ -249,7 +249,7 @@ If the bot complains that the autograder **fails to run**, then check if you hav
 
 Check that your local autograder did printout **exactly** the following:
 
-<img src="/50005/assets/images/pa2/3.png"  class="center_fifty"/>
+<img src="/50005-2023/assets/images/pa2/3.png"  class="center_fifty"/>
 
 That means: **no error messages** like "file A not found". We only give `autograde.py` to you so that you can have some kind of checker beforehand, but we can't guarantee 100% that it will not give false positives because you might not be using the same exact Python >3.10 version, have different system programs or different Linux distros altogether. If you're not sure what went wrong, **just OPEN** `autograde.py` and figure it out. It's in Python! How hard can it be?
 

@@ -57,7 +57,7 @@ Open the `dnsrealtrace.pcapng` in Wireshark and answer the following questions. 
 
 After opening the file, you should have this interface:
 
-<img src="/50005/assets/images/nslab3/5.png"  class="center_full"/>
+<img src="/50005-2023/assets/images/nslab3/5.png"  class="center_full"/>
 
 If you use `termshark`, you can enter the following command in the directory where the downloaded capture file reside:
 
@@ -103,7 +103,7 @@ This packet opens a `TCP` <span style="color:#f77729;"><b>connection</b></span> 
 Capturing packets for packet analysis with wireshark:
 
 1. Once the program is launched, select the <span style="color:#f77729;"><b>network interface</b></span> to capture and click on the _sharkfin_ icon at the top left of the application right under the menu bar to begin capturing packets. If you click on each packet, you can see each layer's header and the application layer payload.
-   <img src="/50005/assets/images/nslab3/6.png"  class="center_full"/>
+   <img src="/50005-2023/assets/images/nslab3/6.png"  class="center_full"/>
 
 2. To explore the interface, mention the interface (e.g. `eth0`, `wlan`) in the capture option.
 

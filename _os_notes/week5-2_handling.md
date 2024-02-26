@@ -157,7 +157,7 @@ If we find that all processes <span style="color:#f77729;"><b>can still finish</
 - If you store each value of index `i` acquired, you can compute the sequence of _possible_ process execution sequence
 
 For example, given the following system state:
-<img src="/50005/assets/images/week5/4.png"  class="center_seventy"/>
+<img src="/50005-2023/assets/images/week5/4.png"  class="center_seventy"/>
 
 and current request `R_1` made by `P1`: `[1,0,2]`, you may find that granting this request leads to a <span style="color:#f7007f;"><b>safe state</b></span> and there exist several possible execution sequence (depending on _how_ you iterate through the `finish` vector, from index 0 onwards or from index `N-1` backwards):
 

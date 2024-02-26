@@ -20,7 +20,7 @@ Consider the basic producer-consumer problem, where two <span style="color:#f777
 Asynchronous and concurrent: both processes or threads make progress, but we cannot assume anything about their relative speed of execution.
 {:.warning}
 
-<img src="/50005/assets/images/week4/1.png"  class="center_seventy"/>
+<img src="/50005-2023/assets/images/week4/1.png"  class="center_seventy"/>
 
 Confused about the term **asynchronous** or **concurrent** or **parallel**? Read [this burger ordering analogy](https://fastapi.tiangolo.com/async/) that was found by one of your CSD seniors.
 {:.highlight}

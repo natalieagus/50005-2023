@@ -45,7 +45,7 @@ The Beta itself implements a **vectored interrupt** scheme where different types
 
 The original `tinyOS.uasm` prints out “Illegal interrupt” and then **halts** if a mouse interrupt is received:
 
-<img src="/50005/assets/contentimage/lab6/3.png"  class=" center_seventy"/>
+<img src="/50005-2023/assets/contentimage/lab6/3.png"  class=" center_seventy"/>
 
 **Change** this behavior by:
 
@@ -76,7 +76,7 @@ Insert a `.breakpoint` instruction right before the `JMP(XP)` at the end of your
 
 If things are working correctly the simulation should **stop** at the breakpoint and you can **examine** the kernel memory location where the mouse info was stored to verify that it is correct. In the sample below, we name the memory location as `Mouse_State`, and the value in the red box signifies the coordinates of the mouse click made in the console pane.
 
-<img src="/50005/assets/contentimage/lab6/4.png"  class=" center_seventy"/>
+<img src="/50005-2023/assets/contentimage/lab6/4.png"  class=" center_seventy"/>
 
 ### Task 1
 

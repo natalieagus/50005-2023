@@ -151,13 +151,13 @@ The figure below (screenshot from SGG book) shows the structure of MS-DOS, one o
 - For instance, application programs are able to access the basic I/O routines to write directly to the display and disk drives.
 - Such freedom leaves MS-DOS <span style="color:#f77729;"><b>vulnerable</b></span> to errant (or malicious) programs, causing entire system crashes when user programs fail.
 
-<img src="/50005/assets/images/week2/8.png"  class="center_fourty"/>
+<img src="/50005-2023/assets/images/week2/8.png"  class="center_fourty"/>
 
 ### With Dual Mode
 
 The early UNIX OS was also simple in its form as shown below. In a way, it is layered to a <span style="color:#f77729;"><b>minimal</b></span> extent with very simple structuring.
 
-<img src="/50005/assets/images/week2/9.png"  class="center_seventy"/>
+<img src="/50005-2023/assets/images/week2/9.png"  class="center_seventy"/>
 
 The kernel provides file system management, CPU scheduling, memory management, and other operating-system functions through system calls. That is an <span style="color:#f77729;"><b>enormous</b></span> amount of functionality to be combined into one level.
 
@@ -170,7 +170,7 @@ Other examples of monolithic OS with dual-mode: BSD, Solaris
 
 The operating system is broken into a many number of <span style="color:#f77729;"><b>layers</b></span> (levels). The bottom layer (layer 0) is the hardware; the highest (layer N) is the user interface. The figure below shows a layered approach (layer names for illustration purposes). The programs in layer N rely on services ONLY from the layer below it.
 
-<img src="/50005/assets/images/week2/10.png"  class="center_seventy"/>
+<img src="/50005-2023/assets/images/week2/10.png"  class="center_seventy"/>
 
 <span style="color:#f77729;"><b>Pros</b></span>:
 
@@ -194,7 +194,7 @@ The operating system is broken into a many number of <span style="color:#f77729;
 
 Example: Windows NT (the later version is actually a <span style="color:#f77729;"><b>hybrid</b></span> OS, combining between layered and monolithic aspects and benefits)[^13]
 
-<img src="/50005/assets/images/week2/11.png"  class="center_fourty"/>
+<img src="/50005-2023/assets/images/week2/11.png"  class="center_fourty"/>
 
 ## Microkernel {#microkernel-structures}
 
@@ -211,7 +211,7 @@ For instance, if a user program wishes to access a file, it must interact with t
 - The client program and service never interact directly.
 - Rather, they communicate indirectly by exchanging messages with the microkernel as illustrated below:
 
-<img src="/50005/assets/images/week2/12.png"  class="center_fifty"/>
+<img src="/50005-2023/assets/images/week2/12.png"  class="center_fifty"/>
 
 <span style="color:#f77729;"><b>Pros</b></span>: extending the operating system easier. All new services are added to user space and consequently do not require modification of the kernel.
 
@@ -228,13 +228,13 @@ Hybrid kernels attempt to <span style="color:#f77729;"><b>combine</b></span> bet
 1. Mach provides: IPC, scheduling, memory management
 2. BSD provides: CLI, file system management, networking support, POSIX APIs implementations
 
-<img src="/50005/assets/images/week2/13.png"  class="center_fifty"/>
+<img src="/50005-2023/assets/images/week2/13.png"  class="center_fifty"/>
 
 ## Java Operating System (JX) {#java-operating-system-jx}
 
 The <span style="color:#f77729;"><b>JX OS</b></span> is written almost entirely in <span style="color:#f77729;"><b>Java</b></span>. Such a system, known as a <span style="color:#f77729;"><b>language-based extensible</b></span> system, and runs in a single address space (no virtualisation, no MMU), as such it will face difficulties in maintaining memory protection that is usually supported by hardwares in typical OS.
 
-<img src="/50005/assets/images/week2/14.png"  class="center_fourty"/>
+<img src="/50005-2023/assets/images/week2/14.png"  class="center_fourty"/>
 
 Language-based systems instead rely on <span style="color:#f77729;"><b>type-safety</b></span>[^14] features of the language. As a result, language-based systems are desirable on small hardware devices, which may lack hardware features that provide <span style="color:#f77729;"><b>memory protection</b></span>. Since Java is a type-safe language, JX is able to provide <span style="color:#f77729;"><b>isolation</b></span> between running Java applications without hardware memory protection.
 
@@ -244,14 +244,14 @@ This is called language based protection, where system calls and IPC in JX does 
 The architecture of the JX system is illustrated below (simplified representation[^15]):
 
 - JX organizes its system according to <span style="color:#f77729;"><b>domains</b></span>.
-  <img src="/50005/assets/images/week2/15.png"  class="center_seventy"/>
+  <img src="/50005-2023/assets/images/week2/15.png"  class="center_seventy"/>
 
 - Each <span style="color:#f77729;"><b>domain</b></span> represents an independent <span style="color:#f7007f;"><b>JVM</b></span> (Java Virtual Machine):
   _ JVM is an abstract virtual machine that can run on <span style="color:#f7007f;"><b>any</b></span> OS
   _ There’s one instance of JVM per Java application
   _ JVM provides portable execution environment for Java-based apps
   _ It maintains a heap used for allocating memory during object creation and threads within itself, as well as for <span style="color:#f77729;"><b>garbage collection</b></span>.
-  <img src="/50005/assets/images/week2/16.png"  class="center_seventy"/>
+  <img src="/50005-2023/assets/images/week2/16.png"  class="center_seventy"/>
 
 - Domain zero is a <span style="color:#f77729;"><b>microkernel</b></span> responsible for low-level details, such as system initialization and saving and restoring the state of the CPU.
   - Domain zero is written in C and assembly language; all other domains are written entirely in Java.
@@ -263,7 +263,7 @@ The architecture of the JX system is illustrated below (simplified representatio
 
 The figure below shows the summary of various OS structures.
 
-<img src="/50005/assets/images/week2/17.png"  class="center_seventy"/>
+<img src="/50005-2023/assets/images/week2/17.png"  class="center_seventy"/>
 
 For layered architecture, note that the only difference with hybrid and microkernel structure is that programs at level N relies <span style="color:#f7007f;"><b>ONLY</b></span> on services provided by programs at <span style="color:#f77729;"><b>one</b></span> level below it.
 
@@ -271,7 +271,7 @@ For layered architecture, note that the only difference with hybrid and microker
 
 If you'd like to expand your knowledge beyond regular OS, you may have further read about <span style="color:#f77729;"><b>virtualization</b></span> and <span style="color:#f77729;"><b>containerization</b></span>.
 
-<img src="/50005/assets/images/week2/18.png"  class="center_seventy"/>
+<img src="/50005-2023/assets/images/week2/18.png"  class="center_seventy"/>
 
 ## Virtualisation
 

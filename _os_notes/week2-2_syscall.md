@@ -37,7 +37,7 @@ Take this section with a grain of salt. It is not part of the syllabus but it is
 All processes running in a computer must be able to make system calls. As a result, at the minimum the <span style="color:#f7007f;"><b>entry</b></span> points into the kernel have to be <span style="color:#f77729;"><b>mapped</b></span> into the current address space at all times.
 
 To provide you with a context, let’s see a typical memory layout[^2] of a UNIX process (actual implementation may vary, e.g. Kernel is at low address space instead):
-<img src="/50005/assets/images/week2/1.png"  class="center_full"/>
+<img src="/50005-2023/assets/images/week2/1.png"  class="center_full"/>
 
 The virtual address space of a process is typically divided into two parts: <span style="color:#f77729;"><b>kernel</b></span> part in the higher address and <span style="color:#f77729;"><b>user</b></span> part in the lower address (or vice versa, depending on the Kernel implementation).
 
@@ -78,7 +78,7 @@ An API specifies:
 
 Behind the scenes, the **functions** that make up an API invoke the **actual** system calls on behalf of the application programmer.
 
-<img src="/50005/assets/images/week2/2.png"  class="center_seventy"/>
+<img src="/50005-2023/assets/images/week2/2.png"  class="center_seventy"/>
 
 Benefits of using an API to make system calls:
 
@@ -92,7 +92,7 @@ We always conveniently call `printf()` whenever we want to display our output to
 - This function requires kernel service as it involves access to hardware: output display.
 - The function `printf` is actually making several other function calls to prepare the resources or requirements for this system call **and** finally make the actual system call that invokes the kernel’s help to display the output to the display.
 
-<img src="/50005/assets/images/week2/3.png"  class="center_fifty"/>
+<img src="/50005-2023/assets/images/week2/3.png"  class="center_fifty"/>
 
 The full implementation of `printf` in Mach OS can be found [here](https://opensource.apple.com/source/xnu/xnu-201/osfmk/kern/printf.c.auto.html). It calls other functions like `putc` and eventually `write` function that makes the system call to `stdout` file descriptor.
 
@@ -106,7 +106,7 @@ CopyFile(szFilePath.c_str(), szCopyPath.c_str(), FALSE );
 
 The complete documentation can be found [here](https://docs.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-copyfile). The instruction sequence that is made by this `CopyFile` function to complete the entire copy operation is actually pretty lengthy, involving **multiple** system calls. In `CopyFile` case alone, multiple system calls are made for writing to file, opening files, obtaining file name, reading from file, termination, etc (image below taken from SGG book)
 
-<img src="/50005/assets/images/week2/4.png"  class="center_seventy"/>
+<img src="/50005-2023/assets/images/week2/4.png"  class="center_seventy"/>
 
 The actual implementation details (source code) of OS functions like `CopyFile` are intentionally not documented and can be changed at any time. The API however is well documented and conformed to so others who rely on it will not have their programs broken due to internal OS updates.
 {:.warning}
@@ -257,7 +257,7 @@ When the system call service routine <span style="color:#f77729;"><b>returns</b>
 
 The relationship between application program, API, System call interface, and the kernel is shown below (_image screenshot from SGG book)_:
 
-<img src="/50005/assets/images/week2/5.png"  class="center_seventy"/>
+<img src="/50005-2023/assets/images/week2/5.png"  class="center_seventy"/>
 
 Notice that `printf` is just a C function that will eventually calls the `write` C function, and will eventually invoke the `write` systemcall. We can also do the same thing by using `write` C function:
 
@@ -323,7 +323,7 @@ Pass parameters that are stored in a persistent contiguous location (<span style
 - When system call `id` (e.g: `write`) is made, the kernel examines certain registers, in this example is `rsi` to obtain the address to the parameter (the bytes to write to `stdout`)
 - Given the <span style="color:#f77729;"><b>pointer</b></span>, Kernel can find the parameter for the system call in the RAM, as illustrated below:
 
-<img src="/50005/assets/images/week2/6.png"  class="center_seventy"/>
+<img src="/50005-2023/assets/images/week2/6.png"  class="center_seventy"/>
 
 # Types of System Calls {#types-of-system-calls}
 
@@ -391,7 +391,7 @@ Having created new jobs or processes, we may need to <span style="color:#f77729;
 
 There are so many facets of and variations in process and job control that we need to clarify using examples: MS-DOS and FreeBSD.
 
-<img src="/50005/assets/images/week2/7.png"  class="center_seventy"/>
+<img src="/50005-2023/assets/images/week2/7.png"  class="center_seventy"/>
 
 #### Single-tasking System
 

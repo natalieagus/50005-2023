@@ -112,7 +112,7 @@ We also need to represent the <span style="color:#f7007f;"><b>system STATE</b></
 
 For example, the following arrays display the `available`, `max`, `allocation`, and `need` values of a current state of a system with 5 processes: `P0`, `P1`, `P2`, `P3`, and `P4`, and 3 types of resources: `A`, `B`, `C`;
 
-<img src="/50005/assets/images/lab3/1.png"  class="center_seventy"/>
+<img src="/50005-2023/assets/images/lab3/1.png"  class="center_seventy"/>
 
 ## Banker.py
 

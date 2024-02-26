@@ -18,7 +18,7 @@ An operating system (OS) is a program that **manages computer hardware**.
 
 The figure below shows the hardware components of a common general purpose computer. There are many user programs that are running in a computer, and the OS acts as an intermediary application that enables many user programs to share the same set of hardware, such as the mouse, printer, keyboard, display monitor, etc.
 
-<img src="/50005/assets/images/week1/1.png"  class="center_seventy no-invert"/>
+<img src="/50005-2023/assets/images/week1/1.png"  class="center_seventy no-invert"/>
 
 ## The Operating System {#the-operating-system}
 
@@ -52,7 +52,7 @@ Both system programs and user programs run in <span style="color:#f7007f;"><b>us
 
 A computer system can be roughly divided into **four** components: the hardware, the operating system, the application programs (also known as **user programs**), and the users as shown in the figure below.
 
-<img src="/50005/assets/images/week1/2.png"  class="center_seventy"/>
+<img src="/50005-2023/assets/images/week1/2.png"  class="center_seventy"/>
 
 The operating system is part of the computer system and is analogous to a **government**.
 {:.info}
@@ -66,7 +66,7 @@ This special program is part of the operating system called the **<span style="c
 
 The storage structure in a typical computer system is made of **registers**, **caches**, **main** **memory**, and **non-volatile secondary storage** such as magnetic disk. The wide variety of storage systems can be arranged in terms of hierarchy according to **speed and cost** (increasing speed and increasing cost from bottom up):
 
-<img src="/50005/assets/images/week1/3.png"  class="center_seventy"/>
+<img src="/50005-2023/assets/images/week1/3.png"  class="center_seventy"/>
 
 - The CPU can load instructions only from memory, so any programs to run must be stored there.
 - General-purpose computers run most of their programs from rewritable memory, called main memory (RAM).

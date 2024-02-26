@@ -61,11 +61,11 @@ You also need to modify the `SVCTbl` to now account for 9 supervisor calls inste
 
 Once your `Mouse()` implementation is complete, add a `Mouse()` instruction **just after P2Start**. If things are working correctly, this user-mode process should now **hang** and `Count3` should **not** be incremented even if you type in several sentences (i.e., the prompt should always be `00000000>`).
 
-<img src="/50005/assets/contentimage/lab6/5.png"  class=" center_seventy"/>
+<img src="/50005-2023/assets/contentimage/lab6/5.png"  class=" center_seventy"/>
 
 Now click the mouse once over the console pane and then type more sentences. The prompt should read `00000001>`
 
-<img src="/50005/assets/contentimage/lab6/6.png"  class=" center_seventy"/>
+<img src="/50005-2023/assets/contentimage/lab6/6.png"  class=" center_seventy"/>
 
 ### Task 2
 

@@ -29,7 +29,7 @@ Threads <span style="color:#f77729;"><b>waiting</b></span> to acquire the object
 
 The wait set is NOT equal to the entry set -- it contains threads that are <span style="color:#f7007f;"><b>waiting for a certain condition (NOT WAITING FOR THE LOCK)</b></span>.
 
-<img src="/50005/assets/images/week4/3.png"  class="center_seventy"/>
+<img src="/50005-2023/assets/images/week4/3.png"  class="center_seventy"/>
 
 These sets (entry and waiting) are <span style="color:#f7007f;"><b>per object</b></span>, meaning each object instance only has <span style="color:#f77729;"><b>ONE</b></span> lock.
 

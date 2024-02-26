@@ -95,7 +95,7 @@ To get you started, we suggest a few things that you can do to authenticate the 
    - Recall that csertificate's public key is embedded within `cacsertificate.crt` given to you in the starter code. In real life, this should be a _well known_ certificate shipped by the Browser/OS.
    - However for the sake of this assignment, we are simply "pretending" to be a legitimate CA but our certificate is as good as self-signed.
 
-  <img src="/50005/assets/images/pa2/img.jpg"  class="center_fifty"/>
+  <img src="/50005-2023/assets/images/pa2/img.jpg"  class="center_fifty"/>
 
 #### Authentication Protocol Basis
 
@@ -105,7 +105,7 @@ The diagram below gives the basis of a possible authentication protocol. Take no
 
 The size of `M1` is designed to be not more than `8` bytes. The next section will explain this in more detail.
 
-<img src="/50005/assets/images/pa2/1.png"  class="center_seventy"/>
+<img src="/50005-2023/assets/images/pa2/1.png"  class="center_seventy"/>
 
 The server (SecureStore) has the following items to encrypt/decrypt messages from the client when necessary:
 

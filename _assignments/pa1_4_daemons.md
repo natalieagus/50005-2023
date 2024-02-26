@@ -20,7 +20,7 @@ The program `summond.c` in `/bin/source` <span style="color:#f77729;"><b>summons
 
 Traditionally, the process names of a daemon end with the letter `d`, for clarification that the process is in fact a daemon, and for differentiation between a daemon and a normal computer program. For example: `/sbin/launchd`, `/usr/sbin/syslogd`, `/usr/libexec/configd`, etc (may vary from machine to machine). You can launch the command `ps -ef` to identify these processes whose names end with a suffix ‘d’:
 
-<img src="/50005/assets/images/pa1/8.png"  class="center_seventy"/>
+<img src="/50005-2023/assets/images/pa1/8.png"  class="center_seventy"/>
 
 For the sake of our lab and our machine’s health, our daemon <span style="color:#f77729;"><b>terminates</b></span> after a certain period of time and _violates the traditional daemon definition_, but we’re sure you get the idea.
 {:.info}
@@ -42,7 +42,7 @@ By definition, a daemon process <span style="color:#f7007f;"><b>does not require
 
 In the `ps -ef` output, if the `TTY` column is listed as a `?` meaning it does not have a controlling terminal.
 
-<img src="/50005/assets/images/pa1/9.png"  class="center_seventy"/>
+<img src="/50005-2023/assets/images/pa1/9.png"  class="center_seventy"/>
 
 ### PPID is 1
 
@@ -149,7 +149,7 @@ int main(){
 
 It results in such output:
 
-<img src="/50005/assets/images/pa1/10.png"  class="center_seventy"/>
+<img src="/50005-2023/assets/images/pa1/10.png"  class="center_seventy"/>
 
 Let's analyse them <span style="color:#f77729;"><b>line by line</b></span>.
 
@@ -161,7 +161,7 @@ Let's analyse them <span style="color:#f77729;"><b>line by line</b></span>.
 
 So who is 27063? We can type the command ps -a -j and find a process with pid 27063. Apparently, it's the `zsh`, the shell itself, connected to the controlling terminal `s002`.
 
-<img src="/50005/assets/images/pa1/11.png"  class="center_seventy"/>
+<img src="/50005-2023/assets/images/pa1/11.png"  class="center_seventy"/>
 
 <span style="color:#f77729;"><b>The third and fourth lines:</b></span> When <span style="color:#f7007f;"><b>both</b></span> the child and parent process attempt to call `setsid`,
 
@@ -262,10 +262,10 @@ In practice, there exist daemon error-logging facilities. The BSD syslog facilit
 
 Depending on your machine, your syslog facility may vary. In macOS, the syslog facility is the `Console.app`. You can simply search the message or the process name that is <span style="color:#f77729;"><b>summond</b></span>. In Ubuntu, you can read `/var/log/syslog` and search the message containing `summond` with `grep`:
 
-<img src="/50005/assets/images/pa1/12.png"  class="center_seventy"/>
+<img src="/50005-2023/assets/images/pa1/12.png"  class="center_seventy"/>
 
 In practice, once you direct the log message here, you can tell the facility on how to forward it to your own logfile. This process is rather specific and out of our scope, therefore for the sake of the lab, we just assume that our daemon can directly write to our own logfile: `/pa1/logfile.txt`:
-<img src="/50005/assets/images/pa1/13.png"  class="center_seventy"/>
+<img src="/50005-2023/assets/images/pa1/13.png"  class="center_seventy"/>
 
 ### Test Task 6
 
@@ -275,7 +275,7 @@ Run your shell and type `summond` command. Then, check if `logfile.txt` has been
 
 Then, execute `lsof -p [summond_pid]` to see that it's first 3 file descriptors (0u, 1u, 2u) are attached to `/dev/null`.
 
-<img src="/50005/assets/images/pa1/14.png"  class="center_seventy"/>
+<img src="/50005-2023/assets/images/pa1/14.png"  class="center_seventy"/>
 
 Notice also that `ppid` of `summond` is 1 (the <span style="color:#f77729;"><b>third column</b></span>) of the output of `ps -efj | grep summond`.
 `summond` is <span style="color:#f77729;"><b>neither</b></span> a session leader nor a group leader since its `PGID (15160) != PID (15161)`.
@@ -347,7 +347,7 @@ You can reuse your system program `countline` here or write one from scratch.
 
 Simply <span style="color:#f7007f;"><b>recompile</b></span> with `make`, and run your shell after summoning a few daemons. The command `checkdaemon` should print out exactly as follows:
 
-<img src="/50005/assets/images/pa1/15.png"  class="center_seventy"/>
+<img src="/50005-2023/assets/images/pa1/15.png"  class="center_seventy"/>
 
 ### Commit Task 7
 

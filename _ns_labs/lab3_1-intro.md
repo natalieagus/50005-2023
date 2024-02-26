@@ -27,7 +27,7 @@ At the end of this lab exercise, you should be able to:
 
 The Domain Information Groper (`dig`) is commonly used for performing DNS lookups. Here is an example of how it can be used to find information about the host slashdot.org. The results may differ if you run the same query on your machine.
 
-<img src="/50005/assets/images/nslab3/1.png"  class="center_seventy"/>
+<img src="/50005-2023/assets/images/nslab3/1.png"  class="center_seventy"/>
 
 When the command `dig slashdot.org` is run, dig performs a DNS lookup and displays information about the request and the response it receives. At the bottom of the printout, we can see that the query was sent to the DNS server running on `192.168.2.100`, and that the query took 101 ms to complete. Most of the information that we are interested in can be found in the `ANSWER SECTION`.
 
@@ -39,18 +39,18 @@ The answer section for this query contains a DNS record:
 | `slashdot.org` | 293                     | IN    | `A`  | `104.18.28.86` |
 
 - We can see that the result is of <span style="color:#f77729;"><b>type</b></span> `A`, an address record.
-- It tells us that the IP address for the domain name slashdot.org can be either `104.18.29.86` or `104.18.28.86`. 
+- It tells us that the IP address for the domain name slashdot.org can be either `104.18.29.86` or `104.18.28.86`.
 - The expiry time field indicates that this record is valid for 293 seconds.
 - The value of the class field is usually IN (Internet) for all records.
 
 If you’d like to know who’s the authoritative NS for the queried domain, you can add the trace option: `dig slashdot.org +trace`
-<img src="/50005/assets/images/nslab3/2.png"  class="center_seventy"/>
+<img src="/50005-2023/assets/images/nslab3/2.png"  class="center_seventy"/>
 
 The records of type `NS` indicate the names of the DNS servers storing records for a particular <span style="color:#f77729;"><b>domain</b></span>. Here, we can see that the hosts `ns1.dnsmadeeasy.com.` and etc are responsible for providing <span style="color:#f77729;"><b>authoritative responses</b></span> to names in the `slashdot.org` domain.
 
 We can <span style="color:#f77729;"><b>query</b></span> a specific server for information about a host by using the `@` option. For example, to perform a lookup using the DNS server `ns1.dnsmadeeasy.com.`, we can run the command `dig @ns1.dnsmadeeasy.com. slashdot.org.`:
 
-<img src="/50005/assets/images/nslab3/3.png"  class="center_seventy"/>
+<img src="/50005-2023/assets/images/nslab3/3.png"  class="center_seventy"/>
 
 There are three flags under the header: `qr`, `aa`, and `rd`:
 
@@ -59,7 +59,7 @@ There are three flags under the header: `qr`, `aa`, and `rd`:
 
 `dig` only prints the <span style="color:#f77729;"><b>final</b></span> result of a recursive search, but you can mimic the individual steps involved by making a query with the `+norecurs` option enabled. For example, to send a non-recursive query to one of the root servers, we enter the command `dig @a.ROOT-SERVERS.NET www.slashdot.org +norecurs`:
 
-<img src="/50005/assets/images/nslab3/4.png"  class="center_seventy"/>
+<img src="/50005-2023/assets/images/nslab3/4.png"  class="center_seventy"/>
 
 As you can see, the server <span style="color:#f77729;"><b>does not know the answer</b></span> (there’s `0 ANSWER`) and instead provides information about the servers _most likely_ to be able to provide an authoritative answer for the question. In this case, the best that the root server knows is the identities of the servers for the `org.` top-level domain.
 

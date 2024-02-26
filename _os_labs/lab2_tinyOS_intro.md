@@ -48,11 +48,11 @@ git clone https://github.com/natalieagus/lab-tinyOS.git
 
 You will find a few files: `bsim.jar, beta.uasm, tinyOS.uasm`. You should know what the first two are from 50002 (yes, its the same Beta simulator we used before). `tinyOS.uasm` is a program that implements a minimal Kernel supporting a simple **timesharing** system. Use BSim to load this file, assemble, and then run `tinyOS.uasm`. The following prompt should appear in the console pane of the BSim Display Window:
 
-<img src="/50005/assets/contentimage/lab6/1.png"  class=" center_seventy"/>
+<img src="/50005-2023/assets/contentimage/lab6/1.png"  class=" center_seventy"/>
 
 As you type, each character is echoed to the console and when you hit **return** the whole sentence is translated into Pig Latin and written to the console:
 
-<img src="/50005/assets/contentimage/lab6/2.png"  class=" center_seventy"/>
+<img src="/50005-2023/assets/contentimage/lab6/2.png"  class=" center_seventy"/>
 
 The hex number `0x000711BC` written out in the screenshot above as part of the prompt is a **count** of the **number of times** one of the user-mode processes (**Process 2**) has been **scheduled** while you typed in the sentence or leave the program idling.
 

@@ -49,7 +49,7 @@ git remote add origin https://github.com/[your_github_username]/pa_1.git
 git push -u origin master
 ```
 
-<img src="/50005/assets/images/pa1/16.png"  class="center_seventy"/>
+<img src="/50005-2023/assets/images/pa1/16.png"  class="center_seventy"/>
 
 If you only have `main` branch, the third command will fail. You need to create the master branch first and switch there:
 ```
@@ -117,10 +117,10 @@ Your shell should <span style="color:#f7007f;"><b>NOT</b></span> crash due to an
 ## Preparation
 
 Go to `/pa1/` and type `make`. Then, run the compiled shell `./cseshell`. You should see all files compiled and the shell ran and _immediately_ returned as follows:
-<img src="/50005/assets/images/pa1/1.png"  class="center_seventy"/>
+<img src="/50005-2023/assets/images/pa1/1.png"  class="center_seventy"/>
 
 Notice how you have a few binaries available under `/bin`. Those are your <span style="color:#f77729;"><b>system programs</b></span>. We will execute these system programs later on from our shell.
-<img src="/50005/assets/images/pa1/2.png"  class="center_seventy"/>
+<img src="/50005-2023/assets/images/pa1/2.png"  class="center_seventy"/>
 
 ## /bin/source
 
